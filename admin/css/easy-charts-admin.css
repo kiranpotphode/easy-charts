@@ -1,0 +1,74 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls {
+  text-align: center;
+  padding: 30px 0;
+  border: 1px solid #000;
+}
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls .button-group {
+  margin: 0 5px;
+}
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls .button-group button {
+  /*display: block;*/
+}
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls .button-group button .dashicons {
+  line-height: 26px;
+  height: 28px;
+  margin-right: 10px;
+}
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container div.ec-uv-chart-container {
+  /*-webkit-box-shadow: 0px 0px 29px -4px rgba(5,5,5,1);
+  -moz-box-shadow: 0px 0px 29px -4px rgba(5,5,5,1);
+  box-shadow: 0px 0px 29px -4px rgba(5,5,5,1);*/
+}
+
+#easy-charts-shortcode-metabox-wrap #easy-chart-shortcode-box input[name="ec-shortcode"] {
+  width: 100%;
+}
+
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box {
+  overflow: auto;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs {
+  /*-webkit-box-shadow: 11px 12px 37px 0px rgba(5,5,5,0.33);
+  -moz-box-shadow: 11px 12px 37px 0px rgba(5,5,5,0.33);
+  box-shadow: 11px 12px 37px 0px rgba(5,5,5,0.33);*/
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .pws_tabs_container ul.pws_tabs_controll li a.pws_tab_active {
+  -webkit-box-shadow: -1px 14px 13px -5px rgba(5, 5, 5, 0.33);
+  -moz-box-shadow: -1px 14px 13px -5px rgba(5, 5, 5, 0.33);
+  box-shadow: -1px 14px 13px -5px rgba(5, 5, 5, 0.33);
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab.pws_show {
+  z-index: 100;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field {
+  width: 100%;
+  padding: 15px 0;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field:first-child {
+  padding-top: 0;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field > table {
+  width: 100%;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field > table td.ec-td-label {
+  width: 40%;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field > table td.ec-td-label label {
+  font-weight: bold;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field > table td.ec-td-field {
+  width: 60%;
+}
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field > table td.ec-td-field input[type="text"],
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field > table td.ec-td-field input[type="number"],
+#easy-charts-configuration-metabox-wrap #easy-chart-configuration-box #ec-tabs .ec-tab div.field > table td.ec-td-field select {
+  width: 100%;
+}
+
+#easy-charts-preview-metabox-wrap #easy-chart-preview-box {
+  overflow: auto;
+}
