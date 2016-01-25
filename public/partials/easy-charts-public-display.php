@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       https://kiranpotphode.wordpress.com/
+ * @link       https://kiranpotphode.com/
  * @since      1.0.0
  *
  * @package    Easy_Charts

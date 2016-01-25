@@ -150,7 +150,15 @@
 
 			var chartObject = uv.chart(chartType, graphdef, chartConfiguration);
 		}
-		
+
+		$('.uv-chart-div svg.uv-frame g.uv-download-options').bind('mouseenter', function(event) {
+			var svg = $(this).parents('.uv-chart-div svg.uv-frame');
+
+			svg[0].setAttribute('width', svg[0].getBoundingClientRect().width);
+			svg[0].setAttribute('height', svg[0].getBoundingClientRect().height);
+
+		});
+
 	});
 
 })( jQuery );

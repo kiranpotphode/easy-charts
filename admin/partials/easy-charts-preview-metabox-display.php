@@ -22,7 +22,7 @@
 			$chart_data = json_decode( $chart_data );
 
 			if( $chart_data == null ){
-				echo _e('Please click "Update chart data" and save chart for preview.','easy-charts');
+				_e('Please click "Update chart data" and save chart for preview.','easy-charts');
 			}
 
 			$translation_array = array(

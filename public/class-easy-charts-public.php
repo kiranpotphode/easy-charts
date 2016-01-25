@@ -3,7 +3,7 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * @link       https://kiranpotphode.wordpress.com/
+ * @link       https://kiranpotphode.com/
  * @since      1.0.0
  *
  * @package    Easy_Charts
@@ -75,7 +75,7 @@ class Easy_Charts_Public {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-public.css', array(), $this->version, 'all' );
+		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -98,9 +98,17 @@ class Easy_Charts_Public {
 		 * class.
 		 */
 
-		wp_enqueue_script( 'easy-charts-public-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-public.js', array( 'jquery' ), $this->version, true );
-		wp_enqueue_script( 'd3-js', plugin_dir_url( __FILE__ ) . 'js/d3.min.js', array( 'jquery' ), $this->version, false );
-		wp_enqueue_script( 'uvhcharts-js', plugin_dir_url( __FILE__ ) . 'js/uvcharts.min.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'easy-charts-public-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-public.js', array( 'jquery' ), $this->version, true );
+
+		wp_register_script( 'd3-js', plugin_dir_url( __FILE__ ) . 'js/d3.min.js', array( 'jquery' ), $this->version, false );
+
+		wp_register_script( 'uvhcharts-js', plugin_dir_url( __FILE__ ) . 'js/uvcharts.min.js', array( 'jquery' ), $this->version, false );
+
+		wp_register_script( 'filesaver-js', plugin_dir_url( __FILE__ ) . 'js/filesaver.js', array( 'jquery' ), $this->version, false );
+
+		wp_register_script( 'canvg-js', plugin_dir_url( __FILE__ ) . 'js/canvg.js', array( 'jquery' ), $this->version, false );
+
+		wp_register_script( 'canvas-toblob-js', plugin_dir_url( __FILE__ ) . 'js/canvas-toblob.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -122,6 +130,19 @@ class Easy_Charts_Public {
 
 		if( $chart_id ){
 			$plugin = new Easy_Charts();
+
+			wp_enqueue_script( 'easy-charts-public-js' );
+
+			wp_enqueue_script( 'd3-js' );
+
+			wp_enqueue_script( 'uvhcharts-js' );
+
+			wp_enqueue_script( 'filesaver-js' );
+
+			wp_enqueue_script( 'canvg-js');
+
+			wp_enqueue_script( 'canvas-toblob-js' );
+
 			return $plugin->ec_render_chart( $chart_id );
 		}
 

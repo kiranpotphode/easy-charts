@@ -19,21 +19,21 @@
 	<div id="easy-chart-configuration-box">
 		<div id="ec-tabs">
 			<div class="resp-tabs-container">
-				<div id="ec-tabs-graph" class="ec-tab" data-pws-tab-name="General" data-pws-tab="ec-tabs-graph" data-pws-tab-icon="fa-university">
+				<div id="ec-tabs-graph" class="ec-tab" data-pws-tab-name="<?php _e( 'General', 'easy-charts'); ?>" data-pws-tab="ec-tabs-graph" data-pws-tab-icon="fa-university">
 					<?php	$ec_chart_type = get_post_meta( $post->ID, '_ec_chart_type', true );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_type','Chart Type', $ec_chart_type, array(
-								'ec_bar_chart' => __( 'Bar Chart' ),
-								'ec_area_chart' => __( 'Area Chart' ),
-								'ec_stacked_bar_chart' => __( 'Stacked Bar Chart' ),
-								'ec_stacked_area_chart' => __( 'Stacked Area Chart' ),
-								'ec_percent_bar_chart' => __( 'Percent Bar Chart' ),
-								'ec_percent_area_chart' => __( 'Percent Area Chart' ),
-								'ec_pie_chart' => __( 'Pie Chart' ),
-								'ec_donut_chart' => __( 'Donut Chart' ),
-								'ec_step_up_bar_chart' => __( 'Step Up Bar Chart' ),
-								'ec_waterfall_chart' => __( 'Waterfall Chart' ),
-								'ec_line_chart' => __( 'Line Chart' ),
-								'ec_polar_area_chart' => __( 'Polar Area Chart' )
+								'ec_bar_chart' => __( 'Bar Chart', 'easy-charts' ),
+								'ec_area_chart' => __( 'Area Chart', 'easy-charts' ),
+								'ec_stacked_bar_chart' => __( 'Stacked Bar Chart', 'easy-charts' ),
+								'ec_stacked_area_chart' => __( 'Stacked Area Chart', 'easy-charts' ),
+								'ec_percent_bar_chart' => __( 'Percent Bar Chart', 'easy-charts' ),
+								'ec_percent_area_chart' => __( 'Percent Area Chart', 'easy-charts' ),
+								'ec_pie_chart' => __( 'Pie Chart', 'easy-charts' ),
+								'ec_donut_chart' => __( 'Donut Chart', 'easy-charts' ),
+								'ec_step_up_bar_chart' => __( 'Step Up Bar Chart', 'easy-charts' ),
+								'ec_waterfall_chart' => __( 'Waterfall Chart', 'easy-charts' ),
+								'ec_line_chart' => __( 'Line Chart', 'easy-charts' ),
+								'ec_polar_area_chart' => __( 'Polar Area Chart', 'easy-charts' )
 							) );
 
 						$ec_chart_graph =  $plugin->ec_get_chart_configuration( $post->ID, 'graph' );
@@ -46,7 +46,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-meta" class="ec-tab" data-pws-tab-name="Meta" data-pws-tab="ec-tabs-meta" data-pws-tab-icon="fa-table">
+				<div id="ec-tabs-meta" class="ec-tab" data-pws-tab-name="<?php  _e( 'Meta', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-meta" data-pws-tab-icon="fa-table">
 					<?php	$ec_chart_meta =  $plugin->ec_get_chart_configuration( $post->ID, 'meta' ); ?>
 
 						<input type="hidden" value=".uv-div-<?php echo $post->ID; ?>" name="ec_chart_meta_position" />
@@ -63,7 +63,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-dimension" class="ec-tab" data-pws-tab-name="Dimension" data-pws-tab="ec-tabs-dimension" data-pws-tab-icon="fa-text-height">
+				<div id="ec-tabs-dimension" class="ec-tab" data-pws-tab-name="<?php  _e( 'Dimension', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-dimension" data-pws-tab-icon="fa-text-height">
 					<?php	$ec_chart_dimension =  $plugin->ec_get_chart_configuration( $post->ID, 'dimension' );
 
 						$plugin->ec_render_field('text', 'ec_chart_dimension_width', 'Width', $ec_chart_dimension['width'] );
@@ -71,7 +71,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-margin" class="ec-tab" data-pws-tab-name="Margin" data-pws-tab="ec-tabs-margin" data-pws-tab-icon="fa-arrows">
+				<div id="ec-tabs-margin" class="ec-tab" data-pws-tab-name="<?php  _e( 'Margin', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-margin" data-pws-tab-icon="fa-arrows">
 					<?php	$ec_chart_margin =  $plugin->ec_get_chart_configuration( $post->ID, 'margin' );
 
 						$plugin->ec_render_field( 'text', 'ec_chart_margin_top','Top', $ec_chart_margin['top'] );
@@ -81,14 +81,14 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-frame" class="ec-tab" data-pws-tab-name="Frame" data-pws-tab="ec-tabs-frame" data-pws-tab-icon="fa-television">
+				<div id="ec-tabs-frame" class="ec-tab" data-pws-tab-name="<?php  _e( 'Frame', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-frame" data-pws-tab-icon="fa-television">
 					<?php	$ec_chart_frame =  $plugin->ec_get_chart_configuration( $post->ID, 'frame' );
 
 						$plugin->ec_render_field( 'color-picker', 'ec_chart_frame_bgcolor','Background Color', $ec_chart_frame['bgcolor'] );
 					?>
 				</div>
 
-				<div id="ec-tabs-axis" class="ec-tab" data-pws-tab-name="Axis" data-pws-tab="ec-tabs-axis" data-pws-tab-icon="fa-long-arrow-right">
+				<div id="ec-tabs-axis" class="ec-tab" data-pws-tab-name="<?php  _e( 'Axis', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-axis" data-pws-tab-icon="fa-long-arrow-right">
 					<?php	$ec_chart_axis =  $plugin->ec_get_chart_configuration( $post->ID, 'axis' );
 
 						$plugin->ec_render_field( 'slider', 'ec_chart_axis_opacity','Opacity', $ec_chart_axis['opacity'] );
@@ -106,7 +106,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-label" class="ec-tab" data-pws-tab-name="Label" data-pws-tab="ec-tabs-label" data-pws-tab-icon="fa-tag">
+				<div id="ec-tabs-label" class="ec-tab" data-pws-tab-name="<?php  _e( 'Label', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-label" data-pws-tab-icon="fa-tag">
 					<?php	$ec_chart_label =  $plugin->ec_get_chart_configuration( $post->ID, 'label' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_label_fontfamily','Font Family', $ec_chart_label['fontfamily'], array('Arial' => 'Arial' ) );
@@ -120,7 +120,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-scale" class="ec-tab" data-pws-tab-name="Scale" data-pws-tab="ec-tabs-scale" data-pws-tab-icon="fa-balance-scale">
+				<div id="ec-tabs-scale" class="ec-tab" data-pws-tab-name="<?php  _e( 'Scale', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-scale" data-pws-tab-icon="fa-balance-scale">
 					<?php	$ec_chart_scale =  $plugin->ec_get_chart_configuration( $post->ID, 'scale' );
 
 						$plugin->ec_render_field( 'radio', 'ec_chart_scale_type','Type', $ec_chart_scale['type'], array( 'Linear' => 'linear', 'Log' => 'log', 'Pow' => 'pow', 'SQRT' => 'sqrt' ) );
@@ -128,7 +128,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-tooltip" class="ec-tab" data-pws-tab-name="Tooltip" data-pws-tab="ec-tabs-tooltip" data-pws-tab-icon="fa-comment">
+				<div id="ec-tabs-tooltip" class="ec-tab" data-pws-tab-name="<?php  _e( 'Tooltip', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-tooltip" data-pws-tab-icon="fa-comment">
 					<?php	$ec_chart_tooltip =  $plugin->ec_get_chart_configuration( $post->ID, 'tooltip' );
 
 						$plugin->ec_render_field( 'radio', 'ec_chart_tooltip_show','Show', $ec_chart_tooltip['show'], array( 'Yes' => 1, 'No' => 0 ) );
@@ -136,7 +136,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-caption" class="ec-tab" data-pws-tab-name="Caption" data-pws-tab="ec-tabs-caption" data-pws-tab-icon="fa-header">
+				<div id="ec-tabs-caption" class="ec-tab" data-pws-tab-name="<?php  _e( 'Caption', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-caption" data-pws-tab-icon="fa-header">
 					<?php	$ec_chart_caption =  $plugin->ec_get_chart_configuration( $post->ID, 'caption' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_caption_fontfamily','Font Family', $ec_chart_caption['fontfamily'], array('Arial' => 'Arial' ) );
@@ -148,7 +148,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-subcaption" class="ec-tab" data-pws-tab-name="Subcaption" data-pws-tab="ec-tabs-subcaption" data-pws-tab-icon="fa-font">
+				<div id="ec-tabs-subcaption" class="ec-tab" data-pws-tab-name="<?php  _e( 'Subcaption', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-subcaption" data-pws-tab-icon="fa-font">
 					<?php	$ec_chart_subcaption =  $plugin->ec_get_chart_configuration( $post->ID, 'subcaption' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_subcaption_fontfamily','Font Family', $ec_chart_subcaption['fontfamily'], array('Arial' => 'Arial' ) );
@@ -160,7 +160,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-bar" class="ec-tab" data-pws-tab-name="Bar" data-pws-tab="ec-tabs-bar" data-pws-tab-icon="fa-bar-chart">
+				<div id="ec-tabs-bar" class="ec-tab" data-pws-tab-name="<?php  _e( 'Bar', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-bar" data-pws-tab-icon="fa-bar-chart">
 					<?php	$ec_chart_bar =  $plugin->ec_get_chart_configuration( $post->ID, 'bar' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_bar_fontfamily','Font Family', $ec_chart_bar['fontfamily'], array('Arial' => 'Arial' ) );
@@ -171,14 +171,14 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-line" class="ec-tab" data-pws-tab-name="Line" data-pws-tab="ec-tabs-line" data-pws-tab-icon="fa-line-chart">
+				<div id="ec-tabs-line" class="ec-tab" data-pws-tab-name="<?php  _e( 'Line', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-line" data-pws-tab-icon="fa-line-chart">
 					<?php	$ec_chart_line =  $plugin->ec_get_chart_configuration( $post->ID, 'line' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_line_interpolation','Interpolation', $ec_chart_line['interpolation'], array('linear' => 'linear', 'basis' => 'basis', 'cardinal' => 'cardinal', 'monotone' => 'monotone' ) );
 					?>
 				</div>
 
-				<div id="ec-tabs-area" class="ec-tab" data-pws-tab-name="Area" data-pws-tab="ec-tabs-area" data-pws-tab-icon="fa-area-chart">
+				<div id="ec-tabs-area" class="ec-tab" data-pws-tab-name="<?php  _e( 'Area', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-area" data-pws-tab-icon="fa-area-chart">
 					<?php	$ec_chart_area =  $plugin->ec_get_chart_configuration( $post->ID, 'area' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_area_interpolation','Interpolation', $ec_chart_area['interpolation'], array('linear' => 'linear', 'basis' => 'basis', 'cardinal' => 'cardinal', 'monotone' => 'monotone' ) );
@@ -187,7 +187,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-pie" class="ec-tab" data-pws-tab-name="Pie" data-pws-tab="ec-tabs-pie" data-pws-tab-icon="fa-pie-chart">
+				<div id="ec-tabs-pie" class="ec-tab" data-pws-tab-name="<?php  _e( 'Pie', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-pie" data-pws-tab-icon="fa-pie-chart">
 					<?php	$ec_chart_pie =  $plugin->ec_get_chart_configuration( $post->ID, 'pie' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_pie_fontfamily','Font Family', $ec_chart_pie['fontfamily'], array('Arial' => 'Arial' ) );
@@ -200,7 +200,7 @@
 					?>
 				</div>
 
-				<div id="ec-tabs-donut" class="ec-tab" data-pws-tab-name="Donut" data-pws-tab="ec-tabs-donut" data-pws-tab-icon="fa-pie-chart">
+				<div id="ec-tabs-donut" class="ec-tab" data-pws-tab-name="<?php  _e( 'Donut', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-donut" data-pws-tab-icon="fa-pie-chart">
 					<?php	$ec_chart_donut =  $plugin->ec_get_chart_configuration( $post->ID, 'donut' );
 
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_donut_fontfamily','Font Family', $ec_chart_donut['fontfamily'], array('Arial' => 'Arial' ) );

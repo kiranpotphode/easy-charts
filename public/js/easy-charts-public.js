@@ -2,7 +2,7 @@ function get_ec_oject(obj){
 	return this[obj];
 }
 
-$.fn.get_ec_oject = function(obj) {
+jQuery.fn.get_ec_oject = function(obj) {
 	return get_ec_oject(obj);
 };
 
@@ -46,6 +46,14 @@ $.fn.get_ec_oject = function(obj) {
 
 		$('.ec-uv-chart-container').each(function(){
 			$(this).ec_draw_chart();
+		});
+
+		$('.uv-chart-div svg.uv-frame g.uv-download-options').bind('mouseenter', function(event) {
+			var svg = $(this).parents('.uv-chart-div svg.uv-frame');
+
+			svg[0].setAttribute('width', svg[0].getBoundingClientRect().width);
+			svg[0].setAttribute('height', svg[0].getBoundingClientRect().height);
+
 		});
 
 	});

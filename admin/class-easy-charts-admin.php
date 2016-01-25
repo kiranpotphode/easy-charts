@@ -3,7 +3,7 @@
 /**
  * The admin-specific functionality of the plugin.
  *
- * @link       https://kiranpotphode.wordpress.com/
+ * @link       https://kiranpotphode.com/
  * @since      1.0.0
  *
  * @package    Easy_Charts
@@ -166,7 +166,7 @@ class Easy_Charts_Admin {
 			'singular_name'      => _x( 'Chart', 'post type singular name', 'easy-charts' ),
 			'menu_name'          => _x( 'Easy Charts', 'admin menu', 'easy-charts' ),
 			'name_admin_bar'     => _x( 'Chart', 'add new on admin bar', 'easy-charts' ),
-			'add_new'            => _x( 'Add New', 'book', 'easy-charts' ),
+			'add_new'            => _x( 'Add New', 'easy-charts' ),
 			'add_new_item'       => __( 'Add New Chart', 'easy-charts' ),
 			'new_item'           => __( 'New Chart', 'easy-charts' ),
 			'edit_item'          => __( 'Edit Chart', 'easy-charts' ),
@@ -249,7 +249,7 @@ class Easy_Charts_Admin {
 	 * @since 1.0.0
 	 */
 	public function add_options_menu(){
-		add_submenu_page( 'edit.php?post_type=easy_charts', 'Charts settings', 'Charts settings', 'manage_options', 'easy-charts-settings', array( $this, 'easy_charts_settings_page_callback') );
+		add_submenu_page( 'edit.php?post_type=easy_charts', __('Charts settings', 'easy-charts'), __('Charts settings', 'easy-charts'), 'manage_options', 'easy-charts-settings', array( $this, 'easy_charts_settings_page_callback') );
 	}
 
 	/**
@@ -535,7 +535,7 @@ class Easy_Charts_Admin {
 		if( $chart_query->have_posts() ) {
 			foreach ($chart_query->posts as $chart_key => $chart ) {
 				$charts[] = array( 	'text' => $chart->post_title,
-													'value' => "[easy_charts chart_id='".$chart->ID."']"
+													'value' => "[easy_chart chart_id='".$chart->ID."']"
 			 								);
 			}
 		}

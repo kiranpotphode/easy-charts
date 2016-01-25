@@ -3,8 +3,8 @@ jQuery(document).ready(function($) {
 		(function() {
 			tinymce.PluginManager.add('easy_charts_insert_chart_tc_button', function( editor, url ) {
 				editor.addButton( 'easy_charts_insert_chart_tc_button', {
-					text: 'Easy Charts',
 					icon: 'icon dashicons-chart-pie',
+					tooltip: 'Insert Easy Chart',
 					onclick: function() {
 						$.ajax({
 							url: ajaxurl,
