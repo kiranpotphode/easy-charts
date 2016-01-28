@@ -13,6 +13,7 @@
 
 	global $post;
 	$plugin = new Easy_Charts();
+	$font_family  =  array('Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana'=> 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia');
 ?>
 
 <div id="easy-charts-configuration-metabox-wrap">
@@ -97,7 +98,7 @@
 						$plugin->ec_render_field( 'number', 'ec_chart_axis_padding','Padding', $ec_chart_axis['padding'], array('min' => 0 ) );
 						$plugin->ec_render_field( 'color-picker', 'ec_chart_axis_strokecolor','Stroke Color', $ec_chart_axis['strokecolor'] );
 						$plugin->ec_render_field( 'number', 'ec_chart_axis_minor','Minor', $ec_chart_axis['minor'], array('max' => 0 ) );
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_axis_fontfamily','Font Family', $ec_chart_axis['fontfamily'], array('Arial' => 'Arial' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_axis_fontfamily','Font Family', $ec_chart_axis['fontfamily'], $font_family, 'Arial' );
 						$plugin->ec_render_field( 'number', 'ec_chart_axis_fontsize','Font Size', $ec_chart_axis['fontsize'], array('min' => 0 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_axis_fontweight','Font Weight', $ec_chart_axis['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700 ) );
 						$plugin->ec_render_field( 'radio', 'ec_chart_axis_showticks','Show Ticks', $ec_chart_axis['showticks'], array( 'Yes'=>1, 'No'=>0 ) );
@@ -109,7 +110,7 @@
 				<div id="ec-tabs-label" class="ec-tab" data-pws-tab-name="<?php  _e( 'Label', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-label" data-pws-tab-icon="fa-tag">
 					<?php	$ec_chart_label =  $plugin->ec_get_chart_configuration( $post->ID, 'label' );
 
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_label_fontfamily','Font Family', $ec_chart_label['fontfamily'], array('Arial' => 'Arial' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_label_fontfamily','Font Family', $ec_chart_label['fontfamily'], $font_family, 'Arial' );
 						$plugin->ec_render_field( 'number', 'ec_chart_label_fontsize','Font Size', $ec_chart_label['fontsize'], array( 'min' => 0 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_label_fontweight','Font Weight', $ec_chart_label['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700, '800' => 800, '900' => 900 ) );
 						$plugin->ec_render_field( 'color-picker', 'ec_chart_label_strokecolor','Stroke Color', $ec_chart_label['strokecolor'] );
@@ -139,7 +140,7 @@
 				<div id="ec-tabs-caption" class="ec-tab" data-pws-tab-name="<?php  _e( 'Caption', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-caption" data-pws-tab-icon="fa-header">
 					<?php	$ec_chart_caption =  $plugin->ec_get_chart_configuration( $post->ID, 'caption' );
 
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_caption_fontfamily','Font Family', $ec_chart_caption['fontfamily'], array('Arial' => 'Arial' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_caption_fontfamily','Font Family', $ec_chart_caption['fontfamily'], $font_family, 'Arial' );
 						$plugin->ec_render_field( 'number', 'ec_chart_caption_fontsize','Font Size', $ec_chart_caption['fontsize'], array( 'min' => 0 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_caption_fontweight','Font Weight', $ec_chart_caption['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700, '800' => 800, '900' => 900 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_caption_textdecoration','Textdecoration', $ec_chart_caption['textdecoration'], array( 'none' => 'none', 'blink' => 'blink', 'line-through' => 'line-through', 'overline' => 'overline', 'underline' => 'underline' ) );
@@ -151,7 +152,7 @@
 				<div id="ec-tabs-subcaption" class="ec-tab" data-pws-tab-name="<?php  _e( 'Subcaption', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-subcaption" data-pws-tab-icon="fa-font">
 					<?php	$ec_chart_subcaption =  $plugin->ec_get_chart_configuration( $post->ID, 'subcaption' );
 
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_subcaption_fontfamily','Font Family', $ec_chart_subcaption['fontfamily'], array('Arial' => 'Arial' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_subcaption_fontfamily','Font Family', $ec_chart_subcaption['fontfamily'], $font_family, 'Arial' );
 						$plugin->ec_render_field( 'number', 'ec_chart_subcaption_fontsize','Font Size', $ec_chart_subcaption['fontsize'], array( 'min' => 0 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_subcaption_fontweight','Font Weight', $ec_chart_subcaption['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700, '800' => 800, '900' => 900 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_subcaption_textdecoration','Textdecoration', $ec_chart_subcaption['textdecoration'], array( 'none' => 'none', 'blink' => 'blink', 'line-through' => 'line-through', 'overline' => 'overline', 'underline' => 'underline' ) );
@@ -163,7 +164,7 @@
 				<div id="ec-tabs-bar" class="ec-tab" data-pws-tab-name="<?php  _e( 'Bar', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-bar" data-pws-tab-icon="fa-bar-chart">
 					<?php	$ec_chart_bar =  $plugin->ec_get_chart_configuration( $post->ID, 'bar' );
 
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_bar_fontfamily','Font Family', $ec_chart_bar['fontfamily'], array('Arial' => 'Arial' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_bar_fontfamily','Font Family', $ec_chart_bar['fontfamily'], $font_family, 'Arial' );
 						$plugin->ec_render_field( 'number', 'ec_chart_bar_fontsize','Font Size', $ec_chart_bar['fontsize'], array( 'min' => 0 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_bar_fontweight','Font Weight', $ec_chart_bar['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700, '800' => 800, '900' => 900 ) );
 						$plugin->ec_render_field( 'color-picker', 'ec_chart_bar_strokecolor','Stroke Color', $ec_chart_bar['strokecolor'] );
@@ -190,7 +191,7 @@
 				<div id="ec-tabs-pie" class="ec-tab" data-pws-tab-name="<?php  _e( 'Pie', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-pie" data-pws-tab-icon="fa-pie-chart">
 					<?php	$ec_chart_pie =  $plugin->ec_get_chart_configuration( $post->ID, 'pie' );
 
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_pie_fontfamily','Font Family', $ec_chart_pie['fontfamily'], array('Arial' => 'Arial' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_pie_fontfamily','Font Family', $ec_chart_pie['fontfamily'], $font_family, 'Arial' );
 						$plugin->ec_render_field( 'number', 'ec_chart_pie_fontsize','Font Size', $ec_chart_pie['fontsize'], array( 'min' => 0 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_pie_fontweight','Font Weight', $ec_chart_pie['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700, '800' => 800, '900' => 900 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_pie_fontvariant','Font Varient', $ec_chart_pie['fontvariant'], array( 'normal' => 'normal', 'small-caps' => 'small-caps') );
@@ -203,7 +204,7 @@
 				<div id="ec-tabs-donut" class="ec-tab" data-pws-tab-name="<?php  _e( 'Donut', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-donut" data-pws-tab-icon="fa-pie-chart">
 					<?php	$ec_chart_donut =  $plugin->ec_get_chart_configuration( $post->ID, 'donut' );
 
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_donut_fontfamily','Font Family', $ec_chart_donut['fontfamily'], array('Arial' => 'Arial' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_donut_fontfamily','Font Family', $ec_chart_donut['fontfamily'], $font_family, 'Arial' );
 						$plugin->ec_render_field( 'number', 'ec_chart_donut_fontsize','Font Size', $ec_chart_pie['fontsize'], array( 'min' => 0 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_donut_fontweight','Font Weight', $ec_chart_donut['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700, '800' => 800, '900' => 900 ) );
 						$plugin->ec_render_field( 'dropdown', 'ec_chart_donut_fontvariant','Font Varient', $ec_chart_donut['fontvariant'], array( 'normal' => 'normal', 'small-caps' => 'small-caps') );

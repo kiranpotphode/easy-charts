@@ -534,7 +534,13 @@ class Easy_Charts_Admin {
 		$charts = array();
 		if( $chart_query->have_posts() ) {
 			foreach ($chart_query->posts as $chart_key => $chart ) {
-				$charts[] = array( 	'text' => $chart->post_title,
+				$chart_title = "";
+				if( "" == $chart->post_title ){
+					$chart_title = "Chart-".$chart->ID;
+				}else{
+					$chart_title = $chart->post_title;
+				}
+				$charts[] = array( 	'text' => $chart_title,
 													'value' => "[easy_chart chart_id='".$chart->ID."']"
 			 								);
 			}
