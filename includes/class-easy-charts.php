@@ -310,6 +310,20 @@ class Easy_Charts {
 		return $return;
 	}
 
+	/**
+	*Get available font Family
+	*
+	* @since 1.0.0
+	*
+	* @return 		array 		Array of font-family.
+	*/
+	public function get_font_family_array(){
+		$font_family = array();
+
+		$font_family  =  array( 'Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana'=> 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia' );
+
+		return apply_filters( 'easy_charts_get_font_family_array', $font_family );
+	}
 
 	/**
 	*Get chart data.

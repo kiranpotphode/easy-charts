@@ -4,7 +4,7 @@
  *
  * HTML markup for configuration matabox.
  *
- * @link       http://kiranpotphode.wordpress.com
+ * @link       http://kiranpotphode.com
  * @since      1.0.0
  *
  * @package    Easy_Charts
@@ -13,7 +13,7 @@
 
 	global $post;
 	$plugin = new Easy_Charts();
-	$font_family  =  array('Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana'=> 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia');
+	$font_family  =  $plugin->get_font_family_array();
 ?>
 
 <div id="easy-charts-configuration-metabox-wrap">
