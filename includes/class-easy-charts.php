@@ -451,6 +451,15 @@ class Easy_Charts {
 										)
 					);
 
+			/**
+			 * Filter for get data of chart require to render chart.
+			 *
+			 * @since 1.0.1
+			 *
+			 * @param array  $ec_chart_data 	All chart related data.
+			 * @param int  $chart_is 	Chart id.
+			 */
+		$ec_chart_data = apply_filters( 'easy_charts_get_chart_data', $ec_chart_data, $chart_id );
 		return $ec_chart_data;
 
 	}
@@ -464,6 +473,7 @@ class Easy_Charts {
 	 * @return  	string 		html markup for chart container.
 	 */
 	public function ec_render_chart( $chart_id = null ){
+		$chart_html = "";
 		if( $chart_id ){
 
 			$chart = get_post( $chart_id );
@@ -483,8 +493,18 @@ class Easy_Charts {
 				}
 			}
 
+			$chart_html = '<div  class="ec-uv-chart-container uv-div-'.$chart_id.'" data-object="ec_object_'.$chart_id.'"></div>';
 
-			return '<div  class="ec-uv-chart-container uv-div-'.$chart_id.'" data-object="ec_object_'.$chart_id.'"></div>';
+			/**
+			 * Filter to replace html content of chart.
+			 *
+			 * @since 1.0.1
+			 *
+			 * @param string  $chart_html 	 HTML of chart to render.
+			 * @param int  $chart_id 	Chart ID.
+			 */
+			$chart_html = apply_filters( 'easy_charts_render_chart', $chart_html, $chart_id );
+			return $chart_html;
 
 		}
 
@@ -773,6 +793,16 @@ class Easy_Charts {
 			}
 		}
 
+		/**
+		* Filter to get configuration options for selected meta key.
+		*
+		* @since 1.0.1
+		*
+		* @param array  $ec_chart_option 	Chart configuration options.
+		* @param int $chart_id 	ID of chart.
+		* @param string  $meta_key  Meta key for which to get options.
+		*/
+		$ec_chart_option = apply_filters( 'easy_charts_get_chart_configurations', $ec_chart_option, $chart_id, $meta_key );
 		return $ec_chart_option;
 	}
 

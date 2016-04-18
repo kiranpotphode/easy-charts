@@ -100,15 +100,15 @@ class Easy_Charts_Public {
 
 		wp_register_script( 'easy-charts-public-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-public.js', array( 'jquery' ), $this->version, true );
 
-		wp_register_script( 'd3-js', plugin_dir_url( __FILE__ ) . 'js/d3.min.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'd3-js', plugins_url(  'includes/js/d3.min.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'uvhcharts-js', plugin_dir_url( __FILE__ ) . 'js/uvcharts.min.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'uvhcharts-js', plugins_url(  'includes/js/uvcharts.min.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'filesaver-js', plugin_dir_url( __FILE__ ) . 'js/filesaver.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'filesaver-js', plugins_url(  'includes/js/filesaver.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'canvg-js', plugin_dir_url( __FILE__ ) . 'js/canvg.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'canvg-js',  plugins_url(  'includes/js/canvg.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'canvas-toblob-js', plugin_dir_url( __FILE__ ) . 'js/canvas-toblob.js', array( 'jquery' ), $this->version, false );
+		wp_register_script( 'canvas-toblob-js', plugins_url(  'includes/js/canvas-toblob.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
 
 	}
 

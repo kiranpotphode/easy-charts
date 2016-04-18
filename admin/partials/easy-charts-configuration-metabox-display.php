@@ -14,6 +14,15 @@
 	global $post;
 	$plugin = new Easy_Charts();
 	$font_family  =  array('Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana'=> 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia');
+
+	/**
+	 * Filter to add font family.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param array  $font_family	 Array of font famillly.
+	 */
+	$font_family = apply_filters( 'easy_charts_fonts', $font_family );
 ?>
 
 <div id="easy-charts-configuration-metabox-wrap">
