@@ -310,6 +310,28 @@ class Easy_Charts {
 		return $return;
 	}
 
+	/**
+	*Get available font Family
+	*
+	* @since 1.0.3
+	*
+	* @return 		array 		Array of font-family.
+	*/
+	public function get_font_family_array(){
+		$font_family = array();
+
+		$font_family  =  array( 'Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana'=> 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia' );
+
+		/**
+		 * Filter to add font family.
+		 *
+		 * @since 1.0.3
+		 *
+		 * @param array  $font_family	 Array of font familly.
+		 */
+
+		return apply_filters( 'easy_charts_fonts', $font_family );
+	}
 
 	/**
 	*Get chart data.
@@ -454,7 +476,7 @@ class Easy_Charts {
 			/**
 			 * Filter for get data of chart require to render chart.
 			 *
-			 * @since 1.0.1
+			 * @since 1.0.3
 			 *
 			 * @param array  $ec_chart_data 	All chart related data.
 			 * @param int  $chart_is 	Chart id.
@@ -498,7 +520,7 @@ class Easy_Charts {
 			/**
 			 * Filter to replace html content of chart.
 			 *
-			 * @since 1.0.1
+			 * @since 1.0.3
 			 *
 			 * @param string  $chart_html 	 HTML of chart to render.
 			 * @param int  $chart_id 	Chart ID.
@@ -796,7 +818,7 @@ class Easy_Charts {
 		/**
 		* Filter to get configuration options for selected meta key.
 		*
-		* @since 1.0.1
+		* @since 1.0.3
 		*
 		* @param array  $ec_chart_option 	Chart configuration options.
 		* @param int $chart_id 	ID of chart.

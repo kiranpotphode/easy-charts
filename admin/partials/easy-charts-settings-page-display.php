@@ -4,7 +4,7 @@
   *
  * HTML markup for settings page.
  *
- * @link       http://kiranpotphode.wordpress.com
+ * @link       http://kiranpotphode.com
  * @since      1.0.0
  *
  * @package    Easy_Charts

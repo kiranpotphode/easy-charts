@@ -79,7 +79,7 @@ You can use either method from below:
 == Changelog ==
 
 = 1.0.3 =
-*Release Date - 28th January, 2016*
+*Release Date - 18th April, 2016*
 
 * Support added for changing output using filters.
 * Duplicate files moved to common folder.
