@@ -405,6 +405,21 @@ class Easy_Charts_Admin {
 						'suffix' => $_POST['ec_chart_label_suffix'],
  					);
 
+    $ec_chart_legend  = array(
+            'position' => $_POST['ec_chart_legend_position'],
+            'fontfamily' => $_POST['ec_chart_legend_fontfamily'],
+            'fontsize' => $_POST['ec_chart_legend_fontsize'],
+            'fontweight' => $_POST['ec_chart_legend_fontweight'],
+            'color' => $_POST['ec_chart_legend_color'],
+            'strokewidth' => (float)$_POST['ec_chart_legend_strokewidth'],
+            'textmargin' => (integer)$_POST['ec_chart_legend_textmargin'],
+            'symbolsize' => (integer)$_POST['ec_chart_legend_symbolsize'],
+            'inactivecolor' => $_POST['ec_chart_legend_inactivecolor'],
+            'legendstart' => (integer)$_POST['ec_chart_legend_legendstart'],
+            'legendtype' => (integer)$_POST['ec_chart_legend_legendtype'],
+            'showlegends' => (integer)$_POST['ec_chart_legend_showlegends'],
+          );
+
 		$ec_chart_scale  = array(
  						'type' => $_POST['ec_chart_scale_type'],
 						'ordinality' => (float)$_POST['ec_chart_scale_ordinality'],
@@ -480,6 +495,7 @@ class Easy_Charts_Admin {
 		update_post_meta( $post_id, '_ec_chart_frame', $ec_chart_frame );
 		update_post_meta( $post_id, '_ec_chart_axis', $ec_chart_axis );
 		update_post_meta( $post_id, '_ec_chart_label', $ec_chart_label );
+    update_post_meta( $post_id, '_ec_chart_legend', $ec_chart_legend );
 		update_post_meta( $post_id, '_ec_chart_scale', $ec_chart_scale );
 		update_post_meta( $post_id, '_ec_chart_tooltip', $ec_chart_tooltip );
 		update_post_meta( $post_id, '_ec_chart_caption', $ec_chart_caption );
