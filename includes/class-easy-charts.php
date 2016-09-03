@@ -234,7 +234,8 @@ class Easy_Charts {
 			'name' => 'ec_dropdown',
 			'id' => '',
 			'options' => array(),
-			'show_option_none' => '', 'show_option_no_change' => '',
+			'show_option_none' => '',
+			'show_option_no_change' => '',
 			'option_none_value' => '',
 		);
 
@@ -283,26 +284,31 @@ class Easy_Charts {
 	 * @access private
 	 *
 	 * @param array 	$array 	 	An 2D array to transpose.
-	 * @param integer|string 	$selectKey 		Key on which transpose the array 	Optional  Default us false.
+	 * @param integer|string 	$selectkey 		Key on which transpose the array 	Optional  Default us false.
 	 *
 	 * @return 		array   	Transposed array.
 	 */
-	private function array_transpose($array, $selectKey = false) {
-		if (!is_array($array)) return false;
-			$return = array();
+	private function array_transpose( $array, $selectkey = false ) {
+		if ( ! is_array( $array ) ) {
+			return false;
+		}
+		$return = array();
 
-		foreach($array as $key => $value) {
+		foreach ( $array as $key => $value ) {
 
-			if (!is_array($value)) return $array;
+			if ( ! is_array( $value ) ) {
+				return $array;
+			}
 
-			if ($selectKey) {
+			if ( $selectkey ) {
 
-				if (isset($value[$selectKey])) $return[] = $value[$selectKey];
-
+				if ( isset( $value[ $selectkey ] ) ) {
+					$return[] = $value[ $selectkey ];
+				}
 			} else {
 
-				foreach ($value as $key2 => $value2) {
-					$return[$key2][$key] = $value2;
+				foreach ( $value as $key2 => $value2 ) {
+					$return[ $key2 ][ $key ] = $value2;
 				}
 			}
 		}
@@ -311,16 +317,16 @@ class Easy_Charts {
 	}
 
 	/**
-	*Get available font Family
+	* Get available font Family
 	*
 	* @since 1.0.3
 	*
 	* @return 		array 		Array of font-family.
 	*/
-	public function get_font_family_array(){
+	public function get_font_family_array() {
 		$font_family = array();
 
-		$font_family  =  array( 'Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana'=> 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia' );
+		$font_family  = array( 'Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana' => 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia' );
 
 		/**
 		 * Filter to add font family.
@@ -334,16 +340,16 @@ class Easy_Charts {
 	}
 
 	/**
-	*Get chart data.
+	* Get chart data.
 	*
 	* @since 1.0.0
 	*
 	* @param 	integer 	$chart_id 	ID of chart to retrieve data   Default is null.
 	* @return 		array 		Array of data.
 	*/
-	public function get_ec_chart_data( $chart_id = null ){
+	public function get_ec_chart_data( $chart_id = null ) {
 
-		if( $chart_id == null ){
+		if ( $chart_id == null ) {
 			return;
 		}
 
@@ -351,10 +357,9 @@ class Easy_Charts {
 		$ec_chart_categories = array();
 		$ec_chart_configuration = array();
 
-
 		$ec_chart_type = get_post_meta( $chart_id, '_ec_chart_type', true );
 
-		switch ($ec_chart_type) {
+		switch ( $ec_chart_type ) {
 			case 'ec_bar_chart':
 				$ec_chart_type = 'Bar';
 				break;
@@ -408,51 +413,52 @@ class Easy_Charts {
 				break;
 		}
 
-		$ec_chart_dataset = json_decode( get_post_meta( $chart_id, '_easy_charts_chart_data', true ));
+		$ec_chart_dataset = json_decode( get_post_meta( $chart_id, '_easy_charts_chart_data', true ) );
 
-		if( $ec_chart_dataset == null ){
+		if ( $ec_chart_dataset == null ) {
 			return;
 		}
 
-		if( $ec_chart_type == 'Pie' || $ec_chart_type == 'Donut' || $ec_chart_type == 'PolarArea' || $ec_chart_type == 'StepUpBar' ){
-			$ec_chart_dataset  = $this->array_transpose($ec_chart_dataset);
+		if ( $ec_chart_type == 'Pie' || $ec_chart_type == 'Donut' || $ec_chart_type == 'PolarArea' || $ec_chart_type == 'StepUpBar' ) {
+			$ec_chart_dataset  = $this->array_transpose( $ec_chart_dataset );
 		}
 
-		$ec_chart_categories = array_shift($ec_chart_dataset);
+		$ec_chart_categories = array_shift( $ec_chart_dataset );
 
-		array_shift($ec_chart_categories);
+		array_shift( $ec_chart_categories );
 
 		$translated_dataset = array();
-		foreach ($ec_chart_categories as $key => $ec_chart_category) {
-			$translated_dataset[$ec_chart_category] = array();
+		foreach ( $ec_chart_categories as $key => $ec_chart_category ) {
+			$translated_dataset[ $ec_chart_category ] = array();
 
-			foreach ($ec_chart_dataset as $data_key => $data_value) {
-				$translated_dataset[$ec_chart_category][] = array(
+			foreach ( $ec_chart_dataset as $data_key => $data_value ) {
+				$translated_dataset[ $ec_chart_category ][] = array(
 											'name' => $data_value[0],
-											'value' => floatval($data_value[$key+1])
+											'value' => floatval( $data_value[ $key + 1 ] ),
 										);
 			}
 		}
 
-		$ec_chart_graph =  $this->ec_get_chart_configuration( $chart_id, 'graph' );
-		$ec_chart_meta =  $this->ec_get_chart_configuration( $chart_id, 'meta' );
-		$ec_chart_dimension =  $this->ec_get_chart_configuration( $chart_id, 'dimension' );
-		$ec_chart_margin =  $this->ec_get_chart_configuration( $chart_id, 'margin' );
-		$ec_chart_frame =  $this->ec_get_chart_configuration( $chart_id, 'frame' );
-		$ec_chart_axis =  $this->ec_get_chart_configuration( $chart_id, 'axis' );
-		$ec_chart_label =  $this->ec_get_chart_configuration( $chart_id, 'label' );
-    	$ec_chart_legend =  $this->ec_get_chart_configuration( $chart_id, 'legend' );
-		$ec_chart_scale =  $this->ec_get_chart_configuration( $chart_id, 'scale' );
-		$ec_chart_tooltip =  $this->ec_get_chart_configuration( $chart_id, 'tooltip' );
-		$ec_chart_caption =  $this->ec_get_chart_configuration( $chart_id, 'caption' );
-		$ec_chart_subcaption =  $this->ec_get_chart_configuration( $chart_id, 'subcaption' );
-		$ec_chart_bar =  $this->ec_get_chart_configuration( $chart_id, 'bar' );
-		$ec_chart_line =  $this->ec_get_chart_configuration( $chart_id, 'line' );
-		$ec_chart_area =  $this->ec_get_chart_configuration( $chart_id, 'area' );
-		$ec_chart_pie =  $this->ec_get_chart_configuration( $chart_id, 'pie' );
-		$ec_chart_donut =  $this->ec_get_chart_configuration( $chart_id, 'donut' );
+		$ec_chart_graph = $this->ec_get_chart_configuration( $chart_id, 'graph' );
+		$ec_chart_meta = $this->ec_get_chart_configuration( $chart_id, 'meta' );
+		$ec_chart_dimension = $this->ec_get_chart_configuration( $chart_id, 'dimension' );
+		$ec_chart_margin = $this->ec_get_chart_configuration( $chart_id, 'margin' );
+		$ec_chart_frame = $this->ec_get_chart_configuration( $chart_id, 'frame' );
+		$ec_chart_axis = $this->ec_get_chart_configuration( $chart_id, 'axis' );
+		$ec_chart_label = $this->ec_get_chart_configuration( $chart_id, 'label' );
+		$ec_chart_legend = $this->ec_get_chart_configuration( $chart_id, 'legend' );
+		$ec_chart_scale = $this->ec_get_chart_configuration( $chart_id, 'scale' );
+		$ec_chart_tooltip = $this->ec_get_chart_configuration( $chart_id, 'tooltip' );
+		$ec_chart_caption = $this->ec_get_chart_configuration( $chart_id, 'caption' );
+		$ec_chart_subcaption = $this->ec_get_chart_configuration( $chart_id, 'subcaption' );
+		$ec_chart_bar = $this->ec_get_chart_configuration( $chart_id, 'bar' );
+		$ec_chart_line = $this->ec_get_chart_configuration( $chart_id, 'line' );
+		$ec_chart_area = $this->ec_get_chart_configuration( $chart_id, 'area' );
+		$ec_chart_pie = $this->ec_get_chart_configuration( $chart_id, 'pie' );
+		$ec_chart_donut = $this->ec_get_chart_configuration( $chart_id, 'donut' );
 
-		$ec_chart_data = array( 	'chart_type' => $ec_chart_type,
+		$ec_chart_data = array(
+						'chart_type' => $ec_chart_type,
 						'chart_data' => $translated_dataset,
 						'chart_categories' => $ec_chart_categories,
 						'chart_configuration' => array(
@@ -462,7 +468,7 @@ class Easy_Charts {
 											'axis' => $ec_chart_axis,
 											'dimension' => $ec_chart_dimension,
 											'label' => $ec_chart_label,
-                      						'legend' => $ec_chart_legend,
+											'legend' => $ec_chart_legend,
 											'scale' => $ec_chart_scale,
 											'tooltip' => $ec_chart_tooltip,
 											'caption' => $ec_chart_caption,
@@ -472,7 +478,7 @@ class Easy_Charts {
 											'area' => $ec_chart_area,
 											'pie' => $ec_chart_pie,
 											'donut' => $ec_chart_donut,
-										)
+										),
 					);
 
 			/**
@@ -496,23 +502,23 @@ class Easy_Charts {
 	 * @param 	integer 	$chart_id  	Chart id which is to be rendered.
 	 * @return  	string 		html markup for chart container.
 	 */
-	public function ec_render_chart( $chart_id = null ){
-		$chart_html = "";
-		if( $chart_id ){
+	public function ec_render_chart( $chart_id = null ) {
+		$chart_html = '';
+		if ( $chart_id ) {
 
 			$chart = get_post( $chart_id );
 
-			if( $chart->post_type != 'easy_charts'  ){
+			if ( $chart->post_type != 'easy_charts' ) {
 				return;
 			}
 
 			$ec_chart_data = $this->get_ec_chart_data( $chart_id );
 
-			if( $ec_chart_data != null ){
+			if ( $ec_chart_data != null ) {
 
-				if( is_admin() ){
+				if ( is_admin() ) {
 					wp_localize_script( 'easy-charts-admin-js', 'ec_chart_data', $ec_chart_data );
-				}else{
+				} else {
 					wp_localize_script( 'easy-charts-public-js', 'ec_object_'.$chart_id, $ec_chart_data );
 				}
 			}
@@ -545,16 +551,16 @@ class Easy_Charts {
 	 * @param 	integer 	$meta_key     Meta key of configuration.
 	 * @return  	array   	Array of configuration.
 	 */
-	public function ec_get_chart_configuration( $chart_id = null, $meta_key = ''  ){
+	public function ec_get_chart_configuration( $chart_id = null, $meta_key = '' ) {
 
-		$ec_chart_option =  get_post_meta( $chart_id, '_ec_chart_'.$meta_key, true);
+		$ec_chart_option = get_post_meta( $chart_id, '_ec_chart_'.$meta_key, true );
 
-		if(  "" == $ec_chart_option ){
+		if (  '' == $ec_chart_option ) {
 
-			switch ($meta_key) {
+			switch ( $meta_key ) {
 				case 'meta':
-					$ec_chart_option = 	array(
-										'position' => "#uv-div",
+					$ec_chart_option = array(
+										'position' => '#uv-div',
 										'caption' => '',
 										'subcaption' => '',
 										'hlabel' => '',
@@ -577,14 +583,14 @@ class Easy_Charts {
 					break;
 
 				case 'dimension':
-					$ec_chart_option = 	array(
+					$ec_chart_option = array(
 									'width' => 400,
-									'height' => 400
+									'height' => 400,
 								);
 					break;
 
 				case 'margin':
-					$ec_chart_option = 	array(
+					$ec_chart_option = array(
 									'top' => 50,
 									'bottom' => 150,
 									'left' => 100,
@@ -593,48 +599,48 @@ class Easy_Charts {
 					break;
 
 				case 'frame':
-					$ec_chart_option = 	array(
-									'bgcolor' => '#ffffff'
+					$ec_chart_option = array(
+									'bgcolor' => '#ffffff',
 								);
 					break;
 
 				case 'axis':
-					$ec_chart_option = 	array(
+					$ec_chart_option = array(
 									'opacity' => 0.1,
 									'ticks' => 8,
 									'subticks' => 2,
 									'padding' => 5,
 									'strokecolor' => '#000000',
-									'minor' =>  -10,
-									'fontfamily' => "Arial",
+									'minor' => -10,
+									'fontfamily' => 'Arial',
 									'fontsize' => 11,
 									'fontweight' => 700,
 									'showticks' => 1,
 									'showsubticks' => 1,
-									'showtext' => 1
+									'showtext' => 1,
 								);
 					break;
 
 				case 'label':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
+					$ec_chart_option = array(
+									'fontfamily' => 'Arial',
 									'fontsize' => 11,
 									'fontweight' => 700,
 									'strokecolor' => '#000000',
 									'showlabel' => 1,
 									'precision' => 2,
 									'prefix' => '',
-									'suffix' => ''
+									'suffix' => '',
 								);
 					break;
 
 		        case 'legend':
-		          $ec_chart_option =  array(
+		          	$ec_chart_option = array(
 		                  'position' => 'bottom',
 		                  'fontfamily' => 'Arial',
 		                  'fontsize' => '11',
 		                  'fontweight' => 'normal',
-		                  'color' => "#000000",
+		                  'color' => '#000000',
 		                  'strokewidth' => 0.15,
 		                  'textmargin' => 15,
 		                  'symbolsize' => 10,
@@ -646,22 +652,22 @@ class Easy_Charts {
 		          break;
 
 				case 'scale':
-					$ec_chart_option = 	array(
-									'type' => "linear",
-									'ordinality' => 0.2
+					$ec_chart_option = array(
+									'type' => 'linear',
+									'ordinality' => 0.2,
 								);
 					break;
 
 				case 'tooltip':
-					$ec_chart_option = 	array(
+					$ec_chart_option = array(
 									'show' => 1,
-									'format' => "%c [%l] : %v",
+									'format' => '%c [%l] : %v',
 								);
 					break;
 
 				case 'caption':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
+					$ec_chart_option = array(
+									'fontfamily' => 'Arial',
 									'fontsize' => 11,
 									'fontweight' => 700,
 									'textdecoration' => 'none',
@@ -671,8 +677,8 @@ class Easy_Charts {
 					break;
 
 				case 'subcaption':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
+					$ec_chart_option = array(
+									'fontfamily' => 'Arial',
 									'fontsize' => 11,
 									'fontweight' => 700,
 									'textdecoration' => 'none',
@@ -682,8 +688,8 @@ class Easy_Charts {
 					break;
 
 				case 'bar':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
+					$ec_chart_option = array(
+									'fontfamily' => 'Arial',
 									'fontsize' => 10,
 									'fontweight' => 700,
 									'strokecolor' => 'none',
@@ -692,22 +698,22 @@ class Easy_Charts {
 					break;
 
 				case 'line':
-					$ec_chart_option = 	array(
-									'interpolation' => "linear",
+					$ec_chart_option = array(
+									'interpolation' => 'linear',
 								);
 					break;
 
 				case 'area':
-					$ec_chart_option = 	array(
-									'interpolation' => "linear",
+					$ec_chart_option = array(
+									'interpolation' => 'linear',
 									'opacity' => 0.2,
 									'offset' => 'zero',
 								);
 					break;
 
 				case 'pie':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
+					$ec_chart_option = array(
+									'fontfamily' => 'Arial',
 									'fontsize' => 11,
 									'fontweight' => 700,
 									'fontvariant' => 'small-caps',
@@ -718,8 +724,8 @@ class Easy_Charts {
 					break;
 
 				case 'donut':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
+					$ec_chart_option = array(
+									'fontfamily' => 'Arial',
 									'fontsize' => 11,
 									'fontweight' => 700,
 									'fontvariant' => 'small-caps',
@@ -760,7 +766,7 @@ class Easy_Charts {
 	 * @param 	string 	$field_value 	Value of input field.
 	 * @param 	array 	$field_options 	Optional array of options for input field.
 	 */
-	public function ec_render_field( $field_type, $field_name, $field_label, $field_value, $field_options = array() ){
+	public function ec_render_field( $field_type, $field_name, $field_label, $field_value, $field_options = array() ) {
 
 		switch ( $field_type ) {
 			case 'text':  ?>
@@ -789,7 +795,7 @@ class Easy_Charts {
 									<label><?php echo __( $field_label, 'easy-charts' ); ?> :</label>
 								</td>
 								<td class="ec-td-field">
-									<input type="number" name="<?php echo $field_name; ?>" min="<?php echo isset($field_options['min']) ? $field_options['min'] : ''; ?>" max="<?php echo isset($field_options['max']) ? $field_options['max'] : ''; ?>" step="<?php echo  isset($field_options['step']) ? $field_options['step'] : ''; ?>" value="<?php echo $field_value; ?>"  class="ec-field-number"/>
+									<input type="number" name="<?php echo $field_name; ?>" min="<?php echo isset( $field_options['min'] ) ? $field_options['min'] : ''; ?>" max="<?php echo isset( $field_options['max'] ) ? $field_options['max'] : ''; ?>" step="<?php echo  isset( $field_options['step'] ) ? $field_options['step'] : ''; ?>" value="<?php echo $field_value; ?>"  class="ec-field-number"/>
 								</td>
 							</tr>
 						</tbody>
@@ -807,7 +813,7 @@ class Easy_Charts {
 								</td>
 								<td class="ec-td-field">
 									<div class="ec-field-buttonset">
-										<?php 	foreach ($field_options as $key => $value) { ?>
+										<?php 	foreach ( $field_options as $key => $value ) { ?>
 											<input name="<?php echo $field_name; ?>" id="<?php echo $field_name.$value; ?>" type="radio" value="<?php echo $value; ?>" <?php checked( $value, $field_value ); ?> /><label for="<?php echo $field_name.$value; ?>"><?php echo $key; ?></label>
 										<?php }	?>
 							 		</div>

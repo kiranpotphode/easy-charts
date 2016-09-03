@@ -77,9 +77,9 @@ class Easy_Charts_Admin {
 
 		global $pagenow, $typenow;
 
-		 wp_enqueue_style('insert-chart-button-tc-css', plugin_dir_url( __FILE__ ) . 'css/insert-chart.css', array(), $this->version, 'all' );
+		 wp_enqueue_style( 'insert-chart-button-tc-css', plugin_dir_url( __FILE__ ) . 'css/insert-chart.css', array(), $this->version, 'all' );
 
-		if( $pagenow == 'post-new.php' || $pagenow == 'post.php' && $typenow == 'easy_charts' ) {
+		if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' && $typenow == 'easy_charts' ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-admin.css', array(), $this->version, 'all' );
 
 			wp_enqueue_style( 'handsontable-css', plugin_dir_url( __FILE__ ) . 'css/handsontable/handsontable.full.css', array(), $this->version, 'all' );
@@ -100,7 +100,7 @@ class Easy_Charts_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts( ) {
+	public function enqueue_scripts() {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -116,20 +116,20 @@ class Easy_Charts_Admin {
 
 		global $pagenow, $typenow;
 
-		if( $pagenow == 'post-new.php' || $pagenow == 'post.php' && $typenow == 'easy_charts' ) {
+		if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' && $typenow == 'easy_charts' ) {
 
 			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery' ), $this->version, true );
 
 			wp_enqueue_script( 'handsontable-js', plugin_dir_url( __FILE__ ) . 'js/handsontable/handsontable.full.js', array( 'jquery' ), $this->version, false );
-			wp_enqueue_script( 'd3-js', plugins_url(  'includes/js/d3.min.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'd3-js', plugins_url( 'includes/js/d3.min.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-			wp_enqueue_script( 'filesaver-js', plugins_url(  'includes/js/filesaver.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'filesaver-js', plugins_url( 'includes/js/filesaver.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-			wp_enqueue_script( 'canvg-js', plugins_url(  'includes/js/canvg.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'canvg-js', plugins_url( 'includes/js/canvg.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-			wp_enqueue_script( 'canvas-toblob-js', plugins_url(  'includes/js/canvas-toblob.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'canvas-toblob-js', plugins_url( 'includes/js/canvas-toblob.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-			wp_enqueue_script( 'uvhcharts-js', plugins_url(  'includes/js/uvcharts.min.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'uvhcharts-js', plugins_url( 'includes/js/uvcharts.min.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
 			wp_enqueue_script( 'responsive-tabs-js', plugin_dir_url( __FILE__ ) . 'js/jquery.pwstabs.min.js', array( 'jquery' ), $this->version, false );
 
@@ -141,14 +141,14 @@ class Easy_Charts_Admin {
 			wp_enqueue_script( 'jquery-ui-selectmenu' );
 			wp_enqueue_script( 'jquery-ui-spinner' );
 			wp_enqueue_script( 'iris' );
-			wp_enqueue_script('wp-color-picker');
+			wp_enqueue_script( 'wp-color-picker' );
 		}
 
 	}
 
-	public function admin_print_scripts(){
+	public function admin_print_scripts() {
 		echo "<script type='text/javascript'>\n";
-		echo 'var ajaxurl = "'.admin_url('admin-ajax.php').'"';
+		echo 'var ajaxurl = "'.admin_url( 'admin-ajax.php' ).'"';
 		echo "\n</script>";
 	}
 
@@ -175,19 +175,19 @@ class Easy_Charts_Admin {
 			'search_items'       => __( 'Search Charts', 'easy-charts' ),
 			'parent_item_colon'  => __( 'Parent Charts:', 'easy-charts' ),
 			'not_found'          => __( 'No Charts found.', 'easy-charts' ),
-			'not_found_in_trash' => __( 'No Charts found in Trash.', 'easy-charts' )
+			'not_found_in_trash' => __( 'No Charts found in Trash.', 'easy-charts' ),
 		);
 
 		$args = array(
 			'labels' => $labels,
 			'public' => false,
 			'show_ui' => true,
-			'_builtin' =>  false,
+			'_builtin' => false,
 			'capability_type' => 'page',
 			'hierarchical' => true,
-			'menu_icon'           => 'dashicons-chart-bar',
+			'menu_icon' => 'dashicons-chart-bar',
 			'rewrite' => false,
-			'query_var' => "easy_charts",
+			'query_var' => 'easy_charts',
 			'supports' => array(
 				'title',
 			),
@@ -195,8 +195,8 @@ class Easy_Charts_Admin {
 
 		register_post_type( 'easy_charts', $args );
 
-		add_action('wp_ajax_easy_charts_save_chart_data', array( $this,'easy_charts_save_chart_data_callback') );
-		add_action('wp_ajax_easy_charts_get_published_charts', array( $this,'easy_charts_get_published_charts_callback') );
+		add_action( 'wp_ajax_easy_charts_save_chart_data', array( $this, 'easy_charts_save_chart_data_callback' ) );
+		add_action( 'wp_ajax_easy_charts_get_published_charts', array( $this, 'easy_charts_get_published_charts_callback' ) );
 	}
 
 	/**
@@ -213,30 +213,30 @@ class Easy_Charts_Admin {
 			add_meta_box(
 				'easy_charts_data_metabox',
 				__( 'Data', 'easy-charts' ),
-				array( $this, 'easy_charts_data_metabox_callback'),
+				array( $this, 'easy_charts_data_metabox_callback' ),
+				$screen
+			);
+
+			add_meta_box(
+				'easy_charts_preview_metabox',
+				__( 'Preview', 'easy-charts' ),
+				array( $this, 'easy_charts_preview_metabox_callback' ),
 				$screen
 			);
 
 			add_meta_box(
 				'easy_charts_configuration_metabox',
 				__( 'Configuration', 'easy-charts' ),
-				array( $this, 'easy_charts_configuration_metabox_callback'),
+				array( $this, 'easy_charts_configuration_metabox_callback' ),
 				$screen
 			);
 
 			add_meta_box(
 				'easy_charts_shortcode_metabox',
 				__( 'Shortcode', 'easy-charts' ),
-				array( $this, 'easy_charts_shortcode_metabox_callback'),
+				array( $this, 'easy_charts_shortcode_metabox_callback' ),
 				$screen,
 				'side'
-			);
-
-			add_meta_box(
-				'easy_charts_preview_metabox',
-				__( 'Preview', 'easy-charts' ),
-				array( $this, 'easy_charts_preview_metabox_callback'),
-				$screen
 			);
 
 		}
@@ -248,8 +248,8 @@ class Easy_Charts_Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	public function add_options_menu(){
-		add_submenu_page( 'edit.php?post_type=easy_charts', __('Charts settings', 'easy-charts'), __('Charts settings', 'easy-charts'), 'manage_options', 'easy-charts-settings', array( $this, 'easy_charts_settings_page_callback') );
+	public function add_options_menu() {
+		add_submenu_page( 'edit.php?post_type=easy_charts', __( 'Charts settings', 'easy-charts' ), __( 'Charts settings', 'easy-charts' ), 'manage_options', 'easy-charts-settings', array( $this, 'easy_charts_settings_page_callback' ) );
 	}
 
 	/**
@@ -281,7 +281,7 @@ class Easy_Charts_Admin {
 	 * @param WP_Post $post The post object.
 	 * @since    1.0.0
 	 */
-	public function easy_charts_shortcode_metabox_callback( $post ){
+	public function easy_charts_shortcode_metabox_callback( $post ) {
 		require_once plugin_dir_path( __FILE__ ) . 'partials/easy-charts-shortcode-metabox-display.php';
 	}
 
@@ -291,7 +291,7 @@ class Easy_Charts_Admin {
 	 * @param WP_Post $post The post object.
 	 * @since    1.0.0
 	 */
-	public function easy_charts_preview_metabox_callback( $post ){
+	public function easy_charts_preview_metabox_callback( $post ) {
 		require_once plugin_dir_path( __FILE__ ) . 'partials/easy-charts-preview-metabox-display.php';
 	}
 
@@ -302,7 +302,7 @@ class Easy_Charts_Admin {
 	 * @param WP_Post $post The post object.
 	 * @since    1.0.0
 	 */
-	public function easy_charts_configuration_metabox_callback( $post ){
+	public function easy_charts_configuration_metabox_callback( $post ) {
 		require_once plugin_dir_path( __FILE__ ) . 'partials/easy-charts-configuration-metabox-display.php';
 	}
 
@@ -329,12 +329,11 @@ class Easy_Charts_Admin {
 		}
 
 		// Check the user's permissions.
-		if ( isset( $_POST['post_type'] ) && 'easy_charts' == $_POST['post_type'] ) {
+		if ( isset( $_POST['post_type'] ) && 'easy_charts' === $_POST['post_type'] ) {
 
 			if ( ! current_user_can( 'edit_page', $post_id ) ) {
 				return;
 			}
-
 		} else {
 
 			if ( ! current_user_can( 'edit_post', $post_id ) ) {
@@ -342,68 +341,67 @@ class Easy_Charts_Admin {
 			}
 		}
 
-
- 		$ec_chart_meta = array(
+		$ec_chart_meta = array(
 						'position' => $_POST['ec_chart_meta_position'],
- 						'caption' => $_POST['ec_chart_meta_caption'],
- 						'subcaption' => $_POST['ec_chart_meta_subcaption'],
- 						'hlabel' => $_POST['ec_chart_meta_hlabel'],
- 						'hsublabel' => $_POST['ec_chart_meta_hsublabel'],
- 						'vlabel' => $_POST['ec_chart_meta_vlabel'],
- 						'vsublabel' => $_POST['ec_chart_meta_vsublabel'],
- 						'isDownloadable' => (integer)$_POST['ec_chart_meta_isDownloadable'],
- 						'downloadLabel' => $_POST['ec_chart_meta_downloadLabel'],
- 					);
+						'caption' => $_POST['ec_chart_meta_caption'],
+						'subcaption' => $_POST['ec_chart_meta_subcaption'],
+						'hlabel' => $_POST['ec_chart_meta_hlabel'],
+						'hsublabel' => $_POST['ec_chart_meta_hsublabel'],
+						'vlabel' => $_POST['ec_chart_meta_vlabel'],
+						'vsublabel' => $_POST['ec_chart_meta_vsublabel'],
+						'isDownloadable' => (integer) $_POST['ec_chart_meta_isDownloadable'],
+						'downloadLabel' => $_POST['ec_chart_meta_downloadLabel'],
+					);
 
- 		$ec_chart_graph  = array(
- 						'responsive' => (boolean)$_POST['ec_chart_graph_responsive'],
- 						'palette' => $_POST['ec_chart_graph_palette'],
- 						'bgcolor' => $_POST['ec_chart_graph_bgcolor'],
- 						'orientation' => $_POST['ec_chart_graph_orientation'],
- 						'opacity' => (float )$_POST['ec_chart_graph_opacity'],
- 					);
+		$ec_chart_graph  = array(
+						'responsive' => (boolean) $_POST['ec_chart_graph_responsive'],
+						'palette' => $_POST['ec_chart_graph_palette'],
+						'bgcolor' => $_POST['ec_chart_graph_bgcolor'],
+						'orientation' => $_POST['ec_chart_graph_orientation'],
+						'opacity' => (float) $_POST['ec_chart_graph_opacity'],
+					);
 
- 		$ec_chart_dimension  = array(
- 						'width' => (integer)$_POST['ec_chart_dimension_width'],
- 						'height' => (integer)$_POST['ec_chart_dimension_height']
- 					);
+		$ec_chart_dimension  = array(
+						'width' => (integer) $_POST['ec_chart_dimension_width'],
+						'height' => (integer) $_POST['ec_chart_dimension_height'],
+					);
 
- 		$ec_chart_margin  = array(
- 						'top' => (integer)$_POST['ec_chart_margin_top'],
- 						'bottom' => (integer)$_POST['ec_chart_margin_bottom'],
- 						'left' => (integer)$_POST['ec_chart_margin_left'],
- 						'right' => (integer)$_POST['ec_chart_margin_right'],
- 					);
+		$ec_chart_margin  = array(
+						'top' => (integer) $_POST['ec_chart_margin_top'],
+						'bottom' => (integer) $_POST['ec_chart_margin_bottom'],
+						'left' => (integer) $_POST['ec_chart_margin_left'],
+						'right' => (integer) $_POST['ec_chart_margin_right'],
+					);
 
- 		$ec_chart_frame  = array(
- 						'bgcolor' => $_POST['ec_chart_frame_bgcolor']
- 					);
+		$ec_chart_frame  = array(
+						'bgcolor' => $_POST['ec_chart_frame_bgcolor'],
+					);
 
- 		$ec_chart_axis  = array(
- 						'opacity' => (float)$_POST['ec_chart_axis_opacity'],
- 						'ticks' => (integer)$_POST['ec_chart_axis_ticks'],
-						'subticks' => (integer)$_POST['ec_chart_axis_subticks'],
-						'padding' => (integer)$_POST['ec_chart_axis_padding'],
+		$ec_chart_axis  = array(
+						'opacity' => (float) $_POST['ec_chart_axis_opacity'],
+						'ticks' => (integer) $_POST['ec_chart_axis_ticks'],
+						'subticks' => (integer) $_POST['ec_chart_axis_subticks'],
+						'padding' => (integer) $_POST['ec_chart_axis_padding'],
 						'strokecolor' => $_POST['ec_chart_axis_strokecolor'],
-						'minor' => (integer)$_POST['ec_chart_axis_minor'],
+						'minor' => (integer) $_POST['ec_chart_axis_minor'],
 						'fontfamily' => $_POST['ec_chart_axis_fontfamily'],
 						'fontsize' => $_POST['ec_chart_axis_fontsize'],
 						'fontweight' => $_POST['ec_chart_axis_fontweight'],
-						'showticks' => (integer)$_POST['ec_chart_axis_showticks'],
-						'showsubticks' => (integer)$_POST['ec_chart_axis_showsubticks'],
- 						'showtext' => (integer)$_POST['ec_chart_axis_showtext'],
- 					);
+						'showticks' => (integer) $_POST['ec_chart_axis_showticks'],
+						'showsubticks' => (integer) $_POST['ec_chart_axis_showsubticks'],
+						'showtext' => (integer) $_POST['ec_chart_axis_showtext'],
+					);
 
 		$ec_chart_label  = array(
- 						'strokecolor' => $_POST['ec_chart_label_strokecolor'],
+						'strokecolor' => $_POST['ec_chart_label_strokecolor'],
 						'fontfamily' => $_POST['ec_chart_label_fontfamily'],
 						'fontsize' => $_POST['ec_chart_label_fontsize'],
 						'fontweight' => $_POST['ec_chart_label_fontweight'],
-						'showlabel' => (integer)$_POST['ec_chart_label_showlabel'],
-						'precision' => (integer)$_POST['ec_chart_label_precision'],
+						'showlabel' => (integer) $_POST['ec_chart_label_showlabel'],
+						'precision' => (integer) $_POST['ec_chart_label_precision'],
 						'prefix' => $_POST['ec_chart_label_prefix'],
 						'suffix' => $_POST['ec_chart_label_suffix'],
- 					);
+					);
 
 	    $ec_chart_legend  = array(
 			            'position' => $_POST['ec_chart_legend_position'],
@@ -411,24 +409,24 @@ class Easy_Charts_Admin {
 			            'fontsize' => $_POST['ec_chart_legend_fontsize'],
 			            'fontweight' => $_POST['ec_chart_legend_fontweight'],
 			            'color' => $_POST['ec_chart_legend_color'],
-			            'strokewidth' => (float)$_POST['ec_chart_legend_strokewidth'],
-			            'textmargin' => (integer)$_POST['ec_chart_legend_textmargin'],
-			            'symbolsize' => (integer)$_POST['ec_chart_legend_symbolsize'],
+			            'strokewidth' => (float) $_POST['ec_chart_legend_strokewidth'],
+			            'textmargin' => (integer) $_POST['ec_chart_legend_textmargin'],
+			            'symbolsize' => (integer) $_POST['ec_chart_legend_symbolsize'],
 			            'inactivecolor' => $_POST['ec_chart_legend_inactivecolor'],
-			            'legendstart' => (integer)$_POST['ec_chart_legend_legendstart'],
+			            'legendstart' => (integer) $_POST['ec_chart_legend_legendstart'],
 			            'legendtype' => 'categories',
-			            'showlegends' => (integer)$_POST['ec_chart_legend_showlegends'],
+			            'showlegends' => (integer) $_POST['ec_chart_legend_showlegends'],
 	          		);
 
 		$ec_chart_scale  = array(
- 						'type' => $_POST['ec_chart_scale_type'],
-						'ordinality' => (float)$_POST['ec_chart_scale_ordinality'],
- 					);
+						'type' => $_POST['ec_chart_scale_type'],
+						'ordinality' => (float) $_POST['ec_chart_scale_ordinality'],
+					);
 
 		$ec_chart_tooltip  = array(
- 						'show' => (integer)$_POST['ec_chart_tooltip_show'],
+						'show' => (integer) $_POST['ec_chart_tooltip_show'],
 						'format' => $_POST['ec_chart_tooltip_format'],
- 					);
+					);
 
 		$ec_chart_caption  = array(
 						'fontfamily' => $_POST['ec_chart_caption_fontfamily'],
@@ -462,7 +460,7 @@ class Easy_Charts_Admin {
 
 		$ec_chart_area  = array(
 						'interpolation' => $_POST['ec_chart_area_interpolation'],
-						'opacity' => (float)$_POST['ec_chart_area_opacity'],
+						'opacity' => (float) $_POST['ec_chart_area_opacity'],
 						'offset' => $_POST['ec_chart_area_offset'],
 					);
 
@@ -495,7 +493,7 @@ class Easy_Charts_Admin {
 		update_post_meta( $post_id, '_ec_chart_frame', $ec_chart_frame );
 		update_post_meta( $post_id, '_ec_chart_axis', $ec_chart_axis );
 		update_post_meta( $post_id, '_ec_chart_label', $ec_chart_label );
-    	update_post_meta( $post_id, '_ec_chart_legend', $ec_chart_legend );
+		update_post_meta( $post_id, '_ec_chart_legend', $ec_chart_legend );
 		update_post_meta( $post_id, '_ec_chart_scale', $ec_chart_scale );
 		update_post_meta( $post_id, '_ec_chart_tooltip', $ec_chart_tooltip );
 		update_post_meta( $post_id, '_ec_chart_caption', $ec_chart_caption );
@@ -512,21 +510,21 @@ class Easy_Charts_Admin {
 	/**
 	* Ajax callback for save chart data.
 	*
-	*@since    1.0.0
+	* @since    1.0.0
 	*/
-	public function easy_charts_save_chart_data_callback(){
+	public function easy_charts_save_chart_data_callback() {
 
 		$plugin = new Easy_Charts();
 
-		if( $_POST['action'] != 'easy_charts_save_chart_data' ){
-			exit(0);
+		if ( $_POST['action'] != 'easy_charts_save_chart_data' ) {
+			exit( 0 );
 		}
 
 		update_post_meta( $_POST['chart_id'], '_easy_charts_chart_data', $_POST['chart_data'] );
 
-		echo json_encode(  $plugin->get_ec_chart_data($_POST['chart_id']) );
+		echo json_encode(  $plugin->get_ec_chart_data( $_POST['chart_id'] ) );
 
-		exit(0);
+		exit( 0 );
 	}
 
 	/**
@@ -534,38 +532,39 @@ class Easy_Charts_Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	public function easy_charts_get_published_charts_callback(){
-		if( $_POST['action'] != 'easy_charts_get_published_charts' ){
-			exit(0);
+	public function easy_charts_get_published_charts_callback() {
+		if ( $_POST['action'] != 'easy_charts_get_published_charts' ) {
+			exit( 0 );
 		}
 
-		$args=array(
-  								'post_type' => 'easy_charts',
-  								'post_status' => 'publish',
-  								'posts_per_page' => -1,
-							);
+		$args = array(
+				'post_type' => 'easy_charts',
+				'post_status' => 'publish',
+				'posts_per_page' => -1,
+			);
 
-		$chart_query = new WP_Query($args);
+		$chart_query = new WP_Query( $args );
 
 		$charts = array();
-		if( $chart_query->have_posts() ) {
-			foreach ($chart_query->posts as $chart_key => $chart ) {
-				$chart_title = "";
-				if( "" == $chart->post_title ){
-					$chart_title = "Chart-".$chart->ID;
-				}else{
+		if ( $chart_query->have_posts() ) {
+			foreach ( $chart_query->posts as $chart_key => $chart ) {
+				$chart_title = '';
+				if ( '' == $chart->post_title ) {
+					$chart_title = 'Chart-'.$chart->ID;
+				} else {
 					$chart_title = $chart->post_title;
 				}
-				$charts[] = array( 	'text' => $chart_title,
-													'value' => "[easy_chart chart_id='".$chart->ID."']"
-			 								);
+				$charts[] = array(
+								'text' => $chart_title,
+								'value' => "[easy_chart chart_id='".$chart->ID."']",
+			 				);
 			}
 		}
 		wp_reset_query();
 
 		echo json_encode( $charts );
 
-		exit(0);
+		exit( 0 );
 	}
 
 	/**
@@ -573,22 +572,22 @@ class Easy_Charts_Admin {
 	 *
 	 * @since 1.0.0
 	 */
-	public function easy_charts_add_insert_chart_button(){
+	public function easy_charts_add_insert_chart_button() {
 
 	    // check user permissions
-	    if ( !current_user_can('edit_posts') && !current_user_can('edit_pages') ) {
+	    if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
 	    	return;
 	    }
 
 	    // check if WYSIWYG is enabled
-	    if ( get_user_option('rich_editing') == 'true') {
-	        add_filter("mce_external_plugins", array( $this, 'easy_charts_add_tinymce_plugin') );
-	        add_filter('mce_buttons', array( $this, 'easy_charts_register_insert_chart_tc_button') );
+	    if ( get_user_option( 'rich_editing' ) == 'true' ) {
+	        add_filter( 'mce_external_plugins', array( $this, 'easy_charts_add_tinymce_plugin' ) );
+	        add_filter( 'mce_buttons', array( $this, 'easy_charts_register_insert_chart_tc_button' ) );
 	    }
 	}
 
 	/**
-	 *Add Insert chart button js.
+	 * Add Insert chart button js.
 	 *
 	 * @since 1.0.0
 	 *
@@ -596,12 +595,12 @@ class Easy_Charts_Admin {
 	 * @return  array     Array of plugin urls with newly added plugin.
 	 */
 	public function easy_charts_add_tinymce_plugin( $plugin_array ) {
-		$plugin_array['easy_charts_insert_chart_tc_button'] = plugin_dir_url(__FILE__).'js/insert-chart-button.js';
+		$plugin_array['easy_charts_insert_chart_tc_button'] = plugin_dir_url( __FILE__ ).'js/insert-chart-button.js';
 		return $plugin_array;
 	}
 
 	/**
-	 *Add Insert chart button.
+	 * Add Insert chart button.
 	 *
 	 * @since 1.0.0
 	 *
@@ -609,7 +608,7 @@ class Easy_Charts_Admin {
 	 * @return   	array      Array if buttons with newly added button name.
 	 */
 	function easy_charts_register_insert_chart_tc_button( $buttons ) {
-		array_push($buttons, "easy_charts_insert_chart_tc_button");
+		array_push( $buttons, 'easy_charts_insert_chart_tc_button' );
 		return $buttons;
 	}
 }

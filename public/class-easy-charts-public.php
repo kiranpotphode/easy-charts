@@ -100,15 +100,15 @@ class Easy_Charts_Public {
 
 		wp_register_script( 'easy-charts-public-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-public.js', array( 'jquery' ), $this->version, true );
 
-		wp_register_script( 'd3-js', plugins_url(  'includes/js/d3.min.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'd3-js', plugins_url( 'includes/js/d3.min.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'uvhcharts-js', plugins_url(  'includes/js/uvcharts.min.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'uvhcharts-js', plugins_url( 'includes/js/uvcharts.min.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'filesaver-js', plugins_url(  'includes/js/filesaver.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'filesaver-js', plugins_url( 'includes/js/filesaver.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'canvg-js',  plugins_url(  'includes/js/canvg.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'canvg-js',  plugins_url( 'includes/js/canvg.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'canvas-toblob-js', plugins_url(  'includes/js/canvas-toblob.js', dirname(__FILE__) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'canvas-toblob-js', plugins_url( 'includes/js/canvas-toblob.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -121,14 +121,14 @@ class Easy_Charts_Public {
 	 * @param string 	$content 	Content inside Shortcode enclosing tags. Default is ''.
 	 * @return string 	Parsed Shortcode html markup.
 	 */
-	public static function easy_chart_shortcode_callback( $atts, $content = "" ) {
+	public static function easy_chart_shortcode_callback( $atts, $content = '' ) {
 		$atts = shortcode_atts( array(
-			'chart_id' => null
+			'chart_id' => null,
 		), $atts, 'easy_chart' );
 
-		extract($atts);
+		extract( $atts );
 
-		if( $chart_id ){
+		if ( $chart_id ) {
 			$plugin = new Easy_Charts();
 
 			wp_enqueue_script( 'easy-charts-public-js' );
@@ -139,15 +139,14 @@ class Easy_Charts_Public {
 
 			wp_enqueue_script( 'filesaver-js' );
 
-			wp_enqueue_script( 'canvg-js');
+			wp_enqueue_script( 'canvg-js' );
 
 			wp_enqueue_script( 'canvas-toblob-js' );
 
 			return $plugin->ec_render_chart( $chart_id );
 		}
 
-
-		return "";
+		return '';
 	}
 
 	/**
@@ -155,8 +154,7 @@ class Easy_Charts_Public {
 	 *
 	 * @since 1.0.0
 	 */
-	public function init(){
-		add_shortcode('easy_chart', array($this, 'easy_chart_shortcode_callback'));
+	public function init() {
+		add_shortcode( 'easy_chart', array( $this, 'easy_chart_shortcode_callback' ) );
 	}
-
 }
