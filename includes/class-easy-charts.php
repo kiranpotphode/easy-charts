@@ -441,7 +441,7 @@ class Easy_Charts {
 		$ec_chart_frame =  $this->ec_get_chart_configuration( $chart_id, 'frame' );
 		$ec_chart_axis =  $this->ec_get_chart_configuration( $chart_id, 'axis' );
 		$ec_chart_label =  $this->ec_get_chart_configuration( $chart_id, 'label' );
-    $ec_chart_legend =  $this->ec_get_chart_configuration( $chart_id, 'legend' );
+    	$ec_chart_legend =  $this->ec_get_chart_configuration( $chart_id, 'legend' );
 		$ec_chart_scale =  $this->ec_get_chart_configuration( $chart_id, 'scale' );
 		$ec_chart_tooltip =  $this->ec_get_chart_configuration( $chart_id, 'tooltip' );
 		$ec_chart_caption =  $this->ec_get_chart_configuration( $chart_id, 'caption' );
@@ -462,7 +462,7 @@ class Easy_Charts {
 											'axis' => $ec_chart_axis,
 											'dimension' => $ec_chart_dimension,
 											'label' => $ec_chart_label,
-                      'legend' => $ec_chart_legend,
+                      						'legend' => $ec_chart_legend,
 											'scale' => $ec_chart_scale,
 											'tooltip' => $ec_chart_tooltip,
 											'caption' => $ec_chart_caption,
@@ -628,22 +628,22 @@ class Easy_Charts {
 								);
 					break;
 
-        case 'legend':
-          $ec_chart_option =  array(
-                  'position' => 'bottom',
-                  'fontfamily' => 'Arial',
-                  'fontsize' => '11',
-                  'fontweight' => 'normal',
-                  'color' => "#000000",
-                  'strokewidth' => 0.15,
-                  'textmargin' => 15,
-                  'symbolsize' => 10,
-                  'inactivecolor' => '#DDD',
-                  'legendstart' => 0,
-                  'legendtype' => 'categories',
-                  'showlegends' => true,
-                );
-          break;
+		        case 'legend':
+		          $ec_chart_option =  array(
+		                  'position' => 'bottom',
+		                  'fontfamily' => 'Arial',
+		                  'fontsize' => '11',
+		                  'fontweight' => 'normal',
+		                  'color' => "#000000",
+		                  'strokewidth' => 0.15,
+		                  'textmargin' => 15,
+		                  'symbolsize' => 10,
+		                  'inactivecolor' => '#DDD',
+		                  'legendstart' => 0,
+		                  'legendtype' => 'categories',
+		                  'showlegends' => true,
+		                );
+		          break;
 
 				case 'scale':
 					$ec_chart_option = 	array(
@@ -655,121 +655,6 @@ class Easy_Charts {
 				case 'tooltip':
 					$ec_chart_option = 	array(
 									'show' => 1,
-									'format' => "%c [%l] : %v",
-								);
-					break;
-
-				case 'caption':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'textdecoration' => 'none',
-									'strokecolor' => '#000000',
-									'cursor' => 'pointer',
-								);
-					break;
-
-				case 'subcaption':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'textdecoration' => 'none',
-									'strokecolor' => '#000000',
-									'cursor' => 'pointer',
-								);
-					break;
-
-				case 'bar':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
-									'fontsize' => 10,
-									'fontweight' => 700,
-									'strokecolor' => 'none',
-									'textcolor' => '#000000',
-								);
-					break;
-
-				case 'line':
-					$ec_chart_option = 	array(
-									'interpolation' => "linear",
-								);
-					break;
-
-				case 'area':
-					$ec_chart_option = 	array(
-									'interpolation' => "linear",
-									'opacity' => 0.2,
-									'offset' => 'zero',
-								);
-					break;
-
-				case 'pie':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'fontvariant' => 'small-caps',
-									'fontfill' => '#000000',
-									'strokecolor' => '#ffffff',
-									'strokewidth' => 1,
-								);
-					break;
-
-				case 'donut':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'fontvariant' => 'small-caps',
-									'fontfill' => '#000000',
-									'strokecolor' => '#ffffff',
-									'strokewidth' => 1,
-									'factor' => 0.4,
-								);
-					break;
-
-				case 'label':
-					$ec_chart_option = 	array(
-									'fontfamily' => "Arial",
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'strokecolor' => '#000000',
-									'showlabel' => true,
-									'precision' => 2,
-									'prefix' => '',
-									'suffix' => ''
-								);
-					break;
-
-        case 'legend':
-          $ec_chart_option =  array(
-                  'position' => 'bottom',
-                  'fontfamily' => 'Arial',
-                  'fontsize' => '11',
-                  'fontweight' => 'normal',
-                  'color' => "#000000",
-                  'strokewidth' => 0.15,
-                  'textmargin' => 15,
-                  'symbolsize' => 10,
-                  'inactivecolor' => '#DDD',
-                  'legendstart' => 0,
-                  'legendtype' => 'categories',
-                  'showlegends' => true,
-                );
-          break;
-
-				case 'scale':
-					$ec_chart_option = 	array(
-									'type' => "linear",
-									'ordinality' => 0.2
-								);
-					break;
-
-				case 'tooltip':
-					$ec_chart_option = 	array(
-									'show' => true,
 									'format' => "%c [%l] : %v",
 								);
 					break;
