@@ -441,6 +441,7 @@ class Easy_Charts {
 		$ec_chart_frame =  $this->ec_get_chart_configuration( $chart_id, 'frame' );
 		$ec_chart_axis =  $this->ec_get_chart_configuration( $chart_id, 'axis' );
 		$ec_chart_label =  $this->ec_get_chart_configuration( $chart_id, 'label' );
+    $ec_chart_legend =  $this->ec_get_chart_configuration( $chart_id, 'legend' );
 		$ec_chart_scale =  $this->ec_get_chart_configuration( $chart_id, 'scale' );
 		$ec_chart_tooltip =  $this->ec_get_chart_configuration( $chart_id, 'tooltip' );
 		$ec_chart_caption =  $this->ec_get_chart_configuration( $chart_id, 'caption' );
@@ -461,6 +462,7 @@ class Easy_Charts {
 											'axis' => $ec_chart_axis,
 											'dimension' => $ec_chart_dimension,
 											'label' => $ec_chart_label,
+                      'legend' => $ec_chart_legend,
 											'scale' => $ec_chart_scale,
 											'tooltip' => $ec_chart_tooltip,
 											'caption' => $ec_chart_caption,
@@ -626,6 +628,23 @@ class Easy_Charts {
 								);
 					break;
 
+        case 'legend':
+          $ec_chart_option =  array(
+                  'position' => 'bottom',
+                  'fontfamily' => 'Arial',
+                  'fontsize' => '11',
+                  'fontweight' => 'normal',
+                  'color' => "#000000",
+                  'strokewidth' => 0.15,
+                  'textmargin' => 15,
+                  'symbolsize' => 10,
+                  'inactivecolor' => '#DDD',
+                  'legendstart' => 0,
+                  'legendtype' => 'categories',
+                  'showlegends' => true,
+                );
+          break;
+
 				case 'scale':
 					$ec_chart_option = 	array(
 									'type' => "linear",
@@ -723,6 +742,23 @@ class Easy_Charts {
 									'suffix' => ''
 								);
 					break;
+
+        case 'legend':
+          $ec_chart_option =  array(
+                  'position' => 'bottom',
+                  'fontfamily' => 'Arial',
+                  'fontsize' => '11',
+                  'fontweight' => 'normal',
+                  'color' => "#000000",
+                  'strokewidth' => 0.15,
+                  'textmargin' => 15,
+                  'symbolsize' => 10,
+                  'inactivecolor' => '#DDD',
+                  'legendstart' => 0,
+                  'legendtype' => 'categories',
+                  'showlegends' => true,
+                );
+          break;
 
 				case 'scale':
 					$ec_chart_option = 	array(

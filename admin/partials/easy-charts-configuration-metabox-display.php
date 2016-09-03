@@ -122,6 +122,26 @@
 					?>
 				</div>
 
+        <div id="ec-tabs-legend" class="ec-tab" data-pws-tab-name="<?php  _e( 'Legend', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-legend" data-pws-tab-icon="fa-info">
+          <?php $ec_chart_legend =  $plugin->ec_get_chart_configuration( $post->ID, 'legend' );
+
+            $plugin->ec_render_field( 'dropdown', 'ec_chart_legend_position','Position', $ec_chart_legend['position'], array('bottom' => 'Bottom', 'right' => 'Right') );
+            $plugin->ec_render_field( 'dropdown', 'ec_chart_legend_fontfamily','Font Family', $ec_chart_legend['fontfamily'], $font_family, 'Arial' );
+            $plugin->ec_render_field( 'number', 'ec_chart_legend_fontsize','Font Size', $ec_chart_legend['fontsize'], array( 'min' => 0 ) );
+            $plugin->ec_render_field( 'dropdown', 'ec_chart_legend_fontweight','Font Weight', $ec_chart_legend['fontweight'], array('100' => 100, '200' => 200, '300' => 300, '400' => 400, '500' => 500, '600' => 600, '700' => 700, '800' => 800, '900' => 900 ) );
+            $plugin->ec_render_field( 'color-picker', 'ec_chart_legend_color','Stroke Color', $ec_chart_legend['color'] );
+            $plugin->ec_render_field( 'number', 'ec_chart_legend_strokewidth','Stroke Width', $ec_chart_legend['strokewidth'], array( 'min' => 0, 'step' => .05 ) );
+            $plugin->ec_render_field( 'number', 'ec_chart_legend_textmargin','Text Margin', $ec_chart_legend['textmargin'], array( 'min' => 0 ) );
+            $plugin->ec_render_field( 'number', 'ec_chart_legend_symbolsize','Symbol Size', $ec_chart_legend['symbolsize'], array( 'min' => 0 ) );
+            $plugin->ec_render_field( 'color-picker', 'ec_chart_legend_inactivecolor','Inactive Color', $ec_chart_legend['inactivecolor'] );
+            $plugin->ec_render_field( 'number', 'ec_chart_legend_legendstart','Start', $ec_chart_legend['legendstart'], array( 'min' => 0 ) );
+            $plugin->ec_render_field( 'radio', 'ec_chart_legend_showlegends','Show Legend', $ec_chart_legend['showlegends'], array( 'Yes' => 1, 'No' => 0 ) );
+
+          ?>
+        </div>
+
+
+
 				<div id="ec-tabs-scale" class="ec-tab" data-pws-tab-name="<?php  _e( 'Scale', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-scale" data-pws-tab-icon="fa-balance-scale">
 					<?php	$ec_chart_scale =  $plugin->ec_get_chart_configuration( $post->ID, 'scale' );
 

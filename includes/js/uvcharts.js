@@ -2351,7 +2351,7 @@ uv.PieGraph = function (graphdef, config) {
       .attr('transform', function (d) { return 'translate(' + arcfunc.centroid(d) + ')'; })
       .attr('dy', '.35em')
       .attr('text-anchor', 'middle')
-      .style('fill', self.config.label.showlabel ? self.config.donut.fontfill : 'none')
+      .style('fill', self.config.label.showlabel ? self.config.pie.fontfill : 'none')
       .style('font-family', self.config.pie.fontfamily)
       .style('font-size', self.config.pie.fontsize)
       .style('font-weight', self.config.pie.fontweight)
