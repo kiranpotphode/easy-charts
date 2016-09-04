@@ -3,8 +3,8 @@ Contributors: kiranpotphode
 Donate link: http://kiranpotphode.com/donate/
 Tags: chart, graph, bar, line, pie, area, stacked, stacked bar, step up bar, percent bar, stacked area, percent area, donut, polar area, waterfall easy integration, uniform, data representation, simple, download as image, responsive
 Requires at least: 3.0
-Tested up to: 4.5
-Stable tag: 1.0.3
+Tested up to: 4.6
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,6 +77,12 @@ You can use either method from below:
 4. Insert chart into post/page.
 
 == Changelog ==
+
+= 1.1 =
+*Release Date - 4th September, 2016*
+
+* Support added for Legend configuration.
+* Code refactor to match coding standards.
 
 = 1.0.3 =
 *Release Date - 18th April, 2016*
