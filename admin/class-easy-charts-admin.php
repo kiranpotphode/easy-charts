@@ -79,7 +79,7 @@ class Easy_Charts_Admin {
 
 		 wp_enqueue_style( 'insert-chart-button-tc-css', plugin_dir_url( __FILE__ ) . 'css/insert-chart.css', array(), $this->version, 'all' );
 
-		if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' && $typenow == 'easy_charts' ) {
+		if ( 'post-new.php' === $pagenow ||  'post.php' === $pagenow &&  'easy_charts' === $typenow ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-admin.css', array(), $this->version, 'all' );
 
 			wp_enqueue_style( 'handsontable-css', plugin_dir_url( __FILE__ ) . 'css/handsontable/handsontable.full.css', array(), $this->version, 'all' );
@@ -116,7 +116,7 @@ class Easy_Charts_Admin {
 
 		global $pagenow, $typenow;
 
-		if ( $pagenow == 'post-new.php' || $pagenow == 'post.php' && $typenow == 'easy_charts' ) {
+		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow  && 'easy_charts' === $typenow ) {
 
 			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery' ), $this->version, true );
 
@@ -148,7 +148,7 @@ class Easy_Charts_Admin {
 
 	public function admin_print_scripts() {
 		echo "<script type='text/javascript'>\n";
-		echo 'var ajaxurl = "'.admin_url( 'admin-ajax.php' ).'"';
+		echo 'var ajaxurl = "'.esc_url( admin_url( 'admin-ajax.php' ) ).'"';
 		echo "\n</script>";
 	}
 
@@ -516,13 +516,15 @@ class Easy_Charts_Admin {
 
 		$plugin = new Easy_Charts();
 
-		if ( $_POST['action'] != 'easy_charts_save_chart_data' ) {
+		check_ajax_referer( 'ec-ajax-nonce', '_nonce_check' );
+
+		if ( 'easy_charts_save_chart_data' !== $_POST['action'] ) {
 			exit( 0 );
 		}
 
 		update_post_meta( $_POST['chart_id'], '_easy_charts_chart_data', $_POST['chart_data'] );
 
-		echo json_encode(  $plugin->get_ec_chart_data( $_POST['chart_id'] ) );
+		echo wp_json_encode( $plugin->get_ec_chart_data( $_POST['chart_id'] ) );
 
 		exit( 0 );
 	}
@@ -533,7 +535,7 @@ class Easy_Charts_Admin {
 	 * @since 1.0.0
 	 */
 	public function easy_charts_get_published_charts_callback() {
-		if ( $_POST['action'] != 'easy_charts_get_published_charts' ) {
+		if ( 'easy_charts_get_published_charts' !== $_POST['action'] ) {
 			exit( 0 );
 		}
 
@@ -549,7 +551,7 @@ class Easy_Charts_Admin {
 		if ( $chart_query->have_posts() ) {
 			foreach ( $chart_query->posts as $chart_key => $chart ) {
 				$chart_title = '';
-				if ( '' == $chart->post_title ) {
+				if ( '' === $chart->post_title ) {
 					$chart_title = 'Chart-'.$chart->ID;
 				} else {
 					$chart_title = $chart->post_title;
@@ -560,9 +562,9 @@ class Easy_Charts_Admin {
 			 				);
 			}
 		}
-		wp_reset_query();
+		wp_reset_postdata();
 
-		echo json_encode( $charts );
+		echo wp_json_encode( $charts );
 
 		exit( 0 );
 	}
@@ -580,7 +582,7 @@ class Easy_Charts_Admin {
 	    }
 
 	    // check if WYSIWYG is enabled
-	    if ( get_user_option( 'rich_editing' ) == 'true' ) {
+	    if ( get_user_option( 'rich_editing' ) === 'true' ) {
 	        add_filter( 'mce_external_plugins', array( $this, 'easy_charts_add_tinymce_plugin' ) );
 	        add_filter( 'mce_buttons', array( $this, 'easy_charts_register_insert_chart_tc_button' ) );
 	    }

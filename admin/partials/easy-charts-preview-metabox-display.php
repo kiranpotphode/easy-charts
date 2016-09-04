@@ -28,6 +28,7 @@
 			$translation_array = array(
 				'chart_data' => $chart_data,
 				'chart_id' => $post->ID,
+				'ec_ajax_nonce' => wp_create_nonce( 'ec-ajax-nonce' ),
 			);
 
 			wp_localize_script( 'easy-charts-admin-js', 'ec_chart', $translation_array );

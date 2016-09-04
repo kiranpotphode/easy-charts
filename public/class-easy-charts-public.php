@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The public-facing functionality of the plugin.
  *
@@ -43,11 +42,10 @@ class Easy_Charts_Public {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @TODO  Move shortcode hook to proper location
-	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 *
+	 * @param      string $plugin_name       The name of the plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -117,8 +115,8 @@ class Easy_Charts_Public {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string   $tag  Shortcode tag to be searched in post content.
-	 * @param string 	$content 	Content inside Shortcode enclosing tags. Default is ''.
+	 * @param string $atts  Attributes for shortcode.
+	 * @param string $content    Content inside Shortcode enclosing tags. Default is ''.
 	 * @return string 	Parsed Shortcode html markup.
 	 */
 	public static function easy_chart_shortcode_callback( $atts, $content = '' ) {

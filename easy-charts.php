@@ -1,5 +1,5 @@
 <?php
-/**
+/** Plugin headers
  *
  * @link              https://kiranpotphode.com/
  * @since             1.0.0
@@ -52,7 +52,6 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-easy-charts.php';
 
 /**
  * Begins execution of the plugin.
- *
  *
  * @since    1.0.0
  */

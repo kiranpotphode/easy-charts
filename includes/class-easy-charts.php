@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -241,7 +240,7 @@ class Easy_Charts {
 
 		$r = wp_parse_args( $args, $defaults );
 		$output = '';
-		// Back-compat with old system where both id and name were based on $name argument
+		// Back-compat with old system where both id and name were based on $name argument.
 		if ( empty( $r['id'] ) ) {
 			$r['id'] = $r['name'];
 		}
@@ -249,13 +248,13 @@ class Easy_Charts {
 		if ( ! empty( $r['options'] ) ) {
 			$output = "<select name='" . esc_attr( $r['name'] ) . "' id='" . esc_attr( $r['id'] ) . "' class='ec-dropdown-select'>\n";
 			if ( $r['show_option_no_change'] ) {
-				$output .= "\t<option value=\"-1\" " . selected( $r['selected'], -1, 0 ) . ">" . $r['show_option_no_change'] . "</option>\n";
+				$output .= "\t<option value=\"-1\" " . selected( $r['selected'], -1, 0 ) . '>' . $r['show_option_no_change'] . "</option>\n";
 			}
 			if ( $r['show_option_none'] ) {
-				$output .= "\t<option value=\"" . esc_attr( $r['option_none_value'] ) . "\" " . selected( $r['selected'], esc_attr( $r['option_none_value'] ), 0 ) . ">" . $r['show_option_none'] . "</option>\n";
+				$output .= "\t<option value=\"" . esc_attr( $r['option_none_value'] ) . '" '  . selected( $r['selected'], esc_attr( $r['option_none_value'] ), 0 ) . '>' . $r['show_option_none'] . "</option>\n";
 			}
 			foreach ( $r['options'] as $key => $value ) {
-				$output .= "\t<option value=\"" . esc_attr( $key ) . "\" " . selected( $r['selected'], esc_attr( $key ), 0 ) . ">" . $value . "</option>\n";
+				$output .= "\t<option value=\"" . esc_attr( $key ) . '" '  . selected( $r['selected'], esc_attr( $key ), 0 ) . '>' . $value . "</option>\n";
 			}
 
 			$output .= "</select>\n";
@@ -283,10 +282,10 @@ class Easy_Charts {
 	 * @since 1.0.0
 	 * @access private
 	 *
-	 * @param array 	$array 	 	An 2D array to transpose.
-	 * @param integer|string 	$selectkey 		Key on which transpose the array 	Optional  Default us false.
+	 * @param array 		 $array 	 	An 2D array to transpose.
+	 * @param integer|string $selectkey 	Key on which transpose the array 	Optional  Default us false.
 	 *
-	 * @return 		array   	Transposed array.
+	 * @return array	Transposed array.
 	 */
 	private function array_transpose( $array, $selectkey = false ) {
 		if ( ! is_array( $array ) ) {
@@ -317,12 +316,12 @@ class Easy_Charts {
 	}
 
 	/**
-	* Get available font Family
-	*
-	* @since 1.0.3
-	*
-	* @return 		array 		Array of font-family.
-	*/
+	 * Get available font Family
+	 *
+	 * @since 1.0.3
+	 *
+	 * @return 		array 		Array of font-family.
+	 */
 	public function get_font_family_array() {
 		$font_family = array();
 
@@ -340,16 +339,17 @@ class Easy_Charts {
 	}
 
 	/**
-	* Get chart data.
-	*
-	* @since 1.0.0
-	*
-	* @param 	integer 	$chart_id 	ID of chart to retrieve data   Default is null.
-	* @return 		array 		Array of data.
-	*/
+	 * Get chart data.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param integer|null $chart_id 	ID of chart to retrieve data   Default is null.
+	 *
+	 * @return 	array 		Array of data.
+	 */
 	public function get_ec_chart_data( $chart_id = null ) {
 
-		if ( $chart_id == null ) {
+		if (  null === $chart_id ) {
 			return;
 		}
 
@@ -415,11 +415,11 @@ class Easy_Charts {
 
 		$ec_chart_dataset = json_decode( get_post_meta( $chart_id, '_easy_charts_chart_data', true ) );
 
-		if ( $ec_chart_dataset == null ) {
+		if ( null === $ec_chart_dataset ) {
 			return;
 		}
 
-		if ( $ec_chart_type == 'Pie' || $ec_chart_type == 'Donut' || $ec_chart_type == 'PolarArea' || $ec_chart_type == 'StepUpBar' ) {
+		if ( 'Pie' === $ec_chart_type || 'Donut' === $ec_chart_type || 'PolarArea' === $ec_chart_type || 'StepUpBar' === $ec_chart_type ) {
 			$ec_chart_dataset  = $this->array_transpose( $ec_chart_dataset );
 		}
 
@@ -499,8 +499,9 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param 	integer 	$chart_id  	Chart id which is to be rendered.
-	 * @return  	string 		html markup for chart container.
+	 * @param integer|null $chart_id  	Chart id which is to be rendered.
+	 *
+	 * @return string 		html markup for chart container.
 	 */
 	public function ec_render_chart( $chart_id = null ) {
 		$chart_html = '';
@@ -508,13 +509,13 @@ class Easy_Charts {
 
 			$chart = get_post( $chart_id );
 
-			if ( $chart->post_type != 'easy_charts' ) {
+			if ( 'easy_charts' !== $chart->post_type ) {
 				return;
 			}
 
 			$ec_chart_data = $this->get_ec_chart_data( $chart_id );
 
-			if ( $ec_chart_data != null ) {
+			if ( null !== $ec_chart_data ) {
 
 				if ( is_admin() ) {
 					wp_localize_script( 'easy-charts-admin-js', 'ec_chart_data', $ec_chart_data );
@@ -547,15 +548,16 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param  	integer   $chart_id  	Chart id.
-	 * @param 	integer 	$meta_key     Meta key of configuration.
-	 * @return  	array   	Array of configuration.
+	 * @param integer|null $chart_id  	Chart id.
+	 * @param string 	   $meta_key    Meta key of configuration.
+	 *
+	 * @return array   	Array of configuration.
 	 */
 	public function ec_get_chart_configuration( $chart_id = null, $meta_key = '' ) {
 
 		$ec_chart_option = get_post_meta( $chart_id, '_ec_chart_'.$meta_key, true );
 
-		if (  '' == $ec_chart_option ) {
+		if (  '' === $ec_chart_option ) {
 
 			switch ( $meta_key ) {
 				case 'meta':
@@ -636,20 +638,20 @@ class Easy_Charts {
 
 		        case 'legend':
 		          	$ec_chart_option = array(
-		                  'position' => 'bottom',
-		                  'fontfamily' => 'Arial',
-		                  'fontsize' => '11',
-		                  'fontweight' => 'normal',
-		                  'color' => '#000000',
-		                  'strokewidth' => 0.15,
-		                  'textmargin' => 15,
-		                  'symbolsize' => 10,
-		                  'inactivecolor' => '#DDD',
-		                  'legendstart' => 0,
-		                  'legendtype' => 'categories',
-		                  'showlegends' => true,
-		                );
-		          break;
+									'position' => 'bottom',
+									'fontfamily' => 'Arial',
+									'fontsize' => '11',
+									'fontweight' => 'normal',
+									'color' => '#000000',
+									'strokewidth' => 0.15,
+									'textmargin' => 15,
+									'symbolsize' => 10,
+									'inactivecolor' => '#DDD',
+									'legendstart' => 0,
+									'legendtype' => 'categories',
+									'showlegends' => true,
+		                		);
+		          	break;
 
 				case 'scale':
 					$ec_chart_option = array(
@@ -737,7 +739,7 @@ class Easy_Charts {
 					break;
 
 				default:
-					# code...
+
 					break;
 			}
 		}
@@ -748,8 +750,8 @@ class Easy_Charts {
 		* @since 1.0.3
 		*
 		* @param array  $ec_chart_option 	Chart configuration options.
-		* @param int $chart_id 	ID of chart.
-		* @param string  $meta_key  Meta key for which to get options.
+		* @param int    $chart_id 	ID of chart.
+		* @param string $meta_key  Meta key for which to get options.
 		*/
 		$ec_chart_option = apply_filters( 'easy_charts_get_chart_configurations', $ec_chart_option, $chart_id, $meta_key );
 		return $ec_chart_option;
@@ -760,11 +762,11 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param 	string 	$field_type 	Type of input field.
-	 * @param 	string 	$field_name 	Name of field to refer in form.
-	 * @param 	string 	$field_label 	Label to display along with input field.
-	 * @param 	string 	$field_value 	Value of input field.
-	 * @param 	array 	$field_options 	Optional array of options for input field.
+	 * @param string $field_type     Type of input field.
+	 * @param string $field_name     Name of field to refer in form.
+	 * @param string $field_label 	Label to display along with input field.
+	 * @param string $field_value    Value of input field.
+	 * @param array  $field_options Optional array of options for input field.
 	 */
 	public function ec_render_field( $field_type, $field_name, $field_label, $field_value, $field_options = array() ) {
 
@@ -775,10 +777,10 @@ class Easy_Charts {
 					<tbody>
 						<tr>
 							<td class="ec-td-label">
-								<label><?php echo __( $field_label, 'easy-charts' ); ?> :</label>
+								<label><?php esc_html_e( $field_label ); ?> :</label>
 							</td>
 							<td class="ec-td-field">
-								<input type="text" name="<?php echo $field_name; ?>" value="<?php echo $field_value; ?>"  />
+								<input type="text" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>"  />
 							</td>
 						</tr>
 					</tbody>
@@ -792,10 +794,10 @@ class Easy_Charts {
 						<tbody>
 							<tr>
 								<td class="ec-td-label">
-									<label><?php echo __( $field_label, 'easy-charts' ); ?> :</label>
+									<label><?php esc_html_e( $field_label ); ?> :</label>
 								</td>
 								<td class="ec-td-field">
-									<input type="number" name="<?php echo $field_name; ?>" min="<?php echo isset( $field_options['min'] ) ? $field_options['min'] : ''; ?>" max="<?php echo isset( $field_options['max'] ) ? $field_options['max'] : ''; ?>" step="<?php echo  isset( $field_options['step'] ) ? $field_options['step'] : ''; ?>" value="<?php echo $field_value; ?>"  class="ec-field-number"/>
+									<input type="number" name="<?php  echo esc_attr( $field_name ); ?>" min="<?php  echo esc_attr( isset( $field_options['min'] ) ? $field_options['min'] : '' ); ?>" max="<?php  echo esc_attr( isset( $field_options['max'] ) ? $field_options['max'] : '' ); ?>" step="<?php  echo esc_attr( isset( $field_options['step'] ) ? $field_options['step'] : '' ); ?>" value="<?php  echo esc_attr( $field_value ); ?>"  class="ec-field-number"/>
 								</td>
 							</tr>
 						</tbody>
@@ -809,12 +811,12 @@ class Easy_Charts {
 						<tbody>
 							<tr>
 								<td class="ec-td-label">
-									<label><?php echo __( $field_label, 'easy-charts' ); ?> :</label>
+									<label><?php esc_html_e( $field_label ); ?> :</label>
 								</td>
 								<td class="ec-td-field">
 									<div class="ec-field-buttonset">
 										<?php 	foreach ( $field_options as $key => $value ) { ?>
-											<input name="<?php echo $field_name; ?>" id="<?php echo $field_name.$value; ?>" type="radio" value="<?php echo $value; ?>" <?php checked( $value, $field_value ); ?> /><label for="<?php echo $field_name.$value; ?>"><?php echo $key; ?></label>
+											<input name="<?php  echo esc_attr( $field_name ); ?>" id="<?php  echo esc_attr( $field_name.$value ); ?>" type="radio" value="<?php echo esc_attr( $value ); ?>" <?php checked( $value, $field_value ); ?> /><label for="<?php  echo esc_attr( $field_name.$value ); ?>"><?php echo esc_html( $key ); ?></label>
 										<?php }	?>
 							 		</div>
 								</td>
@@ -830,11 +832,11 @@ class Easy_Charts {
 						<tbody>
 							<tr>
 								<td class="ec-td-label">
-									<label><?php echo __( $field_label, 'easy-charts' ); ?> :</label>
+									<label><?php esc_html_e( $field_label ); ?> :</label>
 								</td>
 								<td class="ec-td-field">
-									<input type="text" name="<?php echo $field_name ?>" class="ec-field-slider-attach <?php echo $field_name ?>"  readonly  value="<?php echo $field_value; ?>"  />
-						 			<div class="ec-field-slider" data-attach=".<?php echo $field_name ?>"></div>
+									<input type="text" name="<?php  echo esc_attr( $field_name ); ?>" class="ec-field-slider-attach <?php  echo esc_attr( $field_name ); ?>"  readonly  value="<?php  echo esc_attr( $field_value ); ?>"  />
+						 			<div class="ec-field-slider" data-attach=".<?php  echo esc_attr( $field_name ); ?>"></div>
 								</td>
 							</tr>
 						</tbody>
@@ -848,10 +850,10 @@ class Easy_Charts {
 						<tbody>
 							<tr>
 								<td class="ec-td-label">
-									<label><?php echo __( $field_label, 'easy-charts' ); ?> :</label>
+									<label><?php esc_html_e( $field_label ); ?> :</label>
 								</td>
 								<td class="ec-td-field">
-									<input type="text" name="<?php echo $field_name; ?>" class="ec-color-picker" value="<?php echo $field_value; ?>"  />
+									<input type="text" name="<?php  echo esc_attr( $field_name ); ?>" class="ec-color-picker" value="<?php  echo esc_attr( $field_value ); ?>"  />
 								</td>
 							</tr>
 						</tbody>
@@ -865,7 +867,7 @@ class Easy_Charts {
 						<tbody>
 							<tr>
 								<td class="ec-td-label">
-									<label><?php echo __( $field_label, 'easy-charts' ); ?> :</label>
+									<label><?php esc_html_e( $field_label ); ?> :</label>
 								</td>
 								<td class="ec-td-field">
 									<?php 	$args = array(
@@ -885,7 +887,7 @@ class Easy_Charts {
 			<?php 	break;
 
 			default:
-				# code...
+
 				break;
 		}
 
