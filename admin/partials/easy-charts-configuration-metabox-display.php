@@ -41,7 +41,7 @@
 						$ec_chart_graph = $plugin->ec_get_chart_configuration( $post->ID, 'graph' );
 
 						$plugin->ec_render_field( 'radio', 'ec_chart_graph_responsive','Responsive', $ec_chart_graph['responsive'], array( 'Yes' => true, 'No' => false ) );
-						$plugin->ec_render_field( 'dropdown', 'ec_chart_graph_palette','Palette', $ec_chart_graph['palette'], array( 'Default' => 'Default', 'Plain' => 'Plain', 'Android' => 'Android', 'Simple' => 'Simple', 'Soft' => 'Soft', 'Egypt' => 'Egypt', 'Olive' => 'Olive', 'Candid' => 'Candid', 'Sulphide' => 'Sulphide', 'Lint' => 'Lint' ) );
+						$plugin->ec_render_field( 'dropdown', 'ec_chart_graph_palette','Palette', $ec_chart_graph['palette'], array( 'Default' => 'Default', 'OldDefault' => 'OldDefault', 'Plain' => 'Plain', 'Android' => 'Android', 'Simple' => 'Simple', 'Soft' => 'Soft', 'Egypt' => 'Egypt', 'Olive' => 'Olive', 'Candid' => 'Candid', 'Sulphide' => 'Sulphide', 'Lint' => 'Lint' ) );
 						$plugin->ec_render_field( 'color-picker', 'ec_chart_graph_bgcolor','Background Color', $ec_chart_graph['bgcolor'] );
 						$plugin->ec_render_field( 'radio', 'ec_chart_graph_orientation','Orientation', $ec_chart_graph['orientation'], array( 'Horizontal' => 'Horizontal', 'Vertical' => 'Vertical' ) );
 						$plugin->ec_render_field( 'slider', 'ec_chart_graph_opacity','Opacity', $ec_chart_graph['opacity'] );

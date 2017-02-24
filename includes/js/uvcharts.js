@@ -1,8 +1,11 @@
-var uv = (function (){
-  /**
-  * uv is the local namespace within the anonymous function, which holds everything else related to the library
-  * @type {Object}
-  */
+(function(global, factory) {
+  if (typeof module === "object" && typeof module.exports === "object") {
+    module.exports = global.document? factory(global, true ): factory(global);
+  } else {
+    factory(global);
+  }
+}(typeof window !== "undefined" ? window: this, function(window, noGlobal) {
+  "use strict";
   var uv = {};
 
 uv.util = {};
@@ -58,6 +61,9 @@ uv.util.getStepMaxValue = function (graphdef) {
 
   graphdef.categories.map(function (d) {
     graphdef.dataset[d].map(function (d, i) {
+      if (d.resetSum === true) {
+        sumMap[i] = 0;
+      }
       sumMap[i] += d.value;
       maxMap[i] = d3.max([sumMap[i], maxMap[i]]);
     });
@@ -167,17 +173,20 @@ uv.util.getCategoryData = function (graphdef, categories) {
 };
 
 uv.util.transposeData = function (graphdef) {
-  var dataset = {}, i, j, length, jlength,
+  var dataset = {}, i, j, length, jlength, resetSum,
     name, label, value, categories = graphdef.dataset[graphdef.categories[0]].map(function (d) { return d.name; });
 
-  for (i = 0, length = categories.length; i < length; i = i + 1) { dataset[categories[i]] = []; }
+  for (i = 0, length = categories.length; i < length; i = i + 1) {
+    dataset[categories[i]] = [];
+  }
 
   for (i = 0, length = graphdef.categories.length; i < length; i = i + 1) {
     name = graphdef.categories[i];
     for (j = 0, jlength = graphdef.dataset[name].length; j < jlength; j = j + 1) {
       label = graphdef.dataset[name][j].name;
       value = graphdef.dataset[name][j].value;
-      dataset[label].push({ 'name' : name, 'value' : value });
+      resetSum = graphdef.dataset[name][j].resetSum;
+      dataset[label].push({ 'name' : name, 'value' : value, 'resetSum': resetSum });
     }
   }
 
@@ -222,11 +231,19 @@ uv.util.svgToPng = function (downloadElmtRef, callback) {
     canvas.setAttribute('height',d3.select(downloadElmtRef.frame.node()).attr('height'));
     ctx.drawSvg(svgContent);
     canvas.toBlob(function(blob) {
-      saveAs(blob, "png_download"+Math.ceil(Math.random()*100000)+".png");
+      //saveAs(blob, "png_download"+Math.ceil(Math.random()*100000)+".png");
+      var a = document.createElement("a");
+      document.body.appendChild(a);
+      a.style = "display: none";
+      var url = window.URL.createObjectURL(blob);
+      a.href = url;
+      a.download = "png_download"+Math.ceil(Math.random()*100000)+".png";
+      a.click();
+      //window.URL.revokeObjectURL(url);
     }, "image/png");
     callback.call();
   } else {
-    console.log('this feature is not supported in this version of browser');
+    console.log('uvCharts: Download feature is not supported in this version of browser');
   }
 };
 
@@ -575,20 +592,21 @@ uv.addChart = function (type, functionName) {
   uv.types[type] = functionName;
 };
 
-uv.addChart('Bar','BarGraph');
-uv.addChart('Line','LineGraph');
-uv.addChart('StackedBar','StackedBarGraph');
-uv.addChart('StepUpBar','StepUpBarGraph');
-uv.addChart('Area','AreaGraph');
-uv.addChart('StackedArea','StackedAreaGraph');
-uv.addChart('PercentBar','PercentBarGraph');
-uv.addChart('PercentArea','PercentAreaGraph');
-uv.addChart('Pie','PieGraph');
-uv.addChart('Donut','DonutGraph');
-uv.addChart('Waterfall','WaterfallGraph');
-uv.addChart('PolarArea','PolarAreaGraph');
+uv.addChart('bar','BarGraph');
+uv.addChart('line','LineGraph');
+uv.addChart('stackedbar','StackedBarGraph');
+uv.addChart('stepupbar','StepUpBarGraph');
+uv.addChart('area','AreaGraph');
+uv.addChart('stackedarea','StackedAreaGraph');
+uv.addChart('percentbar','PercentBarGraph');
+uv.addChart('percentarea','PercentAreaGraph');
+uv.addChart('pie','PieGraph');
+uv.addChart('donut','DonutGraph');
+uv.addChart('waterfall','WaterfallGraph');
+uv.addChart('polararea','PolarAreaGraph');
 
 uv.chart = function (type, graphdef, config) {
+  type = type.toLowerCase()
   if (uv.types[type] !== undefined) {
     return new uv[uv.types[type]](graphdef, config);
   }
@@ -821,7 +839,8 @@ uv.effects.legend.click = function (i, ctx, graph) {
 };
 
 uv.palette = {
-  'Default' : ['#7E6DA1', '#C2CF30', '#FF8900', '#FE2600', '#E3003F', '#8E1E5F', '#FE2AC2', '#CCF030', '#9900EC', '#3A1AA8', '#3932FE', '#3276FF', '#35B9F6', '#42BC6A', '#91E0CB'],
+  'Default': ['#00BBC9', '#EC63AB', '#AA8AE4', '#83CE44', '#ff8f25', '#009EAA', '#CA4F7F', '#9C70C0', '#6BAF3B'],
+  'OldDefault' : ['#7E6DA1', '#C2CF30', '#FF8900', '#FE2600', '#E3003F', '#8E1E5F', '#FE2AC2', '#CCF030', '#9900EC', '#3A1AA8', '#3932FE', '#3276FF', '#35B9F6', '#42BC6A', '#91E0CB'],
   'Plain' : ['#B1EB68', '#B1B9B5', '#FFA16C', '#9B64E7', '#CEE113', '#2F9CFA', '#CA6877', '#EC3D8C', '#9CC66D', '#C73640', '#7D9532', '#B064DC' ],
   'Android' : ['#33B5E5', '#AA66CC', '#99CC00', '#FFBB33', '#FF4444', '#0099CC', '#9933CC', '#669900', '#FF8800', '#CC0000'],
   'Soft' : [ '#9ED8D2', '#FFD478', '#F16D9A', '#A8D59D', '#FDC180', '#F05133', '#EDED8A', '#F6A0A5', '#9F218B' ],
@@ -1399,9 +1418,9 @@ uv.Graph.prototype.finalize = function (isLoggable) {
   self.frame.selectAll('text').style('cursor', 'default');
 
   //Log Graph object if flag set to truthy value
-  //if (isLoggable) {
+  if (isLoggable) {
     console.log(self);
-  //}
+  }
   return this;
 };
 
@@ -1897,6 +1916,7 @@ uv.DonutGraph.prototype = uv.util.inherits(uv.Graph);
 uv.DonutGraph.prototype.setDefaults = function () {
   var self = this;
   self.graphdef.stepup = 'normal';
+  self.config.legend.legendtype = 'labels';
   return this;
 };
 
@@ -2098,7 +2118,7 @@ uv.PercentAreaGraph = function (graphdef, config) {
 
   self['draw' + self.config.graph.orientation + 'Area']();
 
-  self.finalize(true);
+  self.finalize();
 };
 
 uv.PercentAreaGraph.prototype = uv.util.inherits(uv.Graph);
@@ -2246,8 +2266,8 @@ uv.PercentBarGraph.prototype.drawHorizontalBars = function (bars, csum, tsum, id
     .style('stroke', 'none')
     .style('fill', color)
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .attr('width', function (d, i) { return axes.hor.scale(uv.util.getPercentage(d.value, sumMap[i]));})
       .call(uv.util.endAll, function (d,i){
         d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', uv.effects.bar.mouseover(self, idx, self.config.effects.textcolor));
@@ -2267,8 +2287,8 @@ uv.PercentBarGraph.prototype.drawHorizontalBars = function (bars, csum, tsum, id
     .style('font-weight', this.config.bar.fontweight)
     .text(function(d, i) { return ( axes.hor.scale(uv.util.getPercentage(csum[i], sumMap[i])) > 15 ) ? String(Math.round(uv.util.getPercentage(d.value, sumMap[i]))) : null; })
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .attr('x', function (d, i) { tsum[i] += d.value; return axes.hor.scale(uv.util.getPercentage(tsum[i], sumMap[i])) - 5; });
 };
 
@@ -2289,8 +2309,8 @@ uv.PercentBarGraph.prototype.drawVerticalBars = function (bars, csum, tsum, idx)
     .style('stroke', 'none')
     .style('fill', color)
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .attr('height', function (d, i) { return height - axes.ver.scale(uv.util.getPercentage(d.value, sumMap[i])); })
       .call(uv.util.endAll, function (d,i){
         d3.select(this.parentNode.parentNode).selectAll('rect').on('mouseover', uv.effects.bar.mouseover(self, idx, self.config.effects.textcolor));
@@ -2309,8 +2329,8 @@ uv.PercentBarGraph.prototype.drawVerticalBars = function (bars, csum, tsum, idx)
     .style('font-weight', this.config.bar.fontweight)
     .text(function(d, i) { return ( height - axes.ver.scale(uv.util.getPercentage(d.value, sumMap[i])) > 15) ? String(Math.round(uv.util.getPercentage(d.value, sumMap[i]))) : null; })
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .attr('y', function (d, i) { tsum[i] += d.value; return -(2*height - axes.ver.scale(uv.util.getPercentage(tsum[i], sumMap[i]))) + 5; });
 };
 
@@ -2449,6 +2469,7 @@ uv.PolarAreaGraph.prototype = uv.util.inherits(uv.Graph);
 uv.PolarAreaGraph.prototype.setDefaults = function () {
   var self = this;
   self.graphdef.stepup = 'normal';
+  self.config.legend.legendtype = 'labels';
   return this;
 };
 
@@ -2612,8 +2633,8 @@ uv.StackedBarGraph.prototype.drawHorizontalBars = function (idx, csum, tsum) {
     .style('stroke', 'none')
     .style('fill', color)
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .attr('width', function (d,i) { return axes.hor.scale(csum[i]) - axes.hor.scale(csum[i]-d.value); })
       .each("end", function (d,i){
         d3.select(this).on('mouseover', uv.effects.bar.mouseover(self, idx, self.config.effects.textcolor));
@@ -2639,8 +2660,8 @@ uv.StackedBarGraph.prototype.drawHorizontalBars = function (idx, csum, tsum) {
     .style('opacity', 0)
     .text(function(d) { return ( axes.hor.scale(d.value) > 15 ) ? uv.util.getLabelValue(self, d) : null; })
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .style('opacity', 1)
       .attr('x', function (d, i) { tsum[i] += d.value; return axes.hor.scale(tsum[i]) - 5; });
 
@@ -2668,8 +2689,8 @@ uv.StackedBarGraph.prototype.drawVerticalBars = function (idx, csum, tsum) {
     .style('stroke', 'none')
     .style('fill', color)
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .attr('height', function (d,i) { return -(axes.ver.scale(-csum[i]) - axes.ver.scale(-csum[i]-d.value)); })
       .each("end", function (d,i){
         d3.select(this).on('mouseover', uv.effects.bar.mouseover(self, idx, self.config.effects.textcolor));
@@ -2695,8 +2716,8 @@ uv.StackedBarGraph.prototype.drawVerticalBars = function (idx, csum, tsum) {
     .style('opacity', 0)
     .text(function(d) { return ( height - axes.ver.scale(d.value) > 15) ? uv.util.getLabelValue(self, d) : null; })
     .transition()
-      .duration(uv.config.effects.duration)
-      .delay(idx * uv.config.effects.duration)
+      .duration(self.config.effects.duration)
+      .delay(idx * self.config.effects.duration)
       .style('opacity', 1)
       .attr('y', function (d, i) { tsum[i] += d.value; return -(2*height - axes.ver.scale(tsum[i])) + 5; });
 
@@ -2743,7 +2764,12 @@ uv.StepUpBarGraph.prototype.drawHorizontalBars = function (idx, csum, tsum) {
   bars.append('rect')
     .attr('height', self.axes.ver.scale.rangeBand() / len)
     .attr('width', 0)
+    .attr('transform',
+      function (d) {
+      return (d.value < 0) ? 'scale(-1,1)': 'scale(1,1)';
+    })
     .attr('x', function (d, i) {
+      if (d.resetSum === true) csum[i] = 0;
       var value = self.axes.hor.scale(csum[i]);
       csum[i] += d.value;
       return d.value < 0 ? -value: value;
@@ -2752,9 +2778,6 @@ uv.StepUpBarGraph.prototype.drawHorizontalBars = function (idx, csum, tsum) {
     .classed('cr-' + uv.util.formatClassName(self.categories[idx]), true)
     .style('stroke', 'none')
     .style('fill', color)
-    .style('transform', function (d) {
-      return (d.value < 0) ? 'scale(-1,1)': 'scale(1,1)';
-    })
     .transition()
       .duration(self.config.effects.duration)
       .delay(idx * self.config.effects.duration)
@@ -2780,7 +2803,11 @@ uv.StepUpBarGraph.prototype.drawHorizontalBars = function (idx, csum, tsum) {
       .duration(self.config.effects.duration)
       .delay(idx * self.config.effects.duration)
       .style('opacity', 1)
-      .attr('x', function (d, i) { tsum[i] += d.value; return self.axes.hor.scale(tsum[i]); });
+      .attr('x', function (d, i) {
+        if (d.resetSum === true) tsum[i] = 0;
+        tsum[i] += d.value;
+        return self.axes.hor.scale(tsum[i]);
+      });
 
   bars.append('svg:title')
     .text( function (d, i) { return uv.util.getTooltipText(self, self.categories[idx], self.labels[i], d);});
@@ -2799,8 +2826,13 @@ uv.StepUpBarGraph.prototype.drawVerticalBars = function (idx, csum, tsum) {
   bars.append('rect')
     .attr('height', 0)
     .attr('width', self.axes.hor.scale.rangeBand() / len)
+    .attr('transform',
+      function (d) {
+      return (d.value < 0) ? 'scale(1,-1)': 'scale(1,1)';
+    })
     .attr('x', function (d) { return self.axes.hor.scale(d.name); })
     .attr('y', function (d, i) {
+      if (d.resetSum === true) csum[i] = 0;
       var value = (2*self.height() - self.axes.ver.scale(csum[i]));
       csum[i] += d.value;
       return (d.value < 0)? -value: value;
@@ -2808,9 +2840,6 @@ uv.StepUpBarGraph.prototype.drawVerticalBars = function (idx, csum, tsum) {
     .classed('cr-' + uv.util.formatClassName(self.categories[idx]), true)
     .style('stroke', 'none')
     .style('fill', color)
-    .style('transform', function (d) {
-      return (d.value < 0)? 'scale(1,-1)': 'scale(1,1)'
-    })
     .transition()
       .duration(self.config.effects.duration)
       .delay(idx * self.config.effects.duration)
@@ -2838,7 +2867,11 @@ uv.StepUpBarGraph.prototype.drawVerticalBars = function (idx, csum, tsum) {
       .duration(self.config.effects.duration)
       .delay(idx * self.config.effects.duration)
       .style('opacity', 1)
-      .attr('y', function (d, i) { tsum[i] += d.value; return -(2*self.height() - self.axes.ver.scale(tsum[i])) - 10; });
+      .attr('y', function (d, i) {
+        if (d.resetSum === true) tsum[i] = 0;
+        tsum[i] += d.value;
+        return -(2*self.height() - self.axes.ver.scale(tsum[i])) - 10;
+      });
 
   bars.append('svg:title')
     .text( function (d, i) { return uv.util.getTooltipText(self, self.categories[idx], self.labels[i], d);});
@@ -3071,7 +3104,13 @@ uv.WaterfallGraph.prototype.drawVerticalBars = function (idx) {
   self.bargroups[self.categories[idx]].attr('transform', 'translate(' + idx * self.axes.hor.scale.rangeBand() / len + ',' + self.height() + ') scale(1,-1)');
 };
 
+  if (!noGlobal) {
+    window.uv = {
+      chart: uv.chart
+    };
+  }
+
   return {
     chart: uv.chart
   };
-})();
+}));
