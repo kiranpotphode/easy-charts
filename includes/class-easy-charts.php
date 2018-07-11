@@ -34,7 +34,7 @@ class Easy_Charts {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Easy_Charts_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Easy_Charts_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -43,7 +43,7 @@ class Easy_Charts {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -52,7 +52,7 @@ class Easy_Charts {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -68,7 +68,7 @@ class Easy_Charts {
 	public function __construct() {
 
 		$this->plugin_name = 'easy-charts';
-		$this->version = '1.0.0';
+		$this->version     = '1.2.1';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -223,22 +223,23 @@ class Easy_Charts {
 	 * Create dropdown of available chart types.
 	 *
 	 * @param  array $args An array of arguments to create chart options dropdown.
+	 *
 	 * @access private
 	 * @return string  HTML string of output.
 	 */
 	private function easy_chart_dropdown( $args = '' ) {
 		$defaults = array(
-			'selected' => 0,
-			'echo' => 1,
-			'name' => 'ec_dropdown',
-			'id' => '',
-			'options' => array(),
-			'show_option_none' => '',
+			'selected'              => 0,
+			'echo'                  => 1,
+			'name'                  => 'ec_dropdown',
+			'id'                    => '',
+			'options'               => array(),
+			'show_option_none'      => '',
 			'show_option_no_change' => '',
-			'option_none_value' => '',
+			'option_none_value'     => '',
 		);
 
-		$r = wp_parse_args( $args, $defaults );
+		$r      = wp_parse_args( $args, $defaults );
 		$output = '';
 		// Back-compat with old system where both id and name were based on $name argument.
 		if ( empty( $r['id'] ) ) {
@@ -248,13 +249,13 @@ class Easy_Charts {
 		if ( ! empty( $r['options'] ) ) {
 			$output = "<select name='" . esc_attr( $r['name'] ) . "' id='" . esc_attr( $r['id'] ) . "' class='ec-dropdown-select'>\n";
 			if ( $r['show_option_no_change'] ) {
-				$output .= "\t<option value=\"-1\" " . selected( $r['selected'], -1, 0 ) . '>' . $r['show_option_no_change'] . "</option>\n";
+				$output .= "\t<option value=\"-1\" " . selected( $r['selected'], - 1, 0 ) . '>' . $r['show_option_no_change'] . "</option>\n";
 			}
 			if ( $r['show_option_none'] ) {
-				$output .= "\t<option value=\"" . esc_attr( $r['option_none_value'] ) . '" '  . selected( $r['selected'], esc_attr( $r['option_none_value'] ), 0 ) . '>' . $r['show_option_none'] . "</option>\n";
+				$output .= "\t<option value=\"" . esc_attr( $r['option_none_value'] ) . '" ' . selected( $r['selected'], esc_attr( $r['option_none_value'] ), 0 ) . '>' . $r['show_option_none'] . "</option>\n";
 			}
 			foreach ( $r['options'] as $key => $value ) {
-				$output .= "\t<option value=\"" . esc_attr( $key ) . '" '  . selected( $r['selected'], esc_attr( $key ), 0 ) . '>' . $value . "</option>\n";
+				$output .= "\t<option value=\"" . esc_attr( $key ) . '" ' . selected( $r['selected'], esc_attr( $key ), 0 ) . '>' . $value . "</option>\n";
 			}
 
 			$output .= "</select>\n";
@@ -272,6 +273,7 @@ class Easy_Charts {
 		if ( $r['echo'] ) {
 			echo $html;
 		}
+
 		return $html;
 
 	}
@@ -282,10 +284,10 @@ class Easy_Charts {
 	 * @since 1.0.0
 	 * @access private
 	 *
-	 * @param array 		 $array 	 	An 2D array to transpose.
-	 * @param integer|string $selectkey 	Key on which transpose the array 	Optional  Default us false.
+	 * @param array               $array An 2D array to transpose.
+	 * @param integer|string|bool $selectkey Key on which transpose the array    Optional  Default us false.
 	 *
-	 * @return array	Transposed array.
+	 * @return array    Transposed array.
 	 */
 	private function array_transpose( $array, $selectkey = false ) {
 		if ( ! is_array( $array ) ) {
@@ -320,19 +322,34 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.3
 	 *
-	 * @return 		array 		Array of font-family.
+	 * @return        array        Array of font-family.
 	 */
 	public function get_font_family_array() {
-		$font_family = array();
 
-		$font_family  = array( 'Arial' => 'Arial', 'Impact' => 'Impact', 'Palatino Linotype' => 'Palatino Linotype', 'Tahoma' => 'Tahoma', 'Century Gothic' => ' Century Gothic', 'Lucida Sans Unicode' => 'Lucida Sans Unicode', 'Arial Black' => 'Arial Black', 'Times New Roman' => 'Times New Roman', 'Arial Narrow' => 'Arial Narrow',  'Verdana' => 'Verdana', 'Lucida Console' => 'Lucida Console', 'Gill Sans' => 'Gill Sans', 'Trebuchet MS' => 'Trebuchet MS', 'Courier New' => 'Courier New', 'Georgia' => 'Georgia' );
+		$font_family = array(
+			'Arial'               => 'Arial',
+			'Impact'              => 'Impact',
+			'Palatino Linotype'   => 'Palatino Linotype',
+			'Tahoma'              => 'Tahoma',
+			'Century Gothic'      => ' Century Gothic',
+			'Lucida Sans Unicode' => 'Lucida Sans Unicode',
+			'Arial Black'         => 'Arial Black',
+			'Times New Roman'     => 'Times New Roman',
+			'Arial Narrow'        => 'Arial Narrow',
+			'Verdana'             => 'Verdana',
+			'Lucida Console'      => 'Lucida Console',
+			'Gill Sans'           => 'Gill Sans',
+			'Trebuchet MS'        => 'Trebuchet MS',
+			'Courier New'         => 'Courier New',
+			'Georgia'             => 'Georgia',
+		);
 
 		/**
 		 * Filter to add font family.
 		 *
 		 * @since 1.0.3
 		 *
-		 * @param array  $font_family	 Array of font familly.
+		 * @param array $font_family Array of font familly.
 		 */
 
 		return apply_filters( 'easy_charts_fonts', $font_family );
@@ -343,18 +360,18 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param integer|null $chart_id 	ID of chart to retrieve data   Default is null.
+	 * @param integer|null $chart_id ID of chart to retrieve data   Default is null.
 	 *
-	 * @return 	array 		Array of data.
+	 * @return    array        Array of data.
 	 */
 	public function get_ec_chart_data( $chart_id = null ) {
 
-		if (  null === $chart_id ) {
+		if ( null === $chart_id ) {
 			return;
 		}
 
-		$ec_chart_data = array();
-		$ec_chart_categories = array();
+		$ec_chart_data          = array();
+		$ec_chart_categories    = array();
 		$ec_chart_configuration = array();
 
 		$ec_chart_type = get_post_meta( $chart_id, '_ec_chart_type', true );
@@ -420,7 +437,7 @@ class Easy_Charts {
 		}
 
 		if ( 'Pie' === $ec_chart_type || 'Donut' === $ec_chart_type || 'PolarArea' === $ec_chart_type || 'StepUpBar' === $ec_chart_type ) {
-			$ec_chart_dataset  = $this->array_transpose( $ec_chart_dataset );
+			$ec_chart_dataset = $this->array_transpose( $ec_chart_dataset );
 		}
 
 		$ec_chart_categories = array_shift( $ec_chart_dataset );
@@ -433,63 +450,65 @@ class Easy_Charts {
 
 			foreach ( $ec_chart_dataset as $data_key => $data_value ) {
 				$translated_dataset[ $ec_chart_category ][] = array(
-											'name' => $data_value[0],
-											'value' => floatval( $data_value[ $key + 1 ] ),
-										);
+					'name'  => $data_value[0],
+					'value' => floatval( $data_value[ $key + 1 ] ),
+				);
 			}
 		}
 
-		$ec_chart_graph = $this->ec_get_chart_configuration( $chart_id, 'graph' );
-		$ec_chart_meta = $this->ec_get_chart_configuration( $chart_id, 'meta' );
-		$ec_chart_dimension = $this->ec_get_chart_configuration( $chart_id, 'dimension' );
-		$ec_chart_margin = $this->ec_get_chart_configuration( $chart_id, 'margin' );
-		$ec_chart_frame = $this->ec_get_chart_configuration( $chart_id, 'frame' );
-		$ec_chart_axis = $this->ec_get_chart_configuration( $chart_id, 'axis' );
-		$ec_chart_label = $this->ec_get_chart_configuration( $chart_id, 'label' );
-		$ec_chart_legend = $this->ec_get_chart_configuration( $chart_id, 'legend' );
-		$ec_chart_scale = $this->ec_get_chart_configuration( $chart_id, 'scale' );
-		$ec_chart_tooltip = $this->ec_get_chart_configuration( $chart_id, 'tooltip' );
-		$ec_chart_caption = $this->ec_get_chart_configuration( $chart_id, 'caption' );
+		$ec_chart_graph      = $this->ec_get_chart_configuration( $chart_id, 'graph' );
+		$ec_chart_meta       = $this->ec_get_chart_configuration( $chart_id, 'meta' );
+		$ec_chart_dimension  = $this->ec_get_chart_configuration( $chart_id, 'dimension' );
+		$ec_chart_margin     = $this->ec_get_chart_configuration( $chart_id, 'margin' );
+		$ec_chart_frame      = $this->ec_get_chart_configuration( $chart_id, 'frame' );
+		$ec_chart_axis       = $this->ec_get_chart_configuration( $chart_id, 'axis' );
+		$ec_chart_label      = $this->ec_get_chart_configuration( $chart_id, 'label' );
+		$ec_chart_legend     = $this->ec_get_chart_configuration( $chart_id, 'legend' );
+		$ec_chart_scale      = $this->ec_get_chart_configuration( $chart_id, 'scale' );
+		$ec_chart_tooltip    = $this->ec_get_chart_configuration( $chart_id, 'tooltip' );
+		$ec_chart_caption    = $this->ec_get_chart_configuration( $chart_id, 'caption' );
 		$ec_chart_subcaption = $this->ec_get_chart_configuration( $chart_id, 'subcaption' );
-		$ec_chart_bar = $this->ec_get_chart_configuration( $chart_id, 'bar' );
-		$ec_chart_line = $this->ec_get_chart_configuration( $chart_id, 'line' );
-		$ec_chart_area = $this->ec_get_chart_configuration( $chart_id, 'area' );
-		$ec_chart_pie = $this->ec_get_chart_configuration( $chart_id, 'pie' );
-		$ec_chart_donut = $this->ec_get_chart_configuration( $chart_id, 'donut' );
+		$ec_chart_bar        = $this->ec_get_chart_configuration( $chart_id, 'bar' );
+		$ec_chart_line       = $this->ec_get_chart_configuration( $chart_id, 'line' );
+		$ec_chart_area       = $this->ec_get_chart_configuration( $chart_id, 'area' );
+		$ec_chart_pie        = $this->ec_get_chart_configuration( $chart_id, 'pie' );
+		$ec_chart_donut      = $this->ec_get_chart_configuration( $chart_id, 'donut' );
 
 		$ec_chart_data = array(
-						'chart_type' => $ec_chart_type,
-						'chart_data' => $translated_dataset,
-						'chart_categories' => $ec_chart_categories,
-						'chart_configuration' => array(
-											'graph' => $ec_chart_graph,
-											'meta' => $ec_chart_meta,
-											'frame' => $ec_chart_frame,
-											'axis' => $ec_chart_axis,
-											'dimension' => $ec_chart_dimension,
-											'label' => $ec_chart_label,
-											'legend' => $ec_chart_legend,
-											'scale' => $ec_chart_scale,
-											'tooltip' => $ec_chart_tooltip,
-											'caption' => $ec_chart_caption,
-											'subCaption' => $ec_chart_subcaption,
-											'bar' => $ec_chart_bar,
-											'line' => $ec_chart_line,
-											'area' => $ec_chart_area,
-											'pie' => $ec_chart_pie,
-											'donut' => $ec_chart_donut,
-										),
-					);
+			'chart_type'          => $ec_chart_type,
+			'chart_data'          => $translated_dataset,
+			'chart_categories'    => $ec_chart_categories,
+			'chart_configuration' => array(
+				'graph'      => $ec_chart_graph,
+				'meta'       => $ec_chart_meta,
+				'frame'      => $ec_chart_frame,
+				'axis'       => $ec_chart_axis,
+				'dimension'  => $ec_chart_dimension,
+				'margin'     => $ec_chart_margin,
+				'label'      => $ec_chart_label,
+				'legend'     => $ec_chart_legend,
+				'scale'      => $ec_chart_scale,
+				'tooltip'    => $ec_chart_tooltip,
+				'caption'    => $ec_chart_caption,
+				'subCaption' => $ec_chart_subcaption,
+				'bar'        => $ec_chart_bar,
+				'line'       => $ec_chart_line,
+				'area'       => $ec_chart_area,
+				'pie'        => $ec_chart_pie,
+				'donut'      => $ec_chart_donut,
+			),
+		);
 
-			/**
-			 * Filter for get data of chart require to render chart.
-			 *
-			 * @since 1.0.3
-			 *
-			 * @param array  $ec_chart_data 	All chart related data.
-			 * @param int  $chart_is 	Chart id.
-			 */
+		/**
+		 * Filter for get data of chart require to render chart.
+		 *
+		 * @since 1.0.3
+		 *
+		 * @param array $ec_chart_data All chart related data.
+		 * @param int $chart_is Chart id.
+		 */
 		$ec_chart_data = apply_filters( 'easy_charts_get_chart_data', $ec_chart_data, $chart_id );
+
 		return $ec_chart_data;
 
 	}
@@ -499,9 +518,9 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param integer|null $chart_id  	Chart id which is to be rendered.
+	 * @param integer|null $chart_id Chart id which is to be rendered.
 	 *
-	 * @return string 		html markup for chart container.
+	 * @return string        html markup for chart container.
 	 */
 	public function ec_render_chart( $chart_id = null ) {
 		$chart_html = '';
@@ -509,7 +528,7 @@ class Easy_Charts {
 
 			$chart = get_post( $chart_id );
 
-			if ( 'easy_charts' !== $chart->post_type ) {
+			if ( ! empty( $chart ) && 'easy_charts' !== $chart->post_type ) {
 				return;
 			}
 
@@ -520,26 +539,27 @@ class Easy_Charts {
 				if ( is_admin() ) {
 					wp_localize_script( 'easy-charts-admin-js', 'ec_chart_data', $ec_chart_data );
 				} else {
-					wp_localize_script( 'easy-charts-public-js', 'ec_object_'.$chart_id, $ec_chart_data );
+					wp_localize_script( 'easy-charts-public-js', 'ec_object_' . $chart_id, $ec_chart_data );
 				}
 			}
 
-			$chart_html = '<div  class="ec-uv-chart-container uv-div-'.$chart_id.'" data-object="ec_object_'.$chart_id.'"></div>';
+			$chart_html = '<div  class="ec-uv-chart-container uv-div-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></div>';
 
 			/**
 			 * Filter to replace html content of chart.
 			 *
 			 * @since 1.0.3
 			 *
-			 * @param string  $chart_html 	 HTML of chart to render.
-			 * @param int  $chart_id 	Chart ID.
+			 * @param string $chart_html HTML of chart to render.
+			 * @param int $chart_id Chart ID.
 			 */
 			$chart_html = apply_filters( 'easy_charts_render_chart', $chart_html, $chart_id );
+
 			return $chart_html;
 
 		}
 
-		return;
+		return $chart_html;
 
 	}
 
@@ -548,212 +568,212 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param integer|null $chart_id  	Chart id.
-	 * @param string 	   $meta_key    Meta key of configuration.
+	 * @param integer|null $chart_id Chart id.
+	 * @param string       $meta_key Meta key of configuration.
 	 *
-	 * @return array   	Array of configuration.
+	 * @return array    Array of configuration.
 	 */
 	public function ec_get_chart_configuration( $chart_id = null, $meta_key = '' ) {
 
-		$ec_chart_option = get_post_meta( $chart_id, '_ec_chart_'.$meta_key, true );
+		$ec_chart_option = get_post_meta( $chart_id, '_ec_chart_' . $meta_key, true );
 
-		if (  '' === $ec_chart_option ) {
+		if ( '' === $ec_chart_option ) {
 
 			switch ( $meta_key ) {
 				case 'meta':
 					$ec_chart_option = array(
-										'position' => '#uv-div',
-										'caption' => '',
-										'subcaption' => '',
-										'hlabel' => '',
-										'hsublabel' => '',
-										'vlabel' => '',
-										'vsublabel' => '',
-										'isDownloadable' => 0,
-										'downloadLabel' => 'Download',
-									);
+						'position'       => '#uv-div',
+						'caption'        => '',
+						'subcaption'     => '',
+						'hlabel'         => '',
+						'hsublabel'      => '',
+						'vlabel'         => '',
+						'vsublabel'      => '',
+						'isDownloadable' => 0,
+						'downloadLabel'  => 'Download',
+					);
 					break;
 
 				case 'graph':
 					$ec_chart_option = array(
-									'palette' => 'Brink',
-									'responsive' => 1,
-									'bgcolor' => '#ffffff',
-									'orientation' => 'Horizontal',
-									'opacity' => 1,
-								);
+						'palette'     => 'Brink',
+						'responsive'  => 1,
+						'bgcolor'     => '#ffffff',
+						'orientation' => 'Horizontal',
+						'opacity'     => 1,
+					);
 					break;
 
 				case 'dimension':
 					$ec_chart_option = array(
-									'width' => 400,
-									'height' => 400,
-								);
+						'width'  => 400,
+						'height' => 400,
+					);
 					break;
 
 				case 'margin':
 					$ec_chart_option = array(
-									'top' => 50,
-									'bottom' => 150,
-									'left' => 100,
-									'right' => 100,
-								);
+						'top'    => 50,
+						'bottom' => 150,
+						'left'   => 100,
+						'right'  => 100,
+					);
 					break;
 
 				case 'frame':
 					$ec_chart_option = array(
-									'bgcolor' => '#ffffff',
-								);
+						'bgcolor' => '#ffffff',
+					);
 					break;
 
 				case 'axis':
 					$ec_chart_option = array(
-									'opacity' => 0.1,
-									'ticks' => 8,
-									'subticks' => 2,
-									'padding' => 5,
-									'strokecolor' => '#000000',
-									'minor' => -10,
-									'fontfamily' => 'Arial',
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'showticks' => 1,
-									'showsubticks' => 1,
-									'showtext' => 1,
-								);
+						'opacity'      => 0.1,
+						'ticks'        => 8,
+						'subticks'     => 2,
+						'padding'      => 5,
+						'strokecolor'  => '#000000',
+						'minor'        => - 10,
+						'fontfamily'   => 'Arial',
+						'fontsize'     => 11,
+						'fontweight'   => 700,
+						'showticks'    => 1,
+						'showsubticks' => 1,
+						'showtext'     => 1,
+					);
 					break;
 
 				case 'label':
 					$ec_chart_option = array(
-									'fontfamily' => 'Arial',
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'strokecolor' => '#000000',
-									'showlabel' => 1,
-									'precision' => 2,
-									'prefix' => '',
-									'suffix' => '',
-								);
+						'fontfamily'  => 'Arial',
+						'fontsize'    => 11,
+						'fontweight'  => 700,
+						'strokecolor' => '#000000',
+						'showlabel'   => 1,
+						'precision'   => 2,
+						'prefix'      => '',
+						'suffix'      => '',
+					);
 					break;
 
-		        case 'legend':
-		          	$ec_chart_option = array(
-									'position' => 'bottom',
-									'fontfamily' => 'Arial',
-									'fontsize' => '11',
-									'fontweight' => 'normal',
-									'color' => '#000000',
-									'strokewidth' => 0.15,
-									'textmargin' => 15,
-									'symbolsize' => 10,
-									'inactivecolor' => '#DDD',
-									'legendstart' => 0,
-									'legendtype' => 'categories',
-									'showlegends' => true,
-		                		);
-		          	break;
+				case 'legend':
+					$ec_chart_option = array(
+						'position'      => 'bottom',
+						'fontfamily'    => 'Arial',
+						'fontsize'      => '11',
+						'fontweight'    => 'normal',
+						'color'         => '#000000',
+						'strokewidth'   => 0.15,
+						'textmargin'    => 15,
+						'symbolsize'    => 10,
+						'inactivecolor' => '#DDD',
+						'legendstart'   => 0,
+						'legendtype'    => 'categories',
+						'showlegends'   => true,
+					);
+					break;
 
 				case 'scale':
 					$ec_chart_option = array(
-									'type' => 'linear',
-									'ordinality' => 0.2,
-								);
+						'type'       => 'linear',
+						'ordinality' => 0.2,
+					);
 					break;
 
 				case 'tooltip':
 					$ec_chart_option = array(
-									'show' => 1,
-									'format' => '%c [%l] : %v',
-								);
+						'show'   => 1,
+						'format' => '%c [%l] : %v',
+					);
 					break;
 
 				case 'caption':
 					$ec_chart_option = array(
-									'fontfamily' => 'Arial',
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'textdecoration' => 'none',
-									'strokecolor' => '#000000',
-									'cursor' => 'pointer',
-								);
+						'fontfamily'     => 'Arial',
+						'fontsize'       => 11,
+						'fontweight'     => 700,
+						'textdecoration' => 'none',
+						'strokecolor'    => '#000000',
+						'cursor'         => 'pointer',
+					);
 					break;
 
 				case 'subcaption':
 					$ec_chart_option = array(
-									'fontfamily' => 'Arial',
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'textdecoration' => 'none',
-									'strokecolor' => '#000000',
-									'cursor' => 'pointer',
-								);
+						'fontfamily'     => 'Arial',
+						'fontsize'       => 11,
+						'fontweight'     => 700,
+						'textdecoration' => 'none',
+						'strokecolor'    => '#000000',
+						'cursor'         => 'pointer',
+					);
 					break;
 
 				case 'bar':
 					$ec_chart_option = array(
-									'fontfamily' => 'Arial',
-									'fontsize' => 10,
-									'fontweight' => 700,
-									'strokecolor' => 'none',
-									'textcolor' => '#000000',
-								);
+						'fontfamily'  => 'Arial',
+						'fontsize'    => 10,
+						'fontweight'  => 700,
+						'strokecolor' => 'none',
+						'textcolor'   => '#000000',
+					);
 					break;
 
 				case 'line':
 					$ec_chart_option = array(
-									'interpolation' => 'linear',
-								);
+						'interpolation' => 'linear',
+					);
 					break;
 
 				case 'area':
 					$ec_chart_option = array(
-									'interpolation' => 'linear',
-									'opacity' => 0.2,
-									'offset' => 'zero',
-								);
+						'interpolation' => 'linear',
+						'opacity'       => 0.2,
+						'offset'        => 'zero',
+					);
 					break;
 
 				case 'pie':
 					$ec_chart_option = array(
-									'fontfamily' => 'Arial',
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'fontvariant' => 'small-caps',
-									'fontfill' => '#000000',
-									'strokecolor' => '#ffffff',
-									'strokewidth' => 1,
-								);
+						'fontfamily'  => 'Arial',
+						'fontsize'    => 11,
+						'fontweight'  => 700,
+						'fontvariant' => 'small-caps',
+						'fontfill'    => '#000000',
+						'strokecolor' => '#ffffff',
+						'strokewidth' => 1,
+					);
 					break;
 
 				case 'donut':
 					$ec_chart_option = array(
-									'fontfamily' => 'Arial',
-									'fontsize' => 11,
-									'fontweight' => 700,
-									'fontvariant' => 'small-caps',
-									'fontfill' => '#000000',
-									'strokecolor' => '#ffffff',
-									'strokewidth' => 1,
-									'factor' => 0.4,
-								);
+						'fontfamily'  => 'Arial',
+						'fontsize'    => 11,
+						'fontweight'  => 700,
+						'fontvariant' => 'small-caps',
+						'fontfill'    => '#000000',
+						'strokecolor' => '#ffffff',
+						'strokewidth' => 1,
+						'factor'      => 0.4,
+					);
 					break;
 
 				default:
-
 					break;
 			}
 		}
 
 		/**
-		* Filter to get configuration options for selected meta key.
-		*
-		* @since 1.0.3
-		*
-		* @param array  $ec_chart_option 	Chart configuration options.
-		* @param int    $chart_id 	ID of chart.
-		* @param string $meta_key  Meta key for which to get options.
-		*/
+		 * Filter to get configuration options for selected meta key.
+		 *
+		 * @since 1.0.3
+		 *
+		 * @param array $ec_chart_option Chart configuration options.
+		 * @param int $chart_id ID of chart.
+		 * @param string $meta_key Meta key for which to get options.
+		 */
 		$ec_chart_option = apply_filters( 'easy_charts_get_chart_configurations', $ec_chart_option, $chart_id, $meta_key );
+
 		return $ec_chart_option;
 	}
 
@@ -762,132 +782,154 @@ class Easy_Charts {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $field_type     Type of input field.
-	 * @param string $field_name     Name of field to refer in form.
-	 * @param string $field_label 	Label to display along with input field.
-	 * @param string $field_value    Value of input field.
+	 * @param string $field_type Type of input field.
+	 * @param string $field_name Name of field to refer in form.
+	 * @param string $field_label Label to display along with input field.
+	 * @param string $field_value Value of input field.
 	 * @param array  $field_options Optional array of options for input field.
 	 */
 	public function ec_render_field( $field_type, $field_name, $field_label, $field_value, $field_options = array() ) {
 
 		switch ( $field_type ) {
-			case 'text':  ?>
-			<div class="field">
-				<table>
-					<tbody>
-						<tr>
-							<td class="ec-td-label">
-								<label><?php esc_html_e( $field_label ); ?> :</label>
-							</td>
-							<td class="ec-td-field">
-								<input type="text" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>"  />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<?php	break;
 
-			case 'number':  ?>
+			case 'text':
+			?>
 				<div class="field">
 					<table>
 						<tbody>
-							<tr>
-								<td class="ec-td-label">
-									<label><?php esc_html_e( $field_label ); ?> :</label>
-								</td>
-								<td class="ec-td-field">
-									<input type="number" name="<?php  echo esc_attr( $field_name ); ?>" min="<?php  echo esc_attr( isset( $field_options['min'] ) ? $field_options['min'] : '' ); ?>" max="<?php  echo esc_attr( isset( $field_options['max'] ) ? $field_options['max'] : '' ); ?>" step="<?php  echo esc_attr( isset( $field_options['step'] ) ? $field_options['step'] : '' ); ?>" value="<?php  echo esc_attr( $field_value ); ?>"  class="ec-field-number"/>
-								</td>
-							</tr>
+						<tr>
+							<td class="ec-td-label">
+								<label><?php echo esc_html( $field_label ); ?> :</label>
+							</td>
+							<td class="ec-td-field">
+								<input type="text" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $field_value ); ?>"/>
+							</td>
+						</tr>
 						</tbody>
 					</table>
 				</div>
-			<?php	break;
+				<?php
+				break;
 
-			case 'radio': ?>
+			case 'number':
+			?>
 				<div class="field">
 					<table>
 						<tbody>
-							<tr>
-								<td class="ec-td-label">
-									<label><?php esc_html_e( $field_label ); ?> :</label>
-								</td>
-								<td class="ec-td-field">
-									<div class="ec-field-buttonset">
-										<?php 	foreach ( $field_options as $key => $value ) { ?>
-											<input name="<?php  echo esc_attr( $field_name ); ?>" id="<?php  echo esc_attr( $field_name.$value ); ?>" type="radio" value="<?php echo esc_attr( $value ); ?>" <?php checked( $value, $field_value ); ?> /><label for="<?php  echo esc_attr( $field_name.$value ); ?>"><?php echo esc_html( $key ); ?></label>
-										<?php }	?>
-							 		</div>
-								</td>
-							</tr>
+						<tr>
+							<td class="ec-td-label">
+								<label><?php echo esc_html( $field_label ); ?> :</label>
+							</td>
+							<td class="ec-td-field">
+								<input type="number" name="<?php echo esc_attr( $field_name ); ?>"
+										min="<?php echo esc_attr( isset( $field_options['min'] ) ? $field_options['min'] : '' ); ?>"
+										max="<?php echo esc_attr( isset( $field_options['max'] ) ? $field_options['max'] : '' ); ?>"
+										step="<?php echo esc_attr( isset( $field_options['step'] ) ? $field_options['step'] : '' ); ?>"
+										value="<?php echo esc_attr( $field_value ); ?>" class="ec-field-number"/>
+							</td>
+						</tr>
 						</tbody>
 					</table>
-		 		</div>
-			<?php	break;
+				</div>
+				<?php
+				break;
 
-			case 'slider':  ?>
+			case 'radio':
+			?>
 				<div class="field">
 					<table>
 						<tbody>
-							<tr>
-								<td class="ec-td-label">
-									<label><?php esc_html_e( $field_label ); ?> :</label>
-								</td>
-								<td class="ec-td-field">
-									<input type="text" name="<?php  echo esc_attr( $field_name ); ?>" class="ec-field-slider-attach <?php  echo esc_attr( $field_name ); ?>"  readonly  value="<?php  echo esc_attr( $field_value ); ?>"  />
-						 			<div class="ec-field-slider" data-attach=".<?php  echo esc_attr( $field_name ); ?>"></div>
-								</td>
-							</tr>
+						<tr>
+							<td class="ec-td-label">
+								<label><?php echo esc_html( $field_label ); ?> :</label>
+							</td>
+							<td class="ec-td-field">
+								<div class="ec-field-buttonset">
+									<?php foreach ( $field_options as $key => $value ) { ?>
+										<input  name="<?php echo esc_attr( $field_name ); ?>"
+												id="<?php echo esc_attr( $field_name . $value ); ?>" type="radio"
+												value="<?php echo esc_attr( $value ); ?>" <?php checked( $value, $field_value ); ?> />
+										<label for="<?php echo esc_attr( $field_name . $value ); ?>"><?php echo esc_html( $key ); ?></label>
+									<?php } ?>
+								</div>
+							</td>
+						</tr>
 						</tbody>
 					</table>
-		 		</div>
-			<?php	break;
+				</div>
+				<?php
+				break;
 
-			case 'color-picker' : ?>
+			case 'slider':
+			?>
 				<div class="field">
 					<table>
 						<tbody>
-							<tr>
-								<td class="ec-td-label">
-									<label><?php esc_html_e( $field_label ); ?> :</label>
-								</td>
-								<td class="ec-td-field">
-									<input type="text" name="<?php  echo esc_attr( $field_name ); ?>" class="ec-color-picker" value="<?php  echo esc_attr( $field_value ); ?>"  />
-								</td>
-							</tr>
+						<tr>
+							<td class="ec-td-label">
+								<label><?php echo esc_html( $field_label ); ?> :</label>
+							</td>
+							<td class="ec-td-field">
+								<input type="text" name="<?php echo esc_attr( $field_name ); ?>"
+										class="ec-field-slider-attach <?php echo esc_attr( $field_name ); ?>" readonly
+										value="<?php echo esc_attr( $field_value ); ?>"/>
+								<div class="ec-field-slider" data-attach=".<?php echo esc_attr( $field_name ); ?>"></div>
+							</td>
+						</tr>
 						</tbody>
 					</table>
-		 		</div>
-			<?php 	break;
+				</div>
+				<?php
+				break;
 
-			case 'dropdown' : ?>
+			case 'color-picker':
+			?>
 				<div class="field">
 					<table>
 						<tbody>
-							<tr>
-								<td class="ec-td-label">
-									<label><?php esc_html_e( $field_label ); ?> :</label>
-								</td>
-								<td class="ec-td-field">
-									<?php 	$args = array(
-											'options' => $field_options,
-											'selected' => $field_value,
-											'id' => $field_name,
-											'name' => $field_name,
-											'echo' => 1,
-										);
-								 		$this->easy_chart_dropdown( $args );
-								 	?>
-								</td>
-							</tr>
+						<tr>
+							<td class="ec-td-label">
+								<label><?php echo esc_html( $field_label ); ?> :</label>
+							</td>
+							<td class="ec-td-field">
+								<input type="text" name="<?php echo esc_attr( $field_name ); ?>" class="ec-color-picker" value="<?php echo esc_attr( $field_value ); ?>"/>
+							</td>
+						</tr>
 						</tbody>
 					</table>
-		 		</div>
-			<?php 	break;
+				</div>
+				<?php
+				break;
+
+			case 'dropdown':
+			?>
+				<div class="field">
+					<table>
+						<tbody>
+						<tr>
+							<td class="ec-td-label">
+								<label><?php echo esc_html( $field_label ); ?> :</label>
+							</td>
+							<td class="ec-td-field">
+								<?php
+								$args = array(
+									'options'  => $field_options,
+									'selected' => $field_value,
+									'id'       => $field_name,
+									'name'     => $field_name,
+									'echo'     => 1,
+								);
+								$this->easy_chart_dropdown( $args );
+								?>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<?php
+				break;
 
 			default:
-
 				break;
 		}
 

@@ -11,11 +11,11 @@
  * @subpackage Easy_Charts/admin/partials
  */
 
-	global $post;
+global $post;
 ?>
 
 <div id="easy-charts-shortcode-metabox-wrap">
 	<div id="easy-chart-shortcode-box">
-		<input type="text"  name="ec-shortcode" value="[easy_chart chart_id='<?php echo $post->ID ?>']" readonly >
+		<input type="text" name="ec-shortcode" value="[easy_chart chart_id='<?php echo esc_attr( $post->ID ); ?>']" readonly>
 	</div>
 </div>
