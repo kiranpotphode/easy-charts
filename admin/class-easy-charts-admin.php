@@ -165,11 +165,11 @@ class Easy_Charts_Admin {
 	public function init() {
 
 		$labels = array(
-			'name'               => _x( 'Easy Charts', 'post type general name', 'easy-charts' ),
-			'singular_name'      => _x( 'Chart', 'post type singular name', 'easy-charts' ),
-			'menu_name'          => _x( 'Easy Charts', 'admin menu', 'easy-charts' ),
-			'name_admin_bar'     => _x( 'Chart', 'add new on admin bar', 'easy-charts' ),
-			'add_new'            => _x( 'Add New', 'easy-charts' ),
+			'name'               => _x( 'Easy Charts', 'Post type general name', 'easy-charts' ),
+			'singular_name'      => _x( 'Chart', 'Post type singular name', 'easy-charts' ),
+			'menu_name'          => _x( 'Easy Charts', 'Admin menu', 'easy-charts' ),
+			'name_admin_bar'     => _x( 'Chart', 'Add new chart on admin bar', 'easy-charts' ),
+			'add_new'            => _x( 'Add New', 'Add new chart', 'easy-charts' ),
 			'add_new_item'       => __( 'Add New Chart', 'easy-charts' ),
 			'new_item'           => __( 'New Chart', 'easy-charts' ),
 			'edit_item'          => __( 'Edit Chart', 'easy-charts' ),
