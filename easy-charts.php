@@ -9,7 +9,7 @@
  * Plugin Name:       Easy Charts
  * Plugin URI:        http://kiranpotphode.github.io/easy-charts/
  * Description:       Build simple, reusable, customisable charts on any page or post with ease.
- * Version:           1.2
+ * Version:           1.2.1
  * Author:            Kiran Potphode
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
