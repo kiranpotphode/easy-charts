@@ -26,7 +26,7 @@ class Easy_Charts_Public {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -35,7 +35,7 @@ class Easy_Charts_Public {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
 
@@ -44,13 +44,13 @@ class Easy_Charts_Public {
 	 *
 	 * @since    1.0.0
 	 *
-	 * @param      string $plugin_name       The name of the plugin.
-	 * @param      string $version    The version of this plugin.
+	 * @param      string $plugin_name The name of the plugin.
+	 * @param      string $version The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -104,7 +104,7 @@ class Easy_Charts_Public {
 
 		wp_register_script( 'filesaver-js', plugins_url( 'includes/js/filesaver.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'canvg-js',  plugins_url( 'includes/js/canvg.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'canvg-js', plugins_url( 'includes/js/canvg.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
 		wp_register_script( 'canvas-toblob-js', plugins_url( 'includes/js/canvas-toblob.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
 
@@ -115,16 +115,17 @@ class Easy_Charts_Public {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param string $atts  Attributes for shortcode.
-	 * @param string $content    Content inside Shortcode enclosing tags. Default is ''.
-	 * @return string 	Parsed Shortcode html markup.
+	 * @param string $atts    Attributes for shortcode.
+	 * @param string $content Content inside Shortcode enclosing tags. Default is ''.
+	 *
+	 * @return string Parsed Shortcode html markup.
 	 */
 	public static function easy_chart_shortcode_callback( $atts, $content = '' ) {
 		$atts = shortcode_atts( array(
 			'chart_id' => null,
 		), $atts, 'easy_chart' );
 
-		extract( $atts );
+		$chart_id = $atts['chart_id'];
 
 		if ( $chart_id ) {
 			$plugin = new Easy_Charts();

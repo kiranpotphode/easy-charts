@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -27,7 +26,7 @@ class Easy_Charts_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -36,7 +35,7 @@ class Easy_Charts_Admin {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
 
@@ -46,13 +45,14 @@ class Easy_Charts_Admin {
 	 * @todo    Move ajax action to separate location
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 *
+	 * @param string $plugin_name The name of this plugin.
+	 * @param string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -77,9 +77,9 @@ class Easy_Charts_Admin {
 
 		global $pagenow, $typenow;
 
-		 wp_enqueue_style( 'insert-chart-button-tc-css', plugin_dir_url( __FILE__ ) . 'css/insert-chart.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'insert-chart-button-tc-css', plugin_dir_url( __FILE__ ) . 'css/insert-chart.css', array(), $this->version, 'all' );
 
-		if ( 'post-new.php' === $pagenow ||  'post.php' === $pagenow &&  'easy_charts' === $typenow ) {
+		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow && 'easy_charts' === $typenow ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-admin.css', array(), $this->version, 'all' );
 
 			wp_enqueue_style( 'handsontable-css', plugin_dir_url( __FILE__ ) . 'css/handsontable/handsontable.full.css', array(), $this->version, 'all' );
@@ -116,7 +116,7 @@ class Easy_Charts_Admin {
 
 		global $pagenow, $typenow;
 
-		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow  && 'easy_charts' === $typenow ) {
+		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow && 'easy_charts' === $typenow ) {
 
 			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery' ), $this->version, true );
 
@@ -146,9 +146,12 @@ class Easy_Charts_Admin {
 
 	}
 
+	/**
+	 * Add ajaxurl variable to use in javascript.
+	 */
 	public function admin_print_scripts() {
 		echo "<script type='text/javascript'>\n";
-		echo 'var ajaxurl = "'.esc_url( admin_url( 'admin-ajax.php' ) ).'"';
+		echo 'var ajaxurl = "' . esc_url( admin_url( 'admin-ajax.php' ) ) . '"';
 		echo "\n</script>";
 	}
 
@@ -162,11 +165,11 @@ class Easy_Charts_Admin {
 	public function init() {
 
 		$labels = array(
-			'name'               => _x( 'Easy Charts', 'post type general name', 'easy-charts' ),
-			'singular_name'      => _x( 'Chart', 'post type singular name', 'easy-charts' ),
-			'menu_name'          => _x( 'Easy Charts', 'admin menu', 'easy-charts' ),
-			'name_admin_bar'     => _x( 'Chart', 'add new on admin bar', 'easy-charts' ),
-			'add_new'            => _x( 'Add New', 'easy-charts' ),
+			'name'               => _x( 'Easy Charts', 'Post type general name', 'easy-charts' ),
+			'singular_name'      => _x( 'Chart', 'Post type singular name', 'easy-charts' ),
+			'menu_name'          => _x( 'Easy Charts', 'Admin menu', 'easy-charts' ),
+			'name_admin_bar'     => _x( 'Chart', 'Add new chart on admin bar', 'easy-charts' ),
+			'add_new'            => _x( 'Add New', 'Add new chart', 'easy-charts' ),
 			'add_new_item'       => __( 'Add New Chart', 'easy-charts' ),
 			'new_item'           => __( 'New Chart', 'easy-charts' ),
 			'edit_item'          => __( 'Edit Chart', 'easy-charts' ),
@@ -179,16 +182,16 @@ class Easy_Charts_Admin {
 		);
 
 		$args = array(
-			'labels' => $labels,
-			'public' => false,
-			'show_ui' => true,
-			'_builtin' => false,
+			'labels'          => $labels,
+			'public'          => false,
+			'show_ui'         => true,
+			'_builtin'        => false,
 			'capability_type' => 'page',
-			'hierarchical' => true,
-			'menu_icon' => 'dashicons-chart-bar',
-			'rewrite' => false,
-			'query_var' => 'easy_charts',
-			'supports' => array(
+			'hierarchical'    => true,
+			'menu_icon'       => 'dashicons-chart-bar',
+			'rewrite'         => false,
+			'query_var'       => 'easy_charts',
+			'supports'        => array(
 				'title',
 			),
 		);
@@ -265,6 +268,7 @@ class Easy_Charts_Admin {
 	 * Render Data Meta Box content.
 	 *
 	 * @param WP_Post $post The post object.
+	 *
 	 * @since    1.0.0
 	 */
 	public function easy_charts_data_metabox_callback( $post ) {
@@ -279,6 +283,7 @@ class Easy_Charts_Admin {
 	 * Render Shortcode Meta Box content.
 	 *
 	 * @param WP_Post $post The post object.
+	 *
 	 * @since    1.0.0
 	 */
 	public function easy_charts_shortcode_metabox_callback( $post ) {
@@ -289,6 +294,7 @@ class Easy_Charts_Admin {
 	 * Render Shortcode Meta Box content.
 	 *
 	 * @param WP_Post $post The post object.
+	 *
 	 * @since    1.0.0
 	 */
 	public function easy_charts_preview_metabox_callback( $post ) {
@@ -300,6 +306,7 @@ class Easy_Charts_Admin {
 	 * Render Shortcode Meta Box content.
 	 *
 	 * @param WP_Post $post The post object.
+	 *
 	 * @since    1.0.0
 	 */
 	public function easy_charts_configuration_metabox_callback( $post ) {
@@ -341,151 +348,151 @@ class Easy_Charts_Admin {
 			}
 		}
 
+		$ec_chart_graph = array(
+			'responsive'  => (boolean) filter_input( INPUT_POST, 'ec_chart_graph_responsive', FILTER_SANITIZE_NUMBER_INT ),
+			'palette'     => filter_input( INPUT_POST, 'ec_chart_graph_palette', FILTER_SANITIZE_STRING ),
+			'bgcolor'     => filter_input( INPUT_POST, 'ec_chart_graph_bgcolor', FILTER_SANITIZE_STRING ),
+			'orientation' => filter_input( INPUT_POST, 'ec_chart_graph_orientation', FILTER_SANITIZE_STRING ),
+			'opacity'     => (float) filter_input( INPUT_POST, 'ec_chart_graph_opacity', FILTER_SANITIZE_STRING ),
+		);
+
 		$ec_chart_meta = array(
-						'position' => $_POST['ec_chart_meta_position'],
-						'caption' => $_POST['ec_chart_meta_caption'],
-						'subcaption' => $_POST['ec_chart_meta_subcaption'],
-						'hlabel' => $_POST['ec_chart_meta_hlabel'],
-						'hsublabel' => $_POST['ec_chart_meta_hsublabel'],
-						'vlabel' => $_POST['ec_chart_meta_vlabel'],
-						'vsublabel' => $_POST['ec_chart_meta_vsublabel'],
-						'isDownloadable' => (integer) $_POST['ec_chart_meta_isDownloadable'],
-						'downloadLabel' => $_POST['ec_chart_meta_downloadLabel'],
-					);
+			'position'       => filter_input( INPUT_POST, 'ec_chart_meta_position', FILTER_SANITIZE_STRING ),
+			'caption'        => filter_input( INPUT_POST, 'ec_chart_meta_caption', FILTER_SANITIZE_STRING ),
+			'subcaption'     => filter_input( INPUT_POST, 'ec_chart_meta_subcaption', FILTER_SANITIZE_STRING ),
+			'hlabel'         => filter_input( INPUT_POST, 'ec_chart_meta_hlabel', FILTER_SANITIZE_STRING ),
+			'hsublabel'      => filter_input( INPUT_POST, 'ec_chart_meta_hsublabel', FILTER_SANITIZE_STRING ),
+			'vlabel'         => filter_input( INPUT_POST, 'ec_chart_meta_vlabel', FILTER_SANITIZE_STRING ),
+			'vsublabel'      => filter_input( INPUT_POST, 'ec_chart_meta_vsublabel', FILTER_SANITIZE_STRING ),
+			'isDownloadable' => (integer) filter_input( INPUT_POST, 'ec_chart_meta_isDownloadable', FILTER_SANITIZE_NUMBER_INT ),
+			'downloadLabel'  => filter_input( INPUT_POST, 'ec_chart_meta_downloadLabel', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_graph  = array(
-						'responsive' => (boolean) $_POST['ec_chart_graph_responsive'],
-						'palette' => $_POST['ec_chart_graph_palette'],
-						'bgcolor' => $_POST['ec_chart_graph_bgcolor'],
-						'orientation' => $_POST['ec_chart_graph_orientation'],
-						'opacity' => (float) $_POST['ec_chart_graph_opacity'],
-					);
+		$ec_chart_dimension = array(
+			'width'  => (integer) filter_input( INPUT_POST, 'ec_chart_dimension_width', FILTER_SANITIZE_NUMBER_INT ),
+			'height' => (integer) filter_input( INPUT_POST, 'ec_chart_dimension_height', FILTER_SANITIZE_NUMBER_INT ),
+		);
 
-		$ec_chart_dimension  = array(
-						'width' => (integer) $_POST['ec_chart_dimension_width'],
-						'height' => (integer) $_POST['ec_chart_dimension_height'],
-					);
+		$ec_chart_margin = array(
+			'top'    => (integer) filter_input( INPUT_POST, 'ec_chart_margin_top', FILTER_SANITIZE_NUMBER_INT ),
+			'bottom' => (integer) filter_input( INPUT_POST, 'ec_chart_margin_bottom', FILTER_SANITIZE_NUMBER_INT ),
+			'left'   => (integer) filter_input( INPUT_POST, 'ec_chart_margin_left', FILTER_SANITIZE_NUMBER_INT ),
+			'right'  => (integer) filter_input( INPUT_POST, 'ec_chart_margin_right', FILTER_SANITIZE_NUMBER_INT ),
+		);
 
-		$ec_chart_margin  = array(
-						'top' => (integer) $_POST['ec_chart_margin_top'],
-						'bottom' => (integer) $_POST['ec_chart_margin_bottom'],
-						'left' => (integer) $_POST['ec_chart_margin_left'],
-						'right' => (integer) $_POST['ec_chart_margin_right'],
-					);
+		$ec_chart_frame = array(
+			'bgcolor' => filter_input( INPUT_POST, 'ec_chart_frame_bgcolor', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_frame  = array(
-						'bgcolor' => $_POST['ec_chart_frame_bgcolor'],
-					);
+		$ec_chart_axis = array(
+			'opacity'      => (float) filter_input( INPUT_POST, 'ec_chart_axis_opacity', FILTER_SANITIZE_STRING ),
+			'ticks'        => (integer) filter_input( INPUT_POST, 'ec_chart_axis_ticks', FILTER_SANITIZE_NUMBER_INT ),
+			'subticks'     => (integer) filter_input( INPUT_POST, 'ec_chart_axis_subticks', FILTER_SANITIZE_NUMBER_INT ),
+			'padding'      => (integer) filter_input( INPUT_POST, 'ec_chart_axis_padding', FILTER_SANITIZE_NUMBER_INT ),
+			'strokecolor'  => filter_input( INPUT_POST, 'ec_chart_axis_strokecolor', FILTER_SANITIZE_STRING ),
+			'minor'        => (integer) filter_input( INPUT_POST, 'ec_chart_axis_minor', FILTER_SANITIZE_NUMBER_INT ),
+			'fontfamily'   => filter_input( INPUT_POST, 'ec_chart_axis_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'     => filter_input( INPUT_POST, 'ec_chart_axis_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'   => filter_input( INPUT_POST, 'ec_chart_axis_fontweight', FILTER_SANITIZE_STRING ),
+			'showticks'    => (integer) filter_input( INPUT_POST, 'ec_chart_axis_showticks', FILTER_SANITIZE_NUMBER_INT ),
+			'showsubticks' => (integer) filter_input( INPUT_POST, 'ec_chart_axis_showsubticks', FILTER_SANITIZE_NUMBER_INT ),
+			'showtext'     => (integer) filter_input( INPUT_POST, 'ec_chart_axis_showtext', FILTER_SANITIZE_NUMBER_INT ),
+		);
 
-		$ec_chart_axis  = array(
-						'opacity' => (float) $_POST['ec_chart_axis_opacity'],
-						'ticks' => (integer) $_POST['ec_chart_axis_ticks'],
-						'subticks' => (integer) $_POST['ec_chart_axis_subticks'],
-						'padding' => (integer) $_POST['ec_chart_axis_padding'],
-						'strokecolor' => $_POST['ec_chart_axis_strokecolor'],
-						'minor' => (integer) $_POST['ec_chart_axis_minor'],
-						'fontfamily' => $_POST['ec_chart_axis_fontfamily'],
-						'fontsize' => $_POST['ec_chart_axis_fontsize'],
-						'fontweight' => $_POST['ec_chart_axis_fontweight'],
-						'showticks' => (integer) $_POST['ec_chart_axis_showticks'],
-						'showsubticks' => (integer) $_POST['ec_chart_axis_showsubticks'],
-						'showtext' => (integer) $_POST['ec_chart_axis_showtext'],
-					);
+		$ec_chart_label = array(
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_label_strokecolor', FILTER_SANITIZE_STRING ),
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_label_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_label_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_label_fontweight', FILTER_SANITIZE_STRING ),
+			'showlabel'   => (integer) filter_input( INPUT_POST, 'ec_chart_label_showlabel', FILTER_SANITIZE_NUMBER_INT ),
+			'precision'   => (integer) filter_input( INPUT_POST, 'ec_chart_label_precision', FILTER_SANITIZE_NUMBER_INT ),
+			'prefix'      => filter_input( INPUT_POST, 'ec_chart_label_prefix', FILTER_SANITIZE_STRING ),
+			'suffix'      => filter_input( INPUT_POST, 'ec_chart_label_suffix', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_label  = array(
-						'strokecolor' => $_POST['ec_chart_label_strokecolor'],
-						'fontfamily' => $_POST['ec_chart_label_fontfamily'],
-						'fontsize' => $_POST['ec_chart_label_fontsize'],
-						'fontweight' => $_POST['ec_chart_label_fontweight'],
-						'showlabel' => (integer) $_POST['ec_chart_label_showlabel'],
-						'precision' => (integer) $_POST['ec_chart_label_precision'],
-						'prefix' => $_POST['ec_chart_label_prefix'],
-						'suffix' => $_POST['ec_chart_label_suffix'],
-					);
+		$ec_chart_legend = array(
+			'position'      => filter_input( INPUT_POST, 'ec_chart_legend_position', FILTER_SANITIZE_STRING ),
+			'fontfamily'    => filter_input( INPUT_POST, 'ec_chart_legend_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'      => filter_input( INPUT_POST, 'ec_chart_legend_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'    => filter_input( INPUT_POST, 'ec_chart_legend_fontweight', FILTER_SANITIZE_STRING ),
+			'color'         => filter_input( INPUT_POST, 'ec_chart_legend_color', FILTER_SANITIZE_STRING ),
+			'strokewidth'   => (float) filter_input( INPUT_POST, 'ec_chart_legend_strokewidth', FILTER_SANITIZE_STRING ),
+			'textmargin'    => (integer) filter_input( INPUT_POST, 'ec_chart_legend_textmargin', FILTER_SANITIZE_NUMBER_INT ),
+			'symbolsize'    => (integer) filter_input( INPUT_POST, 'ec_chart_legend_symbolsize', FILTER_SANITIZE_NUMBER_INT ),
+			'inactivecolor' => filter_input( INPUT_POST, 'ec_chart_legend_inactivecolor', FILTER_SANITIZE_STRING ),
+			'legendstart'   => (integer) filter_input( INPUT_POST, 'ec_chart_legend_legendstart', FILTER_SANITIZE_NUMBER_INT ),
+			'legendtype'    => filter_input( INPUT_POST, 'ec_chart_legend_type', FILTER_SANITIZE_STRING ),
+			'showlegends'   => (integer) filter_input( INPUT_POST, 'ec_chart_legend_showlegends', FILTER_SANITIZE_NUMBER_INT ),
+		);
 
-	    $ec_chart_legend  = array(
-			            'position' => $_POST['ec_chart_legend_position'],
-			            'fontfamily' => $_POST['ec_chart_legend_fontfamily'],
-			            'fontsize' => $_POST['ec_chart_legend_fontsize'],
-			            'fontweight' => $_POST['ec_chart_legend_fontweight'],
-			            'color' => $_POST['ec_chart_legend_color'],
-			            'strokewidth' => (float) $_POST['ec_chart_legend_strokewidth'],
-			            'textmargin' => (integer) $_POST['ec_chart_legend_textmargin'],
-			            'symbolsize' => (integer) $_POST['ec_chart_legend_symbolsize'],
-			            'inactivecolor' => $_POST['ec_chart_legend_inactivecolor'],
-			            'legendstart' => (integer) $_POST['ec_chart_legend_legendstart'],
-			            'legendtype' => 'categories',
-			            'showlegends' => (integer) $_POST['ec_chart_legend_showlegends'],
-	          		);
+		$ec_chart_scale = array(
+			'type'       => filter_input( INPUT_POST, 'ec_chart_scale_type', FILTER_SANITIZE_STRING ),
+			'ordinality' => (float) filter_input( INPUT_POST, 'ec_chart_scale_ordinality', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_scale  = array(
-						'type' => $_POST['ec_chart_scale_type'],
-						'ordinality' => (float) $_POST['ec_chart_scale_ordinality'],
-					);
+		$ec_chart_tooltip = array(
+			'show'   => (integer) filter_input( INPUT_POST, 'ec_chart_tooltip_show', FILTER_SANITIZE_NUMBER_INT ),
+			'format' => filter_input( INPUT_POST, 'ec_chart_tooltip_format', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_tooltip  = array(
-						'show' => (integer) $_POST['ec_chart_tooltip_show'],
-						'format' => $_POST['ec_chart_tooltip_format'],
-					);
+		$ec_chart_caption = array(
+			'fontfamily'     => filter_input( INPUT_POST, 'ec_chart_caption_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'       => filter_input( INPUT_POST, 'ec_chart_caption_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'     => filter_input( INPUT_POST, 'ec_chart_caption_fontweight', FILTER_SANITIZE_STRING ),
+			'textdecoration' => filter_input( INPUT_POST, 'ec_chart_caption_textdecoration', FILTER_SANITIZE_STRING ),
+			'strokecolor'    => filter_input( INPUT_POST, 'ec_chart_caption_strokecolor', FILTER_SANITIZE_STRING ),
+			'cursor'         => filter_input( INPUT_POST, 'ec_chart_caption_cursor', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_caption  = array(
-						'fontfamily' => $_POST['ec_chart_caption_fontfamily'],
-						'fontsize' => $_POST['ec_chart_caption_fontsize'],
-						'fontweight' => $_POST['ec_chart_caption_fontweight'],
-						'textdecoration' => $_POST['ec_chart_caption_textdecoration'],
-						'strokecolor' => $_POST['ec_chart_caption_strokecolor'],
-						'cursor' => $_POST['ec_chart_caption_cursor'],
-					);
+		$ec_chart_subcaption = array(
+			'fontfamily'     => filter_input( INPUT_POST, 'ec_chart_subcaption_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'       => filter_input( INPUT_POST, 'ec_chart_subcaption_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'     => filter_input( INPUT_POST, 'ec_chart_subcaption_fontweight', FILTER_SANITIZE_STRING ),
+			'textdecoration' => filter_input( INPUT_POST, 'ec_chart_subcaption_textdecoration', FILTER_SANITIZE_STRING ),
+			'strokecolor'    => filter_input( INPUT_POST, 'ec_chart_subcaption_strokecolor', FILTER_SANITIZE_STRING ),
+			'cursor'         => filter_input( INPUT_POST, 'ec_chart_subcaption_cursor', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_subcaption  = array(
-						'fontfamily' => $_POST['ec_chart_subcaption_fontfamily'],
-						'fontsize' => $_POST['ec_chart_subcaption_fontsize'],
-						'fontweight' => $_POST['ec_chart_subcaption_fontweight'],
-						'textdecoration' => $_POST['ec_chart_subcaption_textdecoration'],
-						'strokecolor' => $_POST['ec_chart_subcaption_strokecolor'],
-						'cursor' => $_POST['ec_chart_subcaption_cursor'],
-					);
+		$ec_chart_bar = array(
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_bar_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_bar_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_bar_fontweight', FILTER_SANITIZE_STRING ),
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_bar_strokecolor', FILTER_SANITIZE_STRING ),
+			'textcolor'   => filter_input( INPUT_POST, 'ec_chart_bar_textcolor', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_bar  = array(
-						'fontfamily' => $_POST['ec_chart_bar_fontfamily'],
-						'fontsize' => $_POST['ec_chart_bar_fontsize'],
-						'fontweight' => $_POST['ec_chart_bar_fontweight'],
-						'strokecolor' => $_POST['ec_chart_bar_strokecolor'],
-						'textcolor' => $_POST['ec_chart_bar_textcolor'],
-					);
+		$ec_chart_line = array(
+			'interpolation' => filter_input( INPUT_POST, 'ec_chart_line_interpolation', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_line  = array(
-						'interpolation' => $_POST['ec_chart_line_interpolation'],
-					);
+		$ec_chart_area = array(
+			'interpolation' => filter_input( INPUT_POST, 'ec_chart_area_interpolation', FILTER_SANITIZE_STRING ),
+			'opacity'       => (float) filter_input( INPUT_POST, 'ec_chart_area_opacity', FILTER_SANITIZE_STRING ),
+			'offset'        => filter_input( INPUT_POST, 'ec_chart_area_offset', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_area  = array(
-						'interpolation' => $_POST['ec_chart_area_interpolation'],
-						'opacity' => (float) $_POST['ec_chart_area_opacity'],
-						'offset' => $_POST['ec_chart_area_offset'],
-					);
+		$ec_chart_pie = array(
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_pie_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_pie_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_pie_fontweight', FILTER_SANITIZE_STRING ),
+			'fontvariant' => filter_input( INPUT_POST, 'ec_chart_pie_fontvariant', FILTER_SANITIZE_STRING ),
+			'fontfill'    => filter_input( INPUT_POST, 'ec_chart_pie_fontfill', FILTER_SANITIZE_STRING ),
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_pie_strokecolor', FILTER_SANITIZE_STRING ),
+			'strokewidth' => filter_input( INPUT_POST, 'ec_chart_pie_strokewidth', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_pie  = array(
-						'fontfamily' => $_POST['ec_chart_pie_fontfamily'],
-						'fontsize' => $_POST['ec_chart_pie_fontsize'],
-						'fontweight' => $_POST['ec_chart_pie_fontweight'],
-						'fontvariant' => $_POST['ec_chart_pie_fontvariant'],
-						'fontfill' => $_POST['ec_chart_pie_fontfill'],
-						'strokecolor' => $_POST['ec_chart_pie_strokecolor'],
-						'strokewidth' => $_POST['ec_chart_pie_strokewidth'],
-					);
+		$ec_chart_donut = array(
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_donut_fontfamily', FILTER_SANITIZE_STRING ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_donut_fontsize', FILTER_SANITIZE_STRING ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_donut_fontweight', FILTER_SANITIZE_STRING ),
+			'fontvariant' => filter_input( INPUT_POST, 'ec_chart_donut_fontvariant', FILTER_SANITIZE_STRING ),
+			'fontfill'    => filter_input( INPUT_POST, 'ec_chart_donut_fontfill', FILTER_SANITIZE_STRING ),
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_donut_strokecolor', FILTER_SANITIZE_STRING ),
+			'strokewidth' => filter_input( INPUT_POST, 'ec_chart_donut_strokewidth', FILTER_SANITIZE_STRING ),
+			'factor'      => filter_input( INPUT_POST, 'ec_chart_donut_factor', FILTER_SANITIZE_STRING ),
+		);
 
-		$ec_chart_donut  = array(
-						'fontfamily' => $_POST['ec_chart_donut_fontfamily'],
-						'fontsize' => $_POST['ec_chart_donut_fontsize'],
-						'fontweight' => $_POST['ec_chart_donut_fontweight'],
-						'fontvariant' => $_POST['ec_chart_donut_fontvariant'],
-						'fontfill' => $_POST['ec_chart_donut_fontfill'],
-						'strokecolor' => $_POST['ec_chart_donut_strokecolor'],
-						'strokewidth' => $_POST['ec_chart_donut_strokewidth'],
-						'factor' => $_POST['ec_chart_donut_factor'],
-					);
-
-		update_post_meta( $post_id, '_ec_chart_type', $_POST['ec_chart_type'] );
+		update_post_meta( $post_id, '_ec_chart_type', filter_input( INPUT_POST, 'ec_chart_type', FILTER_SANITIZE_STRING ) );
 		update_post_meta( $post_id, '_ec_chart_meta', $ec_chart_meta );
 		update_post_meta( $post_id, '_ec_chart_graph', $ec_chart_graph );
 		update_post_meta( $post_id, '_ec_chart_dimension', $ec_chart_dimension );
@@ -508,23 +515,25 @@ class Easy_Charts_Admin {
 
 
 	/**
-	* Ajax callback for save chart data.
-	*
-	* @since    1.0.0
-	*/
+	 * Ajax callback for save chart data.
+	 *
+	 * @since    1.0.0
+	 */
 	public function easy_charts_save_chart_data_callback() {
 
 		$plugin = new Easy_Charts();
 
 		check_ajax_referer( 'ec-ajax-nonce', '_nonce_check' );
 
-		if ( 'easy_charts_save_chart_data' !== $_POST['action'] ) {
+		if ( 'easy_charts_save_chart_data' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_STRING ) ) {
 			exit( 0 );
 		}
 
-		update_post_meta( $_POST['chart_id'], '_easy_charts_chart_data', $_POST['chart_data'] );
+		$chart_id = filter_input( INPUT_POST, 'chart_id', FILTER_SANITIZE_NUMBER_INT );
 
-		echo wp_json_encode( $plugin->get_ec_chart_data( $_POST['chart_id'] ) );
+		update_post_meta( $chart_id, '_easy_charts_chart_data', filter_input( INPUT_POST, 'chart_data', FILTER_UNSAFE_RAW ) );
+
+		echo wp_json_encode( $plugin->get_ec_chart_data( $chart_id ) );
 
 		exit( 0 );
 	}
@@ -535,15 +544,15 @@ class Easy_Charts_Admin {
 	 * @since 1.0.0
 	 */
 	public function easy_charts_get_published_charts_callback() {
-		if ( 'easy_charts_get_published_charts' !== $_POST['action'] ) {
+		if ( 'easy_charts_get_published_charts' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_STRING ) ) {
 			exit( 0 );
 		}
 
 		$args = array(
-				'post_type' => 'easy_charts',
-				'post_status' => 'publish',
-				'posts_per_page' => -1,
-			);
+			'post_type'      => 'easy_charts',
+			'post_status'    => 'publish',
+			'posts_per_page' => - 1,
+		);
 
 		$chart_query = new WP_Query( $args );
 
@@ -552,14 +561,14 @@ class Easy_Charts_Admin {
 			foreach ( $chart_query->posts as $chart_key => $chart ) {
 				$chart_title = '';
 				if ( '' === $chart->post_title ) {
-					$chart_title = 'Chart-'.$chart->ID;
+					$chart_title = 'Chart-' . $chart->ID;
 				} else {
 					$chart_title = $chart->post_title;
 				}
 				$charts[] = array(
-								'text' => $chart_title,
-								'value' => "[easy_chart chart_id='".$chart->ID."']",
-			 				);
+					'text'  => $chart_title,
+					'value' => "[easy_chart chart_id='" . $chart->ID . "']",
+				);
 			}
 		}
 		wp_reset_postdata();
@@ -576,16 +585,16 @@ class Easy_Charts_Admin {
 	 */
 	public function easy_charts_add_insert_chart_button() {
 
-	    // check user permissions
-	    if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
-	    	return;
-	    }
+		// check user permissions.
+		if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+			return;
+		}
 
-	    // check if WYSIWYG is enabled
-	    if ( get_user_option( 'rich_editing' ) === 'true' ) {
-	        add_filter( 'mce_external_plugins', array( $this, 'easy_charts_add_tinymce_plugin' ) );
-	        add_filter( 'mce_buttons', array( $this, 'easy_charts_register_insert_chart_tc_button' ) );
-	    }
+		// check if WYSIWYG is enabled.
+		if ( get_user_option( 'rich_editing' ) === 'true' ) {
+			add_filter( 'mce_external_plugins', array( $this, 'easy_charts_add_tinymce_plugin' ) );
+			add_filter( 'mce_buttons', array( $this, 'easy_charts_register_insert_chart_tc_button' ) );
+		}
 	}
 
 	/**
@@ -593,11 +602,13 @@ class Easy_Charts_Admin {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param 	array 	$plugin_array  	Array of plugins urls.
+	 * @param    array $plugin_array Array of plugins urls.
+	 *
 	 * @return  array     Array of plugin urls with newly added plugin.
 	 */
 	public function easy_charts_add_tinymce_plugin( $plugin_array ) {
-		$plugin_array['easy_charts_insert_chart_tc_button'] = plugin_dir_url( __FILE__ ).'js/insert-chart-button.js';
+		$plugin_array['easy_charts_insert_chart_tc_button'] = plugin_dir_url( __FILE__ ) . 'js/insert-chart-button.js';
+
 		return $plugin_array;
 	}
 
@@ -606,11 +617,13 @@ class Easy_Charts_Admin {
 	 *
 	 * @since 1.0.0
 	 *
-	 * @param 	array  	$buttons  	Array of button names.
-	 * @return   	array      Array if buttons with newly added button name.
+	 * @param    array $buttons Array of button names.
+	 *
+	 * @return    array      Array if buttons with newly added button name.
 	 */
-	function easy_charts_register_insert_chart_tc_button( $buttons ) {
+	public function easy_charts_register_insert_chart_tc_button( $buttons ) {
 		array_push( $buttons, 'easy_charts_insert_chart_tc_button' );
+
 		return $buttons;
 	}
 }
