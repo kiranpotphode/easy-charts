@@ -43,6 +43,7 @@
         });
 
         function ec_save_chart_data_ajax(table) {
+            $('#ec-button-save-data .dashicons-update').addClass('spin');
             $.ajax({
                     url: ajaxurl,
                     type: 'POST',
@@ -65,7 +66,9 @@
                     var chartObject = uv.chart(updated_data.chart_type, graphdef, chartConfiguration);
                 })
                 .fail(function() {})
-                .always(function() {});
+                .always(function() {
+                    $('#ec-button-save-data .dashicons-update').removeClass('spin');
+                });
         }
 
         var container = document.getElementById("handsontable");
