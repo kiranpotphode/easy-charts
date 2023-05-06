@@ -350,22 +350,22 @@ class Easy_Charts_Admin {
 
 		$ec_chart_graph = array(
 			'responsive'  => (boolean) filter_input( INPUT_POST, 'ec_chart_graph_responsive', FILTER_SANITIZE_NUMBER_INT ),
-			'palette'     => filter_input( INPUT_POST, 'ec_chart_graph_palette', FILTER_SANITIZE_STRING ),
-			'bgcolor'     => filter_input( INPUT_POST, 'ec_chart_graph_bgcolor', FILTER_SANITIZE_STRING ),
-			'orientation' => filter_input( INPUT_POST, 'ec_chart_graph_orientation', FILTER_SANITIZE_STRING ),
-			'opacity'     => (float) filter_input( INPUT_POST, 'ec_chart_graph_opacity', FILTER_SANITIZE_STRING ),
+			'palette'     => filter_input( INPUT_POST, 'ec_chart_graph_palette', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'bgcolor'     => filter_input( INPUT_POST, 'ec_chart_graph_bgcolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'orientation' => filter_input( INPUT_POST, 'ec_chart_graph_orientation', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'opacity'     => (float) filter_input( INPUT_POST, 'ec_chart_graph_opacity', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_meta = array(
-			'position'       => filter_input( INPUT_POST, 'ec_chart_meta_position', FILTER_SANITIZE_STRING ),
-			'caption'        => filter_input( INPUT_POST, 'ec_chart_meta_caption', FILTER_SANITIZE_STRING ),
-			'subcaption'     => filter_input( INPUT_POST, 'ec_chart_meta_subcaption', FILTER_SANITIZE_STRING ),
-			'hlabel'         => filter_input( INPUT_POST, 'ec_chart_meta_hlabel', FILTER_SANITIZE_STRING ),
-			'hsublabel'      => filter_input( INPUT_POST, 'ec_chart_meta_hsublabel', FILTER_SANITIZE_STRING ),
-			'vlabel'         => filter_input( INPUT_POST, 'ec_chart_meta_vlabel', FILTER_SANITIZE_STRING ),
-			'vsublabel'      => filter_input( INPUT_POST, 'ec_chart_meta_vsublabel', FILTER_SANITIZE_STRING ),
+			'position'       => filter_input( INPUT_POST, 'ec_chart_meta_position', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'caption'        => filter_input( INPUT_POST, 'ec_chart_meta_caption', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'subcaption'     => filter_input( INPUT_POST, 'ec_chart_meta_subcaption', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'hlabel'         => filter_input( INPUT_POST, 'ec_chart_meta_hlabel', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'hsublabel'      => filter_input( INPUT_POST, 'ec_chart_meta_hsublabel', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'vlabel'         => filter_input( INPUT_POST, 'ec_chart_meta_vlabel', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'vsublabel'      => filter_input( INPUT_POST, 'ec_chart_meta_vsublabel', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'isDownloadable' => (integer) filter_input( INPUT_POST, 'ec_chart_meta_isDownloadable', FILTER_SANITIZE_NUMBER_INT ),
-			'downloadLabel'  => filter_input( INPUT_POST, 'ec_chart_meta_downloadLabel', FILTER_SANITIZE_STRING ),
+			'downloadLabel'  => filter_input( INPUT_POST, 'ec_chart_meta_downloadLabel', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_dimension = array(
@@ -381,118 +381,118 @@ class Easy_Charts_Admin {
 		);
 
 		$ec_chart_frame = array(
-			'bgcolor' => filter_input( INPUT_POST, 'ec_chart_frame_bgcolor', FILTER_SANITIZE_STRING ),
+			'bgcolor' => filter_input( INPUT_POST, 'ec_chart_frame_bgcolor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_axis = array(
-			'opacity'      => (float) filter_input( INPUT_POST, 'ec_chart_axis_opacity', FILTER_SANITIZE_STRING ),
+			'opacity'      => (float) filter_input( INPUT_POST, 'ec_chart_axis_opacity', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'ticks'        => (integer) filter_input( INPUT_POST, 'ec_chart_axis_ticks', FILTER_SANITIZE_NUMBER_INT ),
 			'subticks'     => (integer) filter_input( INPUT_POST, 'ec_chart_axis_subticks', FILTER_SANITIZE_NUMBER_INT ),
 			'padding'      => (integer) filter_input( INPUT_POST, 'ec_chart_axis_padding', FILTER_SANITIZE_NUMBER_INT ),
-			'strokecolor'  => filter_input( INPUT_POST, 'ec_chart_axis_strokecolor', FILTER_SANITIZE_STRING ),
+			'strokecolor'  => filter_input( INPUT_POST, 'ec_chart_axis_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'minor'        => (integer) filter_input( INPUT_POST, 'ec_chart_axis_minor', FILTER_SANITIZE_NUMBER_INT ),
-			'fontfamily'   => filter_input( INPUT_POST, 'ec_chart_axis_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'     => filter_input( INPUT_POST, 'ec_chart_axis_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'   => filter_input( INPUT_POST, 'ec_chart_axis_fontweight', FILTER_SANITIZE_STRING ),
+			'fontfamily'   => filter_input( INPUT_POST, 'ec_chart_axis_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'     => filter_input( INPUT_POST, 'ec_chart_axis_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'   => filter_input( INPUT_POST, 'ec_chart_axis_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'showticks'    => (integer) filter_input( INPUT_POST, 'ec_chart_axis_showticks', FILTER_SANITIZE_NUMBER_INT ),
 			'showsubticks' => (integer) filter_input( INPUT_POST, 'ec_chart_axis_showsubticks', FILTER_SANITIZE_NUMBER_INT ),
 			'showtext'     => (integer) filter_input( INPUT_POST, 'ec_chart_axis_showtext', FILTER_SANITIZE_NUMBER_INT ),
 		);
 
 		$ec_chart_label = array(
-			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_label_strokecolor', FILTER_SANITIZE_STRING ),
-			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_label_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_label_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_label_fontweight', FILTER_SANITIZE_STRING ),
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_label_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_label_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_label_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_label_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'showlabel'   => (integer) filter_input( INPUT_POST, 'ec_chart_label_showlabel', FILTER_SANITIZE_NUMBER_INT ),
 			'precision'   => (integer) filter_input( INPUT_POST, 'ec_chart_label_precision', FILTER_SANITIZE_NUMBER_INT ),
-			'prefix'      => filter_input( INPUT_POST, 'ec_chart_label_prefix', FILTER_SANITIZE_STRING ),
-			'suffix'      => filter_input( INPUT_POST, 'ec_chart_label_suffix', FILTER_SANITIZE_STRING ),
+			'prefix'      => filter_input( INPUT_POST, 'ec_chart_label_prefix', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'suffix'      => filter_input( INPUT_POST, 'ec_chart_label_suffix', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_legend = array(
-			'position'      => filter_input( INPUT_POST, 'ec_chart_legend_position', FILTER_SANITIZE_STRING ),
-			'fontfamily'    => filter_input( INPUT_POST, 'ec_chart_legend_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'      => filter_input( INPUT_POST, 'ec_chart_legend_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'    => filter_input( INPUT_POST, 'ec_chart_legend_fontweight', FILTER_SANITIZE_STRING ),
-			'color'         => filter_input( INPUT_POST, 'ec_chart_legend_color', FILTER_SANITIZE_STRING ),
-			'strokewidth'   => (float) filter_input( INPUT_POST, 'ec_chart_legend_strokewidth', FILTER_SANITIZE_STRING ),
+			'position'      => filter_input( INPUT_POST, 'ec_chart_legend_position', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontfamily'    => filter_input( INPUT_POST, 'ec_chart_legend_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'      => filter_input( INPUT_POST, 'ec_chart_legend_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'    => filter_input( INPUT_POST, 'ec_chart_legend_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'color'         => filter_input( INPUT_POST, 'ec_chart_legend_color', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokewidth'   => (float) filter_input( INPUT_POST, 'ec_chart_legend_strokewidth', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'textmargin'    => (integer) filter_input( INPUT_POST, 'ec_chart_legend_textmargin', FILTER_SANITIZE_NUMBER_INT ),
 			'symbolsize'    => (integer) filter_input( INPUT_POST, 'ec_chart_legend_symbolsize', FILTER_SANITIZE_NUMBER_INT ),
-			'inactivecolor' => filter_input( INPUT_POST, 'ec_chart_legend_inactivecolor', FILTER_SANITIZE_STRING ),
+			'inactivecolor' => filter_input( INPUT_POST, 'ec_chart_legend_inactivecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'legendstart'   => (integer) filter_input( INPUT_POST, 'ec_chart_legend_legendstart', FILTER_SANITIZE_NUMBER_INT ),
-			'legendtype'    => filter_input( INPUT_POST, 'ec_chart_legend_type', FILTER_SANITIZE_STRING ),
+			'legendtype'    => filter_input( INPUT_POST, 'ec_chart_legend_type', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'showlegends'   => (integer) filter_input( INPUT_POST, 'ec_chart_legend_showlegends', FILTER_SANITIZE_NUMBER_INT ),
 		);
 
 		$ec_chart_scale = array(
-			'type'       => filter_input( INPUT_POST, 'ec_chart_scale_type', FILTER_SANITIZE_STRING ),
-			'ordinality' => (float) filter_input( INPUT_POST, 'ec_chart_scale_ordinality', FILTER_SANITIZE_STRING ),
+			'type'       => filter_input( INPUT_POST, 'ec_chart_scale_type', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'ordinality' => (float) filter_input( INPUT_POST, 'ec_chart_scale_ordinality', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_tooltip = array(
 			'show'   => (integer) filter_input( INPUT_POST, 'ec_chart_tooltip_show', FILTER_SANITIZE_NUMBER_INT ),
-			'format' => filter_input( INPUT_POST, 'ec_chart_tooltip_format', FILTER_SANITIZE_STRING ),
+			'format' => filter_input( INPUT_POST, 'ec_chart_tooltip_format', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_caption = array(
-			'fontfamily'     => filter_input( INPUT_POST, 'ec_chart_caption_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'       => filter_input( INPUT_POST, 'ec_chart_caption_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'     => filter_input( INPUT_POST, 'ec_chart_caption_fontweight', FILTER_SANITIZE_STRING ),
-			'textdecoration' => filter_input( INPUT_POST, 'ec_chart_caption_textdecoration', FILTER_SANITIZE_STRING ),
-			'strokecolor'    => filter_input( INPUT_POST, 'ec_chart_caption_strokecolor', FILTER_SANITIZE_STRING ),
-			'cursor'         => filter_input( INPUT_POST, 'ec_chart_caption_cursor', FILTER_SANITIZE_STRING ),
+			'fontfamily'     => filter_input( INPUT_POST, 'ec_chart_caption_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'       => filter_input( INPUT_POST, 'ec_chart_caption_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'     => filter_input( INPUT_POST, 'ec_chart_caption_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'textdecoration' => filter_input( INPUT_POST, 'ec_chart_caption_textdecoration', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokecolor'    => filter_input( INPUT_POST, 'ec_chart_caption_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'cursor'         => filter_input( INPUT_POST, 'ec_chart_caption_cursor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_subcaption = array(
-			'fontfamily'     => filter_input( INPUT_POST, 'ec_chart_subcaption_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'       => filter_input( INPUT_POST, 'ec_chart_subcaption_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'     => filter_input( INPUT_POST, 'ec_chart_subcaption_fontweight', FILTER_SANITIZE_STRING ),
-			'textdecoration' => filter_input( INPUT_POST, 'ec_chart_subcaption_textdecoration', FILTER_SANITIZE_STRING ),
-			'strokecolor'    => filter_input( INPUT_POST, 'ec_chart_subcaption_strokecolor', FILTER_SANITIZE_STRING ),
-			'cursor'         => filter_input( INPUT_POST, 'ec_chart_subcaption_cursor', FILTER_SANITIZE_STRING ),
+			'fontfamily'     => filter_input( INPUT_POST, 'ec_chart_subcaption_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'       => filter_input( INPUT_POST, 'ec_chart_subcaption_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'     => filter_input( INPUT_POST, 'ec_chart_subcaption_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'textdecoration' => filter_input( INPUT_POST, 'ec_chart_subcaption_textdecoration', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokecolor'    => filter_input( INPUT_POST, 'ec_chart_subcaption_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'cursor'         => filter_input( INPUT_POST, 'ec_chart_subcaption_cursor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_bar = array(
-			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_bar_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_bar_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_bar_fontweight', FILTER_SANITIZE_STRING ),
-			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_bar_strokecolor', FILTER_SANITIZE_STRING ),
-			'textcolor'   => filter_input( INPUT_POST, 'ec_chart_bar_textcolor', FILTER_SANITIZE_STRING ),
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_bar_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_bar_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_bar_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_bar_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'textcolor'   => filter_input( INPUT_POST, 'ec_chart_bar_textcolor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_line = array(
-			'interpolation' => filter_input( INPUT_POST, 'ec_chart_line_interpolation', FILTER_SANITIZE_STRING ),
+			'interpolation' => filter_input( INPUT_POST, 'ec_chart_line_interpolation', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_area = array(
-			'interpolation' => filter_input( INPUT_POST, 'ec_chart_area_interpolation', FILTER_SANITIZE_STRING ),
-			'opacity'       => (float) filter_input( INPUT_POST, 'ec_chart_area_opacity', FILTER_SANITIZE_STRING ),
-			'offset'        => filter_input( INPUT_POST, 'ec_chart_area_offset', FILTER_SANITIZE_STRING ),
+			'interpolation' => filter_input( INPUT_POST, 'ec_chart_area_interpolation', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'opacity'       => (float) filter_input( INPUT_POST, 'ec_chart_area_opacity', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'offset'        => filter_input( INPUT_POST, 'ec_chart_area_offset', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_pie = array(
-			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_pie_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_pie_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_pie_fontweight', FILTER_SANITIZE_STRING ),
-			'fontvariant' => filter_input( INPUT_POST, 'ec_chart_pie_fontvariant', FILTER_SANITIZE_STRING ),
-			'fontfill'    => filter_input( INPUT_POST, 'ec_chart_pie_fontfill', FILTER_SANITIZE_STRING ),
-			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_pie_strokecolor', FILTER_SANITIZE_STRING ),
-			'strokewidth' => filter_input( INPUT_POST, 'ec_chart_pie_strokewidth', FILTER_SANITIZE_STRING ),
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_pie_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_pie_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_pie_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontvariant' => filter_input( INPUT_POST, 'ec_chart_pie_fontvariant', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontfill'    => filter_input( INPUT_POST, 'ec_chart_pie_fontfill', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_pie_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokewidth' => filter_input( INPUT_POST, 'ec_chart_pie_strokewidth', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_donut = array(
-			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_donut_fontfamily', FILTER_SANITIZE_STRING ),
-			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_donut_fontsize', FILTER_SANITIZE_STRING ),
-			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_donut_fontweight', FILTER_SANITIZE_STRING ),
-			'fontvariant' => filter_input( INPUT_POST, 'ec_chart_donut_fontvariant', FILTER_SANITIZE_STRING ),
-			'fontfill'    => filter_input( INPUT_POST, 'ec_chart_donut_fontfill', FILTER_SANITIZE_STRING ),
-			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_donut_strokecolor', FILTER_SANITIZE_STRING ),
-			'strokewidth' => filter_input( INPUT_POST, 'ec_chart_donut_strokewidth', FILTER_SANITIZE_STRING ),
-			'factor'      => filter_input( INPUT_POST, 'ec_chart_donut_factor', FILTER_SANITIZE_STRING ),
+			'fontfamily'  => filter_input( INPUT_POST, 'ec_chart_donut_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontsize'    => filter_input( INPUT_POST, 'ec_chart_donut_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontweight'  => filter_input( INPUT_POST, 'ec_chart_donut_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontvariant' => filter_input( INPUT_POST, 'ec_chart_donut_fontvariant', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'fontfill'    => filter_input( INPUT_POST, 'ec_chart_donut_fontfill', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokecolor' => filter_input( INPUT_POST, 'ec_chart_donut_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'strokewidth' => filter_input( INPUT_POST, 'ec_chart_donut_strokewidth', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'factor'      => filter_input( INPUT_POST, 'ec_chart_donut_factor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
-		update_post_meta( $post_id, '_ec_chart_type', filter_input( INPUT_POST, 'ec_chart_type', FILTER_SANITIZE_STRING ) );
+		update_post_meta( $post_id, '_ec_chart_type', filter_input( INPUT_POST, 'ec_chart_type', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_meta', $ec_chart_meta );
 		update_post_meta( $post_id, '_ec_chart_graph', $ec_chart_graph );
 		update_post_meta( $post_id, '_ec_chart_dimension', $ec_chart_dimension );
@@ -525,7 +525,7 @@ class Easy_Charts_Admin {
 
 		check_ajax_referer( 'ec-ajax-nonce', '_nonce_check' );
 
-		if ( 'easy_charts_save_chart_data' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_STRING ) ) {
+		if ( 'easy_charts_save_chart_data' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_SPECIAL_CHARS ) ) {
 			exit( 0 );
 		}
 
@@ -544,7 +544,7 @@ class Easy_Charts_Admin {
 	 * @since 1.0.0
 	 */
 	public function easy_charts_get_published_charts_callback() {
-		if ( 'easy_charts_get_published_charts' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_STRING ) ) {
+		if ( 'easy_charts_get_published_charts' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_SPECIAL_CHARS ) ) {
 			exit( 0 );
 		}
 
