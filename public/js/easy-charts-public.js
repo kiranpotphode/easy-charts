@@ -48,7 +48,7 @@ jQuery.fn.get_ec_oject = function(obj) {
             $(this).ec_draw_chart();
         });
 
-        $('.uv-chart-div svg.uv-frame g.uv-download-options').bind('mouseenter', function(event) {
+        $('.uv-chart-div svg.uv-frame g.uv-download-options').on('mouseenter', function(event) {
             var svg = $(this).parents('.uv-chart-div svg.uv-frame');
 
             svg[0].setAttribute('width', svg[0].getBoundingClientRect().width);
