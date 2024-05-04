@@ -68,7 +68,7 @@ class Easy_Charts {
 	public function __construct() {
 
 		$this->plugin_name = 'easy-charts';
-		$this->version     = '1.2.1';
+		$this->version     = '1.2.3';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -99,27 +99,26 @@ class Easy_Charts {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-easy-charts-loader.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-easy-charts-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-easy-charts-i18n.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-easy-charts-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-easy-charts-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-easy-charts-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-easy-charts-public.php';
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-easy-charts-public.php';
 
 		$this->loader = new Easy_Charts_Loader();
-
 	}
 
 	/**
@@ -136,7 +135,6 @@ class Easy_Charts {
 		$plugin_i18n = new Easy_Charts_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -176,7 +174,6 @@ class Easy_Charts {
 		$this->loader->add_action( 'init', $plugin_public, 'init' );
 		$this->loader->add_action( 'wp_ajax_easy_charts_save_chart_data', $plugin_public, 'init' );
 		$this->loader->add_action( 'wp_ajax_easy_charts_get_published_charts', $plugin_public, 'init' );
-
 	}
 
 	/**
@@ -275,7 +272,6 @@ class Easy_Charts {
 		}
 
 		return $html;
-
 	}
 
 	/**
@@ -510,7 +506,6 @@ class Easy_Charts {
 		$ec_chart_data = apply_filters( 'easy_charts_get_chart_data', $ec_chart_data, $chart_id );
 
 		return $ec_chart_data;
-
 	}
 
 	/**
@@ -560,7 +555,6 @@ class Easy_Charts {
 		}
 
 		return $chart_html;
-
 	}
 
 	/**
@@ -793,7 +787,7 @@ class Easy_Charts {
 		switch ( $field_type ) {
 
 			case 'text':
-			?>
+				?>
 				<div class="field">
 					<table>
 						<tbody>
@@ -812,7 +806,7 @@ class Easy_Charts {
 				break;
 
 			case 'number':
-			?>
+				?>
 				<div class="field">
 					<table>
 						<tbody>
@@ -835,7 +829,7 @@ class Easy_Charts {
 				break;
 
 			case 'radio':
-			?>
+				?>
 				<div class="field">
 					<table>
 						<tbody>
@@ -861,7 +855,7 @@ class Easy_Charts {
 				break;
 
 			case 'slider':
-			?>
+				?>
 				<div class="field">
 					<table>
 						<tbody>
@@ -883,7 +877,7 @@ class Easy_Charts {
 				break;
 
 			case 'color-picker':
-			?>
+				?>
 				<div class="field">
 					<table>
 						<tbody>
@@ -902,7 +896,7 @@ class Easy_Charts {
 				break;
 
 			case 'dropdown':
-			?>
+				?>
 				<div class="field">
 					<table>
 						<tbody>
@@ -932,6 +926,5 @@ class Easy_Charts {
 			default:
 				break;
 		}
-
 	}
 }

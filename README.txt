@@ -2,8 +2,8 @@
 Contributors: kiranpotphode
 Tags: chart, graph, bar, line, pie, area, stacked, stacked bar, step up bar, percent bar, stacked area, percent area, donut, polar area, waterfall easy integration, uniform, data representation, simple, download as image, responsive
 Requires at least: 3.0
-Tested up to: 6.2
-Stable tag: 1.2.2
+Tested up to: 6.5.2
+Stable tag: 1.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,11 @@ You can use either method from below:
 4. Insert chart into post/page.
 
 == Changelog ==
+
+= 1.2.3 =
+*Release Date - 4th May, 2024*
+
+* PHPCS coding standard fixes.
 
 = 1.2.2 =
 *Release Date - 6th May, 2023*

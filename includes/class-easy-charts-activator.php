@@ -29,7 +29,5 @@ class Easy_Charts_Activator {
 	 * @since    1.0.0
 	 */
 	public static function activate() {
-
 	}
-
 }
