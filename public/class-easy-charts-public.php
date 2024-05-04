@@ -51,7 +51,6 @@ class Easy_Charts_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version     = $version;
-
 	}
 
 	/**
@@ -74,7 +73,6 @@ class Easy_Charts_Public {
 		 */
 
 		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-public.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -98,16 +96,15 @@ class Easy_Charts_Public {
 
 		wp_register_script( 'easy-charts-public-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-public.js', array( 'jquery' ), $this->version, true );
 
-		wp_register_script( 'd3-js', plugins_url( 'includes/js/d3.min.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'd3-js', plugins_url( 'includes/js/d3.min.js', __DIR__ ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'uvhcharts-js', plugins_url( 'includes/js/uvcharts.min.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'uvhcharts-js', plugins_url( 'includes/js/uvcharts.min.js', __DIR__ ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'filesaver-js', plugins_url( 'includes/js/filesaver.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'filesaver-js', plugins_url( 'includes/js/filesaver.js', __DIR__ ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'canvg-js', plugins_url( 'includes/js/canvg.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
+		wp_register_script( 'canvg-js', plugins_url( 'includes/js/canvg.js', __DIR__ ), array( 'jquery' ), $this->version, false );
 
-		wp_register_script( 'canvas-toblob-js', plugins_url( 'includes/js/canvas-toblob.js', dirname( __FILE__ ) ), array( 'jquery' ), $this->version, false );
-
+		wp_register_script( 'canvas-toblob-js', plugins_url( 'includes/js/canvas-toblob.js', __DIR__ ), array( 'jquery' ), $this->version, false );
 	}
 
 	/**
@@ -121,9 +118,13 @@ class Easy_Charts_Public {
 	 * @return string Parsed Shortcode html markup.
 	 */
 	public static function easy_chart_shortcode_callback( $atts, $content = '' ) {
-		$atts = shortcode_atts( array(
-			'chart_id' => null,
-		), $atts, 'easy_chart' );
+		$atts = shortcode_atts(
+			array(
+				'chart_id' => null,
+			),
+			$atts,
+			'easy_chart'
+		);
 
 		$chart_id = $atts['chart_id'];
 
