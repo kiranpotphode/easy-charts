@@ -113,11 +113,10 @@ class Easy_Charts_Public {
 	 * @since 1.0.0
 	 *
 	 * @param string $atts    Attributes for shortcode.
-	 * @param string $content Content inside Shortcode enclosing tags. Default is ''.
 	 *
 	 * @return string Parsed Shortcode html markup.
 	 */
-	public static function easy_chart_shortcode_callback( $atts, $content = '' ) {
+	public static function easy_chart_shortcode_callback( $atts ) {
 		$atts = shortcode_atts(
 			array(
 				'chart_id' => null,
@@ -126,7 +125,7 @@ class Easy_Charts_Public {
 			'easy_chart'
 		);
 
-		$chart_id = $atts['chart_id'];
+		$chart_id = intval( $atts['chart_id'] );
 
 		if ( $chart_id ) {
 			$plugin = new Easy_Charts();
