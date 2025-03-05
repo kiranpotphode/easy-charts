@@ -2,18 +2,18 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
-#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls {
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .jspreadsheet-controls {
   text-align: center;
   padding: 30px 0;
   border: 1px solid #000;
 }
-#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls .button-group {
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .jspreadsheet-controls .button-group {
   margin: 0 5px;
 }
-#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls .button-group button {
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .jspreadsheet-controls .button-group button {
   /*display: block;*/
 }
-#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .handsontable-controls .button-group button .dashicons {
+#easy-charts-data-metabox-wrap #easy-data-chart-box .ec-data-container .jspreadsheet-controls .button-group button .dashicons {
   line-height: 26px;
   height: 28px;
   margin-right: 10px;
