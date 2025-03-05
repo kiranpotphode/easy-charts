@@ -1,168 +1,127 @@
-(function($) {
-    'use strict';
-    $('document').ready(function() {
+// phpcs:disable
 
-        var data = [
-            ['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
-            ['2008', 10, 11, 12, 13],
-            ['2009', 20, 11, 14, 13],
-            ['2010', 30, 15, 12, 13]
-        ];
+document.addEventListener( 'DOMContentLoaded', function () {
 
+	if (typeof(ec_chart_data) != 'undefined') {
+		var graphdef = {
+			categories: [],
+			dataset: {}
+		};
 
-        if (typeof(ec_chart) != 'undefined') {
-            if (ec_chart.chart_data != null) {
-                data = ec_chart.chart_data;
-            }
-        }
+		var chartType = ec_chart_data.chart_type;
+		var chartCategories = ec_chart_data.chart_categories;
+		var chartDataset = ec_chart_data.chart_data;
+		var chartConfiguration = ec_chart_data.chart_configuration;
 
-        $('.ec-color-picker').wpColorPicker();
-        $(".ec-field-buttonset").buttonset();
+		graphdef = {
+			categories: chartCategories,
+			dataset: chartDataset,
+		};
 
-        $('.ec-field-slider').each(function(index, el) {
+		var chartObject = uv.chart(chartType, graphdef, chartConfiguration);
+	}
 
-            $(this).slider({
-                range: "max",
-                min: 0,
-                max: 1,
-                value: $($(this).data('attach')).val(),
-                step: 0.1,
-                slide: function(event, ui) {
-                    $($(this).data('attach')).val(ui.value);
-                }
-            });
-        });
+	var jspreadsheetid = document.getElementById("jspreadsheet");
+	var data = [
+		['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
+		['2008', 10, 11, 12, 13],
+		['2009', 20, 11, 14, 13],
+		['2010', 30, 15, 12, 13]
+	];
 
+	if (typeof(ec_chart) != 'undefined') {
+		if (ec_chart.chart_data != null) {
+			data = ec_chart.chart_data;
+		}
+	}
 
-        $('.resp-tabs-container').pwstabs({
-            tabsPosition: 'vertical',
-            responsive: false,
-            containerWidth: '100%',
-            theme: 'pws_theme_orange',
-            effect: 'slidedown'
-        });
+	let spreadsheet = jspreadsheet(jspreadsheetid, {
+		worksheets: [{
+			data: data,
+		}],
+		tableOverflow: true,
+		tableWidth: "200px",
+	});
 
-        function ec_save_chart_data_ajax(table) {
-            $.ajax({
-                    url: ajaxurl,
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'action': 'easy_charts_save_chart_data',
-                        'chart_id': ec_chart.chart_id,
-                        '_nonce_check': ec_chart.ec_ajax_nonce,
-                        'chart_data': JSON.stringify(table.getData())
-                    },
-                })
-                .done(function(updated_data) {
-                    $('.uv-div-' + ec_chart.chart_id).html('');
+	document.getElementById("ec-button-add-col").onclick = (event) => { event.preventDefault(); spreadsheet[0].insertColumn() };
+	document.getElementById("ec-button-remove-col").onclick = (event) => { event.preventDefault(); spreadsheet[0].deleteColumn() };
+	document.getElementById("ec-button-add-row").onclick = (event) => { event.preventDefault(); spreadsheet[0].insertRow() };
+	document.getElementById("ec-button-remove-row").onclick = (event) => { event.preventDefault(); spreadsheet[0].deleteRow() };
 
-                    var graphdef = {
-                        categories: updated_data.chart_categories,
-                        dataset: updated_data.chart_data,
-                    };
+	document.getElementById("ec-button-save-data").addEventListener('click', function (event) {
+		event.preventDefault();
+		let data = spreadsheet[0].getData();
 
-                    var chartObject = uv.chart(updated_data.chart_type, graphdef, chartConfiguration);
-                })
-                .fail(function() {})
-                .always(function() {});
-        }
+		if (data.flat().every(cell => cell === "" || cell === null)) {
+			jQuery("#dialog-confirm").dialog({
+				resizable: false,
+				height: 400,
+				modal: true,
+				buttons: {
+					"Ok": function() {
+						jQuery(this).dialog("close");
+					}
+				}
+			});
+		} else {
+			// Prepare data to send
+			const formData = new FormData();
+			formData.append("action", "easy_charts_save_chart_data"); // Must match the PHP action
+			formData.append("chart_id", ec_chart.chart_id);
+			formData.append('_nonce_check', ec_chart.ec_ajax_nonce);
+			formData.append("chart_data", JSON.stringify(data));
 
-        var container = document.getElementById("handsontable");
+			// Send AJAX request
+			fetch(ajaxurl, {
+				method: "POST",
+				body: formData
+			})
+				.then(response => response.json())
+				.then(updated_data => {
+					document.querySelector( '.uv-div-' + ec_chart.chart_id ).innerHTML = '';
 
-        if (container != null) {
+					var graphdef = {
+						categories: updated_data.chart_categories,
+						dataset: updated_data.chart_data,
+					};
 
-            var hot = new Handsontable(container, {
-                data: data,
-                stretchH: 'all',
-                cell: [{
-                    row: 0,
-                    col: 0,
-                    readOnly: true
-                }],
-                fixedRowsTop: 1,
-                fixedColumnsTop: 1,
-                fixedColumnsLeft: 1,
-                rowHeaders: true,
-                colHeaders: true,
-                manualColumnMove: true,
-                manualRowMove: true,
-                minSpareRows: 0,
-                minSpareCols: 0,
-                contextMenu: true,
-                autoWrapCol: true,
-                autoWrapRow: true,
-                afterChange: function(change, source) {},
-                afterColumnMove: function(startColumn, endColumn) {},
-                afterRowMove: function(startColumn, endColumn) {}
-            });
-        }
+					var chartObject = uv.chart(updated_data.chart_type, graphdef, chartConfiguration);
+				})
+				.catch(error => console.error("Error:", error));
+		}
+	});
 
-        $('#ec-button-add-col').on('click', function(event) {
-            event.preventDefault();
-            hot.alter('insert_col', null);
-        });
-        $('#ec-button-remove-col').on('click', function(event) {
-            event.preventDefault();
-            hot.alter('remove_col', null);
-        });
-        $('#ec-button-add-row').on('click', function(event) {
-            event.preventDefault();
-            hot.alter('insert_row', null);
-        });
-        $('#ec-button-remove-row').on('click', function(event) {
-            event.preventDefault();
-            hot.alter('remove_row', null);
-        });
+	// jQuery implementation.
+	jQuery('.ec-color-picker').wpColorPicker();
+	jQuery(".ec-field-buttonset").buttonset();
+	jQuery('.ec-field-slider').each(function(index, el) {
 
-        $('#ec-button-save-data').on('click', function(event) {
-            event.preventDefault();
+		jQuery(this).slider({
+			range: "max",
+			min: 0,
+			max: 1,
+			value: jQuery(jQuery(this).data('attach')).val(),
+			step: 0.1,
+			slide: function(event, ui) {
+				jQuery(jQuery(this).data('attach')).val(ui.value);
+			}
+		});
+	});
 
-            if (hot.countEmptyCols() == 0 && hot.countEmptyRows() == 0) {
+	jQuery('.resp-tabs-container').pwstabs({
+		tabsPosition: 'vertical',
+		responsive: false,
+		containerWidth: '100%',
+		theme: 'pws_theme_orange',
+		effect: 'slidedown'
+	});
 
-                ec_save_chart_data_ajax(hot);
-            } else {
-                $("#dialog-confirm").dialog({
-                    resizable: false,
-                    height: 400,
-                    modal: true,
-                    buttons: {
-                        "Ok": function() {
-                            $(this).dialog("close");
-                        }
-                    }
-                });
-            }
+	jQuery('.uv-chart-div svg.uv-frame g.uv-download-options').bind('mouseenter', function(event) {
+		var svg = jQuery(this).parents('.uv-chart-div svg.uv-frame');
 
-        });
+		svg[0].setAttribute('width', svg[0].getBoundingClientRect().width);
+		svg[0].setAttribute('height', svg[0].getBoundingClientRect().height);
 
-        if (typeof(ec_chart_data) != 'undefined') {
-            var graphdef = {
-                categories: [],
-                dataset: {}
-            };
+	});
 
-            var chartType = ec_chart_data.chart_type;
-            var chartCategories = ec_chart_data.chart_categories;
-            var chartDataset = ec_chart_data.chart_data;
-            var chartConfiguration = ec_chart_data.chart_configuration;
-
-            graphdef = {
-                categories: chartCategories,
-                dataset: chartDataset,
-            };
-
-            var chartObject = uv.chart(chartType, graphdef, chartConfiguration);
-        }
-
-        $('.uv-chart-div svg.uv-frame g.uv-download-options').bind('mouseenter', function(event) {
-            var svg = $(this).parents('.uv-chart-div svg.uv-frame');
-
-            svg[0].setAttribute('width', svg[0].getBoundingClientRect().width);
-            svg[0].setAttribute('height', svg[0].getBoundingClientRect().height);
-
-        });
-
-    });
-
-})(jQuery);
+});

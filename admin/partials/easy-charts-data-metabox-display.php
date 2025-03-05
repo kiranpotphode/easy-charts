@@ -20,10 +20,10 @@ $plugin = new Easy_Charts();
 	<div id="easy-data-chart-box">
 
 		<div class="ec-data-container">
-			<div class="handsontable-container" style="width: auto; height: auto; overflow: hidden;">
-				<div id="handsontable" class="hot htRemoveRow handsontable htRowHeaders htColumnHeaders"></div>
+			<div class="jspreadsheet-container" style="width: auto; height: auto; overflow: auto;">
+                <div id="jspreadsheet" ></div>
 			</div>
-			<div class="handsontable-controls">
+			<div class="jspreadsheet-controls">
 				<div class="button-group">
 					<button class="button button-primary" id="ec-button-add-col"><span
 								class="dashicons dashicons-plus"></span><?php esc_html_e( 'Add Column', 'easy-charts' ); ?>

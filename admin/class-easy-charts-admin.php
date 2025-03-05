@@ -81,7 +81,9 @@ class Easy_Charts_Admin {
 		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow && 'easy_charts' === $typenow ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-admin.css', array(), $this->version, 'all' );
 
-			wp_enqueue_style( 'handsontable-css', plugin_dir_url( __FILE__ ) . 'css/handsontable/handsontable.full.css', array(), $this->version, 'all' );
+			wp_enqueue_style( 'jsuites-css', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jsuites.min.css', array(), $this->version, 'all' );
+
+			wp_enqueue_style( 'jspreadsheet-css', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jspreadsheet.css', array( 'jsuites-css' ), $this->version, 'all' );
 
 			wp_enqueue_style( 'jquery-ui-css', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.min.css', array(), $this->version, 'all' );
 
@@ -116,9 +118,12 @@ class Easy_Charts_Admin {
 
 		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow && 'easy_charts' === $typenow ) {
 
-			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery' ), $this->version, true );
+			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery', 'jsuites-js', 'jspreadsheet-js' ), $this->version, true );
 
-			wp_enqueue_script( 'handsontable-js', plugin_dir_url( __FILE__ ) . 'js/handsontable/handsontable.full.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'jsuites-js', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jsuites.min.js', array(), $this->version, false );
+
+			wp_enqueue_script( 'jspreadsheet-js', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jspreadsheet.js', array(), $this->version, false );
+
 			wp_enqueue_script( 'd3-js', plugins_url( 'includes/js/d3.min.js', __DIR__ ), array( 'jquery' ), $this->version, false );
 
 			wp_enqueue_script( 'filesaver-js', plugins_url( 'includes/js/filesaver.js', __DIR__ ), array( 'jquery' ), $this->version, false );
@@ -336,11 +341,9 @@ class Easy_Charts_Admin {
 			if ( ! current_user_can( 'edit_page', $post_id ) ) {
 				return;
 			}
-		} else {
+		} elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
 
-			if ( ! current_user_can( 'edit_post', $post_id ) ) {
 				return;
-			}
 		}
 
 		$ec_chart_graph = array(
