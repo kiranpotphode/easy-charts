@@ -1,0 +1,113 @@
+name: Node.js Package
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.trim.outputs.version }}
+    steps:
+      - id: trim
+        run: echo "::set-output name=version::${TAG:1}"
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
+      with:
+        cache: npm
+        node-version: 16
+    - name: Test
+      run: |
+        npm ci
+        xvfb-run --auto-servernum npm test
+
+  publish-npm:
+    needs: [test, setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          cache: npm
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+
+      - name: Setup and build
+        run: |
+          npm ci
+          npm install -g json
+          json -I -f package.json -e "this.version=\"$VERSION\""
+          json -I -f package-lock.json -e "this.version=\"$VERSION\""
+          npm run build
+          npm pack
+        env:
+          VERSION: ${{ needs.setup.outputs.version }}
+
+      - name: Publish @next
+        run: npm publish --tag next
+        if: "github.event.release.prerelease"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Publish @latest
+        run: npm publish --tag latest
+        if: "!github.event.release.prerelease"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Build docs
+        run: |
+          ./scripts/docs-config.sh "$VERSION" release
+          npm run docs
+        env:
+          VERSION: ${{ needs.setup.outputs.version }}
+
+      - name: Release to GitHub Pages (version)
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_AUTH_TOKEN }}
+          publish_dir: dist/docs
+          destination_dir: ${{ needs.setup.outputs.version }}
+
+  publish-docs:
+    needs: [test, setup]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+
+      - name: Build docs (latest/next)
+        run: |
+          npm ci
+          npm run build
+          ./scripts/docs-config.sh "$VERSION"
+          npm run docs
+        env:
+          VERSION: ${{ needs.setup.outputs.version }}
+
+      - name: Release to GitHub Pages (latest)
+        if: "!github.event.release.prerelease"
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_AUTH_TOKEN }}
+          publish_dir: dist/docs
+          destination_dir: latest
+
+      - name: Release to GitHub Pages (next)
+        if: "github.event.release.prerelease"
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_AUTH_TOKEN }}
+          publish_dir: dist/docs
+          destination_dir: next

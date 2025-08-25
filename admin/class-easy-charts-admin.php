@@ -118,7 +118,10 @@ class Easy_Charts_Admin {
 
 		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow && 'easy_charts' === $typenow ) {
 
-			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery', 'jsuites-js', 'jspreadsheet-js' ), $this->version, true );
+			wp_enqueue_script( 'easy-charts-chart-js', EASY_CHARTS_URL . '/src/libs/chart-js/dist/chart.umd.js', array(), $this->version, true );
+			wp_enqueue_script( 'easy-charts-plugin-datatable-js', EASY_CHARTS_URL . '/src/libs/chart-js/plugins/chartjs-plugin-datalabels.min.js', array(), $this->version, true );
+
+			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery', 'jsuites-js', 'jspreadsheet-js', 'easy-charts-chart-js' ), filemtime( plugin_dir_path( __FILE__ ) . 'js/easy-charts-admin.js' ), true );
 
 			wp_enqueue_script( 'jsuites-js', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jsuites.min.js', array(), $this->version, false );
 
@@ -490,6 +493,7 @@ class Easy_Charts_Admin {
 			'factor'      => filter_input( INPUT_POST, 'ec_chart_donut_factor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
+		update_post_meta( $post_id, '_ec_chart_lib', filter_input( INPUT_POST, 'ec_chart_lib', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_type', filter_input( INPUT_POST, 'ec_chart_type', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_meta', $ec_chart_meta );
 		update_post_meta( $post_id, '_ec_chart_graph', $ec_chart_graph );
