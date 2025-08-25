@@ -22,6 +22,9 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'EASY_CHARTS_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+define( 'EASY_CHARTS_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-easy-charts-activator.php

@@ -76,20 +76,11 @@ class Easy_Charts_Admin {
 
 		global $pagenow, $typenow;
 
-		wp_enqueue_style( 'insert-chart-button-tc-css', plugin_dir_url( __FILE__ ) . 'css/insert-chart.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 'insert-chart-button-tc-css', EASY_CHARTS_URL . '/build/css/insertchartbutton.css', array(), $this->version, 'all' );
 
-		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow && 'easy_charts' === $typenow ) {
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-admin.css', array(), $this->version, 'all' );
+		if ( ( 'post-new.php' === $pagenow || 'post.php' === $pagenow ) && 'easy_charts' === $typenow ) {
 
-			wp_enqueue_style( 'jsuites-css', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jsuites.min.css', array(), $this->version, 'all' );
-
-			wp_enqueue_style( 'jspreadsheet-css', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jspreadsheet.css', array( 'jsuites-css' ), $this->version, 'all' );
-
-			wp_enqueue_style( 'jquery-ui-css', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.min.css', array(), $this->version, 'all' );
-
-			wp_enqueue_style( 'responsive-tabs-css', plugin_dir_url( __FILE__ ) . 'css/jquery.pwstabs.min.css', array(), $this->version, 'all' );
-
-			wp_enqueue_style( 'font-awesome-css', plugin_dir_url( __FILE__ ) . 'css/font-awesome.min.css', array(), $this->version, 'all' );
+			wp_enqueue_style( $this->plugin_name, EASY_CHARTS_URL . '/build/css/admin.css', array(), $this->version, 'all' );
 
 			wp_enqueue_style( 'wp-color-picker' );
 		}
@@ -116,27 +107,11 @@ class Easy_Charts_Admin {
 
 		global $pagenow, $typenow;
 
-		if ( 'post-new.php' === $pagenow || 'post.php' === $pagenow && 'easy_charts' === $typenow ) {
+		if ( ( 'post-new.php' === $pagenow || 'post.php' === $pagenow ) && 'easy_charts' === $typenow ) {
 
-			wp_enqueue_script( 'easy-charts-admin-js', plugin_dir_url( __FILE__ ) . 'js/easy-charts-admin.js', array( 'jquery', 'jsuites-js', 'jspreadsheet-js' ), $this->version, true );
+			wp_register_script( 'easy-charts-dependencies-js', EASY_CHARTS_URL . '/build/js/dependencies.js', array( 'jquery' ), $this->version, false );
 
-			wp_enqueue_script( 'jsuites-js', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jsuites.min.js', array(), $this->version, false );
-
-			wp_enqueue_script( 'jspreadsheet-js', plugin_dir_url( __FILE__ ) . 'js/jspreadsheet/jspreadsheet.js', array(), $this->version, false );
-
-			wp_enqueue_script( 'd3-js', plugins_url( 'includes/js/d3.min.js', __DIR__ ), array( 'jquery' ), $this->version, false );
-
-			wp_enqueue_script( 'filesaver-js', plugins_url( 'includes/js/filesaver.js', __DIR__ ), array( 'jquery' ), $this->version, false );
-
-			wp_enqueue_script( 'canvg-js', plugins_url( 'includes/js/canvg.js', __DIR__ ), array( 'jquery' ), $this->version, false );
-
-			wp_enqueue_script( 'canvas-toblob-js', plugins_url( 'includes/js/canvas-toblob.js', __DIR__ ), array( 'jquery' ), $this->version, false );
-
-			wp_enqueue_script( 'uvhcharts-js', plugins_url( 'includes/js/uvcharts.min.js', __DIR__ ), array( 'jquery' ), $this->version, false );
-
-			wp_enqueue_script( 'responsive-tabs-js', plugin_dir_url( __FILE__ ) . 'js/jquery.pwstabs.min.js', array( 'jquery' ), $this->version, false );
-
-			wp_enqueue_script( 'bootstrap-touchspin-js', plugin_dir_url( __FILE__ ) . 'js/jquery.bootstrap-touchspin.min.js', array( 'jquery' ), $this->version, false );
+			wp_enqueue_script( 'easy-charts-admin-js', EASY_CHARTS_URL . '/build/js/admin.js', array( 'jquery', 'easy-charts-dependencies-js' ), $this->version, true );
 
 			wp_enqueue_script( 'jquery-ui-dialog' );
 			wp_enqueue_script( 'jquery-ui-button' );

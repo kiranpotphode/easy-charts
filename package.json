@@ -1,0 +1,36 @@
+{
+  "name": "easy-charts",
+  "version": "1.4.5",
+  "license": "ISC",
+  "author": "Kiran Potphode <kiranpotphode15@gmail.com>",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack --mode development --watch --progress",
+    "pretify": "prettier src/js/* --write",
+    "clean": "rm -rf build",
+    "eslint": "eslint src/js/*",
+    "eslint:fix": "eslint --fix src/js/*"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.0",
+    "jquery-ui": "^1.14.1",
+    "jspreadsheet-ce": "^5.0.3",
+    "pwstabs": "^1.4.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.11.0",
+    "eslint": "^9.19.0",
+    "eslint-webpack-plugin": "^4.2.0",
+    "globals": "^15.14.0",
+    "mini-css-extract-plugin": "^2.7.6",
+    "prettier": "^3.4.2",
+    "sass": "^1.69.1",
+    "sass-loader": "^13.3.2",
+    "script-loader": "^0.7.2",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
