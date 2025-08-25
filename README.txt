@@ -80,6 +80,8 @@ You can use either method from below:
 = 1.2.5 =
 *Release Date - 25th Aug, 2025*
 
+* Replace handsontable with jspreadsheet js
+
 = 1.2.4 =
 *Release Date - 18th Feb, 2025*
 
