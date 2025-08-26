@@ -72,7 +72,7 @@ class Easy_Charts_Public {
 		 * class.
 		 */
 
-		wp_register_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/easy-charts-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, EASY_CHARTS_URL . '/build/css/frontend.css', array(), $this->version, 'all' );
 	}
 
 	/**

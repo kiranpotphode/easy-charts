@@ -23,6 +23,17 @@ $font_family = $plugin->get_font_family_array();
 			<div class="resp-tabs-container">
 				<div id="ec-tabs-graph" class="ec-tab" data-pws-tab-name="<?php esc_attr_e( 'General', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-graph" data-pws-tab-icon="fa-university">
 					<?php
+					$ec_chart_lib = get_post_meta( $post->ID, '_ec_chart_lib', true );
+					$plugin->ec_render_field(
+						'dropdown',
+						'ec_chart_lib',
+						'Chart Lib',
+						$ec_chart_lib,
+						array(
+							'ec_uv_chart'      => __( 'UV Charts (legacy)', 'easy-charts' ),
+							'ec_chartjs_chart' => __( 'Chart JS (Modern)', 'easy-charts' ),
+						)
+					);
 					$ec_chart_type = get_post_meta( $post->ID, '_ec_chart_type', true );
 					$plugin->ec_render_field(
 						'dropdown',

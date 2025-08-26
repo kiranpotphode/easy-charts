@@ -2,6 +2,10 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+.ec-chart-wrapper {
+	position: relative;
+	width: 100%;
+}
 #easy-charts-data-metabox-wrap{
 	#easy-data-chart-box{
 		.ec-data-container{

@@ -1,3 +1,21 @@
+import '../scss/easy-charts-public.scss';
+
+const canvases = document.querySelectorAll('.ec-chartjs-chart-container');
+
+canvases.forEach((canvas, index) => {
+	const dataObject = canvas.dataset.object;
+
+	const ec_chart_data = window[dataObject];
+	if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
+		import( './chart-js-adapter' )
+			.then( ( { default: chartJs } ) => { chartJs( 'canvas.ec-chartjs-chart-container.' + dataObject, ec_chart_data ) } )
+			.catch( ( err ) => {
+				console.error( 'Failed to load module', err );
+			} );
+	}
+});
+
+
 function get_ec_oject( obj ) {
 	return this[obj];
 }

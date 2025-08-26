@@ -465,6 +465,7 @@ class Easy_Charts_Admin {
 			'factor'      => filter_input( INPUT_POST, 'ec_chart_donut_factor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
+		update_post_meta( $post_id, '_ec_chart_lib', filter_input( INPUT_POST, 'ec_chart_lib', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_type', filter_input( INPUT_POST, 'ec_chart_type', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_meta', $ec_chart_meta );
 		update_post_meta( $post_id, '_ec_chart_graph', $ec_chart_graph );

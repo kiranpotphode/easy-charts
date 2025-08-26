@@ -9,7 +9,7 @@ import "@fortawesome/fontawesome-free/js/all.js";
 import "pwstabs/assets/jquery.pwstabs.css";
 import "pwstabs/assets/jquery.pwstabs.js";
 
-import "jquery-ui/themes/base/all.css";   // full base theme
+import "jquery-ui/themes/base/all.css";
 
 document.addEventListener( 'DOMContentLoaded', function () {
 
@@ -19,16 +19,27 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			dataset: {}
 		};
 
+		var chartLib = ec_chart_data.chart_lib;
 		var chartType = ec_chart_data.chart_type;
 		var chartCategories = ec_chart_data.chart_categories;
 		var chartDataset = ec_chart_data.chart_data;
 		var chartConfiguration = ec_chart_data.chart_configuration;
-
+		console.log( 'chartlib', chartLib );
 		graphdef = {
 			categories: chartCategories,
 			dataset: chartDataset,
 		};
 
+		if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
+			console.log( 'load chart js' );
+			import( './chart-js-adapter' )
+				.then( ( { default: chartJs } ) => { chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data ) } )
+				.catch( ( err ) => {
+					console.error( 'Failed to load module', err );
+				} );
+		} else {
+			var chartObject = uv.chart( chartType, graphdef, chartConfiguration );
+		}
 		var chartObject = uv.chart( chartType, graphdef, chartConfiguration );
 	}
 

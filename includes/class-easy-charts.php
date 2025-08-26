@@ -74,7 +74,6 @@ class Easy_Charts {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -370,6 +369,7 @@ class Easy_Charts {
 		$ec_chart_categories    = array();
 		$ec_chart_configuration = array();
 
+		$ec_chart_lib  = get_post_meta( $chart_id, '_ec_chart_lib', true );
 		$ec_chart_type = get_post_meta( $chart_id, '_ec_chart_type', true );
 
 		switch ( $ec_chart_type ) {
@@ -471,6 +471,7 @@ class Easy_Charts {
 		$ec_chart_donut      = $this->ec_get_chart_configuration( $chart_id, 'donut' );
 
 		$ec_chart_data = array(
+			'chart_lib'           => $ec_chart_lib,
 			'chart_type'          => $ec_chart_type,
 			'chart_data'          => $translated_dataset,
 			'chart_categories'    => $ec_chart_categories,
@@ -538,7 +539,12 @@ class Easy_Charts {
 				}
 			}
 
-			$chart_html = '<div  class="ec-uv-chart-container uv-div-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></div>';
+			if ( 'ec_chartjs_chart' === $ec_chart_data['chart_lib'] ) {
+				$chart_html  = '<div class="ec-chart-wrapper"><canvas  class="ec-chartjs-chart-container ec_object_' . $chart_id . ' chart-js-canvas-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></canvas></div>';
+				//$chart_html .= '<div  class="ec-uv-chart-container uv-div-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></div>';
+			} else {
+				$chart_html = '<div  class="ec-uv-chart-container uv-div-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></div>';
+			}
 
 			/**
 			 * Filter to replace html content of chart.
