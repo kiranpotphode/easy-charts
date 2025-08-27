@@ -59,7 +59,8 @@ function parseChartJSData ( rawData, rawConfig ) {
 		scales: {
 			y: {
 				//beginAtZero: true,
-				type:  'log' == rawConfig.scale.type ? 'logarithmic' : rawConfig.scale.type,
+				//type: 'category',
+				//type:  'log' == rawConfig.scale.type ? 'logarithmic' : rawConfig.scale.type,
 				title: {
 					display: !!rawConfig.meta.vlabel.length,
 					text: [rawConfig.meta.vlabel,rawConfig.meta.vsublabel], // Vertical caption.
@@ -129,7 +130,7 @@ function parseChartJSData ( rawData, rawConfig ) {
 					family: rawConfig.caption.fontfamily,
 					size: rawConfig.caption.fontsize,
 					weight: rawConfig.caption.weight,
-					//style: rawConfig.caption.style
+					style: rawConfig.caption.style
 				},
 				color: rawConfig.caption.strokecolor
 			},
@@ -187,6 +188,8 @@ function parseChartJSData ( rawData, rawConfig ) {
 
 	console.log( 'options', options );
 
+	console.log('labels: ', labels);
+	console.log('datasets: ', datasets);
 	return {labels: labels, datasets: datasets, options: options};
 };
 
@@ -225,6 +228,13 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 			plugins: chartJSData.plugins
 		}
 	);
+
+	console.log('respoin', ec_chart_data)
+	if (true != ec_chart_data.chart_configuration.graph.responsive ) {
+		console.log('respoin', ec_chart_data.chart_configuration.dimension.width)
+
+		chartJS.resize(ec_chart_data.chart_configuration.dimension.width,ec_chart_data.chart_configuration.dimension.height);
+	}
 
 	// Responsive resize handler (debounced).
 	let resizeTimeout;
