@@ -21,7 +21,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chart_js_adapter_plugin_pow_scale__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./chart-js-adapter/plugin-pow-scale */ "./src/js/chart-js-adapter/plugin-pow-scale.js");
 /* harmony import */ var _chart_js_adapter_plugin_canvas_background__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./chart-js-adapter/plugin-canvas-background */ "./src/js/chart-js-adapter/plugin-canvas-background.js");
 /* harmony import */ var _chart_js_adapter_plugin_plot_area_background__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./chart-js-adapter/plugin-plot-area-background */ "./src/js/chart-js-adapter/plugin-plot-area-background.js");
-/* harmony import */ var chart_js_helpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! chart.js/helpers */ "./node_modules/chart.js/helpers/helpers.js");
+/* harmony import */ var _chart_js_adapter_plugin_download_chart_image__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./chart-js-adapter/plugin-download-chart-image */ "./src/js/chart-js-adapter/plugin-download-chart-image.js");
+/* harmony import */ var chart_js_helpers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! chart.js/helpers */ "./node_modules/chart.js/helpers/helpers.js");
+
 
 
 
@@ -37,6 +39,8 @@ __webpack_require__.r(__webpack_exports__);
 let chartJS;
 
 function parseChartJSData ( rawData, rawConfig, extraConfig ) {
+
+	console.log(rawConfig);
 	// Extract all unique labels dynamically.
 	const labels = (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.getChartLabels)( rawData );
 
@@ -193,10 +197,11 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 				display: 1 === rawConfig.label.showlabel,
 				color: rawConfig.label.strokecolor,
 				font: {
-					family: rawConfig.label.fontfamily
+					family: rawConfig.label.fontfamily,
+					size: rawConfig.label.fontsize,
 				},
 				formatter: function( value, context ) {
-					if ( (0,chart_js_helpers__WEBPACK_IMPORTED_MODULE_9__.isNumber)( value ) && rawConfig.label.precision && value % 1 !== 0 ) {
+					if ( (0,chart_js_helpers__WEBPACK_IMPORTED_MODULE_10__.isNumber)( value ) && rawConfig.label.precision && value % 1 !== 0 ) {
 						value = value.toFixed( rawConfig.label.precision );
 					}
 					return rawConfig.label.prefix + value + rawConfig.label.suffix;
@@ -219,6 +224,13 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 				enable: 'PercentBar' === rawConfig.graph.chartType
 			},
 
+			downloadChartImagePlugin: {
+				enable: 1 === rawConfig.meta.isDownloadable ? true : false,
+				buttonText: rawConfig.meta.downloadLabel,
+				buttonColor: '#3932FE',
+				fontSize: 14,
+				filename: 'my_chart.png'
+			},
 		}
 	}
 
@@ -303,6 +315,8 @@ function chartJs( chartSelector, ec_chart_data ) {
 	// Register custom background color plugins.
 	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_canvas_background__WEBPACK_IMPORTED_MODULE_7__["default"] );
 	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_plot_area_background__WEBPACK_IMPORTED_MODULE_8__["default"] );
+
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_download_chart_image__WEBPACK_IMPORTED_MODULE_9__["default"] );
 
 	// Register custom chart plugins.
 	//Chart.register(stepUpBar);
@@ -413,10 +427,8 @@ function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 	const legends = Object.keys( rawData );
 
 	return legends.map( ( legend, index ) => {
-		console.log('legend', legend);
-		console.log('rawdata', rawData);
-		console.log('legenddata', rawData[legend]);
-		if (  ( /*extraConfig.chartType === 'Waterfall'||*/ extraConfig.chartType === 'Pie'|| extraConfig.chartType === 'PolarArea' ) && legend !== legends[0] ) {
+
+		if (  ( extraConfig.chartType === 'Waterfall'|| extraConfig.chartType === 'Pie'|| extraConfig.chartType === 'PolarArea' ) && legend !== legends[0] ) {
 			return null; // Skip non-first legends
 		}
 
@@ -500,6 +512,63 @@ const canvasBackgroundPlugin         = {
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (canvasBackgroundPlugin);
+
+/***/ }),
+
+/***/ "./src/js/chart-js-adapter/plugin-download-chart-image.js":
+/*!****************************************************************!*\
+  !*** ./src/js/chart-js-adapter/plugin-download-chart-image.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const downloadChartImagePlugin = {
+	id: 'downloadChartImagePlugin',
+	afterDraw(chart, _args, options) {
+		if ( ! options.enable ) {
+			return;
+		}
+
+		const { ctx, canvas } = chart;
+		const text = options.buttonText || 'Download Chart';
+		const padding = 10;
+		const fontSize = options.fontSize || 12;
+
+		ctx.save();
+		ctx.font = `${fontSize}px sans-serif`;
+		ctx.fillStyle = options.buttonColor || '#007bff';
+		const textWidth = ctx.measureText(text).width;
+		const x = canvas.width - textWidth - padding;
+		const y = canvas.height - padding;
+
+		ctx.fillText(text, x, y);
+		ctx.restore();
+
+		// Canvas click listener
+		canvas.onclick = (e) => {
+			const rect = canvas.getBoundingClientRect();
+			const clickX = e.clientX - rect.left;
+			const clickY = e.clientY - rect.top;
+			if (
+				clickX >= x &&
+				clickX <= x + textWidth &&
+				clickY >= y - fontSize &&
+				clickY <= y
+			) {
+				const url = chart.toBase64Image();
+				const link = document.createElement('a');
+				link.href = url;
+				link.download = options.filename || 'chart.png';
+				link.click();
+			}
+		};
+	}
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (downloadChartImagePlugin);
 
 /***/ }),
 

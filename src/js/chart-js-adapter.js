@@ -7,12 +7,15 @@ import SqrtScale from './chart-js-adapter/plugin-squrt-scale'
 import SymlogScale from './chart-js-adapter/plugin-symlog-scale'
 import PowScale from './chart-js-adapter/plugin-pow-scale'
 import canvasBackgroundPlugin from "./chart-js-adapter/plugin-canvas-background";
-import plotAreaBackgroundPlugin from "./chart-js-adapter/plugin-plot-area-background"
+import plotAreaBackgroundPlugin from "./chart-js-adapter/plugin-plot-area-background";
+import downloadChartImagePlugin from "./chart-js-adapter/plugin-download-chart-image";
 import {isNumber} from "chart.js/helpers";
 
 let chartJS;
 
 function parseChartJSData ( rawData, rawConfig, extraConfig ) {
+
+	console.log(rawConfig);
 	// Extract all unique labels dynamically.
 	const labels = getChartLabels( rawData );
 
@@ -169,7 +172,8 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 				display: 1 === rawConfig.label.showlabel,
 				color: rawConfig.label.strokecolor,
 				font: {
-					family: rawConfig.label.fontfamily
+					family: rawConfig.label.fontfamily,
+					size: rawConfig.label.fontsize,
 				},
 				formatter: function( value, context ) {
 					if ( isNumber( value ) && rawConfig.label.precision && value % 1 !== 0 ) {
@@ -195,6 +199,13 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 				enable: 'PercentBar' === rawConfig.graph.chartType
 			},
 
+			downloadChartImagePlugin: {
+				enable: 1 === rawConfig.meta.isDownloadable ? true : false,
+				buttonText: rawConfig.meta.downloadLabel,
+				buttonColor: '#3932FE',
+				fontSize: 14,
+				filename: 'my_chart.png'
+			},
 		}
 	}
 
@@ -279,6 +290,8 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 	// Register custom background color plugins.
 	Chart.register( canvasBackgroundPlugin );
 	Chart.register( plotAreaBackgroundPlugin );
+
+	Chart.register( downloadChartImagePlugin );
 
 	// Register custom chart plugins.
 	//Chart.register(stepUpBar);

@@ -51,10 +51,8 @@ export function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 	const legends = Object.keys( rawData );
 
 	return legends.map( ( legend, index ) => {
-		console.log('legend', legend);
-		console.log('rawdata', rawData);
-		console.log('legenddata', rawData[legend]);
-		if (  ( /*extraConfig.chartType === 'Waterfall'||*/ extraConfig.chartType === 'Pie'|| extraConfig.chartType === 'PolarArea' ) && legend !== legends[0] ) {
+
+		if (  ( extraConfig.chartType === 'Waterfall'|| extraConfig.chartType === 'Pie'|| extraConfig.chartType === 'PolarArea' ) && legend !== legends[0] ) {
 			return null; // Skip non-first legends
 		}
 
