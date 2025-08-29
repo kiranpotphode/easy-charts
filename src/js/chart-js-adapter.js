@@ -1,5 +1,6 @@
 import Chart  from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartjsPluginStacked100 from "chartjs-plugin-stacked100";
 
 import {chartJSColorPalette, hexToRgba, getChartLabels, getDataSets } from './chart-js-adapter/helpers'
 import SqrtScale from './chart-js-adapter/plugin-squrt-scale'
@@ -7,17 +8,18 @@ import SymlogScale from './chart-js-adapter/plugin-symlog-scale'
 import PowScale from './chart-js-adapter/plugin-pow-scale'
 import canvasBackgroundPlugin from "./chart-js-adapter/plugin-canvas-background";
 import plotAreaBackgroundPlugin from "./chart-js-adapter/plugin-plot-area-background"
+import {isNumber} from "chart.js/helpers";
 
 let chartJS;
 
-function parseChartJSData ( rawData, rawConfig ) {
+function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 	// Extract all unique labels dynamically.
-	const labels = getChartLabels(rawData);
+	const labels = getChartLabels( rawData );
 
 	const colorPalette = chartJSColorPalette[rawConfig.graph.palette];
 
 	// Generate datasets dynamically.
-	const datasets = getDataSets( rawData, labels, colorPalette );
+	const datasets = getDataSets( rawData, labels, colorPalette, extraConfig );
 
 	const scaleGrid = {
 		tickColor: rawConfig.axis.strokecolor,
@@ -41,7 +43,7 @@ function parseChartJSData ( rawData, rawConfig ) {
 			weight: rawConfig.axis.fontweight,
 		},
 	};
-	console.log('responsive', rawConfig.graph.responsive);
+
 	const options = {
 		responsive: true === rawConfig.graph.responsive,
 		//maintainAspectRatio: true === rawConfig.graph.responsive,
@@ -58,9 +60,12 @@ function parseChartJSData ( rawData, rawConfig ) {
 		},
 		scales: {
 			y: {
-				//beginAtZero: true,
+				beginAtZero: true,
 				//type: 'category',
 				//type:  'log' == rawConfig.scale.type ? 'logarithmic' : rawConfig.scale.type,
+				...( extraConfig.isStacked && { stacked: extraConfig.isStacked } ),
+				...( extraConfig.stepped && { beginAtZero: true } ), // For steped up bar chart.
+
 				title: {
 					display: !!rawConfig.meta.vlabel.length,
 					text: [rawConfig.meta.vlabel,rawConfig.meta.vsublabel], // Vertical caption.
@@ -86,7 +91,11 @@ function parseChartJSData ( rawData, rawConfig ) {
 				grid: scaleGrid
 			},
 			x: {
-				//beginAtZero: true,
+				...( extraConfig.isStacked && { stacked: extraConfig.isStacked } ),
+				beginAtZero: true,
+				//offset: true,
+				//stacked: true,
+
 				title: {
 					display: !!rawConfig.meta.hlabel.length,
 					text: [rawConfig.meta.hlabel,rawConfig.meta.hsublabel], // Horizontal caption.
@@ -163,7 +172,7 @@ function parseChartJSData ( rawData, rawConfig ) {
 					family: rawConfig.label.fontfamily
 				},
 				formatter: function( value, context ) {
-					if ( rawConfig.label.precision && value % 1 !== 0 ) {
+					if ( isNumber( value ) && rawConfig.label.precision && value % 1 !== 0 ) {
 						value = value.toFixed( rawConfig.label.precision );
 					}
 					return rawConfig.label.prefix + value + rawConfig.label.suffix;
@@ -181,25 +190,86 @@ function parseChartJSData ( rawData, rawConfig ) {
 					},
 					color: rawConfig.legend.color // label text color.
 				}
-			}
+			},
+			stacked100: {
+				enable: 'PercentBar' === rawConfig.graph.chartType
+			},
 
 		}
 	}
 
-	console.log( 'options', options );
 
-	console.log('labels: ', labels);
-	console.log('datasets: ', datasets);
 	return {labels: labels, datasets: datasets, options: options};
 };
 
 export default function chartJs( chartSelector, ec_chart_data ) {
 	let chartType = ec_chart_data.chart_type;
+	let extraConfig = {};
 	let chartDataset = ec_chart_data.chart_data;
 	let chartConfiguration = ec_chart_data.chart_configuration;
 
-	let chartJSData = parseChartJSData( chartDataset, chartConfiguration );
-	console.log( chartConfiguration );
+	switch ( ec_chart_data.chart_type ) {
+	case 'Bar':
+		chartType = 'bar';
+		break;
+	case 'Waterfall':
+		chartType = 'bar';
+		extraConfig['chartType'] = 'Waterfall';
+		extraConfig['isStacked'] = true;
+		break;
+	case 'Pie':
+		chartType = 'pie';
+		extraConfig['chartType'] = 'Pie';
+		break;
+	case 'Donut':
+		chartType = 'doughnut';
+		extraConfig['chartType'] = 'Pie'; // dataset is currently kept same as pie chart.
+		break;
+	case 'StepUpBar':
+		chartType = 'bar';
+		extraConfig['chartType'] = 'StepUpBar';
+		extraConfig['isStacked'] = true;
+		break;
+	case 'StackedBar':
+		chartType = 'bar';
+		extraConfig['isStacked'] = true;
+		break;
+	case 'PercentBar':
+		chartType = 'bar';
+		break;
+	case 'Area':
+		chartType = 'line';
+		extraConfig['chartType'] = 'Area';
+		extraConfig['fill'] = true;
+		extraConfig['tension'] = 0.4;
+		break;
+	case 'PolarArea':
+		chartType = 'polarArea';
+		extraConfig['chartType'] = 'PolarArea';
+		extraConfig['fill'] = true;
+		extraConfig['tension'] = 0.4;
+		break;
+	case 'PercentArea':
+		chartType = 'line';
+		extraConfig['chartType'] = 'PercentArea';
+		extraConfig['fill'] = true;
+		extraConfig['isStacked'] = true;
+		break;
+	case 'Line':
+		chartType = 'line';
+		extraConfig['chartType'] = 'Line';
+		extraConfig['tension'] = 0.4;
+		break;
+	case 'StackedArea':
+		chartType = 'line';
+		extraConfig['chartType'] = 'StackedArea';
+		extraConfig['fill'] = true;
+		extraConfig['isStacked'] = true;
+		extraConfig['tension'] = 0.4;
+		break;
+	}
+
+	let chartJSData = parseChartJSData( chartDataset, chartConfiguration, extraConfig );
 
 	// Register the custom scales plugins.
 	Chart.register( SqrtScale );
@@ -210,8 +280,13 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 	Chart.register( canvasBackgroundPlugin );
 	Chart.register( plotAreaBackgroundPlugin );
 
+	// Register custom chart plugins.
+	//Chart.register(stepUpBar);
+
 	// Register ChartDataLabels plugin.
 	Chart.register( ChartDataLabels );
+	Chart.register( ChartjsPluginStacked100 );
+
 
 	// Change default options for ALL charts.
 	Chart.defaults.set( 'plugins.datalabels', { anchor: 'center' } );
@@ -219,7 +294,7 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 	chartJS = new Chart(
 		document.querySelector( chartSelector ),
 		{
-			type: chartType.toLowerCase(),
+			type: chartType,
 			data: {
 				labels: chartJSData.labels,
 				datasets: chartJSData.datasets
@@ -229,19 +304,19 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 		}
 	);
 
-	console.log('respoin', ec_chart_data)
-	if (true != ec_chart_data.chart_configuration.graph.responsive ) {
-		console.log('respoin', ec_chart_data.chart_configuration.dimension.width)
 
-		chartJS.resize(ec_chart_data.chart_configuration.dimension.width,ec_chart_data.chart_configuration.dimension.height);
+	if ( true != ec_chart_data.chart_configuration.graph.responsive ) {
+
+
+		chartJS.resize( ec_chart_data.chart_configuration.dimension.width,ec_chart_data.chart_configuration.dimension.height );
 	}
 
 	// Responsive resize handler (debounced).
 	let resizeTimeout;
-	window.addEventListener('resize', () => {
-		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(() => {
+	window.addEventListener( 'resize', () => {
+		clearTimeout( resizeTimeout );
+		resizeTimeout = setTimeout( () => {
 			chartJS.resize();
-		}, 2500);
-	});
+		}, 2500 );
+	} );
 }

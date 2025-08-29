@@ -13,12 +13,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var chart_js_auto__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js/auto */ "./node_modules/chart.js/auto/auto.js");
 /* harmony import */ var chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chartjs-plugin-datalabels */ "./node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.esm.js");
-/* harmony import */ var _chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chart-js-adapter/helpers */ "./src/js/chart-js-adapter/helpers.js");
-/* harmony import */ var _chart_js_adapter_plugin_squrt_scale__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chart-js-adapter/plugin-squrt-scale */ "./src/js/chart-js-adapter/plugin-squrt-scale.js");
-/* harmony import */ var _chart_js_adapter_plugin_symlog_scale__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chart-js-adapter/plugin-symlog-scale */ "./src/js/chart-js-adapter/plugin-symlog-scale.js");
-/* harmony import */ var _chart_js_adapter_plugin_pow_scale__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chart-js-adapter/plugin-pow-scale */ "./src/js/chart-js-adapter/plugin-pow-scale.js");
-/* harmony import */ var _chart_js_adapter_plugin_canvas_background__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./chart-js-adapter/plugin-canvas-background */ "./src/js/chart-js-adapter/plugin-canvas-background.js");
-/* harmony import */ var _chart_js_adapter_plugin_plot_area_background__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./chart-js-adapter/plugin-plot-area-background */ "./src/js/chart-js-adapter/plugin-plot-area-background.js");
+/* harmony import */ var chartjs_plugin_stacked100__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! chartjs-plugin-stacked100 */ "./node_modules/chartjs-plugin-stacked100/build/index.js");
+/* harmony import */ var chartjs_plugin_stacked100__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_stacked100__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chart-js-adapter/helpers */ "./src/js/chart-js-adapter/helpers.js");
+/* harmony import */ var _chart_js_adapter_plugin_squrt_scale__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chart-js-adapter/plugin-squrt-scale */ "./src/js/chart-js-adapter/plugin-squrt-scale.js");
+/* harmony import */ var _chart_js_adapter_plugin_symlog_scale__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./chart-js-adapter/plugin-symlog-scale */ "./src/js/chart-js-adapter/plugin-symlog-scale.js");
+/* harmony import */ var _chart_js_adapter_plugin_pow_scale__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./chart-js-adapter/plugin-pow-scale */ "./src/js/chart-js-adapter/plugin-pow-scale.js");
+/* harmony import */ var _chart_js_adapter_plugin_canvas_background__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./chart-js-adapter/plugin-canvas-background */ "./src/js/chart-js-adapter/plugin-canvas-background.js");
+/* harmony import */ var _chart_js_adapter_plugin_plot_area_background__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./chart-js-adapter/plugin-plot-area-background */ "./src/js/chart-js-adapter/plugin-plot-area-background.js");
+/* harmony import */ var chart_js_helpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! chart.js/helpers */ "./node_modules/chart.js/helpers/helpers.js");
+
+
 
 
 
@@ -31,18 +36,18 @@ __webpack_require__.r(__webpack_exports__);
 
 let chartJS;
 
-function parseChartJSData ( rawData, rawConfig ) {
+function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 	// Extract all unique labels dynamically.
-	const labels = (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_2__.getChartLabels)(rawData);
+	const labels = (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.getChartLabels)( rawData );
 
-	const colorPalette = _chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_2__.chartJSColorPalette[rawConfig.graph.palette];
+	const colorPalette = _chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.chartJSColorPalette[rawConfig.graph.palette];
 
 	// Generate datasets dynamically.
-	const datasets = (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_2__.getDataSets)( rawData, labels, colorPalette );
+	const datasets = (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.getDataSets)( rawData, labels, colorPalette, extraConfig );
 
 	const scaleGrid = {
 		tickColor: rawConfig.axis.strokecolor,
-		color: (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_2__.hexToRgba)( rawConfig.axis.strokecolor, rawConfig.axis.opacity )
+		color: (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.hexToRgba)( rawConfig.axis.strokecolor, rawConfig.axis.opacity )
 	}
 	const scaleTicksStyles = {
 		maxTicksLimit: rawConfig.axis.ticks, // Limits the number of x-axis ticks.
@@ -62,7 +67,7 @@ function parseChartJSData ( rawData, rawConfig ) {
 			weight: rawConfig.axis.fontweight,
 		},
 	};
-	console.log('responsive', rawConfig.graph.responsive);
+
 	const options = {
 		responsive: true === rawConfig.graph.responsive,
 		//maintainAspectRatio: true === rawConfig.graph.responsive,
@@ -79,9 +84,12 @@ function parseChartJSData ( rawData, rawConfig ) {
 		},
 		scales: {
 			y: {
-				//beginAtZero: true,
+				beginAtZero: true,
 				//type: 'category',
 				//type:  'log' == rawConfig.scale.type ? 'logarithmic' : rawConfig.scale.type,
+				...( extraConfig.isStacked && { stacked: extraConfig.isStacked } ),
+				...( extraConfig.stepped && { beginAtZero: true } ), // For steped up bar chart.
+
 				title: {
 					display: !!rawConfig.meta.vlabel.length,
 					text: [rawConfig.meta.vlabel,rawConfig.meta.vsublabel], // Vertical caption.
@@ -107,7 +115,11 @@ function parseChartJSData ( rawData, rawConfig ) {
 				grid: scaleGrid
 			},
 			x: {
-				//beginAtZero: true,
+				...( extraConfig.isStacked && { stacked: extraConfig.isStacked } ),
+				beginAtZero: true,
+				//offset: true,
+				//stacked: true,
+
 				title: {
 					display: !!rawConfig.meta.hlabel.length,
 					text: [rawConfig.meta.hlabel,rawConfig.meta.hsublabel], // Horizontal caption.
@@ -138,11 +150,11 @@ function parseChartJSData ( rawData, rawConfig ) {
 
 		plugins: {
 			customCanvasBackgroundColor: {
-				color: (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_2__.hexToRgba)( rawConfig.frame.bgcolor, rawConfig.graph.opacity )
+				color: (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.hexToRgba)( rawConfig.frame.bgcolor, rawConfig.graph.opacity )
 			},
 
 			customPlotAreaBackgroundColor: {
-				color: (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_2__.hexToRgba)( rawConfig.graph.bgcolor,rawConfig.graph.opacity )
+				color: (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.hexToRgba)( rawConfig.graph.bgcolor,rawConfig.graph.opacity )
 			},
 			title: {
 				display: !!rawConfig.meta.caption.length,
@@ -151,7 +163,7 @@ function parseChartJSData ( rawData, rawConfig ) {
 					family: rawConfig.caption.fontfamily,
 					size: rawConfig.caption.fontsize,
 					weight: rawConfig.caption.weight,
-					//style: rawConfig.caption.style
+					style: rawConfig.caption.style
 				},
 				color: rawConfig.caption.strokecolor
 			},
@@ -184,7 +196,7 @@ function parseChartJSData ( rawData, rawConfig ) {
 					family: rawConfig.label.fontfamily
 				},
 				formatter: function( value, context ) {
-					if ( rawConfig.label.precision && value % 1 !== 0 ) {
+					if ( (0,chart_js_helpers__WEBPACK_IMPORTED_MODULE_9__.isNumber)( value ) && rawConfig.label.precision && value % 1 !== 0 ) {
 						value = value.toFixed( rawConfig.label.precision );
 					}
 					return rawConfig.label.prefix + value + rawConfig.label.suffix;
@@ -202,37 +214,103 @@ function parseChartJSData ( rawData, rawConfig ) {
 					},
 					color: rawConfig.legend.color // label text color.
 				}
-			}
+			},
+			stacked100: {
+				enable: 'PercentBar' === rawConfig.graph.chartType
+			},
 
 		}
 	}
 
-	console.log( 'options', options );
 
-	console.log('labels: ', labels);
-	console.log('datasets: ', datasets);
 	return {labels: labels, datasets: datasets, options: options};
 };
 
 function chartJs( chartSelector, ec_chart_data ) {
 	let chartType = ec_chart_data.chart_type;
+	let extraConfig = {};
 	let chartDataset = ec_chart_data.chart_data;
 	let chartConfiguration = ec_chart_data.chart_configuration;
 
-	let chartJSData = parseChartJSData( chartDataset, chartConfiguration );
-	console.log( chartConfiguration );
+	switch ( ec_chart_data.chart_type ) {
+	case 'Bar':
+		chartType = 'bar';
+		break;
+	case 'Waterfall':
+		chartType = 'bar';
+		extraConfig['chartType'] = 'Waterfall';
+		extraConfig['isStacked'] = true;
+		break;
+	case 'Pie':
+		chartType = 'pie';
+		extraConfig['chartType'] = 'Pie';
+		break;
+	case 'Donut':
+		chartType = 'doughnut';
+		extraConfig['chartType'] = 'Pie'; // dataset is currently kept same as pie chart.
+		break;
+	case 'StepUpBar':
+		chartType = 'bar';
+		extraConfig['chartType'] = 'StepUpBar';
+		extraConfig['isStacked'] = true;
+		break;
+	case 'StackedBar':
+		chartType = 'bar';
+		extraConfig['isStacked'] = true;
+		break;
+	case 'PercentBar':
+		chartType = 'bar';
+		break;
+	case 'Area':
+		chartType = 'line';
+		extraConfig['chartType'] = 'Area';
+		extraConfig['fill'] = true;
+		extraConfig['tension'] = 0.4;
+		break;
+	case 'PolarArea':
+		chartType = 'polarArea';
+		extraConfig['chartType'] = 'PolarArea';
+		extraConfig['fill'] = true;
+		extraConfig['tension'] = 0.4;
+		break;
+	case 'PercentArea':
+		chartType = 'line';
+		extraConfig['chartType'] = 'PercentArea';
+		extraConfig['fill'] = true;
+		extraConfig['isStacked'] = true;
+		break;
+	case 'Line':
+		chartType = 'line';
+		extraConfig['chartType'] = 'Line';
+		extraConfig['tension'] = 0.4;
+		break;
+	case 'StackedArea':
+		chartType = 'line';
+		extraConfig['chartType'] = 'StackedArea';
+		extraConfig['fill'] = true;
+		extraConfig['isStacked'] = true;
+		extraConfig['tension'] = 0.4;
+		break;
+	}
+
+	let chartJSData = parseChartJSData( chartDataset, chartConfiguration, extraConfig );
 
 	// Register the custom scales plugins.
-	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_squrt_scale__WEBPACK_IMPORTED_MODULE_3__["default"] );
-	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_pow_scale__WEBPACK_IMPORTED_MODULE_5__["default"] );
-	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_symlog_scale__WEBPACK_IMPORTED_MODULE_4__["default"] );
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_squrt_scale__WEBPACK_IMPORTED_MODULE_4__["default"] );
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_pow_scale__WEBPACK_IMPORTED_MODULE_6__["default"] );
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_symlog_scale__WEBPACK_IMPORTED_MODULE_5__["default"] );
 
 	// Register custom background color plugins.
-	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_canvas_background__WEBPACK_IMPORTED_MODULE_6__["default"] );
-	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_plot_area_background__WEBPACK_IMPORTED_MODULE_7__["default"] );
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_canvas_background__WEBPACK_IMPORTED_MODULE_7__["default"] );
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( _chart_js_adapter_plugin_plot_area_background__WEBPACK_IMPORTED_MODULE_8__["default"] );
+
+	// Register custom chart plugins.
+	//Chart.register(stepUpBar);
 
 	// Register ChartDataLabels plugin.
 	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_1__["default"] );
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].register( (chartjs_plugin_stacked100__WEBPACK_IMPORTED_MODULE_2___default()) );
+
 
 	// Change default options for ALL charts.
 	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.set( 'plugins.datalabels', { anchor: 'center' } );
@@ -240,7 +318,7 @@ function chartJs( chartSelector, ec_chart_data ) {
 	chartJS = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](
 		document.querySelector( chartSelector ),
 		{
-			type: chartType.toLowerCase(),
+			type: chartType,
 			data: {
 				labels: chartJSData.labels,
 				datasets: chartJSData.datasets
@@ -250,21 +328,21 @@ function chartJs( chartSelector, ec_chart_data ) {
 		}
 	);
 
-	console.log('respoin', ec_chart_data)
-	if (true != ec_chart_data.chart_configuration.graph.responsive ) {
-		console.log('respoin', ec_chart_data.chart_configuration.dimension.width)
 
-		chartJS.resize(ec_chart_data.chart_configuration.dimension.width,ec_chart_data.chart_configuration.dimension.height);
+	if ( true != ec_chart_data.chart_configuration.graph.responsive ) {
+
+
+		chartJS.resize( ec_chart_data.chart_configuration.dimension.width,ec_chart_data.chart_configuration.dimension.height );
 	}
 
 	// Responsive resize handler (debounced).
 	let resizeTimeout;
-	window.addEventListener('resize', () => {
-		clearTimeout(resizeTimeout);
-		resizeTimeout = setTimeout(() => {
+	window.addEventListener( 'resize', () => {
+		clearTimeout( resizeTimeout );
+		resizeTimeout = setTimeout( () => {
 			chartJS.resize();
-		}, 2500);
-	});
+		}, 2500 );
+	} );
 }
 
 /***/ }),
@@ -324,21 +402,77 @@ function hexToRgba( hex = '#ffffff', opacity = 1 ) {
 }
 
 function getChartLabels( rawData ) {
-	console.log('raw data', rawData);
+
 	// Extract all unique labels dynamically.
 	return Array.from(
 		new Set( Object.values( rawData ).flat().map( ( entry ) => entry.name ) )
 	).sort(); // Sorting for consistency.
 }
 
-function getDataSets( rawData, labels, colorPalette ) {
-	return Object.keys( rawData ).map( ( legend, index ) => ( {
-		label: legend,
-		data: labels.map(
-			( xAxis ) => rawData[legend].find( ( entry ) => entry.name === xAxis )?.value || 0
-		),
-		backgroundColor: colorPalette[index % colorPalette.length] // Cycle through color palette.
-	} ) );
+function getDataSets( rawData, labels, colorPalette, extraConfig ) {
+	const legends = Object.keys( rawData );
+
+	return legends.map( ( legend, index ) => {
+		console.log('legend', legend);
+		console.log('rawdata', rawData);
+		console.log('legenddata', rawData[legend]);
+		if (  ( /*extraConfig.chartType === 'Waterfall'||*/ extraConfig.chartType === 'Pie'|| extraConfig.chartType === 'PolarArea' ) && legend !== legends[0] ) {
+			return null; // Skip non-first legends
+		}
+
+		let data = labels.map(
+			( xAxis ) =>
+				rawData[legend].find( ( entry ) => entry.name === xAxis )?.value || 0
+		);
+
+		let cumulative = 0;
+
+		const ranges = data.map( v => {
+			const start = cumulative;
+			cumulative += v;
+			return [start, cumulative];
+		} );
+
+		function toRanges(dataArr) {
+			const ranges = [];
+			let cumulative = 0;
+			dataArr.forEach(value => {
+				const start = cumulative;
+				cumulative += value;
+				ranges.push([start, cumulative]);
+			});
+			return ranges;
+		}
+
+
+		console.log('legend', legend);
+		console.log('converted data', data);
+
+		return {
+			label: legend,
+			data: extraConfig.chartType === 'Waterfall'  ? ranges : data,
+			backgroundColor :  extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
+			borderColor : extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
+			fill: extraConfig.fill === true,
+			// Apply semi-transparent fill if using an Area chart.
+			...(
+				extraConfig.chartType === 'Area'
+					? { backgroundColor : hexToRgba( colorPalette[index % colorPalette.length], 0.5 ) }
+					: {}
+			),
+			//barPercentage: 0.3,
+
+			// Apply tension if requested.
+			...( extraConfig.tension && { tension: 0.4 } ),
+			//...(extraConfig.chartType === 'StepUpBar' && { barPercentage: 1/legends.length }  ),
+
+			...( extraConfig.stepped && { stepped: extraConfig.stepped } ), // For setp up bar chart.
+
+		};
+	} )
+		// Remove any null entries so Chart.js only receives valid datasets.
+		.filter( ( dataset ) => dataset !== null );
+
 }
 
 /***/ }),

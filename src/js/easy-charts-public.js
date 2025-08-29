@@ -1,8 +1,8 @@
 import '../scss/easy-charts-public.scss';
 
-const canvases = document.querySelectorAll('.ec-chartjs-chart-container');
+const canvases = document.querySelectorAll( '.ec-chartjs-chart-container' );
 
-canvases.forEach((canvas, index) => {
+canvases.forEach( ( canvas, index ) => {
 	const dataObject = canvas.dataset.object;
 
 	const ec_chart_data = window[dataObject];
@@ -13,7 +13,7 @@ canvases.forEach((canvas, index) => {
 				console.error( 'Failed to load module', err );
 			} );
 	}
-});
+} );
 
 
 function get_ec_oject( obj ) {

@@ -44,6 +44,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_require__.m = __webpack_modules__;
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -285,20 +297,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _scss_easy_charts_public_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/easy-charts-public.scss */ "./src/scss/easy-charts-public.scss");
 
 
-const canvases = document.querySelectorAll('.ec-chartjs-chart-container');
+const canvases = document.querySelectorAll( '.ec-chartjs-chart-container' );
 
-canvases.forEach((canvas, index) => {
+canvases.forEach( ( canvas, index ) => {
 	const dataObject = canvas.dataset.object;
 
 	const ec_chart_data = window[dataObject];
 	if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
-		Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_chartjs-plugin-datalabels_dist_chartjs-plugin-datalabels_esm_js-node_mod-232fb0"), __webpack_require__.e("src_js_chart-js-adapter_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./chart-js-adapter */ "./src/js/chart-js-adapter.js"))
+		Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_chartjs-plugin-datalabels_dist_chartjs-plugin-datalabels_esm_js-node_mod-700a64"), __webpack_require__.e("src_js_chart-js-adapter_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./chart-js-adapter */ "./src/js/chart-js-adapter.js"))
 			.then( ( { default: chartJs } ) => { chartJs( 'canvas.ec-chartjs-chart-container.' + dataObject, ec_chart_data ) } )
 			.catch( ( err ) => {
 				console.error( 'Failed to load module', err );
 			} );
 	}
-});
+} );
 
 
 function get_ec_oject( obj ) {

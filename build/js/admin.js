@@ -26680,7 +26680,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 		if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
 			console.log( 'load chart js' );
-			Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_chartjs-plugin-datalabels_dist_chartjs-plugin-datalabels_esm_js-node_mod-232fb0"), __webpack_require__.e("src_js_chart-js-adapter_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./chart-js-adapter */ "./src/js/chart-js-adapter.js"))
+			Promise.all(/*! import() */[__webpack_require__.e("vendors-node_modules_chartjs-plugin-datalabels_dist_chartjs-plugin-datalabels_esm_js-node_mod-700a64"), __webpack_require__.e("src_js_chart-js-adapter_js")]).then(__webpack_require__.bind(__webpack_require__, /*! ./chart-js-adapter */ "./src/js/chart-js-adapter.js"))
 				.then( ( { default: chartJs } ) => { chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data ) } )
 				.catch( ( err ) => {
 					console.error( 'Failed to load module', err );

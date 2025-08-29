@@ -40,19 +40,75 @@ export function hexToRgba( hex = '#ffffff', opacity = 1 ) {
 }
 
 export function getChartLabels( rawData ) {
-	console.log('raw data', rawData);
+
 	// Extract all unique labels dynamically.
 	return Array.from(
 		new Set( Object.values( rawData ).flat().map( ( entry ) => entry.name ) )
 	).sort(); // Sorting for consistency.
 }
 
-export function getDataSets( rawData, labels, colorPalette ) {
-	return Object.keys( rawData ).map( ( legend, index ) => ( {
-		label: legend,
-		data: labels.map(
-			( xAxis ) => rawData[legend].find( ( entry ) => entry.name === xAxis )?.value || 0
-		),
-		backgroundColor: colorPalette[index % colorPalette.length] // Cycle through color palette.
-	} ) );
+export function getDataSets( rawData, labels, colorPalette, extraConfig ) {
+	const legends = Object.keys( rawData );
+
+	return legends.map( ( legend, index ) => {
+		console.log('legend', legend);
+		console.log('rawdata', rawData);
+		console.log('legenddata', rawData[legend]);
+		if (  ( /*extraConfig.chartType === 'Waterfall'||*/ extraConfig.chartType === 'Pie'|| extraConfig.chartType === 'PolarArea' ) && legend !== legends[0] ) {
+			return null; // Skip non-first legends
+		}
+
+		let data = labels.map(
+			( xAxis ) =>
+				rawData[legend].find( ( entry ) => entry.name === xAxis )?.value || 0
+		);
+
+		let cumulative = 0;
+
+		const ranges = data.map( v => {
+			const start = cumulative;
+			cumulative += v;
+			return [start, cumulative];
+		} );
+
+		function toRanges(dataArr) {
+			const ranges = [];
+			let cumulative = 0;
+			dataArr.forEach(value => {
+				const start = cumulative;
+				cumulative += value;
+				ranges.push([start, cumulative]);
+			});
+			return ranges;
+		}
+
+
+		console.log('legend', legend);
+		console.log('converted data', data);
+
+		return {
+			label: legend,
+			data: extraConfig.chartType === 'Waterfall'  ? ranges : data,
+			backgroundColor :  extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
+			borderColor : extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
+			fill: extraConfig.fill === true,
+			// Apply semi-transparent fill if using an Area chart.
+			...(
+				extraConfig.chartType === 'Area'
+					? { backgroundColor : hexToRgba( colorPalette[index % colorPalette.length], 0.5 ) }
+					: {}
+			),
+			//barPercentage: 0.3,
+
+			// Apply tension if requested.
+			...( extraConfig.tension && { tension: 0.4 } ),
+			//...(extraConfig.chartType === 'StepUpBar' && { barPercentage: 1/legends.length }  ),
+
+			...( extraConfig.stepped && { stepped: extraConfig.stepped } ), // For setp up bar chart.
+
+		};
+	} )
+		// Remove any null entries so Chart.js only receives valid datasets.
+		.filter( ( dataset ) => dataset !== null );
+
 }
