@@ -67,7 +67,7 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 				//type: 'category',
 				//type:  'log' == rawConfig.scale.type ? 'logarithmic' : rawConfig.scale.type,
 				...( extraConfig.isStacked && { stacked: extraConfig.isStacked } ),
-				...( extraConfig.stepped && { beginAtZero: true } ), // For steped up bar chart.
+				...( extraConfig.stepped && { beginAtZero: true } ), // For stepped up bar chart.
 
 				title: {
 					display: !!rawConfig.meta.vlabel.length,
@@ -163,19 +163,21 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 						if ( ! rawConfig.label.precision ) {
 							return  undefined;
 						}
-						const formattedNumber = context.raw % 1 === 0 ?  context.raw :  Number( context.raw ).toFixed( rawConfig.label.precision );
+						const formattedNumber = context.raw % 1 === 0 ? context.raw : Number( context.raw ).toFixed( rawConfig.label.precision );
 						return context.dataset.label + ' : ' + formattedNumber;
 					}
 				}
 			},
 			datalabels: {
 				display: 1 === rawConfig.label.showlabel,
+				anchor: 'end',
+				align: 'end',
 				color: rawConfig.label.strokecolor,
 				font: {
 					family: rawConfig.label.fontfamily,
 					size: rawConfig.label.fontsize,
 				},
-				formatter: function( value, context ) {
+				formatter: function ( value, context ) {
 					if ( isNumber( value ) && rawConfig.label.precision && value % 1 !== 0 ) {
 						value = value.toFixed( rawConfig.label.precision );
 					}
@@ -200,7 +202,7 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 			},
 
 			downloadChartImagePlugin: {
-				enable: 1 === rawConfig.meta.isDownloadable ? true : false,
+				enable: 1 === rawConfig.meta.isDownloadable,
 				buttonText: rawConfig.meta.downloadLabel,
 				buttonColor: '#3932FE',
 				fontSize: 14,
@@ -272,7 +274,7 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 	case 'Line':
 		chartType = 'line';
 		extraConfig['chartType'] = 'Line';
-		extraConfig['tension'] = 0.4;
+		//extraConfig['tension'] = 0.4;
 		break;
 	case 'StackedArea':
 		chartType = 'line';
@@ -306,6 +308,14 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 
 	// Change default options for ALL charts.
 	Chart.defaults.set( 'plugins.datalabels', { anchor: 'center' } );
+	Chart.defaults.elements.bar.borderWidth = 2;
+	Chart.defaults.elements.point.radius = 5;
+	Chart.defaults.elements.point.hoverRadius = 8;
+
+
+	Chart.defaults.elements.line.cubicInterpolationMode = 'monotone';
+
+
 
 	chartJS = new Chart(
 		document.querySelector( chartSelector ),

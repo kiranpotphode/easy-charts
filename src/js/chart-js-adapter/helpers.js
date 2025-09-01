@@ -80,10 +80,6 @@ export function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 			return ranges;
 		}
 
-
-		console.log('legend', legend);
-		console.log('converted data', data);
-
 		return {
 			label: legend,
 			data: extraConfig.chartType === 'Waterfall'  ? ranges : data,
@@ -96,7 +92,6 @@ export function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 					? { backgroundColor : hexToRgba( colorPalette[index % colorPalette.length], 0.5 ) }
 					: {}
 			),
-			//barPercentage: 0.3,
 
 			// Apply tension if requested.
 			...( extraConfig.tension && { tension: 0.4 } ),

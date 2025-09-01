@@ -27623,6 +27623,3157 @@ ___CSS_LOADER_EXPORT___.push([module.id, `:root {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/jsuites/dist/jsuites.css":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/jsuites/dist/jsuites.css ***!
+  \*************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2__);
+// Imports
+
+
+
+var ___CSS_LOADER_URL_IMPORT_0___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_1___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_2___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27gray%27%3E%3Cpath d=%27M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27gray%27%3E%3Cpath d=%27M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_3___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_4___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%27 fill=%27white%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%27 fill=%27white%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_5___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2724px%27 height=%2724px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2724px%27 height=%2724px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_6___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3Cpath d=%27M7 10l5 5 5-5H7z%27 fill=%27gray%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3Cpath d=%27M7 10l5 5 5-5H7z%27 fill=%27gray%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_7___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik05IDE2LjE3TDQuODMgMTJsLTEuNDIgMS40MUw5IDE5IDIxIDdsLTEuNDEtMS40MXoiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo= */ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik05IDE2LjE3TDQuODMgMTJsLTEuNDIgMS40MUw5IDE5IDIxIDdsLTEuNDEtMS40MXoiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo="), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_8___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiIGZpbGw9IiNlNmU2ZTgiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+ */ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiIGZpbGw9IiNlNmU2ZTgiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_9___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNy40MSA4LjU5TDEyIDEzLjE3bDQuNTktNC41OEwxOCAxMGwtNiA2LTYtNiAxLjQxLTEuNDF6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgwVjB6Ii8+PC9zdmc+ */ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNy40MSA4LjU5TDEyIDEzLjE3bDQuNTktNC41OEwxOCAxMGwtNiA2LTYtNiAxLjQxLTEuNDF6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgwVjB6Ii8+PC9zdmc+"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_10___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTcuNDEgMTUuNDFMMTIgMTAuODNsNC41OSA0LjU4TDE4IDE0bC02LTYtNiA2eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4= */ "data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTcuNDEgMTUuNDFMMTIgMTAuODNsNC41OSA0LjU4TDE4IDE0bC02LTYtNiA2eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4="), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_11___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxeiIgZmlsbD0iIzAwN2FmZiIvPjwvc3ZnPg== */ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxeiIgZmlsbD0iIzAwN2FmZiIvPjwvc3ZnPg=="), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_12___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg version=%271.1%27 id=%27Layer_1%27 xmlns=%27http://www.w3.org/2000/svg%27 xmlns:xlink=%27http://www.w3.org/1999/xlink%27 x=%270px%27 y=%270px%27 viewBox=%270 0 512 512%27 style=%27enable-background:new 0 0 512 512;%27 xml:space=%27preserve%27%3E%3Cpath style=%27fill:%23C30B15;%27 d=%27M511.344,274.266C511.77,268.231,512,262.143,512,256C512,114.615,397.385,0,256,0S0,114.615,0,256 c0,117.769,79.53,216.949,187.809,246.801L511.344,274.266z%27/%3E%3Cpath style=%27fill:%2385080E;%27 d=%27M511.344,274.266L314.991,77.913L119.096,434.087l68.714,68.714C209.522,508.787,232.385,512,256,512 C391.243,512,501.976,407.125,511.344,274.266z%27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27278.328,333.913 255.711,77.913 119.096,77.913 119.096,311.652 %27/%3E%3Cpolygon style=%27fill:%23E8E6E6;%27 points=%27392.904,311.652 392.904,155.826 337.252,133.565 314.991,77.913 255.711,77.913 256.067,333.913 %27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27314.991,155.826 314.991,77.913 392.904,155.826 %27/%3E%3Crect x=%27119.096%27 y=%27311.652%27 style=%27fill:%23FC0F1A;%27 width=%27273.809%27 height=%27122.435%27/%3E%3Cg%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M204.871,346.387c13.547,0,21.341,6.659,21.341,18.465c0,12.412-7.795,19.601-21.341,19.601h-9.611 v14.909h-13.471v-52.975L204.871,346.387L204.871,346.387z M195.26,373.858h8.93c5.904,0,9.308-2.952,9.308-8.552 c0-5.525-3.406-8.324-9.308-8.324h-8.93V373.858z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M257.928,346.387c16.649,0,28.152,10.746,28.152,26.487c0,15.666-11.655,26.488-28.683,26.488 h-22.25v-52.975H257.928z M248.619,388.615h9.611c8.249,0,14.151-6.357,14.151-15.665c0-9.384-6.205-15.817-14.757-15.817h-9.006 V388.615z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M308.563,356.982v12.26h23.763v10.596h-23.763v19.525h-13.471v-52.975h39.277v10.595h-25.806 V356.982z%27/%3E%3C/g%3E%3C/svg%3E%0A */ "data:image/svg+xml,%3Csvg version=%271.1%27 id=%27Layer_1%27 xmlns=%27http://www.w3.org/2000/svg%27 xmlns:xlink=%27http://www.w3.org/1999/xlink%27 x=%270px%27 y=%270px%27 viewBox=%270 0 512 512%27 style=%27enable-background:new 0 0 512 512;%27 xml:space=%27preserve%27%3E%3Cpath style=%27fill:%23C30B15;%27 d=%27M511.344,274.266C511.77,268.231,512,262.143,512,256C512,114.615,397.385,0,256,0S0,114.615,0,256 c0,117.769,79.53,216.949,187.809,246.801L511.344,274.266z%27/%3E%3Cpath style=%27fill:%2385080E;%27 d=%27M511.344,274.266L314.991,77.913L119.096,434.087l68.714,68.714C209.522,508.787,232.385,512,256,512 C391.243,512,501.976,407.125,511.344,274.266z%27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27278.328,333.913 255.711,77.913 119.096,77.913 119.096,311.652 %27/%3E%3Cpolygon style=%27fill:%23E8E6E6;%27 points=%27392.904,311.652 392.904,155.826 337.252,133.565 314.991,77.913 255.711,77.913 256.067,333.913 %27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27314.991,155.826 314.991,77.913 392.904,155.826 %27/%3E%3Crect x=%27119.096%27 y=%27311.652%27 style=%27fill:%23FC0F1A;%27 width=%27273.809%27 height=%27122.435%27/%3E%3Cg%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M204.871,346.387c13.547,0,21.341,6.659,21.341,18.465c0,12.412-7.795,19.601-21.341,19.601h-9.611 v14.909h-13.471v-52.975L204.871,346.387L204.871,346.387z M195.26,373.858h8.93c5.904,0,9.308-2.952,9.308-8.552 c0-5.525-3.406-8.324-9.308-8.324h-8.93V373.858z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M257.928,346.387c16.649,0,28.152,10.746,28.152,26.487c0,15.666-11.655,26.488-28.683,26.488 h-22.25v-52.975H257.928z M248.619,388.615h9.611c8.249,0,14.151-6.357,14.151-15.665c0-9.384-6.205-15.817-14.757-15.817h-9.006 V388.615z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M308.563,356.982v12.26h23.763v10.596h-23.763v19.525h-13.471v-52.975h39.277v10.595h-25.806 V356.982z%27/%3E%3C/g%3E%3C/svg%3E%0A"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_13___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27%23FFF%27 d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27%23FFF%27 d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_14___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_15___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_16___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_17___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z%27 fill=%27gray%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z%27 fill=%27gray%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_18___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_19___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27red%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27red%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_20___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_21___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_22___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_23___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_24___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_25___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 height=%2724%27 viewBox=%270 0 24 24%27 width=%2724%27%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27 fill=%27%23bbbbbb%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E */ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 height=%2724%27 viewBox=%270 0 24 24%27 width=%2724%27%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27 fill=%27%23bbbbbb%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_URL_IMPORT_26___ = new URL(/* asset import */ __webpack_require__(/*! data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z%27/%3E%3C/svg%3E */ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z%27/%3E%3C/svg%3E"), __webpack_require__.b);
+var ___CSS_LOADER_EXPORT___ = _css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_0___);
+var ___CSS_LOADER_URL_REPLACEMENT_1___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_1___);
+var ___CSS_LOADER_URL_REPLACEMENT_2___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_2___);
+var ___CSS_LOADER_URL_REPLACEMENT_3___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_3___);
+var ___CSS_LOADER_URL_REPLACEMENT_4___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_4___);
+var ___CSS_LOADER_URL_REPLACEMENT_5___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_5___);
+var ___CSS_LOADER_URL_REPLACEMENT_6___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_6___);
+var ___CSS_LOADER_URL_REPLACEMENT_7___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_7___);
+var ___CSS_LOADER_URL_REPLACEMENT_8___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_8___);
+var ___CSS_LOADER_URL_REPLACEMENT_9___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_9___);
+var ___CSS_LOADER_URL_REPLACEMENT_10___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_10___);
+var ___CSS_LOADER_URL_REPLACEMENT_11___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_11___);
+var ___CSS_LOADER_URL_REPLACEMENT_12___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_12___);
+var ___CSS_LOADER_URL_REPLACEMENT_13___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_13___);
+var ___CSS_LOADER_URL_REPLACEMENT_14___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_14___);
+var ___CSS_LOADER_URL_REPLACEMENT_15___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_15___);
+var ___CSS_LOADER_URL_REPLACEMENT_16___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_16___);
+var ___CSS_LOADER_URL_REPLACEMENT_17___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_17___);
+var ___CSS_LOADER_URL_REPLACEMENT_18___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_18___);
+var ___CSS_LOADER_URL_REPLACEMENT_19___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_19___);
+var ___CSS_LOADER_URL_REPLACEMENT_20___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_20___);
+var ___CSS_LOADER_URL_REPLACEMENT_21___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_21___);
+var ___CSS_LOADER_URL_REPLACEMENT_22___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_22___);
+var ___CSS_LOADER_URL_REPLACEMENT_23___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_23___);
+var ___CSS_LOADER_URL_REPLACEMENT_24___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_24___);
+var ___CSS_LOADER_URL_REPLACEMENT_25___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_25___);
+var ___CSS_LOADER_URL_REPLACEMENT_26___ = _css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_2___default()(___CSS_LOADER_URL_IMPORT_26___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, `:root {
+    --jbutton-color: #298BA8; 
+    --jactive-color: #007aff;
+    --jsafe-area-top: env(safe-area-inset-top);
+    --jsafe-area-bottom: env(safe-area-inset-bottom);
+}
+
+[data-visible="false"], .row[data-visible="false"] {
+    display: none;
+}
+
+
+div[data-before]:before {
+    content: attr(data-before);
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.jreadonly {
+    pointer-events: none;
+}
+
+.jdragging {
+    opacity:0.2;
+    filter: alpha(opacity=20);
+}
+
+.jupload.input {
+    position: relative;
+    box-sizing: border-box;
+    background-size: initial;
+    height: 33px;
+    min-height: initial;
+    padding: 6px;
+    padding-right: 30px;
+}
+
+.jupload.input:before {
+    content: "save";
+    font-size: 18px;
+    font-family: "Material Icons";
+    color: #000;
+    position: absolute;
+    right: 5px;
+}
+
+.jupload:empty:before {
+    z-index: 0;
+}
+
+.jupload img {
+    width: 100%;
+} 
+
+.jupload.input img {
+    width: initial;
+    max-width: 100%;
+    height: 100%;
+}
+
+.jupload[data-multiple] {
+    padding: 10px;
+}
+
+.jupload[data-multiple] img {
+    height: 70px;
+    width: 100px;
+    object-fit: cover;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.jupload {
+    position: relative;
+    border: 1px dotted #eee;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 180px;
+}
+
+.jupload:not(.input):empty:before {
+    content: "\\e2c3";
+    font-family: "Material Icons";
+    font-size: 90px;
+    color: #eee;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.jupload-item {
+    padding-right: 22px;
+    border-radius: 1px;
+    display: inline-block;
+    position: relative;
+}
+
+.jphoto {
+    position: relative;
+    border: 1px dotted #eee;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jphoto:empty:before {
+    content: "\\e2c3";
+    font-family: "Material Icons";
+    font-size: 90px;
+    color: #eee;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.jremove {
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+
+.round img {
+    border-radius: 1000px;
+}
+
+.jtooltip {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 5;
+
+    font-family: initial;
+    font-size: 12px;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid black;
+    padding: 8px;
+    margin: 10px;
+
+    display: block;
+    animation: jfadeIn 0.5s;
+    pointer-events: none;
+}
+
+.jtooltip:empty {
+    display: none;
+}
+
+@keyframes jfadeIn {
+     0% {
+          opacity: 0;
+     }
+     100% {
+          opacity: 1;
+     }
+}
+
+.jpanel {
+    position: absolute;
+    box-sizing: border-box;
+    z-index: 10;
+}
+
+.jpanel:focus {
+    outline: 2px solid black;
+    outline-offset: -1px;
+}
+
+.jpanel-action {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border:1px solid black;
+    box-sizing: border-box;
+    pointer-events: auto;
+    z-index: 1000;
+}
+
+.jpanel-action[data-position="n-resize"] {
+    top: -4px;
+    left: calc(50% - 4px);
+}
+
+.jpanel-action[data-position="ne-resize"] {
+    top: -4px;
+    left: calc(100% - 4px);
+}
+
+.jpanel-action[data-position="e-resize"] {
+    top: calc(50% - 4px);
+    left: calc(100% - 4px);
+}
+
+.jpanel-action[data-position="se-resize"] {
+    top: calc(100% - 4px);
+    left: calc(100% - 4px);
+}
+
+.jpanel-action[data-position="s-resize"] {
+    top: calc(100% - 4px);
+    left: calc(50% - 4px);
+}
+
+.jpanel-action[data-position="sw-resize"] {
+    top: calc(100% - 4px);
+    left: -4px;
+}
+
+.jpanel-action[data-position="w-resize"] {
+    top: calc(50% - 4px);
+    left: -4px;
+}
+
+.jpanel-action[data-position="nw-resize"] {
+    top: -4px;
+    left: -4px;
+}
+
+.jpanel-action[data-position="nw-resize"] {
+    top: -4px;
+    left: -4px;
+}
+
+.jpanel-action[data-action="rotate"] {
+    top: -50px;
+    left: calc(50% - 12px);
+    width: 24px;
+    height: 24px;
+    border: 0;
+    cursor: move;
+    background-color: transparent;
+}
+
+.jpanel-action[data-action="rotate"]:before {
+    content: 'refresh';
+    font-family: 'Material Icons';
+    font-size: 24px;
+}
+
+.jpanel-action[data-action="rotate"]:after {
+    position: absolute;
+    content: '';
+    bottom: -22px;
+    left: calc(50%);
+    width: 1px;
+    height: 28px;
+    background-color: black;
+}
+
+/** Loading */
+.jloading {
+    position:fixed;
+    z-index:10001;
+    width:100%;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.jloading::after {
+    content:'';
+    display:block;
+    margin:0 auto;
+    margin-top:50vh;
+    width:40px;
+    height:40px;
+    border-style:solid;
+    border-color:white;
+    border-top-color:transparent;
+    border-width:4px;
+    border-radius:50%;
+    -webkit-animation: jspin .8s linear infinite;
+    animation: jspin .8s linear infinite;
+}
+
+.jloading.jspin {
+    background-color:transparent;
+}
+
+.jloading.jspin::after {
+    margin:0 auto;
+    margin-top:80px;
+    border-color:#aaa;
+    border-top-color:transparent;
+}
+
+/** Animations **/
+.jfade-in {
+    animation: jfade-in 2s forwards;
+}
+
+.jfade-out {
+    animation: jfade-out 1s forwards;
+}
+
+.jslide-left-in {
+    position: relative;
+    animation: jslide-left-in 0.4s forwards;
+}
+
+.jslide-left-out {
+    position: relative;
+    animation: jslide-left-out 0.4s forwards;
+}
+
+.jslide-right-in {
+    position: relative;
+    animation: jslide-right-in 0.4s forwards;
+}
+
+.jslide-right-out {
+    position: relative;
+    animation: jslide-right-out 0.4s forwards;
+}
+
+.jslide-top-in {
+    position: relative;
+    animation: jslide-top-in 0.4s forwards;
+}
+
+.jslide-top-out {
+    position: relative;
+    animation: jslide-top-out 0.2s forwards;
+}
+
+.jslide-bottom-in {
+    position: relative;
+    animation: jslide-bottom-in 0.4s forwards;
+}
+
+.jslide-bottom-out {
+    position: relative;
+    animation: jslide-bottom-out 0.1s forwards;
+}
+
+.jslide-left-in > div {
+    -webkit-transform: translateZ(0px);
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.jslide-left-out > div {
+    -webkit-transform: translateZ(0px);
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.jslide-right-in > div {
+    -webkit-transform: translateZ(0px);
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.jslide-right-out > div {
+    -webkit-transform: translateZ(0px);
+    -webkit-transform: translate3d(0,0,0);
+}
+
+.jspin {
+    animation: jspin 2s infinite linear;
+}
+
+/** Fadein and Fadeout **/
+@keyframes jfade-in {
+    0% { opacity: 0; }
+    100% { opacity: 100; }
+}
+
+@-webkit-keyframes jfade-in {
+    0% { opacity: 0; }
+    100% { opacity: 100; }
+}
+
+@keyframes jfade-out {
+    0% { opacity: 100; }
+    100% { opacity: 0; }
+}
+
+@-webkit-keyframes jfade-out {
+    0% { opacity: 100; }
+    100% { opacity: 0; }
+}
+
+/** Keyframes Left to Right **/
+@keyframes jslide-left-in {
+    0% { left: -100%; }
+    100% { left: 0%; }
+}
+
+@-webkit-keyframes jslide-left-in {
+    0% { left: -100%; }
+    100% { left: 0%; }
+}
+    
+@keyframes jslide-left-out {
+    0% { left: 0%; }
+    100% { left: -100%; }
+}
+
+@-webkit-keyframes jslide-left-out {
+    0% { left: 0%; }
+    100% { left: -100%; }
+}
+
+/** Keyframes Right to Left **/
+@keyframes jslide-right-in {
+    0% { left: 100%; }
+    100% { left: 0%; }
+}
+
+@-webkit-keyframes jslide-right-in
+{
+    0% { left: 100%; }
+    100% { left: 0%; }
+}
+    
+@keyframes jslide-right-out {
+    0% { left: 0%; }
+    100% { left: 100%; }
+}
+
+@-webkit-keyframes jslide-right-out {
+    0% { left: 0%; }
+    100% { left: 100%; }
+}
+
+/** Keyframes Top to Bottom **/
+@keyframes jslide-top-in {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes jslide-top-in {
+    0% { transform: translateY(-100%); }
+    100% { -webkit-transform: translateY(0%); }
+}
+    
+@keyframes jslide-top-out {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(-100%); }
+}
+
+@-webkit-keyframes jslide-top-out {
+    0% { -webkit-transform: translateY(0%); }
+    100% { -webkit-transform: translateY(-100%); }
+}
+
+/** Keyframes Bottom to Top **/
+@keyframes jslide-bottom-in {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0%); }
+}
+
+@-webkit-keyframes jslide-bottom-in {
+    0% { transform: translateY(100%); }
+    100% { -webkit-transform: translateY(0%); }
+}
+    
+@keyframes jslide-bottom-out {
+    0% { transform: translateY(0%); }
+    100% { transform: translateY(100%); }
+}
+
+@-webkit-keyframes jslide-bottom-out {
+    0% { -webkit-transform: translateY(0%); }
+    100% { -webkit-transform: translateY(100%); }
+}
+
+@-webkit-keyframes jspin {
+    from {
+        -webkit-transform:rotate(0deg);
+    }
+    to {
+        -webkit-transform:rotate(359deg);
+    }
+}
+
+@keyframes jspin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(359deg);
+    }
+}
+.jcalendar {
+    position:absolute;
+    z-index:9000;
+    display:none;
+    box-sizing:border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    min-width:280px;
+}
+
+.jcalendar.jcalendar-focus {
+    display:block;
+}
+
+.jcalendar .jcalendar-backdrop {
+    position:fixed;
+    top:0px;
+    left:0px;
+    z-index:9000;
+    min-width:100%;
+    min-height:100%;
+    background-color:rgba(0,0,0,0.5);
+    border:0px;
+    padding:0px;
+    display:none;
+}
+
+.jcalendar .jcalendar-container {
+    position:relative;
+    box-sizing:border-box;
+}
+
+.jcalendar .jcalendar-content {
+    position:absolute;
+    z-index:9001;
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);
+    background-color:#fff;
+}
+
+.jcalendar-header {
+    text-align:center;
+}
+
+.jcalendar-header span {
+    margin-right:4px;
+    font-size:1.1em;
+    font-weight:bold;
+}
+
+.jcalendar-prev {
+    cursor:pointer;
+    background-image:url(${___CSS_LOADER_URL_REPLACEMENT_0___});
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.jcalendar-next {
+    cursor:pointer;
+    background-image:url(${___CSS_LOADER_URL_REPLACEMENT_1___});
+    background-position:center;
+    background-repeat:no-repeat;
+}
+
+.jcalendar-weekday {
+    font-weight: 600;
+    background-color: #fcfcfc;
+    padding: 14px;
+}
+
+.jcalendar-table {
+    padding: 10px;
+}
+
+.jcalendar-table > table {
+    width:100%;
+    background-color:#fff;
+}
+
+.jcalendar-table > table > thead {
+    cursor: pointer;
+}
+
+.jcalendar-table thead td {
+    padding: 10px;
+    height: 40px;
+}
+
+.jcalendar-table > table > tbody > tr {
+    height: 34px;
+}
+
+.jcalendar-table > table > tbody td {
+    box-sizing:border-box;
+    cursor:pointer;
+    padding:9px;
+    font-size:0.9em;
+}
+
+.jcalendar-table tfoot td {
+    padding:10px;
+}
+
+.jcalendar-months td, .jcalendar-years td {
+    height:24px;
+} 
+
+.jcalendar-input {
+    padding-right:18px;
+    background-image:url(${___CSS_LOADER_URL_REPLACEMENT_2___});
+    background-position:top 50% right 5px;
+    background-repeat:no-repeat;
+    box-sizing: border-box;
+}
+
+.jcalendar-done {
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);
+    background-color:#fff;
+}
+
+.jcalendar-update {
+    border:1px solid #ccc;
+    background-color:#fff;
+    border-radius:4px;
+    padding:5px;
+    width:100%;
+}
+
+.jcalendar-container select {
+    width:55px;
+    display:inline-block;
+    border:0px;
+    padding:4px;
+    text-align:center;
+    font-size:1.1em;
+    user-select:none;
+    margin-right:10px;
+}
+
+.jcalendar-container select:first-child {
+    margin-right:2px;
+}
+
+.jcalendar-selected {
+    background-color:#eee;
+}
+
+.jcalendar-reset, .jcalendar-confirm {
+    text-transform:uppercase;
+    cursor:pointer;
+    color: var(--jactive-color);
+}
+
+.jcalendar-controls {
+    padding:15px;
+
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align:middle;
+
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -webkit-flex-flow: row wrap;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.jcalendar-controls div {
+    font-weight:bold;
+}
+
+.jcalendar-fullsize  {
+    position:fixed;
+    width:100%;
+    top:0px;
+    left:0px;
+}
+
+.jcalendar-fullsize .jcalendar-content
+{
+    position:fixed;
+    width:100%;
+    left:0px;
+    bottom:0px;
+}
+
+.jcalendar-focus.jcalendar-fullsize .jcalendar-backdrop {
+    display:block;
+}
+
+.jcalendar-sunday {
+    color: red;
+}
+.jcalendar-disabled {
+    color: #ccc;
+}
+
+.jcalendar-time {
+    display:flex;
+}
+
+.jcalendar_warning {
+    color: red;
+}
+
+.jcalendar-hide-controls .jcalendar-controls {
+    display: none;
+}
+
+.jcolor {
+    display: none;
+    outline: none;
+    position: absolute;
+}
+
+.jcolor-input {
+    padding-right: 24px !important;
+    background: url(${___CSS_LOADER_URL_REPLACEMENT_3___}) top 50% right 4px no-repeat, content-box;
+    box-sizing: border-box;
+}
+
+.jcolor-content {
+    position: absolute;
+    z-index: 9000;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+    font-size: .875rem;
+    letter-spacing: .2px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);
+    background-color:#fff;
+    box-sizing: border-box;
+    min-width: 260px;
+}
+
+.jmodal .jcolor-content {
+    position: fixed;
+}
+
+.jcolor-controls {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 5px;
+}
+
+.jcolor-controls div {
+    flex: 1;
+    font-size: 1em;
+    color: var(--jactive-color);
+    text-transform: uppercase;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+.jcolor-content table {
+    border-collapse: collapse;
+    box-sizing: border-box;
+}
+
+.jcolor-focus {
+    display:block;
+}
+
+.jcolor table {
+    width:100%;
+    height:100%;
+    min-height: 160px;
+}
+
+.jcolor td {
+    padding: 7px;
+}
+
+.jcolor-selected {
+    background-repeat:no-repeat;
+    background-size: 16px;
+    background-position: center;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_4___});
+}
+
+.jcolor-fullscreen {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    width:100%;
+    max-height: 290px;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.jcolor-fullscreen .jcolor-controls {
+    padding: 15px;
+    -webkit-box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.39);
+    box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.39);
+}
+
+.jcolor-reset {
+    text-align: left;
+}
+
+.jcolor-close {
+    text-align: right;
+}
+
+.jcolor-backdrop {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    border: 0px;
+    padding: 0px;
+    z-index: 8000;
+    display: none;
+    
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.jcolor-content .jtabs-content {
+    padding: 7px;
+}
+
+.jcolor-grid tr:first-child > td:first-child {
+    border-top-left-radius: 3px;
+}
+
+.jcolor-grid tr:first-child > td:last-child {
+    border-top-right-radius: 3px;
+}
+
+.jcolor-grid tr:last-child > td:first-child {
+    border-bottom-left-radius: 3px;
+}
+
+.jcolor-grid tr:last-child > td:last-child {
+    border-bottom-right-radius: 3px;
+}
+
+.jcolor-hsl {
+    box-sizing: border-box;
+}
+
+.jcolor-hsl > div {
+    height: 100%;
+    position: relative;
+}
+
+.jcolor-hsl canvas {
+    display: block;
+    border-radius: 4px;
+    -webkit-user-drag: none;
+}
+
+.jcolor-point {
+    height: 5px;
+    width: 5px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+.jcolor-sliders {
+    padding: 10px 20px 10px 10px;
+}
+
+.jcolor-sliders input {
+    -webkit-appearance: none;
+
+    height: 12px;
+    width: 80%;
+
+    background: #d3d3d3;
+    opacity: 1;
+
+    border-radius: 30px;
+    outline: none;
+}
+
+.jcolor-sliders-input-subcontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jcolor-sliders-input-container {
+    margin-top: 4px;
+    line-height: 0.8em;
+    text-align: left;
+}
+
+.jcolor-sliders-input-container > label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #bbbbbd;
+}
+
+.jcolor-sliders-input-subcontainer > input {
+    border: 0px;
+    padding: 1px;
+}
+
+.jcolor-sliders-input-container input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #000;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+.jcolor-sliders-input-container input::-moz-range-thumb {
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #000;
+    border: 2px solid #fff;
+    cursor: pointer;
+}
+
+.jcolor-sliders-final-color {
+    padding: 6px;
+    user-select: all;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.jcolor-sliders-final-color > div:nth-child(2) {
+    width: 71px;
+    text-transform: uppercase;
+}
+
+.jcolor .jtabs .jtabs-headers-container .jtabs-controls {
+    display: none !important;
+}
+
+.jcolor .jtabs .jtabs-headers-container {
+    display: flex !important;
+    justify-content: center;
+    padding: 4px;
+}
+
+.jcolor .jtabs-headers > div:not(.jtabs-border) {
+    padding: 2px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    font-size: 0.8em;
+}
+.jcontextmenu {
+    position:fixed;
+    z-index:10000;
+    background:#fff;
+    color: #555;
+    font-size: 11px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);
+    -moz-box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);
+    box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);
+    border: 1px solid #C6C6C6;
+    padding: 0px;
+    padding-top:4px;
+    padding-bottom:4px;
+    margin:0px;
+    outline:none;
+    display:none;
+}
+
+.jcontextmenu.jcontextmenu-focus {
+    display:inline-block;
+}
+
+.jcontextmenu > div {
+    box-sizing: border-box;
+    display: flex;
+    padding: 8px 8px 8px 32px;
+    width: 250px;
+    position: relative;
+    cursor: default;
+    font-size: 11px;
+    font-family:sans-serif;
+    text-align: left;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.jcontextmenu > div::before {
+    content: attr(data-icon);
+    font-family: 'Material Icons' !important;
+    font-size: 15px;
+    position: absolute;
+    left: 9px;
+    line-height: 24px;
+}
+
+.jcontextmenu.symbols > div::before {
+    font-family: 'Material Symbols Outlined' !important;
+}
+
+.jcontextmenu > div.header {
+    display: none;
+}
+
+.jcontextmenu > div a {
+    color: #555;
+    text-decoration: none;
+    flex: 1;
+    cursor: pointer;
+}
+
+.jcontextmenu > div span {
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+.jcontextmenu .jcontextmenu-disabled a {
+    color: #ccc;
+}
+
+.jcontextmenu .jcontextmenu-disabled::before {
+    color: #ccc;
+}
+
+.jcontextmenu > div:hover {
+    background: #ebebeb;
+}
+
+.jcontextmenu hr {
+    border: 1px solid #e9e9e9;
+    border-bottom: 0;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+.jcontextmenu > hr:hover {
+    background: transparent;
+}
+
+.jcontextmenu .jcontextmenu {
+    top: 4px;
+    left: 99%;
+    opacity: 0;
+    position: absolute;
+}
+
+.jcontextmenu > div:hover > .jcontextmenu {
+    display: block;
+    opacity: 1;
+    -webkit-transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1);
+    pointer-events: auto;
+}
+
+@media only screen and (max-width: 420px) {
+    .jcontextmenu {
+        top: initial !important;
+        left: 0px !important;
+        bottom: 0px !important;
+        width: 100vw;
+        height: 260px;
+        overflow: scroll;
+        animation: jslide-bottom-in 0.4s forwards;
+        padding-top: 0px;
+    }
+    .jcontextmenu div {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #ccc;
+        padding: 15px;
+    }
+    .jcontextmenu > div.header {
+        background-color: lightgray;
+        padding: 5px;
+        top: 0px;
+        position: sticky;
+        z-index: 2;
+    }
+    .jcontextmenu > div.header > a.title {
+        text-align: left;
+    }
+
+    .jcontextmenu > div.header > a.close {
+        text-align: right;
+    }
+    .jcontextmenu a {
+        font-size: 1.4em;
+        text-transform: uppercase;
+    }
+    .jcontextmenu span {
+        display: none;
+    }
+    .jcontextmenu span {
+        display: none;
+    }
+    .jcontextmenu hr {
+        display: none;
+    }
+}
+
+.jdropdown {
+    cursor:pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    background:#fff;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+}
+
+.jdropdown-backdrop {
+    position:fixed;
+    top:0px;
+    left:0px;
+    min-width:100%;
+    min-height:100%;
+    background-color:rgba(0,0,0,0.5);
+    border:0px;
+    padding:0px;
+    z-index:8000;
+    display:none;
+}
+
+.jdropdown[disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.jdropdown-focus {
+    position:relative;
+}
+
+.jdropdown-focus .jdropdown-container {
+    transform: translate3d(0,0,0);
+}
+
+.jdropdown-default.jdropdown-focus .jdropdown-header {
+    outline:auto 5px -webkit-focus-ring-color;
+}
+
+.jdropdown-default.jdropdown-focus .jdropdown-header.jdropdown-add {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_5___});
+}
+
+.jdropdown-container-header {
+    padding:0px;
+    margin:0px;
+    position:relative;
+    box-sizing: border-box;
+}
+
+.jdropdown-header {
+    width:100%;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position:top 50% right 5px;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_6___});
+    text-overflow: ellipsis;
+    cursor:pointer;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right:30px !important;
+}
+
+.jdropdown-insert-button {
+    font-size: 1.4em;
+    text-transform: uppercase;
+    position:absolute;
+    right: 30px;
+    top: 4px;
+    display:none;
+}
+
+.jdropdown-container {
+    min-width: inherit;
+    transform: translate3d(-10000px,0,0);
+    position:absolute;
+    z-index:9001;
+}
+
+.jdropdown-close {
+    display:none;
+    font-size:1em;
+    color: var(--jactive-color);
+    text-transform:uppercase;
+    text-align:right;
+    padding:12px;
+    font-weight:bold;
+}
+
+.jdropdown-content {
+    min-width:inherit;
+    margin:0px;
+    box-sizing:border-box;
+}
+
+.jdropdown-content:empty {
+}
+
+.jdropdown-item {
+    white-space: nowrap;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    color: #000;
+    display: flex;
+    align-items: center;
+}
+
+.jdropdown-description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-height: 1.5em;
+}
+
+.jdropdown-image {
+    margin-right:10px;
+    width: 32px;
+    height: 32px;
+    border-radius:20px;
+}
+
+.jdropdown-image-small {
+    width:24px;
+    height:24px;
+}
+
+.jdropdown-icon {
+    margin-right:10px;
+    font-size: 30px;
+    margin-left: -5px;
+}
+
+.jdropdown-icon-small {
+    font-size: 24px;
+    margin-left: 0px;
+}
+
+.jdropdown-title {
+    font-size: 0.7em;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    display: block;
+}
+
+/** Default visual **/
+
+.jdropdown-default .jdropdown-header {
+    border:1px solid #ccc;
+    padding:5px;
+    padding-left:10px;
+    padding-right:16px;
+}
+
+.jdropdown-default .jdropdown-container {
+    background-color:#fff;
+}
+
+.jdropdown-default.jdropdown-focus.jdropdown-insert .jdropdown-header {
+    padding-right:50px;
+}
+
+.jdropdown-default.jdropdown-focus.jdropdown-insert .jdropdown-insert-button {
+    display:block;
+}
+
+.jdropdown-default .jdropdown-content
+{
+    min-width:inherit;
+    border:1px solid #8fb1e3;
+    margin:0px;
+    background-color:#fff;
+    box-sizing:border-box;
+    min-height:10px;
+    max-height:215px;
+    overflow-y:auto;
+}
+
+.jdropdown-default .jdropdown-item
+{
+    padding:4px;
+    padding-left:8px;
+    padding-right:40px;
+}
+
+.jdropdown-default .jdropdown-item:hover
+{
+    background-color:#1f93ff;
+    color:#fff;
+}
+
+.jdropdown-default .jdropdown-cursor
+{
+    background-color:#eee;
+}
+
+.jdropdown-default .jdropdown-selected
+{
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_7___});
+    background-repeat:no-repeat;
+    background-position:top 50% right 5px;
+    background-color:#1f93ff;
+    color:#fff;
+}
+
+.jdropdown-default .jdropdown-group {
+    margin-top:5px;
+}
+
+.jdropdown-default .jdropdown-group .jdropdown-item {
+    padding-left:16px;
+}
+
+.jdropdown-default .jdropdown-group-name {
+    padding-left: 8px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.jdropdown-default .jdropdown-reset_ {
+    content:'x';
+    position:absolute;
+    top:0;
+    right:0;
+    margin:5px;
+    margin-right:10px;
+    font-size:12px;
+    width:12px;
+    cursor:pointer;
+    text-shadow: 0px 0px 5px #fff;
+    display:none;
+    line-height: 1.8em;
+}
+
+.jdropdown-default.jdropdown-focus .jdropdown-reset_ {
+    display:block;
+}
+
+/** Default render for mobile **/
+
+.jdropdown-picker.jdropdown-focus .jdropdown-backdrop {
+    display:block;
+}
+
+.jdropdown-picker .jdropdown-header {
+    outline: none;
+}
+
+.jdropdown-picker .jdropdown-container
+{
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    border-bottom:1px solid #e6e6e8;
+    width:100%;
+    background-color:#fff;
+    box-sizing: border-box;
+}
+
+.jdropdown-picker .jdropdown-close
+{
+    -webkit-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.39);
+    -moz-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.39);
+    box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.39);
+    background-color:#fff;
+    display:block;
+}
+
+.jdropdown-picker .jdropdown-content
+{
+    overflow-y:scroll;
+    height:280px;
+    background-color:#fafafa;
+    border-top:1px solid #e6e6e8;
+}
+
+.jdropdown-picker .jdropdown-group-name
+{
+    font-size: 1em;
+    text-transform: uppercase;
+    padding-top:10px;
+    padding-bottom:10px;
+    display: block;
+    border-bottom: 1px solid #e6e6e8;
+    padding-left:20px;
+    padding-right:20px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.jdropdown-picker .jdropdown-item
+{
+    font-size: 1em;
+    text-transform: uppercase;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom: 1px solid #e6e6e8;
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.jdropdown-picker .jdropdown-selected
+{
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_7___});
+    background-repeat:no-repeat;
+    background-position:top 50% right 15px;
+    background-color:#1f93ff;
+    color:#fff;
+}
+
+.jdropdown-picker .jdropdown-cursor
+{
+    background-color:#1f93ff;
+    color:#fff;
+}
+
+/** Default render for mobile searchbar **/
+
+.jdropdown-searchbar.jdropdown-focus
+{
+    position:fixed;
+    top:0px !important;
+    left:0px !important;
+    width:100% !important;
+    height:100% !important;
+    background-color:#fafafa;
+    padding:0px;
+    z-index:9001;
+    overflow-y:scroll;
+    will-change: scroll-position;
+    -webkit-overflow-scrolling: touch;
+}
+
+.jdropdown-searchbar.jdropdown-focus .jdropdown-container-header
+{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 9002;
+    padding: 6px;
+    background-color:#fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1);
+    width: 100%;
+    height: 40px;
+}
+
+.jdropdown-searchbar.jdropdown-focus .jdropdown-header
+{
+    border: 0px !important;
+    background-position-x: 0% !important;
+    background-position-y: 40% !important;
+    background-repeat: no-repeat;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_8___});
+    padding-left: 30px !important;
+    padding-right: 60px !important;
+}
+
+.jdropdown-searchbar.jdropdown-focus .jdropdown-close
+{
+    display:block;
+}
+
+.jdropdown-searchbar .jdropdown-header {
+    outline: none;
+}
+
+.jdropdown-searchbar .jdropdown-container
+{
+    margin-top: 40px;
+    width:100%;
+}
+
+.jdropdown-searchbar .jdropdown-close
+{
+    position:fixed;
+    top:0px;
+    right:0px;
+}
+
+.jdropdown-searchbar .jdropdown-content
+{
+    margin-top:10px;
+}
+
+.jdropdown-searchbar .jdropdown-group
+{
+    margin-top:10px;
+    margin-bottom:15px;
+    background-color:#fff;
+}
+
+.jdropdown-searchbar .jdropdown-group-name
+{
+    border-top: 1px solid #e6e6e8;
+    border-bottom: 1px solid #e6e6e8;
+    padding:10px;
+    padding-left:12px;
+    font-weight:bold;
+}
+
+.jdropdown-searchbar .jdropdown-group-arrow
+{
+    float:right;
+    width:24px;
+    height:24px;
+    background-repeat:no-repeat;
+}
+
+.jdropdown-searchbar .jdropdown-group-arrow-down
+{
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_9___});
+}
+
+.jdropdown-searchbar .jdropdown-group-arrow-up
+{
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_10___});
+}
+
+.jdropdown-searchbar .jdropdown-item
+{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom: 1px solid #e6e6e8;
+    padding-left:15px;
+    padding-right:40px;
+    background-color:#fff;
+    font-size:0.9em;
+}
+
+.jdropdown-searchbar .jdropdown-description {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: calc(100% - 20px);
+}
+
+.jdropdown-searchbar .jdropdown-content > .jdropdown-item:first-child
+{
+    border-top: 1px solid #e6e6e8;
+}
+
+.jdropdown-searchbar .jdropdown-selected
+{
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_11___});
+    background-repeat:no-repeat;
+    background-position:top 50% right 15px;
+}
+
+/** List render **/
+
+.jdropdown-list
+{
+}
+
+.jdropdown-list .jdropdown-container
+{
+    display:block;
+}
+
+.jdropdown-list .jdropdown-header
+{
+    display:none;
+}
+
+.jdropdown-list .jdropdown-group
+{
+    background-color:#fff;
+}
+
+.jdropdown-list .jdropdown-group-name
+{
+    border-bottom: 1px solid #e6e6e8;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-weight:bold;
+}
+
+.jdropdown-list .jdropdown-item
+{
+    padding-top:10px;
+    padding-bottom:10px;
+    border-bottom: 1px solid #e6e6e8;
+    padding-left:10px;
+    padding-right:40px;
+    background-color:#fff;
+}
+
+.jdropdown-list .jdropdown-selected
+{
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_11___});
+    background-repeat:no-repeat;
+    background-position:top 50% right 10px;
+}
+
+@media only screen and (max-width : 800px)
+{
+    .jdropdown-list {
+        width:100% !important;
+        border:0px;
+        padding:0px;
+    }
+
+    .jdropdown-list .jdropdown-container {
+        min-width:100%;
+    }
+
+    .jdropdown-searchbar.jdropdown-focus .jdropdown-description {
+        text-transform: uppercase;
+    }
+}
+
+.app .jdropdown-item {
+    text-transform:uppercase;
+}
+
+.jdropdown-create-container {
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 6px;
+}
+
+.jdropdown-color {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    width: 12px;
+    height: 12px;
+    margin-right: 6px;
+}
+
+.jdropdown-item[data-disabled] {
+    opacity: 0.5;
+    pointer-events: none;
+}
+.jeditor-container {
+    border:1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.jeditor-container.with-margin {
+    background-color: #f2f2f2;
+    max-width: 1200px;
+}
+
+.jeditor-dragging {
+     border:1px dashed #000;
+}
+
+.jeditor {
+    outline:none;
+    word-break: break-word;
+}
+
+.jeditor-container.with-margin .jeditor {
+    background-color: #fff;
+    margin: 80px;
+    min-height: 800px;
+    padding: 80px;
+    max-width: 800px;
+}
+
+.jeditor[data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: lightgray;
+}
+
+/** Snippet **/
+
+.jsnippet {
+    margin-top:15px;
+    cursor:pointer;
+    border: 1px solid #ccc;
+    position:relative;
+}
+
+.jsnippet:focus {
+    outline: none;
+}
+
+.jsnippet img {
+    width:100%;
+}
+
+.jsnippet .jsnippet-title {
+    padding:15px;
+    font-size:1.4em;
+}
+
+.jsnippet .jsnippet-description {
+    padding-left:15px;
+    padding-right:15px;
+    font-size:1em;
+}
+
+.jsnippet .jsnippet-host {
+    padding:15px;
+    text-transform:uppercase;
+    font-size:0.8em;
+    color:#777;
+    text-align:right;
+}
+
+.jsnippet .jsnippet-url {
+    display:none;
+}
+
+.jeditor .jsnippet:after {
+    content: 'close';
+    font-family: 'Material icons';
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    cursor: pointer;
+    text-shadow: 0px 0px 2px #fff;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+}
+
+.jsnippet * {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
+.jeditor img {
+    border:2px solid transparent;
+    box-sizing: border-box;
+}
+
+.jeditor img.resizing {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
+
+.jeditor img:focus {
+    border: 2px solid #0096FD;
+    outline: #0096FD;
+}
+
+.jeditor .pdf {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_12___});
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:60px;
+    height:60px;
+}
+
+.jeditor-toolbar {
+    width: fit-content;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 10px;
+}
+
+.toolbar-on-top .jeditor-toolbar {
+    width: initial;
+    margin: 0px;
+    box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);
+    display: block;
+}
+
+.toolbar-on-top .jeditor {
+    padding: 15px;
+}
+
+.toolbar-on-top .jtoolbar .material-icons {
+    font-size: 24px;
+    transform: initial;
+    margin: 4px;
+}
+
+.toolbar-on-top .jtoolbar .jpicker-header {
+    font-size: 1em;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.jeditor table {
+    border-collapse: collapse;
+}
+
+.jeditor table td {
+    border: 1px solid #bbb;
+    height: 2em;
+}
+
+.jeditor table td:focus {
+    border: 1px solid blue;
+}
+
+.jeditor .line-break {
+    border-top: 1px dashed #ccc;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.jeditor .line-break:before {
+    content: 'New page';
+    background-color: #fff;
+    color: #ccc;
+    margin: -1em;
+    padding: 6px;
+    position: absolute;
+}
+.jfloating {
+    position:fixed;
+    bottom:0px;
+    right:0px;
+    margin-right:5px;
+
+    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+    border:1px solid #ccc;
+    background-color:#fff;
+    box-sizing: border-box;
+    padding-top:50px !important;
+    z-index:9002;
+    border-radius: 8px;
+}
+
+.jfloating.jfloating-big {
+    width: 510px !important;
+    height: 472px !important;
+}
+
+.jfloating.jfloating-small {
+    width: 300px !important;
+    height: 320px !important;
+}
+
+.jfloating.jfloating-large {
+    width: 600px !important;
+    height: 600px !important;
+}
+
+.jfloating:before {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    content:attr(title);
+    padding:15px;
+    box-sizing: border-box;
+    font-size:1.2em;
+    box-shadow: 1px 1px 3px rgba(0,0,0,.2);
+    background-color: #fff;
+    border-radius: 8px 8px 0px 0px;
+    background-color: #404040;
+    font-size: .93rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: .5px;
+}
+
+.jfloating:after {
+    content:'';
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_13___});
+    position:absolute;
+    top:0;
+    right:0;
+    margin:14px;
+    font-size:24px;
+    width:24px;
+    height:24px;
+    cursor:pointer;
+    text-shadow: 0px 0px 5px #fff;
+}
+
+.jfloating_content {
+    padding:20px;
+    overflow-y:auto;
+    max-height:100%;
+    box-sizing: border-box;
+    height: -webkit-fill-available;
+}
+
+.jfloating.jfloating-minimized {
+    height: 50px !important;
+}
+
+.jfloating.jfloating-minimized .jfloating_content {
+    display: none;
+}
+
+.jmodal {
+    position:fixed;
+    top:50%;
+    left:50%;
+    width:60%;
+    height:60%;
+    -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 2px 12px rgba(0,0,0,.2);
+    border:1px solid #ccc;
+    background-color:#fff;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    z-index:9002;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+}
+
+.jmodal_title {
+    padding: 20px;
+    height: 70px;
+    box-sizing: border-box;
+    font-size: 1.4em;
+    background-color: #fff;
+    border-radius: 8px 8px 0px 0px;
+    pointer-events: none;
+    display: flex;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.jmodal_title > div {
+    font-size: 1.4em;
+}
+
+.jmodal_title[data-icon]:before {
+    content: attr(data-icon);
+    font-family: 'Material Icons' !important;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    margin-right: 10px;
+    line-height: 24px;
+}
+
+.jmodal_content {
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: #333 transparent;
+}
+
+.jmodal_title:empty {
+    display: none;
+}
+
+.jmodal_title:empty + .jmodal_content {
+    height: 100%;
+}
+
+.jmodal_content::-webkit-scrollbar {
+    height: 12px;
+}
+
+.jmodal_content::-webkit-scrollbar {
+    width: 12px;
+}
+
+.jmodal_content::-webkit-scrollbar-track {
+    border: 1px solid #fff;
+    background: #eee;
+}
+
+.jmodal_content::-webkit-scrollbar-thumb {
+    border: 1px solid #fff;
+    background: #888;
+}
+
+.jmodal:after {
+    content: '';
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_14___});
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    text-shadow: 0px 0px 5px #fff;
+}
+
+.jmodal_fullscreen {
+    width: 100% !important;
+    height: 100% !important;
+    top: 0px;
+    left: 0px;
+    transform: none;
+    border: 0px;
+    border-radius: 0px;
+}
+
+.jmodal_backdrop {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: rgba(0,0,0,0.2);
+    border: 0px;
+    padding: 0px;
+    z-index: 8000;
+    display: none;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.jmodal_content .jcalendar .jcalendar-content,
+.jmodal_content .jdropdown-container {
+    position: fixed;
+}
+
+.jnotification {
+    position: fixed;
+    z-index: 10000;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    bottom: 0px;
+}
+
+.jnotification-container {
+    -webkit-box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.7);
+    padding: 12px;
+    border-radius: 8px;
+
+    background-color: #000;
+    background: rgba(92,92,92,1);
+    background: linear-gradient(0deg, rgba(92,92,92,1) 0%, rgba(77,77,77,1) 100%);
+    color: #fff;
+    width: 320px;
+    margin: 30px;
+    padding: 20px;
+}
+
+.jnotification-close {
+    content: '';
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_15___});
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.jnotification-title {
+    font-weight: bold;
+}
+
+.jnotification-header {
+    display: flex;
+    padding-bottom: 5px;
+}
+
+.jnotification-header:empty {
+    display: none;
+}
+
+.jnotification-image {
+    margin-right: 5px;
+}
+
+.jnotification-image:empty {
+    display: none;
+}
+
+.jnotification-image img {
+    width: 24px;
+}
+
+.jnotification-name {
+    text-transform: uppercase;
+    font-size: 0.9em;
+    flex: 1;
+    letter-spacing: 0.1em;
+}
+
+.jnotification-error .jnotification-container {
+    background: rgb(182,38,6);
+    background: linear-gradient(0deg, rgba(170,41,13,1) 0%, rgba(149,11,11,1) 100%);
+}
+
+@media (max-width: 800px) {
+    .jnotification {
+        top: calc(0px + var(--jsafe-area-top));
+        width: 100%;
+    }
+    .jnotification-container {
+        background: rgba(255,255,255,0.95);
+        border: 1px solid #eee;
+        color: #444;
+        margin: 0px;
+        width: initial;
+    }
+    .jnotification-error .jnotification-container {
+        background: rgba(255,255,255,0.95);
+        color: #790909;
+    }
+    .jnotification-close {
+        background-image: url(${___CSS_LOADER_URL_REPLACEMENT_16___});
+    }
+}
+
+.jnotification-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.jpicker {
+    cursor: pointer;
+    white-space: nowrap;
+    display: inline-flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    position: relative;
+    min-height: 26px;
+}
+
+.jpicker-header {
+    background-repeat: no-repeat;
+    background-position: top 50% right 5px;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_6___});
+    text-overflow: ellipsis;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: left;
+    outline: none;
+    line-height: 24px;
+    padding: 2px 35px 2px 12px;
+    border-radius: 4px;
+}
+
+.jpicker-header:hover {
+    background-color: #f2f2f2;
+}
+
+.jpicker-content {
+    position: absolute;
+    top: 0;
+    display: none;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 4px;
+    z-index: 50;
+    text-align: left;
+    max-height: 250px;
+    scrollbar-width: thin;
+    scrollbar-color: #333 transparent;
+}
+
+.jpicker-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.jpicker-content::-webkit-scrollbar-track {
+    background: #eee;
+}
+ 
+.jpicker-content::-webkit-scrollbar-thumb {
+    background: #888;
+}
+ 
+.jpicker-content > div {
+    padding: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.jpicker-focus > .jpicker-content {
+    display: block;
+}
+
+.jpicker-content > div:hover {
+    background-color:#efefef;
+}
+
+.jpicker-content > div:empty {
+    opacity: 0;
+}
+
+.jpicker-header > i, .jpicker-header > div {
+    display: block;
+}
+
+.jpicker-focus > .jpicker-content.jpicker-columns {
+    display: flex !important ;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.jpicker-focus .jpicker-content.jpicker-grid {
+    display: inline-grid;
+}
+
+
+
+.jprogressbar
+{
+    cursor:pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    background:#fff;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    box-sizing: border-box;
+    cursor:pointer;
+    border:1px solid #ccc;
+    position:relative;
+}
+
+.jprogressbar::before {
+    content:attr(data-value);
+    position:absolute;
+    margin:5px;
+    margin-left:10px;
+}
+
+.jprogressbar-header::placeholder
+{
+    color:#000;
+}
+
+.jprogressbar:focus {
+    outline: auto 5px -webkit-focus-ring-color;
+}
+
+.jprogressbar > div {
+    background-color: #eee;
+    background-color: red;
+    box-sizing: border-box;
+    height:31px;
+}
+.jrating {
+    display:flex;
+}
+.jrating > div {
+    width:24px;
+    height:24px;
+    line-height:24px;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_17___});
+}
+
+.jrating .jrating-over {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_18___});
+    opacity: 0.7;
+}
+
+.jrating .jrating-selected {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_19___});
+}
+
+.jsearch {
+    position: relative;
+    display: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.jsearch_container {
+    position: absolute;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);
+    border: none;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    width: 280px;
+    padding: 8px 0;
+    z-index: 1;
+
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -webkit-transition: opacity .218s;
+    transition: opacity .218s;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.2);
+    cursor: pointer;
+    margin: 0;
+    min-width: 300px;
+    outline: none;
+    width: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.jsearch_container:empty:after {
+    content: attr(data-placeholder);
+}
+
+.jsearch_container > div {
+    color: #333;
+    cursor: pointer;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    padding: 5px 10px;
+    user-select: none;
+    -webkit-align-items: center;
+    align-items: center;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.jsearch_container > div:hover {
+    background-color: #e8eaed;
+}
+
+.jsearch_container > div > img {
+    width: 32px;
+    height: 32px;
+    user-select: none;
+    border-radius: 16px;
+    margin-right: 2px;
+}
+
+.jsearch_container > div > div {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 2px;
+    max-width: 300px;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.jsearch_container .selected {
+    background-color: #e8eaed;
+}
+.jslider {
+    outline: none;
+}
+
+.jslider-focus {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.jslider-focus img {
+    display: none;
+}
+
+.jslider img {
+    width: 100px;
+}
+
+.jslider-left::before {
+    position: fixed;
+    left: 15px;
+    top: 50%;
+    content:'arrow_back_ios';
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    font-family: 'Material Icons';
+    font-size: 30px;
+    /* before it was 0px 0px 0px #000 */
+    text-shadow: 0px 0px 6px rgb(56,56,56);
+    text-align: center;
+    cursor: pointer;
+}
+
+.jslider-right::after {
+    position: fixed;
+    right: 15px;
+    top: 50%;
+    content: 'arrow_forward_ios';
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    font-family: 'Material Icons';
+    font-size: 30px;
+    /* before it was 0px 0px 0px #000 */
+    text-shadow: 0px 0px 6px rgb(56,56,56);
+    text-align: center;
+    cursor: pointer;
+}
+
+.jslider-close {
+    width:24px;
+    height:24px;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_20___});
+    position:fixed;
+    top:15px;
+    right:15px;
+    cursor:pointer;
+    z-index:3000;
+
+    display: block !important;
+}
+
+.jslider-counter {
+    height:24px;
+    background-color: transparent;
+    position:fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 15px;
+    cursor:pointer;
+    z-index:3000;
+
+    display: flex;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;   
+    -webkit-flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.jslider-caption {
+    position: fixed;
+    max-width: 90vw;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    top:15px;
+    left: 15px;
+    z-index:3000;
+    color: #FFF;
+    font-size: 1rem;
+
+    display: block !important;
+}
+
+.jslider-counter div {
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0px 5px;
+
+    display: block !important;
+}
+
+.jslider-counter .jslider-counter-focus {
+    background-color: cornflowerblue;
+    pointer-events: none;
+}
+
+.jslider-focus {
+    position:fixed;
+    left:0;
+    top:0;
+    width: 100%;
+    min-height:100%;
+    max-height:100%;
+    z-index:2000;
+    margin:0px;
+    box-sizing:border-box;
+
+    background-color:rgba(0,0,0,0.8);
+    -webkit-transition-duration: .05s;
+    transition-duration: .05s;
+    display: flex;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+
+    align-items: center;
+}
+
+.jslider-focus img {
+    width: 50vw;
+    height: auto;
+    box-sizing: border-box;
+    margin:0 auto;
+    vertical-align:middle;
+    display:none;
+}
+
+.jslider-focus img.jslider-vertical {
+    width: auto;
+    /* before it was 50vh */
+    height: 80vh;
+}
+
+@media only screen and (max-width: 576px) {
+    .jslider-focus img.jslider-vertical {
+        width: 99vw !important;
+        height: auto !important;
+    }
+
+    .jslider-focus img {
+        width: 100vw !important;
+        height: auto !important;
+    }
+}
+
+.jslider-grid {
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 1px;
+    position: relative;
+}
+
+.jslider-grid[data-number='2'] {
+    -ms-grid-columns: 1fr 50%;
+    grid-template-columns: 1fr 50%;
+}
+
+.jslider-grid[data-number='3'] {
+    -ms-grid-columns: 1fr 33%;
+    grid-template-columns: 1fr 33%;
+}
+
+.jslider-grid[data-number='4'] {
+    -ms-grid-columns: 1fr 25%;
+    grid-template-columns: 1fr 25%;
+}
+
+.jslider-grid img {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jslider-grid[data-total]:after {
+    content: attr(data-total) "+";
+    font-size: 1.5em;
+    position:absolute;
+    color: #fff;
+    right: 15px;
+    bottom: 6px;
+}
+
+.jslider-grid img:first-child {
+    -ms-grid-column: 1;
+    -ms-grid-row: 1;
+    grid-column: 1;
+    grid-row: 1;
+    display: block;
+}
+
+.jslider-grid[data-number='2'] img:nth-child(2) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+}
+
+.jslider-grid[data-number='3'] img:first-child {
+    -ms-grid-column: 1 / 2;
+    -ms-grid-row: 1 / 4;
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+}
+
+.jslider-grid[data-number='3'] img:nth-child(2) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+}
+
+.jslider-grid[data-number='3'] img:nth-child(3) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    grid-column: 2;
+    grid-row: 2;
+    display: block;
+}
+
+.jslider-grid[data-number='4'] img:first-child {
+    -ms-grid-column: 1 / 2;
+    -ms-grid-row: 1 / 4;
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+}
+
+.jslider-grid[data-number='4'] img:nth-child(2) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 1;
+    grid-column: 2;
+    grid-row: 1;
+    display: block;
+}
+
+.jslider-grid[data-number='4'] img:nth-child(3) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 2;
+    grid-column: 2;
+    grid-row: 2;
+    display: block;
+}
+
+.jslider-grid[data-number='4'] img:nth-child(4) {
+    -ms-grid-column: 2;
+    -ms-grid-row: 3;
+    grid-column: 2;
+    grid-row: 3;
+    display: block;
+}
+
+.jtabs {
+    max-width: 100vw;
+    position: relative;
+}
+
+.jtabs .jtabs-headers-container {
+    display: flex;
+    align-items: center;
+}
+
+.jtabs .jtabs-headers {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.jtabs .jtabs-headers > div:not(.jtabs-border) {
+    padding: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-left: 1px;
+    margin-right: 1px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.jtabs .jtabs-headers > div.jtabs-selected {
+    background-color: #e8e8e8;
+    color: #000;
+}
+
+.jtabs .jtabs-headers > div > div {
+    color: #555;
+    width: 100%;
+    overflow: hidden;
+}
+
+.jtabs .jtabs-headers i {
+    display: block;
+    margin: auto;
+}
+
+.jtabs .jtabs-content {
+    box-sizing: border-box;
+}
+
+.jtabs .jtabs-content > div {
+    display: none;
+    box-sizing: border-box;
+}
+
+.jtabs .jtabs-content > div.jtabs-selected {
+    display: block;
+}
+
+.jtabs .jtabs-border {
+    position: absolute;
+    height: 2px;
+    background-color: #888;
+    transform-origin: left;
+    transition: all .2s cubic-bezier(0.4,0,0.2,1);
+    transition-property: color,left,transform;
+    display: none;
+    pointer-events: none;
+}
+
+.jtabs-animation .jtabs-border {
+    display: initial;
+}
+
+.jtabs .jtabs-controls {
+    margin: 3px;
+    margin-left: 10px;
+    display: flex;
+    min-width: 82px;
+}
+
+.jtabs .jtabs-controls > div {
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+}
+
+.jtabs .jtabs-prev {
+    margin-left: 10px;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_21___});
+}
+
+.jtabs .jtabs-prev.disabled {
+    margin-left: 10px;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_22___});
+}
+
+.jtabs .jtabs-next {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_23___});
+}
+
+.jtabs .jtabs-next.disabled {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_24___});
+}
+
+.jtabs .jtabs-add {
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_25___});
+}
+
+/** Modern skin **/
+
+.jtabs.jtabs-modern .jtabs-headers > div:not(.jtabs-border) {
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: #fff;
+}
+
+.jtabs.jtabs-modern .jtabs-headers > .jtabs-selected  {
+    color: #000;
+}
+
+.jtabs.jtabs-modern .jtabs-headers > .jtabs-selected .material-icons {
+    color: #000;
+}
+
+.jtabs.jtabs-modern .jtabs-headers {
+    background: #EEEEEF !important;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.jtabs.jtabs-modern .jtabs-headers .jtabs-border {
+    border-color: #EEEEEF !important;
+}
+
+.jtabs.jtabs-modern .jtabs-border {
+    background-color: rgba(194, 197, 188, 0.884);
+}
+.jtags {
+    display: flex;
+    flex-wrap: wrap;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-pack: flex-start;
+    -webkit-justify-content: space-between;
+    justify-content: flex-start;
+    padding: 1px;
+    border: 1px solid #ccc;
+    position: relative;
+} 
+
+.jtags.jtags-empty:not(.jtags-focus)::before {
+    position: absolute;
+    margin: 3px;
+    color: #ccc;
+    content: attr(data-placeholder);
+    top: 0;
+    margin-left: 6px;
+}
+
+.jtags > div {
+    padding: 3px 22px 3px 10px;
+    font-size: 0.9em;
+    position: relative;
+    border-radius: 1px;
+    margin: 2px;
+    display: block;
+    outline: none;
+}
+
+.jtags > div:empty:before {
+    content: " ";
+    white-space: pre;
+}
+
+.jtags > div::after {
+    content: 'x';
+    position: absolute;
+    right: 4px;
+    width: 12px;
+    height: 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: none;
+}
+
+.jtags_label {
+    background-color: #e4e4e4 !important;
+}
+
+.jtags_label::after {
+    display: inline-block !important;
+}
+
+.jtags_error::after {
+    color: #fff  !important;
+}
+
+.jtags_error {
+    background-color: #d93025 !important;
+    color: #fff;
+}
+
+.jtoolbar-container {
+    border-radius: 2px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
+    display: inline-flex !important;
+}
+
+.jtoolbar {
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    padding:4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 13px;
+}
+
+.jtoolbar-disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.jtoolbar-mobile {
+    display: flex;
+    position:fixed;
+    bottom: 0;
+    margin: 0;
+    left: 0;
+    width: 100%;
+    background: #f7f7f8;
+    z-index: 1;
+    box-sizing: border-box;
+    box-shadow: 0 -1px 2px rgba(0,0,0,.1);
+    border-radius: 0px;
+}
+
+.jtoolbar > div {
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    vertical-align:middle;
+    justify-content: space-evenly;
+}
+
+.jtoolbar-mobile > div {
+    display: flex;
+    width: 100%;
+}
+
+.jtoolbar .jtoolbar-item {
+    text-align: center;
+    margin: auto;
+    padding: 2px;
+    padding-left:4px;
+    padding-right:4px;
+}
+
+.jtoolbar-mobile .jtoolbar-item {
+    position: relative;
+    flex:1;
+} 
+
+.jtoolbar .jtoolbar-divisor {
+    width: 2px;
+    height: 18px;
+    padding: 0px;
+    margin-left: 4px;
+    margin-right: 4px;
+    background-color: #ddd;
+}
+
+.jtoolbar .jtoolbar-label {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+
+
+.jtoolbar-mobile a
+{
+    text-decoration:none;
+    display:inline-block;
+}
+
+.jtoolbar-mobile i {
+    display: inline-flex !important;
+    color:#929292;
+}
+
+.jtoolbar-mobile span {
+    font-size:0.7em;
+    display:block;
+    color:#929292;
+}
+
+.jtoolbar-mobile .jtoolbar-selected a, .jtoolbar-mobile .jtoolbar-selected i, .jtoolbar-mobile .jtoolbar-selected span {
+    color:var(--jactive-color) !important;
+    background-color:transparent;
+}
+
+.jtoolbar-item {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.jtoolbar-item i {
+    display: block;
+    color:#333;
+}
+
+.jtoolbar-item:hover {
+    background-color:#f2f2f2;
+}
+
+.jtoolbar .jpicker {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.jtoolbar .jpicker-header {
+    padding: 0 20px 0 8px;
+    background-position: top 50% right 0;
+    display: flex;
+    align-items: center;
+}
+
+.jtoolbar .jpicker-content > div {
+    padding: 6px;
+}
+
+.jtoolbar-active {
+    background-color:#eee;
+}
+
+.jtoolbar .fa {
+    width: 18px;
+    height: 18px;
+    display: block;
+    line-height: 18px;
+    font-size: 14px;
+}
+
+.jtoolbar .material-icons {
+    font-size: 18px;
+    width: 24px;
+    height: 24px;
+    display: block;
+    line-height: 24px;
+    transform: rotate(0.03deg);
+    text-align: center;
+}
+
+.jtoolbar .jtoolbar-arrow {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(${___CSS_LOADER_URL_REPLACEMENT_26___});
+    width: 24px;
+    height: 16px;
+    margin-left: 4px;
+    border-left: 1px solid #f2f2f2;
+}
+
+.jtoolbar-floating {
+    position: absolute;
+    display: none;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 4px;
+    z-index: 50;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.jtoolbar-floating .jtoolbar-divisor {
+    display: none;
+}
+
+.jtoolbar-arrow-selected .jtoolbar-floating {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+`, "",{"version":3,"sources":["webpack://./node_modules/jsuites/dist/jsuites.css"],"names":[],"mappings":"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","sourcesContent":[":root {\r\n    --jbutton-color: #298BA8; \r\n    --jactive-color: #007aff;\r\n    --jsafe-area-top: env(safe-area-inset-top);\r\n    --jsafe-area-bottom: env(safe-area-inset-bottom);\r\n}\r\n\r\n[data-visible=\"false\"], .row[data-visible=\"false\"] {\r\n    display: none;\r\n}\r\n\r\n\r\ndiv[data-before]:before {\r\n    content: attr(data-before);\r\n}\r\n\r\n.unselectable {\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n.jreadonly {\r\n    pointer-events: none;\r\n}\r\n\r\n.jdragging {\r\n    opacity:0.2;\r\n    filter: alpha(opacity=20);\r\n}\r\n\r\n.jupload.input {\r\n    position: relative;\r\n    box-sizing: border-box;\r\n    background-size: initial;\r\n    height: 33px;\r\n    min-height: initial;\r\n    padding: 6px;\r\n    padding-right: 30px;\r\n}\r\n\r\n.jupload.input:before {\r\n    content: \"save\";\r\n    font-size: 18px;\r\n    font-family: \"Material Icons\";\r\n    color: #000;\r\n    position: absolute;\r\n    right: 5px;\r\n}\r\n\r\n.jupload:empty:before {\r\n    z-index: 0;\r\n}\r\n\r\n.jupload img {\r\n    width: 100%;\r\n} \r\n\r\n.jupload.input img {\r\n    width: initial;\r\n    max-width: 100%;\r\n    height: 100%;\r\n}\r\n\r\n.jupload[data-multiple] {\r\n    padding: 10px;\r\n}\r\n\r\n.jupload[data-multiple] img {\r\n    height: 70px;\r\n    width: 100px;\r\n    object-fit: cover;\r\n    margin-right: 5px;\r\n    margin-bottom: 5px;\r\n}\r\n\r\n.jupload {\r\n    position: relative;\r\n    border: 1px dotted #eee;\r\n    cursor: pointer;\r\n    box-sizing: border-box;\r\n    width: 100%;\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    min-height: 180px;\r\n}\r\n\r\n.jupload:not(.input):empty:before {\r\n    content: \"\\e2c3\";\r\n    font-family: \"Material Icons\";\r\n    font-size: 90px;\r\n    color: #eee;\r\n    width: 100%;\r\n    height: 100%;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    position: absolute;\r\n}\r\n\r\n.jupload-item {\r\n    padding-right: 22px;\r\n    border-radius: 1px;\r\n    display: inline-block;\r\n    position: relative;\r\n}\r\n\r\n.jphoto {\r\n    position: relative;\r\n    border: 1px dotted #eee;\r\n    cursor: pointer;\r\n    box-sizing: border-box;\r\n    width: 100%;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.jphoto:empty:before {\r\n    content: \"\\e2c3\";\r\n    font-family: \"Material Icons\";\r\n    font-size: 90px;\r\n    color: #eee;\r\n    width: 100%;\r\n    height: 100%;\r\n    text-align: center;\r\n}\r\n\r\n.jremove {\r\n    opacity: 0.2;\r\n    filter: alpha(opacity=20);\r\n}\r\n\r\n.round img {\r\n    border-radius: 1000px;\r\n}\r\n\r\n.jtooltip {\r\n    position: fixed;\r\n    top: 10px;\r\n    left: 10px;\r\n    z-index: 5;\r\n\r\n    font-family: initial;\r\n    font-size: 12px;\r\n    color: #000;\r\n    background-color: #fff;\r\n    border: 1px solid black;\r\n    padding: 8px;\r\n    margin: 10px;\r\n\r\n    display: block;\r\n    animation: jfadeIn 0.5s;\r\n    pointer-events: none;\r\n}\r\n\r\n.jtooltip:empty {\r\n    display: none;\r\n}\r\n\r\n@keyframes jfadeIn {\r\n     0% {\r\n          opacity: 0;\r\n     }\r\n     100% {\r\n          opacity: 1;\r\n     }\r\n}\r\n\r\n.jpanel {\r\n    position: absolute;\r\n    box-sizing: border-box;\r\n    z-index: 10;\r\n}\r\n\r\n.jpanel:focus {\r\n    outline: 2px solid black;\r\n    outline-offset: -1px;\r\n}\r\n\r\n.jpanel-action {\r\n    position: absolute;\r\n    width: 8px;\r\n    height: 8px;\r\n    background-color: white;\r\n    border:1px solid black;\r\n    box-sizing: border-box;\r\n    pointer-events: auto;\r\n    z-index: 1000;\r\n}\r\n\r\n.jpanel-action[data-position=\"n-resize\"] {\r\n    top: -4px;\r\n    left: calc(50% - 4px);\r\n}\r\n\r\n.jpanel-action[data-position=\"ne-resize\"] {\r\n    top: -4px;\r\n    left: calc(100% - 4px);\r\n}\r\n\r\n.jpanel-action[data-position=\"e-resize\"] {\r\n    top: calc(50% - 4px);\r\n    left: calc(100% - 4px);\r\n}\r\n\r\n.jpanel-action[data-position=\"se-resize\"] {\r\n    top: calc(100% - 4px);\r\n    left: calc(100% - 4px);\r\n}\r\n\r\n.jpanel-action[data-position=\"s-resize\"] {\r\n    top: calc(100% - 4px);\r\n    left: calc(50% - 4px);\r\n}\r\n\r\n.jpanel-action[data-position=\"sw-resize\"] {\r\n    top: calc(100% - 4px);\r\n    left: -4px;\r\n}\r\n\r\n.jpanel-action[data-position=\"w-resize\"] {\r\n    top: calc(50% - 4px);\r\n    left: -4px;\r\n}\r\n\r\n.jpanel-action[data-position=\"nw-resize\"] {\r\n    top: -4px;\r\n    left: -4px;\r\n}\r\n\r\n.jpanel-action[data-position=\"nw-resize\"] {\r\n    top: -4px;\r\n    left: -4px;\r\n}\r\n\r\n.jpanel-action[data-action=\"rotate\"] {\r\n    top: -50px;\r\n    left: calc(50% - 12px);\r\n    width: 24px;\r\n    height: 24px;\r\n    border: 0;\r\n    cursor: move;\r\n    background-color: transparent;\r\n}\r\n\r\n.jpanel-action[data-action=\"rotate\"]:before {\r\n    content: 'refresh';\r\n    font-family: 'Material Icons';\r\n    font-size: 24px;\r\n}\r\n\r\n.jpanel-action[data-action=\"rotate\"]:after {\r\n    position: absolute;\r\n    content: '';\r\n    bottom: -22px;\r\n    left: calc(50%);\r\n    width: 1px;\r\n    height: 28px;\r\n    background-color: black;\r\n}\r\n\n/** Loading */\r\n.jloading {\r\n    position:fixed;\r\n    z-index:10001;\r\n    width:100%;\r\n    left:0;\r\n    right:0;\r\n    top:0;\r\n    bottom:0;\r\n    background-color: rgba(0,0,0,0.7);\r\n}\r\n\r\n.jloading::after {\r\n    content:'';\r\n    display:block;\r\n    margin:0 auto;\r\n    margin-top:50vh;\r\n    width:40px;\r\n    height:40px;\r\n    border-style:solid;\r\n    border-color:white;\r\n    border-top-color:transparent;\r\n    border-width:4px;\r\n    border-radius:50%;\r\n    -webkit-animation: jspin .8s linear infinite;\r\n    animation: jspin .8s linear infinite;\r\n}\r\n\r\n.jloading.jspin {\r\n    background-color:transparent;\r\n}\r\n\r\n.jloading.jspin::after {\r\n    margin:0 auto;\r\n    margin-top:80px;\r\n    border-color:#aaa;\r\n    border-top-color:transparent;\r\n}\r\n\r\n/** Animations **/\r\n.jfade-in {\r\n    animation: jfade-in 2s forwards;\r\n}\r\n\r\n.jfade-out {\r\n    animation: jfade-out 1s forwards;\r\n}\r\n\r\n.jslide-left-in {\r\n    position: relative;\r\n    animation: jslide-left-in 0.4s forwards;\r\n}\r\n\r\n.jslide-left-out {\r\n    position: relative;\r\n    animation: jslide-left-out 0.4s forwards;\r\n}\r\n\r\n.jslide-right-in {\r\n    position: relative;\r\n    animation: jslide-right-in 0.4s forwards;\r\n}\r\n\r\n.jslide-right-out {\r\n    position: relative;\r\n    animation: jslide-right-out 0.4s forwards;\r\n}\r\n\r\n.jslide-top-in {\r\n    position: relative;\r\n    animation: jslide-top-in 0.4s forwards;\r\n}\r\n\r\n.jslide-top-out {\r\n    position: relative;\r\n    animation: jslide-top-out 0.2s forwards;\r\n}\r\n\r\n.jslide-bottom-in {\r\n    position: relative;\r\n    animation: jslide-bottom-in 0.4s forwards;\r\n}\r\n\r\n.jslide-bottom-out {\r\n    position: relative;\r\n    animation: jslide-bottom-out 0.1s forwards;\r\n}\r\n\r\n.jslide-left-in > div {\r\n    -webkit-transform: translateZ(0px);\r\n    -webkit-transform: translate3d(0,0,0);\r\n}\r\n\r\n.jslide-left-out > div {\r\n    -webkit-transform: translateZ(0px);\r\n    -webkit-transform: translate3d(0,0,0);\r\n}\r\n\r\n.jslide-right-in > div {\r\n    -webkit-transform: translateZ(0px);\r\n    -webkit-transform: translate3d(0,0,0);\r\n}\r\n\r\n.jslide-right-out > div {\r\n    -webkit-transform: translateZ(0px);\r\n    -webkit-transform: translate3d(0,0,0);\r\n}\r\n\r\n.jspin {\r\n    animation: jspin 2s infinite linear;\r\n}\r\n\r\n/** Fadein and Fadeout **/\r\n@keyframes jfade-in {\r\n    0% { opacity: 0; }\r\n    100% { opacity: 100; }\r\n}\r\n\r\n@-webkit-keyframes jfade-in {\r\n    0% { opacity: 0; }\r\n    100% { opacity: 100; }\r\n}\r\n\r\n@keyframes jfade-out {\r\n    0% { opacity: 100; }\r\n    100% { opacity: 0; }\r\n}\r\n\r\n@-webkit-keyframes jfade-out {\r\n    0% { opacity: 100; }\r\n    100% { opacity: 0; }\r\n}\r\n\r\n/** Keyframes Left to Right **/\r\n@keyframes jslide-left-in {\r\n    0% { left: -100%; }\r\n    100% { left: 0%; }\r\n}\r\n\r\n@-webkit-keyframes jslide-left-in {\r\n    0% { left: -100%; }\r\n    100% { left: 0%; }\r\n}\r\n    \r\n@keyframes jslide-left-out {\r\n    0% { left: 0%; }\r\n    100% { left: -100%; }\r\n}\r\n\r\n@-webkit-keyframes jslide-left-out {\r\n    0% { left: 0%; }\r\n    100% { left: -100%; }\r\n}\r\n\r\n/** Keyframes Right to Left **/\r\n@keyframes jslide-right-in {\r\n    0% { left: 100%; }\r\n    100% { left: 0%; }\r\n}\r\n\r\n@-webkit-keyframes jslide-right-in\r\n{\r\n    0% { left: 100%; }\r\n    100% { left: 0%; }\r\n}\r\n    \r\n@keyframes jslide-right-out {\r\n    0% { left: 0%; }\r\n    100% { left: 100%; }\r\n}\r\n\r\n@-webkit-keyframes jslide-right-out {\r\n    0% { left: 0%; }\r\n    100% { left: 100%; }\r\n}\r\n\r\n/** Keyframes Top to Bottom **/\r\n@keyframes jslide-top-in {\r\n    0% { transform: translateY(-100%); }\r\n    100% { transform: translateY(0%); }\r\n}\r\n\r\n@-webkit-keyframes jslide-top-in {\r\n    0% { transform: translateY(-100%); }\r\n    100% { -webkit-transform: translateY(0%); }\r\n}\r\n    \r\n@keyframes jslide-top-out {\r\n    0% { transform: translateY(0%); }\r\n    100% { transform: translateY(-100%); }\r\n}\r\n\r\n@-webkit-keyframes jslide-top-out {\r\n    0% { -webkit-transform: translateY(0%); }\r\n    100% { -webkit-transform: translateY(-100%); }\r\n}\r\n\r\n/** Keyframes Bottom to Top **/\r\n@keyframes jslide-bottom-in {\r\n    0% { transform: translateY(100%); }\r\n    100% { transform: translateY(0%); }\r\n}\r\n\r\n@-webkit-keyframes jslide-bottom-in {\r\n    0% { transform: translateY(100%); }\r\n    100% { -webkit-transform: translateY(0%); }\r\n}\r\n    \r\n@keyframes jslide-bottom-out {\r\n    0% { transform: translateY(0%); }\r\n    100% { transform: translateY(100%); }\r\n}\r\n\r\n@-webkit-keyframes jslide-bottom-out {\r\n    0% { -webkit-transform: translateY(0%); }\r\n    100% { -webkit-transform: translateY(100%); }\r\n}\r\n\r\n@-webkit-keyframes jspin {\r\n    from {\r\n        -webkit-transform:rotate(0deg);\r\n    }\r\n    to {\r\n        -webkit-transform:rotate(359deg);\r\n    }\r\n}\r\n\r\n@keyframes jspin {\r\n    from {\r\n        transform:rotate(0deg);\r\n    }\r\n    to {\r\n        transform:rotate(359deg);\r\n    }\r\n}\n.jcalendar {\r\n    position:absolute;\r\n    z-index:9000;\r\n    display:none;\r\n    box-sizing:border-box;\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n    -webkit-tap-highlight-color: rgba(0,0,0,0);\r\n    -webkit-tap-highlight-color: transparent;\r\n    min-width:280px;\r\n}\r\n\r\n.jcalendar.jcalendar-focus {\r\n    display:block;\r\n}\r\n\r\n.jcalendar .jcalendar-backdrop {\r\n    position:fixed;\r\n    top:0px;\r\n    left:0px;\r\n    z-index:9000;\r\n    min-width:100%;\r\n    min-height:100%;\r\n    background-color:rgba(0,0,0,0.5);\r\n    border:0px;\r\n    padding:0px;\r\n    display:none;\r\n}\r\n\r\n.jcalendar .jcalendar-container {\r\n    position:relative;\r\n    box-sizing:border-box;\r\n}\r\n\r\n.jcalendar .jcalendar-content {\r\n    position:absolute;\r\n    z-index:9001;\r\n    -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);\r\n    -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);\r\n    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);\r\n    background-color:#fff;\r\n}\r\n\r\n.jcalendar-header {\r\n    text-align:center;\r\n}\r\n\r\n.jcalendar-header span {\r\n    margin-right:4px;\r\n    font-size:1.1em;\r\n    font-weight:bold;\r\n}\r\n\r\n.jcalendar-prev {\r\n    cursor:pointer;\r\n    background-image:url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E\");\r\n    background-position:center;\r\n    background-repeat:no-repeat;\r\n}\r\n\r\n.jcalendar-next {\r\n    cursor:pointer;\r\n    background-image:url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E\");\r\n    background-position:center;\r\n    background-repeat:no-repeat;\r\n}\r\n\r\n.jcalendar-weekday {\r\n    font-weight: 600;\r\n    background-color: #fcfcfc;\r\n    padding: 14px;\r\n}\r\n\r\n.jcalendar-table {\r\n    padding: 10px;\r\n}\r\n\r\n.jcalendar-table > table {\r\n    width:100%;\r\n    background-color:#fff;\r\n}\r\n\r\n.jcalendar-table > table > thead {\r\n    cursor: pointer;\r\n}\r\n\r\n.jcalendar-table thead td {\r\n    padding: 10px;\r\n    height: 40px;\r\n}\r\n\r\n.jcalendar-table > table > tbody > tr {\r\n    height: 34px;\r\n}\r\n\r\n.jcalendar-table > table > tbody td {\r\n    box-sizing:border-box;\r\n    cursor:pointer;\r\n    padding:9px;\r\n    font-size:0.9em;\r\n}\r\n\r\n.jcalendar-table tfoot td {\r\n    padding:10px;\r\n}\r\n\r\n.jcalendar-months td, .jcalendar-years td {\r\n    height:24px;\r\n} \r\n\r\n.jcalendar-input {\r\n    padding-right:18px;\r\n    background-image:url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27gray%27%3E%3Cpath d=%27M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E\");\r\n    background-position:top 50% right 5px;\r\n    background-repeat:no-repeat;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jcalendar-done {\r\n    -webkit-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);\r\n    -moz-box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);\r\n    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.39);\r\n    background-color:#fff;\r\n}\r\n\r\n.jcalendar-update {\r\n    border:1px solid #ccc;\r\n    background-color:#fff;\r\n    border-radius:4px;\r\n    padding:5px;\r\n    width:100%;\r\n}\r\n\r\n.jcalendar-container select {\r\n    width:55px;\r\n    display:inline-block;\r\n    border:0px;\r\n    padding:4px;\r\n    text-align:center;\r\n    font-size:1.1em;\r\n    user-select:none;\r\n    margin-right:10px;\r\n}\r\n\r\n.jcalendar-container select:first-child {\r\n    margin-right:2px;\r\n}\r\n\r\n.jcalendar-selected {\r\n    background-color:#eee;\r\n}\r\n\r\n.jcalendar-reset, .jcalendar-confirm {\r\n    text-transform:uppercase;\r\n    cursor:pointer;\r\n    color: var(--jactive-color);\r\n}\r\n\r\n.jcalendar-controls {\r\n    padding:15px;\r\n\r\n    -webkit-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    vertical-align:middle;\r\n\r\n    display: -webkit-box;\r\n    display: -moz-box;\r\n    display: -ms-flexbox;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n\r\n    -webkit-flex-flow: row wrap;\r\n    justify-content: space-between;\r\n    align-items:center;\r\n}\r\n\r\n.jcalendar-controls div {\r\n    font-weight:bold;\r\n}\r\n\r\n.jcalendar-fullsize  {\r\n    position:fixed;\r\n    width:100%;\r\n    top:0px;\r\n    left:0px;\r\n}\r\n\r\n.jcalendar-fullsize .jcalendar-content\r\n{\r\n    position:fixed;\r\n    width:100%;\r\n    left:0px;\r\n    bottom:0px;\r\n}\r\n\r\n.jcalendar-focus.jcalendar-fullsize .jcalendar-backdrop {\r\n    display:block;\r\n}\r\n\r\n.jcalendar-sunday {\r\n    color: red;\r\n}\r\n.jcalendar-disabled {\r\n    color: #ccc;\r\n}\r\n\r\n.jcalendar-time {\r\n    display:flex;\r\n}\r\n\r\n.jcalendar_warning {\r\n    color: red;\r\n}\r\n\r\n.jcalendar-hide-controls .jcalendar-controls {\r\n    display: none;\r\n}\r\n\n.jcolor {\r\n    display: none;\r\n    outline: none;\r\n    position: absolute;\r\n}\r\n\r\n.jcolor-input {\r\n    padding-right: 24px !important;\r\n    background: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z%27/%3E%3C/svg%3E\") top 50% right 4px no-repeat, content-box;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jcolor-content {\r\n    position: absolute;\r\n    z-index: 9000;\r\n    user-select: none;\r\n    -webkit-font-smoothing: antialiased;\r\n    font-size: .875rem;\r\n    letter-spacing: .2px;\r\n    -webkit-border-radius: 4px;\r\n    border-radius: 4px;\r\n    -webkit-box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);\r\n    box-shadow: 0 8px 10px 1px rgba(0,0,0,0.14), 0 3px 14px 2px rgba(0,0,0,0.12), 0 5px 5px -3px rgba(0,0,0,0.2);\r\n    background-color:#fff;\r\n    box-sizing: border-box;\r\n    min-width: 260px;\r\n}\r\n\r\n.jmodal .jcolor-content {\r\n    position: fixed;\r\n}\r\n\r\n.jcolor-controls {\r\n    display: flex;\r\n    padding: 10px;\r\n    border-bottom: 1px solid #eee;\r\n    margin-bottom: 5px;\r\n}\r\n\r\n.jcolor-controls div {\r\n    flex: 1;\r\n    font-size: 1em;\r\n    color: var(--jactive-color);\r\n    text-transform: uppercase;\r\n    font-weight: bold;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jcolor-content table {\r\n    border-collapse: collapse;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jcolor-focus {\r\n    display:block;\r\n}\r\n\r\n.jcolor table {\r\n    width:100%;\r\n    height:100%;\r\n    min-height: 160px;\r\n}\r\n\r\n.jcolor td {\r\n    padding: 7px;\r\n}\r\n\r\n.jcolor-selected {\r\n    background-repeat:no-repeat;\r\n    background-size: 16px;\r\n    background-position: center;\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%27 fill=%27white%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n.jcolor-fullscreen {\r\n    position: fixed;\r\n    left: 0px;\r\n    bottom: 0px;\r\n    width:100%;\r\n    max-height: 290px;\r\n    border-radius: 0px;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jcolor-fullscreen .jcolor-controls {\r\n    padding: 15px;\r\n    -webkit-box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.39);\r\n    -moz-box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.39);\r\n    box-shadow: 1px 0px 1px 0px rgba(0,0,0,0.39);\r\n}\r\n\r\n.jcolor-reset {\r\n    text-align: left;\r\n}\r\n\r\n.jcolor-close {\r\n    text-align: right;\r\n}\r\n\r\n.jcolor-backdrop {\r\n    position: fixed;\r\n    top: 0px;\r\n    left: 0px;\r\n    min-width: 100%;\r\n    min-height: 100%;\r\n    background-color: rgba(0,0,0,0.5);\r\n    border: 0px;\r\n    padding: 0px;\r\n    z-index: 8000;\r\n    display: none;\r\n    \r\n  -webkit-touch-callout: none; /* iOS Safari */\r\n    -webkit-user-select: none; /* Safari */\r\n     -khtml-user-select: none; /* Konqueror HTML */\r\n       -moz-user-select: none; /* Firefox */\r\n        -ms-user-select: none; /* Internet Explorer/Edge */\r\n            user-select: none; /* Non-prefixed version, currently\r\n                                  supported by Chrome and Opera */\r\n}\r\n\r\n.jcolor-content .jtabs-content {\r\n    padding: 7px;\r\n}\r\n\r\n.jcolor-grid tr:first-child > td:first-child {\r\n    border-top-left-radius: 3px;\r\n}\r\n\r\n.jcolor-grid tr:first-child > td:last-child {\r\n    border-top-right-radius: 3px;\r\n}\r\n\r\n.jcolor-grid tr:last-child > td:first-child {\r\n    border-bottom-left-radius: 3px;\r\n}\r\n\r\n.jcolor-grid tr:last-child > td:last-child {\r\n    border-bottom-right-radius: 3px;\r\n}\r\n\r\n.jcolor-hsl {\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jcolor-hsl > div {\r\n    height: 100%;\r\n    position: relative;\r\n}\r\n\r\n.jcolor-hsl canvas {\r\n    display: block;\r\n    border-radius: 4px;\r\n    -webkit-user-drag: none;\r\n}\r\n\r\n.jcolor-point {\r\n    height: 5px;\r\n    width: 5px;\r\n    background-color: #000;\r\n    position: absolute;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%, -50%);\r\n    border-radius: 50%;\r\n}\r\n\r\n.jcolor-sliders {\r\n    padding: 10px 20px 10px 10px;\r\n}\r\n\r\n.jcolor-sliders input {\r\n    -webkit-appearance: none;\r\n\r\n    height: 12px;\r\n    width: 80%;\r\n\r\n    background: #d3d3d3;\r\n    opacity: 1;\r\n\r\n    border-radius: 30px;\r\n    outline: none;\r\n}\r\n\r\n.jcolor-sliders-input-subcontainer {\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n}\r\n\r\n.jcolor-sliders-input-container {\r\n    margin-top: 4px;\r\n    line-height: 0.8em;\r\n    text-align: left;\r\n}\r\n\r\n.jcolor-sliders-input-container > label {\r\n    font-size: 10px;\r\n    text-transform: uppercase;\r\n    color: #bbbbbd;\r\n}\r\n\r\n.jcolor-sliders-input-subcontainer > input {\r\n    border: 0px;\r\n    padding: 1px;\r\n}\r\n\r\n.jcolor-sliders-input-container input::-webkit-slider-thumb {\r\n    -webkit-appearance: none;\r\n    height: 12px;\r\n    width: 12px;\r\n    border-radius: 50%;\r\n    background: #000;\r\n    border: 2px solid #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n.jcolor-sliders-input-container input::-moz-range-thumb {\r\n    -webkit-appearance: none;\r\n    height: 12px;\r\n    width: 12px;\r\n    border-radius: 50%;\r\n    background: #000;\r\n    border: 2px solid #fff;\r\n    cursor: pointer;\r\n}\r\n\r\n.jcolor-sliders-final-color {\r\n    padding: 6px;\r\n    user-select: all;\r\n    margin-top: 10px;\r\n    text-align: center;\r\n}\r\n\r\n.jcolor-sliders-final-color > div:nth-child(2) {\r\n    width: 71px;\r\n    text-transform: uppercase;\r\n}\r\n\r\n.jcolor .jtabs .jtabs-headers-container .jtabs-controls {\r\n    display: none !important;\r\n}\r\n\r\n.jcolor .jtabs .jtabs-headers-container {\r\n    display: flex !important;\r\n    justify-content: center;\r\n    padding: 4px;\r\n}\r\n\r\n.jcolor .jtabs-headers > div:not(.jtabs-border) {\r\n    padding: 2px !important;\r\n    padding-left: 15px !important;\r\n    padding-right: 15px !important;\r\n    font-size: 0.8em;\r\n}\n.jcontextmenu {\r\n    position:fixed;\r\n    z-index:10000;\r\n    background:#fff;\r\n    color: #555;\r\n    font-size: 11px;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    user-select: none;\r\n    -webkit-box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);\r\n    -moz-box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);\r\n    box-shadow: 2px 2px 2px 0px rgba(143, 144, 145, 1);\r\n    border: 1px solid #C6C6C6;\r\n    padding: 0px;\r\n    padding-top:4px;\r\n    padding-bottom:4px;\r\n    margin:0px;\r\n    outline:none;\r\n    display:none;\r\n}\r\n\r\n.jcontextmenu.jcontextmenu-focus {\r\n    display:inline-block;\r\n}\r\n\r\n.jcontextmenu > div {\r\n    box-sizing: border-box;\r\n    display: flex;\r\n    padding: 8px 8px 8px 32px;\r\n    width: 250px;\r\n    position: relative;\r\n    cursor: default;\r\n    font-size: 11px;\r\n    font-family:sans-serif;\r\n    text-align: left;\r\n    -webkit-box-align: center;\r\n    align-items: center;\r\n}\r\n\r\n.jcontextmenu > div::before {\r\n    content: attr(data-icon);\r\n    font-family: 'Material Icons' !important;\r\n    font-size: 15px;\r\n    position: absolute;\r\n    left: 9px;\r\n    line-height: 24px;\r\n}\r\n\r\n.jcontextmenu.symbols > div::before {\r\n    font-family: 'Material Symbols Outlined' !important;\r\n}\r\n\r\n.jcontextmenu > div.header {\r\n    display: none;\r\n}\r\n\r\n.jcontextmenu > div a {\r\n    color: #555;\r\n    text-decoration: none;\r\n    flex: 1;\r\n    cursor: pointer;\r\n}\r\n\r\n.jcontextmenu > div span {\r\n    margin-right: 10px;\r\n    font-size: 0.9em;\r\n}\r\n\r\n.jcontextmenu .jcontextmenu-disabled a {\r\n    color: #ccc;\r\n}\r\n\r\n.jcontextmenu .jcontextmenu-disabled::before {\r\n    color: #ccc;\r\n}\r\n\r\n.jcontextmenu > div:hover {\r\n    background: #ebebeb;\r\n}\r\n\r\n.jcontextmenu hr {\r\n    border: 1px solid #e9e9e9;\r\n    border-bottom: 0;\r\n    margin-top:5px;\r\n    margin-bottom:5px;\r\n}\r\n\r\n.jcontextmenu > hr:hover {\r\n    background: transparent;\r\n}\r\n\r\n.jcontextmenu .jcontextmenu {\r\n    top: 4px;\r\n    left: 99%;\r\n    opacity: 0;\r\n    position: absolute;\r\n}\r\n\r\n.jcontextmenu > div:hover > .jcontextmenu {\r\n    display: block;\r\n    opacity: 1;\r\n    -webkit-transform: translate(0, 0) scale(1);\r\n    transform: translate(0, 0) scale(1);\r\n    pointer-events: auto;\r\n}\r\n\r\n@media only screen and (max-width: 420px) {\r\n    .jcontextmenu {\r\n        top: initial !important;\r\n        left: 0px !important;\r\n        bottom: 0px !important;\r\n        width: 100vw;\r\n        height: 260px;\r\n        overflow: scroll;\r\n        animation: jslide-bottom-in 0.4s forwards;\r\n        padding-top: 0px;\r\n    }\r\n    .jcontextmenu div {\r\n        width: 100%;\r\n        text-align: center;\r\n        border-bottom: 1px solid #ccc;\r\n        padding: 15px;\r\n    }\r\n    .jcontextmenu > div.header {\r\n        background-color: lightgray;\r\n        padding: 5px;\r\n        top: 0px;\r\n        position: sticky;\r\n        z-index: 2;\r\n    }\r\n    .jcontextmenu > div.header > a.title {\r\n        text-align: left;\r\n    }\r\n\r\n    .jcontextmenu > div.header > a.close {\r\n        text-align: right;\r\n    }\r\n    .jcontextmenu a {\r\n        font-size: 1.4em;\r\n        text-transform: uppercase;\r\n    }\r\n    .jcontextmenu span {\r\n        display: none;\r\n    }\r\n    .jcontextmenu span {\r\n        display: none;\r\n    }\r\n    .jcontextmenu hr {\r\n        display: none;\r\n    }\r\n}\r\n\n.jdropdown {\r\n    cursor:pointer;\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n    box-sizing: border-box;\r\n    background:#fff;\r\n    -webkit-tap-highlight-color: transparent;\r\n    display: inline-block;\r\n}\r\n\r\n.jdropdown-backdrop {\r\n    position:fixed;\r\n    top:0px;\r\n    left:0px;\r\n    min-width:100%;\r\n    min-height:100%;\r\n    background-color:rgba(0,0,0,0.5);\r\n    border:0px;\r\n    padding:0px;\r\n    z-index:8000;\r\n    display:none;\r\n}\r\n\r\n.jdropdown[disabled] {\r\n    opacity: 0.5;\r\n    pointer-events: none;\r\n}\r\n\r\n.jdropdown-focus {\r\n    position:relative;\r\n}\r\n\r\n.jdropdown-focus .jdropdown-container {\r\n    transform: translate3d(0,0,0);\r\n}\r\n\r\n.jdropdown-default.jdropdown-focus .jdropdown-header {\r\n    outline:auto 5px -webkit-focus-ring-color;\r\n}\r\n\r\n.jdropdown-default.jdropdown-focus .jdropdown-header.jdropdown-add {\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2724px%27 height=%2724px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n.jdropdown-container-header {\r\n    padding:0px;\r\n    margin:0px;\r\n    position:relative;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jdropdown-header {\r\n    width:100%;\r\n    appearance: none;\r\n    background-repeat: no-repeat;\r\n    background-position:top 50% right 5px;\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3Cpath d=%27M7 10l5 5 5-5H7z%27 fill=%27gray%27/%3E%3C/svg%3E\");\r\n    text-overflow: ellipsis;\r\n    cursor:pointer;\r\n    box-sizing: border-box;\r\n    -webkit-appearance: none;\r\n    -moz-appearance: none;\r\n    padding-right:30px !important;\r\n}\r\n\r\n.jdropdown-insert-button {\r\n    font-size: 1.4em;\r\n    text-transform: uppercase;\r\n    position:absolute;\r\n    right: 30px;\r\n    top: 4px;\r\n    display:none;\r\n}\r\n\r\n.jdropdown-container {\r\n    min-width: inherit;\r\n    transform: translate3d(-10000px,0,0);\r\n    position:absolute;\r\n    z-index:9001;\r\n}\r\n\r\n.jdropdown-close {\r\n    display:none;\r\n    font-size:1em;\r\n    color: var(--jactive-color);\r\n    text-transform:uppercase;\r\n    text-align:right;\r\n    padding:12px;\r\n    font-weight:bold;\r\n}\r\n\r\n.jdropdown-content {\r\n    min-width:inherit;\r\n    margin:0px;\r\n    box-sizing:border-box;\r\n}\r\n\r\n.jdropdown-content:empty {\r\n}\r\n\r\n.jdropdown-item {\r\n    white-space: nowrap;\r\n    text-align: left;\r\n    text-overflow: ellipsis;\r\n    overflow-x: hidden;\r\n    color: #000;\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.jdropdown-description {\r\n    text-overflow: ellipsis;\r\n    overflow: hidden;\r\n    line-height: 1.5em;\r\n}\r\n\r\n.jdropdown-image {\r\n    margin-right:10px;\r\n    width: 32px;\r\n    height: 32px;\r\n    border-radius:20px;\r\n}\r\n\r\n.jdropdown-image-small {\r\n    width:24px;\r\n    height:24px;\r\n}\r\n\r\n.jdropdown-icon {\r\n    margin-right:10px;\r\n    font-size: 30px;\r\n    margin-left: -5px;\r\n}\r\n\r\n.jdropdown-icon-small {\r\n    font-size: 24px;\r\n    margin-left: 0px;\r\n}\r\n\r\n.jdropdown-title {\r\n    font-size: 0.7em;\r\n    text-overflow: ellipsis;\r\n    overflow-x: hidden;\r\n    display: block;\r\n}\r\n\r\n/** Default visual **/\r\n\r\n.jdropdown-default .jdropdown-header {\r\n    border:1px solid #ccc;\r\n    padding:5px;\r\n    padding-left:10px;\r\n    padding-right:16px;\r\n}\r\n\r\n.jdropdown-default .jdropdown-container {\r\n    background-color:#fff;\r\n}\r\n\r\n.jdropdown-default.jdropdown-focus.jdropdown-insert .jdropdown-header {\r\n    padding-right:50px;\r\n}\r\n\r\n.jdropdown-default.jdropdown-focus.jdropdown-insert .jdropdown-insert-button {\r\n    display:block;\r\n}\r\n\r\n.jdropdown-default .jdropdown-content\r\n{\r\n    min-width:inherit;\r\n    border:1px solid #8fb1e3;\r\n    margin:0px;\r\n    background-color:#fff;\r\n    box-sizing:border-box;\r\n    min-height:10px;\r\n    max-height:215px;\r\n    overflow-y:auto;\r\n}\r\n\r\n.jdropdown-default .jdropdown-item\r\n{\r\n    padding:4px;\r\n    padding-left:8px;\r\n    padding-right:40px;\r\n}\r\n\r\n.jdropdown-default .jdropdown-item:hover\r\n{\r\n    background-color:#1f93ff;\r\n    color:#fff;\r\n}\r\n\r\n.jdropdown-default .jdropdown-cursor\r\n{\r\n    background-color:#eee;\r\n}\r\n\r\n.jdropdown-default .jdropdown-selected\r\n{\r\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik05IDE2LjE3TDQuODMgMTJsLTEuNDIgMS40MUw5IDE5IDIxIDdsLTEuNDEtMS40MXoiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo=);\r\n    background-repeat:no-repeat;\r\n    background-position:top 50% right 5px;\r\n    background-color:#1f93ff;\r\n    color:#fff;\r\n}\r\n\r\n.jdropdown-default .jdropdown-group {\r\n    margin-top:5px;\r\n}\r\n\r\n.jdropdown-default .jdropdown-group .jdropdown-item {\r\n    padding-left:16px;\r\n}\r\n\r\n.jdropdown-default .jdropdown-group-name {\r\n    padding-left: 8px;\r\n    font-weight: bold;\r\n    text-align: left;\r\n}\r\n\r\n.jdropdown-default .jdropdown-reset_ {\r\n    content:'x';\r\n    position:absolute;\r\n    top:0;\r\n    right:0;\r\n    margin:5px;\r\n    margin-right:10px;\r\n    font-size:12px;\r\n    width:12px;\r\n    cursor:pointer;\r\n    text-shadow: 0px 0px 5px #fff;\r\n    display:none;\r\n    line-height: 1.8em;\r\n}\r\n\r\n.jdropdown-default.jdropdown-focus .jdropdown-reset_ {\r\n    display:block;\r\n}\r\n\r\n/** Default render for mobile **/\r\n\r\n.jdropdown-picker.jdropdown-focus .jdropdown-backdrop {\r\n    display:block;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-header {\r\n    outline: none;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-container\r\n{\r\n    position:fixed;\r\n    bottom:0px;\r\n    left:0px;\r\n    border-bottom:1px solid #e6e6e8;\r\n    width:100%;\r\n    background-color:#fff;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-close\r\n{\r\n    -webkit-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.39);\r\n    -moz-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.39);\r\n    box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.39);\r\n    background-color:#fff;\r\n    display:block;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-content\r\n{\r\n    overflow-y:scroll;\r\n    height:280px;\r\n    background-color:#fafafa;\r\n    border-top:1px solid #e6e6e8;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-group-name\r\n{\r\n    font-size: 1em;\r\n    text-transform: uppercase;\r\n    padding-top:10px;\r\n    padding-bottom:10px;\r\n    display: block;\r\n    border-bottom: 1px solid #e6e6e8;\r\n    padding-left:20px;\r\n    padding-right:20px;\r\n    text-align:center;\r\n    font-weight:bold;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-item\r\n{\r\n    font-size: 1em;\r\n    text-transform: uppercase;\r\n    padding-top:10px;\r\n    padding-bottom:10px;\r\n    border-bottom: 1px solid #e6e6e8;\r\n    padding-left:20px;\r\n    padding-right:20px;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-selected\r\n{\r\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik05IDE2LjE3TDQuODMgMTJsLTEuNDIgMS40MUw5IDE5IDIxIDdsLTEuNDEtMS40MXoiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo=);\r\n    background-repeat:no-repeat;\r\n    background-position:top 50% right 15px;\r\n    background-color:#1f93ff;\r\n    color:#fff;\r\n}\r\n\r\n.jdropdown-picker .jdropdown-cursor\r\n{\r\n    background-color:#1f93ff;\r\n    color:#fff;\r\n}\r\n\r\n/** Default render for mobile searchbar **/\r\n\r\n.jdropdown-searchbar.jdropdown-focus\r\n{\r\n    position:fixed;\r\n    top:0px !important;\r\n    left:0px !important;\r\n    width:100% !important;\r\n    height:100% !important;\r\n    background-color:#fafafa;\r\n    padding:0px;\r\n    z-index:9001;\r\n    overflow-y:scroll;\r\n    will-change: scroll-position;\r\n    -webkit-overflow-scrolling: touch;\r\n}\r\n\r\n.jdropdown-searchbar.jdropdown-focus .jdropdown-container-header\r\n{\r\n    position: fixed;\r\n    top: 0px;\r\n    left: 0px;\r\n    z-index: 9002;\r\n    padding: 6px;\r\n    background-color:#fff;\r\n    box-shadow: 0 1px 2px rgba(0,0,0,.1);\r\n    width: 100%;\r\n    height: 40px;\r\n}\r\n\r\n.jdropdown-searchbar.jdropdown-focus .jdropdown-header\r\n{\r\n    border: 0px !important;\r\n    background-position-x: 0% !important;\r\n    background-position-y: 40% !important;\r\n    background-repeat: no-repeat;\r\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiIGZpbGw9IiNlNmU2ZTgiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+);\r\n    padding-left: 30px !important;\r\n    padding-right: 60px !important;\r\n}\r\n\r\n.jdropdown-searchbar.jdropdown-focus .jdropdown-close\r\n{\r\n    display:block;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-header {\r\n    outline: none;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-container\r\n{\r\n    margin-top: 40px;\r\n    width:100%;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-close\r\n{\r\n    position:fixed;\r\n    top:0px;\r\n    right:0px;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-content\r\n{\r\n    margin-top:10px;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-group\r\n{\r\n    margin-top:10px;\r\n    margin-bottom:15px;\r\n    background-color:#fff;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-group-name\r\n{\r\n    border-top: 1px solid #e6e6e8;\r\n    border-bottom: 1px solid #e6e6e8;\r\n    padding:10px;\r\n    padding-left:12px;\r\n    font-weight:bold;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-group-arrow\r\n{\r\n    float:right;\r\n    width:24px;\r\n    height:24px;\r\n    background-repeat:no-repeat;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-group-arrow-down\r\n{\r\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNy40MSA4LjU5TDEyIDEzLjE3bDQuNTktNC41OEwxOCAxMGwtNiA2LTYtNiAxLjQxLTEuNDF6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgwVjB6Ii8+PC9zdmc+);\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-group-arrow-up\r\n{\r\n    background-image: url(data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTcuNDEgMTUuNDFMMTIgMTAuODNsNC41OSA0LjU4TDE4IDE0bC02LTYtNiA2eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=);\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-item\r\n{\r\n    padding-top:10px;\r\n    padding-bottom:10px;\r\n    border-bottom: 1px solid #e6e6e8;\r\n    padding-left:15px;\r\n    padding-right:40px;\r\n    background-color:#fff;\r\n    font-size:0.9em;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-description {\r\n    text-overflow: ellipsis;\r\n    overflow: hidden;\r\n    max-width: calc(100% - 20px);\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-content > .jdropdown-item:first-child\r\n{\r\n    border-top: 1px solid #e6e6e8;\r\n}\r\n\r\n.jdropdown-searchbar .jdropdown-selected\r\n{\r\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxeiIgZmlsbD0iIzAwN2FmZiIvPjwvc3ZnPg==);\r\n    background-repeat:no-repeat;\r\n    background-position:top 50% right 15px;\r\n}\r\n\r\n/** List render **/\r\n\r\n.jdropdown-list\r\n{\r\n}\r\n\r\n.jdropdown-list .jdropdown-container\r\n{\r\n    display:block;\r\n}\r\n\r\n.jdropdown-list .jdropdown-header\r\n{\r\n    display:none;\r\n}\r\n\r\n.jdropdown-list .jdropdown-group\r\n{\r\n    background-color:#fff;\r\n}\r\n\r\n.jdropdown-list .jdropdown-group-name\r\n{\r\n    border-bottom: 1px solid #e6e6e8;\r\n    padding-top:10px;\r\n    padding-bottom:10px;\r\n    font-weight:bold;\r\n}\r\n\r\n.jdropdown-list .jdropdown-item\r\n{\r\n    padding-top:10px;\r\n    padding-bottom:10px;\r\n    border-bottom: 1px solid #e6e6e8;\r\n    padding-left:10px;\r\n    padding-right:40px;\r\n    background-color:#fff;\r\n}\r\n\r\n.jdropdown-list .jdropdown-selected\r\n{\r\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxeiIgZmlsbD0iIzAwN2FmZiIvPjwvc3ZnPg==);\r\n    background-repeat:no-repeat;\r\n    background-position:top 50% right 10px;\r\n}\r\n\r\n@media only screen and (max-width : 800px)\r\n{\r\n    .jdropdown-list {\r\n        width:100% !important;\r\n        border:0px;\r\n        padding:0px;\r\n    }\r\n\r\n    .jdropdown-list .jdropdown-container {\r\n        min-width:100%;\r\n    }\r\n\r\n    .jdropdown-searchbar.jdropdown-focus .jdropdown-description {\r\n        text-transform: uppercase;\r\n    }\r\n}\r\n\r\n.app .jdropdown-item {\r\n    text-transform:uppercase;\r\n}\r\n\r\n.jdropdown-create-container {\r\n    margin: 10px;\r\n    border: 1px solid #ccc;\r\n    border-radius: 2px;\r\n    padding: 6px;\r\n}\r\n\r\n.jdropdown-color {\r\n    background-color: #fff;\r\n    border: 1px solid transparent;\r\n    border-radius: 12px;\r\n    width: 12px;\r\n    height: 12px;\r\n    margin-right: 6px;\r\n}\r\n\r\n.jdropdown-item[data-disabled] {\r\n    opacity: 0.5;\r\n    pointer-events: none;\r\n}\n.jeditor-container {\r\n    border:1px solid #ccc;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jeditor-container.with-margin {\r\n    background-color: #f2f2f2;\r\n    max-width: 1200px;\r\n}\r\n\r\n.jeditor-dragging {\r\n     border:1px dashed #000;\r\n}\r\n\r\n.jeditor {\r\n    outline:none;\r\n    word-break: break-word;\r\n}\r\n\r\n.jeditor-container.with-margin .jeditor {\r\n    background-color: #fff;\r\n    margin: 80px;\r\n    min-height: 800px;\r\n    padding: 80px;\r\n    max-width: 800px;\r\n}\r\n\r\n.jeditor[data-placeholder]:empty:before {\r\n    content: attr(data-placeholder);\r\n    color: lightgray;\r\n}\r\n\r\n/** Snippet **/\r\n\r\n.jsnippet {\r\n    margin-top:15px;\r\n    cursor:pointer;\r\n    border: 1px solid #ccc;\r\n    position:relative;\r\n}\r\n\r\n.jsnippet:focus {\r\n    outline: none;\r\n}\r\n\r\n.jsnippet img {\r\n    width:100%;\r\n}\r\n\r\n.jsnippet .jsnippet-title {\r\n    padding:15px;\r\n    font-size:1.4em;\r\n}\r\n\r\n.jsnippet .jsnippet-description {\r\n    padding-left:15px;\r\n    padding-right:15px;\r\n    font-size:1em;\r\n}\r\n\r\n.jsnippet .jsnippet-host {\r\n    padding:15px;\r\n    text-transform:uppercase;\r\n    font-size:0.8em;\r\n    color:#777;\r\n    text-align:right;\r\n}\r\n\r\n.jsnippet .jsnippet-url {\r\n    display:none;\r\n}\r\n\r\n.jeditor .jsnippet:after {\r\n    content: 'close';\r\n    font-family: 'Material icons';\r\n    font-size: 24px;\r\n    width: 24px;\r\n    height: 24px;\r\n    line-height: 24px;\r\n    cursor: pointer;\r\n    text-shadow: 0px 0px 2px #fff;\r\n    position: absolute;\r\n    top: 12px;\r\n    right: 12px;\r\n}\r\n\r\n.jsnippet * {\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -o-user-select: none;\r\n    user-select: none;\r\n\r\n    -webkit-user-drag: none;\r\n    -khtml-user-drag: none;\r\n    -moz-user-drag: none;\r\n    -o-user-drag: none;\r\n}\r\n\r\n.jeditor img {\r\n    border:2px solid transparent;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jeditor img.resizing {\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -o-user-select: none;\r\n    user-select: none;\r\n\r\n    -webkit-user-drag: none;\r\n    -khtml-user-drag: none;\r\n    -moz-user-drag: none;\r\n    -o-user-drag: none;\r\n}\r\n\r\n.jeditor img:focus {\r\n    border: 2px solid #0096FD;\r\n    outline: #0096FD;\r\n}\r\n\r\n.jeditor .pdf {\r\n    background-image: url(\"data:image/svg+xml,%3Csvg version=%271.1%27 id=%27Layer_1%27 xmlns=%27http://www.w3.org/2000/svg%27 xmlns:xlink=%27http://www.w3.org/1999/xlink%27 x=%270px%27 y=%270px%27 viewBox=%270 0 512 512%27 style=%27enable-background:new 0 0 512 512;%27 xml:space=%27preserve%27%3E%3Cpath style=%27fill:%23C30B15;%27 d=%27M511.344,274.266C511.77,268.231,512,262.143,512,256C512,114.615,397.385,0,256,0S0,114.615,0,256 c0,117.769,79.53,216.949,187.809,246.801L511.344,274.266z%27/%3E%3Cpath style=%27fill:%2385080E;%27 d=%27M511.344,274.266L314.991,77.913L119.096,434.087l68.714,68.714C209.522,508.787,232.385,512,256,512 C391.243,512,501.976,407.125,511.344,274.266z%27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27278.328,333.913 255.711,77.913 119.096,77.913 119.096,311.652 %27/%3E%3Cpolygon style=%27fill:%23E8E6E6;%27 points=%27392.904,311.652 392.904,155.826 337.252,133.565 314.991,77.913 255.711,77.913 256.067,333.913 %27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27314.991,155.826 314.991,77.913 392.904,155.826 %27/%3E%3Crect x=%27119.096%27 y=%27311.652%27 style=%27fill:%23FC0F1A;%27 width=%27273.809%27 height=%27122.435%27/%3E%3Cg%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M204.871,346.387c13.547,0,21.341,6.659,21.341,18.465c0,12.412-7.795,19.601-21.341,19.601h-9.611 v14.909h-13.471v-52.975L204.871,346.387L204.871,346.387z M195.26,373.858h8.93c5.904,0,9.308-2.952,9.308-8.552 c0-5.525-3.406-8.324-9.308-8.324h-8.93V373.858z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M257.928,346.387c16.649,0,28.152,10.746,28.152,26.487c0,15.666-11.655,26.488-28.683,26.488 h-22.25v-52.975H257.928z M248.619,388.615h9.611c8.249,0,14.151-6.357,14.151-15.665c0-9.384-6.205-15.817-14.757-15.817h-9.006 V388.615z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M308.563,356.982v12.26h23.763v10.596h-23.763v19.525h-13.471v-52.975h39.277v10.595h-25.806 V356.982z%27/%3E%3C/g%3E%3C/svg%3E%0A\");\r\n    background-repeat: no-repeat;\r\n    background-size: cover;\r\n    width:60px;\r\n    height:60px;\r\n}\r\n\r\n.jeditor-toolbar {\r\n    width: fit-content;\r\n    max-width: 100%;\r\n    box-sizing: border-box;\r\n    margin: 10px;\r\n}\r\n\r\n.toolbar-on-top .jeditor-toolbar {\r\n    width: initial;\r\n    margin: 0px;\r\n    box-shadow: 1px 1px 2px rgb(0 0 0 / 10%);\r\n    display: block;\r\n}\r\n\r\n.toolbar-on-top .jeditor {\r\n    padding: 15px;\r\n}\r\n\r\n.toolbar-on-top .jtoolbar .material-icons {\r\n    font-size: 24px;\r\n    transform: initial;\r\n    margin: 4px;\r\n}\r\n\r\n.toolbar-on-top .jtoolbar .jpicker-header {\r\n    font-size: 1em;\r\n    margin-top: 4px;\r\n    margin-bottom: 4px;\r\n}\r\n\r\n.jeditor table {\r\n    border-collapse: collapse;\r\n}\r\n\r\n.jeditor table td {\r\n    border: 1px solid #bbb;\r\n    height: 2em;\r\n}\r\n\r\n.jeditor table td:focus {\r\n    border: 1px solid blue;\r\n}\r\n\r\n.jeditor .line-break {\r\n    border-top: 1px dashed #ccc;\r\n    display: flex;\r\n    justify-content: center;\r\n    pointer-events: none;\r\n}\r\n\r\n.jeditor .line-break:before {\r\n    content: 'New page';\r\n    background-color: #fff;\r\n    color: #ccc;\r\n    margin: -1em;\r\n    padding: 6px;\r\n    position: absolute;\r\n}\n.jfloating {\r\n    position:fixed;\r\n    bottom:0px;\r\n    right:0px;\r\n    margin-right:5px;\r\n\r\n    -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);\r\n    -moz-box-shadow: 0 2px 10px rgba(0,0,0,.2);\r\n    border:1px solid #ccc;\r\n    background-color:#fff;\r\n    box-sizing: border-box;\r\n    padding-top:50px !important;\r\n    z-index:9002;\r\n    border-radius: 8px;\r\n}\r\n\r\n.jfloating.jfloating-big {\r\n    width: 510px !important;\r\n    height: 472px !important;\r\n}\r\n\r\n.jfloating.jfloating-small {\r\n    width: 300px !important;\r\n    height: 320px !important;\r\n}\r\n\r\n.jfloating.jfloating-large {\r\n    width: 600px !important;\r\n    height: 600px !important;\r\n}\r\n\r\n.jfloating:before {\r\n    position:absolute;\r\n    top:0;\r\n    left:0;\r\n    width:100%;\r\n    content:attr(title);\r\n    padding:15px;\r\n    box-sizing: border-box;\r\n    font-size:1.2em;\r\n    box-shadow: 1px 1px 3px rgba(0,0,0,.2);\r\n    background-color: #fff;\r\n    border-radius: 8px 8px 0px 0px;\r\n    background-color: #404040;\r\n    font-size: .93rem;\r\n    font-weight: 600;\r\n    color: white;\r\n    letter-spacing: .5px;\r\n}\r\n\r\n.jfloating:after {\r\n    content:'';\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27%23FFF%27 d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n    position:absolute;\r\n    top:0;\r\n    right:0;\r\n    margin:14px;\r\n    font-size:24px;\r\n    width:24px;\r\n    height:24px;\r\n    cursor:pointer;\r\n    text-shadow: 0px 0px 5px #fff;\r\n}\r\n\r\n.jfloating_content {\r\n    padding:20px;\r\n    overflow-y:auto;\r\n    max-height:100%;\r\n    box-sizing: border-box;\r\n    height: -webkit-fill-available;\r\n}\r\n\r\n.jfloating.jfloating-minimized {\r\n    height: 50px !important;\r\n}\r\n\r\n.jfloating.jfloating-minimized .jfloating_content {\r\n    display: none;\r\n}\r\n\n.jmodal {\r\n    position:fixed;\r\n    top:50%;\r\n    left:50%;\r\n    width:60%;\r\n    height:60%;\r\n    -webkit-box-shadow: 0 2px 12px rgba(0,0,0,.2);\r\n    -moz-box-shadow: 0 2px 12px rgba(0,0,0,.2);\r\n    border:1px solid #ccc;\r\n    background-color:#fff;\r\n    transform: translate(-50%, -50%);\r\n    box-sizing: border-box;\r\n    z-index:9002;\r\n    border-radius: 4px;\r\n    display: flex;\r\n    flex-direction: column;\r\n}\r\n\r\n.jmodal_title {\r\n    padding: 20px;\r\n    height: 70px;\r\n    box-sizing: border-box;\r\n    font-size: 1.4em;\r\n    background-color: #fff;\r\n    border-radius: 8px 8px 0px 0px;\r\n    pointer-events: none;\r\n    display: flex;\r\n    -webkit-align-items: center;\r\n    -webkit-box-align: center;\r\n    align-items: center;\r\n    border-bottom: 1px solid #eee;\r\n}\r\n\r\n.jmodal_title > div {\r\n    font-size: 1.4em;\r\n}\r\n\r\n.jmodal_title[data-icon]:before {\r\n    content: attr(data-icon);\r\n    font-family: 'Material Icons' !important;\r\n    width: 24px;\r\n    height: 24px;\r\n    font-size: 24px;\r\n    margin-right: 10px;\r\n    line-height: 24px;\r\n}\r\n\r\n.jmodal_content {\r\n    padding: 20px;\r\n    overflow-y: auto;\r\n    height: 100%;\r\n    box-sizing: border-box;\r\n    scrollbar-width: thin;\r\n    scrollbar-color: #333 transparent;\r\n}\r\n\r\n.jmodal_title:empty {\r\n    display: none;\r\n}\r\n\r\n.jmodal_title:empty + .jmodal_content {\r\n    height: 100%;\r\n}\r\n\r\n.jmodal_content::-webkit-scrollbar {\r\n    height: 12px;\r\n}\r\n\r\n.jmodal_content::-webkit-scrollbar {\r\n    width: 12px;\r\n}\r\n\r\n.jmodal_content::-webkit-scrollbar-track {\r\n    border: 1px solid #fff;\r\n    background: #eee;\r\n}\r\n\r\n.jmodal_content::-webkit-scrollbar-thumb {\r\n    border: 1px solid #fff;\r\n    background: #888;\r\n}\r\n\r\n.jmodal:after {\r\n    content: '';\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n    position: absolute;\r\n    top: 0;\r\n    right: 0;\r\n    margin: 25px;\r\n    font-size: 24px;\r\n    width: 24px;\r\n    height: 24px;\r\n    cursor: pointer;\r\n    text-shadow: 0px 0px 5px #fff;\r\n}\r\n\r\n.jmodal_fullscreen {\r\n    width: 100% !important;\r\n    height: 100% !important;\r\n    top: 0px;\r\n    left: 0px;\r\n    transform: none;\r\n    border: 0px;\r\n    border-radius: 0px;\r\n}\r\n\r\n.jmodal_backdrop {\r\n    position: fixed;\r\n    top: 0px;\r\n    left: 0px;\r\n    min-width: 100%;\r\n    min-height: 100%;\r\n    background-color: rgba(0,0,0,0.2);\r\n    border: 0px;\r\n    padding: 0px;\r\n    z-index: 8000;\r\n    display: none;\r\n\r\n  -webkit-touch-callout: none; /* iOS Safari */\r\n    -webkit-user-select: none; /* Safari */\r\n     -khtml-user-select: none; /* Konqueror HTML */\r\n       -moz-user-select: none; /* Firefox */\r\n        -ms-user-select: none; /* Internet Explorer/Edge */\r\n            user-select: none; /* Non-prefixed version, currently\r\n                                  supported by Chrome and Opera */\r\n}\r\n\r\n.jmodal_content .jcalendar .jcalendar-content,\r\n.jmodal_content .jdropdown-container {\r\n    position: fixed;\r\n}\r\n\n.jnotification {\r\n    position: fixed;\r\n    z-index: 10000;\r\n    -webkit-box-sizing: border-box;\r\n    box-sizing: border-box;\r\n    padding: 10px;\r\n    bottom: 0px;\r\n}\r\n\r\n.jnotification-container {\r\n    -webkit-box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.7);\r\n    box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.7);\r\n    padding: 12px;\r\n    border-radius: 8px;\r\n\r\n    background-color: #000;\r\n    background: rgba(92,92,92,1);\r\n    background: linear-gradient(0deg, rgba(92,92,92,1) 0%, rgba(77,77,77,1) 100%);\r\n    color: #fff;\r\n    width: 320px;\r\n    margin: 30px;\r\n    padding: 20px;\r\n}\r\n\r\n.jnotification-close {\r\n    content: '';\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n    font-size: 20px;\r\n    width: 20px;\r\n    height: 20px;\r\n    cursor: pointer;\r\n}\r\n\r\n.jnotification-title {\r\n    font-weight: bold;\r\n}\r\n\r\n.jnotification-header {\r\n    display: flex;\r\n    padding-bottom: 5px;\r\n}\r\n\r\n.jnotification-header:empty {\r\n    display: none;\r\n}\r\n\r\n.jnotification-image {\r\n    margin-right: 5px;\r\n}\r\n\r\n.jnotification-image:empty {\r\n    display: none;\r\n}\r\n\r\n.jnotification-image img {\r\n    width: 24px;\r\n}\r\n\r\n.jnotification-name {\r\n    text-transform: uppercase;\r\n    font-size: 0.9em;\r\n    flex: 1;\r\n    letter-spacing: 0.1em;\r\n}\r\n\r\n.jnotification-error .jnotification-container {\r\n    background: rgb(182,38,6);\r\n    background: linear-gradient(0deg, rgba(170,41,13,1) 0%, rgba(149,11,11,1) 100%);\r\n}\r\n\r\n@media (max-width: 800px) {\r\n    .jnotification {\r\n        top: calc(0px + var(--jsafe-area-top));\r\n        width: 100%;\r\n    }\r\n    .jnotification-container {\r\n        background: rgba(255,255,255,0.95);\r\n        border: 1px solid #eee;\r\n        color: #444;\r\n        margin: 0px;\r\n        width: initial;\r\n    }\r\n    .jnotification-error .jnotification-container {\r\n        background: rgba(255,255,255,0.95);\r\n        color: #790909;\r\n    }\r\n    .jnotification-close {\r\n        background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n    }\r\n}\r\n\r\n.jnotification-header {\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: -ms-flexbox;\r\n    display: flex;\r\n    -webkit-box-pack: start;\r\n    -webkit-justify-content: flex-start;\r\n    -ms-flex-pack: start;\r\n    justify-content: flex-start;\r\n    -webkit-box-align: center;\r\n    -webkit-align-items: center;\r\n    -ms-flex-align: center;\r\n    align-items: center;\r\n}\n.jpicker {\r\n    cursor: pointer;\r\n    white-space: nowrap;\r\n    display: inline-flex;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n    outline: none;\r\n    position: relative;\r\n    min-height: 26px;\r\n}\r\n\r\n.jpicker-header {\r\n    background-repeat: no-repeat;\r\n    background-position: top 50% right 5px;\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3Cpath d=%27M7 10l5 5 5-5H7z%27 fill=%27gray%27/%3E%3C/svg%3E\");\r\n    text-overflow: ellipsis;\r\n    cursor: pointer;\r\n    box-sizing: border-box;\r\n    text-align: left;\r\n    outline: none;\r\n    line-height: 24px;\r\n    padding: 2px 35px 2px 12px;\r\n    border-radius: 4px;\r\n}\r\n\r\n.jpicker-header:hover {\r\n    background-color: #f2f2f2;\r\n}\r\n\r\n.jpicker-content {\r\n    position: absolute;\r\n    top: 0;\r\n    display: none;\r\n    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);\r\n    border-radius: 4px;\r\n    background-color: #fff;\r\n    padding: 4px;\r\n    z-index: 50;\r\n    text-align: left;\r\n    max-height: 250px;\r\n    scrollbar-width: thin;\r\n    scrollbar-color: #333 transparent;\r\n}\r\n\r\n.jpicker-content::-webkit-scrollbar {\r\n    width: 8px;\r\n}\r\n\r\n.jpicker-content::-webkit-scrollbar-track {\r\n    background: #eee;\r\n}\r\n \r\n.jpicker-content::-webkit-scrollbar-thumb {\r\n    background: #888;\r\n}\r\n \r\n.jpicker-content > div {\r\n    padding: 6px;\r\n    padding-left: 15px;\r\n    padding-right: 15px;\r\n}\r\n\r\n.jpicker-focus > .jpicker-content {\r\n    display: block;\r\n}\r\n\r\n.jpicker-content > div:hover {\r\n    background-color:#efefef;\r\n}\r\n\r\n.jpicker-content > div:empty {\r\n    opacity: 0;\r\n}\r\n\r\n.jpicker-header > i, .jpicker-header > div {\r\n    display: block;\r\n}\r\n\r\n.jpicker-focus > .jpicker-content.jpicker-columns {\r\n    display: flex !important ;\r\n    justify-content: center;\r\n    flex-wrap: wrap;\r\n}\r\n\r\n.jpicker-focus .jpicker-content.jpicker-grid {\r\n    display: inline-grid;\r\n}\r\n\r\n\n\r\n.jprogressbar\r\n{\r\n    cursor:pointer;\r\n    -webkit-touch-callout: none;\r\n    -webkit-user-select: none;\r\n    -khtml-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n    box-sizing: border-box;\r\n    background:#fff;\r\n    -webkit-tap-highlight-color: transparent;\r\n    display: inline-block;\r\n    box-sizing: border-box;\r\n    cursor:pointer;\r\n    border:1px solid #ccc;\r\n    position:relative;\r\n}\r\n\r\n.jprogressbar::before {\r\n    content:attr(data-value);\r\n    position:absolute;\r\n    margin:5px;\r\n    margin-left:10px;\r\n}\r\n\r\n.jprogressbar-header::placeholder\r\n{\r\n    color:#000;\r\n}\r\n\r\n.jprogressbar:focus {\r\n    outline: auto 5px -webkit-focus-ring-color;\r\n}\r\n\r\n.jprogressbar > div {\r\n    background-color: #eee;\r\n    background-color: red;\r\n    box-sizing: border-box;\r\n    height:31px;\r\n}\n.jrating {\r\n    display:flex;\r\n}\r\n.jrating > div {\r\n    width:24px;\r\n    height:24px;\r\n    line-height:24px;\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z%27 fill=%27gray%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n.jrating .jrating-over {\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n    opacity: 0.7;\r\n}\r\n\r\n.jrating .jrating-selected {\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27red%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n}\r\n\n.jsearch {\r\n    position: relative;\r\n    display: none;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n.jsearch_container {\r\n    position: absolute;\r\n    box-shadow: 0 1px 2px 0 rgba(60,64,67,0.302), 0 2px 6px 2px rgba(60,64,67,0.149);\r\n    border: none;\r\n    -webkit-border-radius: 4px;\r\n    border-radius: 4px;\r\n    width: 280px;\r\n    padding: 8px 0;\r\n    z-index: 1;\r\n\r\n    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);\r\n    box-shadow: 0 2px 4px rgba(0,0,0,0.2);\r\n    -webkit-transition: opacity .218s;\r\n    transition: opacity .218s;\r\n    background: #fff;\r\n    border: 1px solid rgba(0,0,0,.2);\r\n    cursor: pointer;\r\n    margin: 0;\r\n    min-width: 300px;\r\n    outline: none;\r\n    width: auto;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n.jsearch_container:empty:after {\r\n    content: attr(data-placeholder);\r\n}\r\n\r\n.jsearch_container > div {\r\n    color: #333;\r\n    cursor: pointer;\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: flex;\r\n    padding: 5px 10px;\r\n    user-select: none;\r\n    -webkit-align-items: center;\r\n    align-items: center;\r\n    \r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n.jsearch_container > div:hover {\r\n    background-color: #e8eaed;\r\n}\r\n\r\n.jsearch_container > div > img {\r\n    width: 32px;\r\n    height: 32px;\r\n    user-select: none;\r\n    border-radius: 16px;\r\n    margin-right: 2px;\r\n}\r\n\r\n.jsearch_container > div > div {\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    margin-left: 2px;\r\n    max-width: 300px;\r\n    white-space: nowrap;\r\n    user-select: none;\r\n}\r\n\r\n.jsearch_container .selected {\r\n    background-color: #e8eaed;\r\n}\n.jslider {\r\n    outline: none;\r\n}\r\n\r\n.jslider-focus {\r\n    width: 100% !important;\r\n    height: 100% !important;\r\n}\r\n\r\n.jslider-focus img {\r\n    display: none;\r\n}\r\n\r\n.jslider img {\r\n    width: 100px;\r\n}\r\n\r\n.jslider-left::before {\r\n    position: fixed;\r\n    left: 15px;\r\n    top: 50%;\r\n    content:'arrow_back_ios';\r\n    color: #fff;\r\n    width: 30px;\r\n    height: 30px;\r\n    font-family: 'Material Icons';\r\n    font-size: 30px;\r\n    /* before it was 0px 0px 0px #000 */\r\n    text-shadow: 0px 0px 6px rgb(56,56,56);\r\n    text-align: center;\r\n    cursor: pointer;\r\n}\r\n\r\n.jslider-right::after {\r\n    position: fixed;\r\n    right: 15px;\r\n    top: 50%;\r\n    content: 'arrow_forward_ios';\r\n    color: #fff;\r\n    width: 30px;\r\n    height: 30px;\r\n    font-family: 'Material Icons';\r\n    font-size: 30px;\r\n    /* before it was 0px 0px 0px #000 */\r\n    text-shadow: 0px 0px 6px rgb(56,56,56);\r\n    text-align: center;\r\n    cursor: pointer;\r\n}\r\n\r\n.jslider-close {\r\n    width:24px;\r\n    height:24px;\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n    position:fixed;\r\n    top:15px;\r\n    right:15px;\r\n    cursor:pointer;\r\n    z-index:3000;\r\n\r\n    display: block !important;\r\n}\r\n\r\n.jslider-counter {\r\n    height:24px;\r\n    background-color: transparent;\r\n    position:fixed;\r\n    left: 50%;\r\n    transform: translateX(-50%);\r\n    bottom: 15px;\r\n    cursor:pointer;\r\n    z-index:3000;\r\n\r\n    display: flex;\r\n    display: -webkit-flex;\r\n    -webkit-justify-content: center;\r\n    -webkit-align-items: center;   \r\n    -webkit-flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-direction: row;\r\n}\r\n\r\n.jslider-caption {\r\n    position: fixed;\r\n    max-width: 90vw;\r\n    text-overflow: ellipsis;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    top:15px;\r\n    left: 15px;\r\n    z-index:3000;\r\n    color: #FFF;\r\n    font-size: 1rem;\r\n\r\n    display: block !important;\r\n}\r\n\r\n.jslider-counter div {\r\n    width: 10px;\r\n    height: 10px;\r\n    background: #fff;\r\n    border-radius: 50%;\r\n    margin: 0px 5px;\r\n\r\n    display: block !important;\r\n}\r\n\r\n.jslider-counter .jslider-counter-focus {\r\n    background-color: cornflowerblue;\r\n    pointer-events: none;\r\n}\r\n\r\n.jslider-focus {\r\n    position:fixed;\r\n    left:0;\r\n    top:0;\r\n    width: 100%;\r\n    min-height:100%;\r\n    max-height:100%;\r\n    z-index:2000;\r\n    margin:0px;\r\n    box-sizing:border-box;\r\n\r\n    background-color:rgba(0,0,0,0.8);\r\n    -webkit-transition-duration: .05s;\r\n    transition-duration: .05s;\r\n    display: flex;\r\n    -ms-flex-align: center;\r\n    -webkit-align-items: center;\r\n    -webkit-box-align: center;\r\n\r\n    align-items: center;\r\n}\r\n\r\n.jslider-focus img {\r\n    width: 50vw;\r\n    height: auto;\r\n    box-sizing: border-box;\r\n    margin:0 auto;\r\n    vertical-align:middle;\r\n    display:none;\r\n}\r\n\r\n.jslider-focus img.jslider-vertical {\r\n    width: auto;\r\n    /* before it was 50vh */\r\n    height: 80vh;\r\n}\r\n\r\n@media only screen and (max-width: 576px) {\r\n    .jslider-focus img.jslider-vertical {\r\n        width: 99vw !important;\r\n        height: auto !important;\r\n    }\r\n\r\n    .jslider-focus img {\r\n        width: 100vw !important;\r\n        height: auto !important;\r\n    }\r\n}\r\n\r\n.jslider-grid {\r\n    display: -ms-grid;\r\n    display: grid;\r\n    grid-gap: 1px;\r\n    position: relative;\r\n}\r\n\r\n.jslider-grid[data-number='2'] {\r\n    -ms-grid-columns: 1fr 50%;\r\n    grid-template-columns: 1fr 50%;\r\n}\r\n\r\n.jslider-grid[data-number='3'] {\r\n    -ms-grid-columns: 1fr 33%;\r\n    grid-template-columns: 1fr 33%;\r\n}\r\n\r\n.jslider-grid[data-number='4'] {\r\n    -ms-grid-columns: 1fr 25%;\r\n    grid-template-columns: 1fr 25%;\r\n}\r\n\r\n.jslider-grid img {\r\n    display: none;\r\n    width: 100%;\r\n    height: 100%;\r\n    object-fit: cover;\r\n}\r\n\r\n.jslider-grid[data-total]:after {\r\n    content: attr(data-total) \"+\";\r\n    font-size: 1.5em;\r\n    position:absolute;\r\n    color: #fff;\r\n    right: 15px;\r\n    bottom: 6px;\r\n}\r\n\r\n.jslider-grid img:first-child {\r\n    -ms-grid-column: 1;\r\n    -ms-grid-row: 1;\r\n    grid-column: 1;\r\n    grid-row: 1;\r\n    display: block;\r\n}\r\n\r\n.jslider-grid[data-number='2'] img:nth-child(2) {\r\n    -ms-grid-column: 2;\r\n    -ms-grid-row: 1;\r\n    grid-column: 2;\r\n    grid-row: 1;\r\n    display: block;\r\n}\r\n\r\n.jslider-grid[data-number='3'] img:first-child {\r\n    -ms-grid-column: 1 / 2;\r\n    -ms-grid-row: 1 / 4;\r\n    grid-column: 1 / 2;\r\n    grid-row: 1 / 4;\r\n}\r\n\r\n.jslider-grid[data-number='3'] img:nth-child(2) {\r\n    -ms-grid-column: 2;\r\n    -ms-grid-row: 1;\r\n    grid-column: 2;\r\n    grid-row: 1;\r\n    display: block;\r\n}\r\n\r\n.jslider-grid[data-number='3'] img:nth-child(3) {\r\n    -ms-grid-column: 2;\r\n    -ms-grid-row: 2;\r\n    grid-column: 2;\r\n    grid-row: 2;\r\n    display: block;\r\n}\r\n\r\n.jslider-grid[data-number='4'] img:first-child {\r\n    -ms-grid-column: 1 / 2;\r\n    -ms-grid-row: 1 / 4;\r\n    grid-column: 1 / 2;\r\n    grid-row: 1 / 4;\r\n}\r\n\r\n.jslider-grid[data-number='4'] img:nth-child(2) {\r\n    -ms-grid-column: 2;\r\n    -ms-grid-row: 1;\r\n    grid-column: 2;\r\n    grid-row: 1;\r\n    display: block;\r\n}\r\n\r\n.jslider-grid[data-number='4'] img:nth-child(3) {\r\n    -ms-grid-column: 2;\r\n    -ms-grid-row: 2;\r\n    grid-column: 2;\r\n    grid-row: 2;\r\n    display: block;\r\n}\r\n\r\n.jslider-grid[data-number='4'] img:nth-child(4) {\r\n    -ms-grid-column: 2;\r\n    -ms-grid-row: 3;\r\n    grid-column: 2;\r\n    grid-row: 3;\r\n    display: block;\r\n}\r\n\n.jtabs {\r\n    max-width: 100vw;\r\n    position: relative;\r\n}\r\n\r\n.jtabs .jtabs-headers-container {\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.jtabs .jtabs-headers {\r\n    display: flex;\r\n    align-items: center;\r\n    overflow: hidden;\r\n    position: relative;\r\n}\r\n\r\n.jtabs .jtabs-headers > div:not(.jtabs-border) {\r\n    padding: 8px;\r\n    padding-left: 20px;\r\n    padding-right: 20px;\r\n    margin-left: 1px;\r\n    margin-right: 1px;\r\n    background-color: #f1f1f1;\r\n    cursor: pointer;\r\n    white-space: nowrap;\r\n    text-align: center;\r\n}\r\n\r\n.jtabs .jtabs-headers > div.jtabs-selected {\r\n    background-color: #e8e8e8;\r\n    color: #000;\r\n}\r\n\r\n.jtabs .jtabs-headers > div > div {\r\n    color: #555;\r\n    width: 100%;\r\n    overflow: hidden;\r\n}\r\n\r\n.jtabs .jtabs-headers i {\r\n    display: block;\r\n    margin: auto;\r\n}\r\n\r\n.jtabs .jtabs-content {\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jtabs .jtabs-content > div {\r\n    display: none;\r\n    box-sizing: border-box;\r\n}\r\n\r\n.jtabs .jtabs-content > div.jtabs-selected {\r\n    display: block;\r\n}\r\n\r\n.jtabs .jtabs-border {\r\n    position: absolute;\r\n    height: 2px;\r\n    background-color: #888;\r\n    transform-origin: left;\r\n    transition: all .2s cubic-bezier(0.4,0,0.2,1);\r\n    transition-property: color,left,transform;\r\n    display: none;\r\n    pointer-events: none;\r\n}\r\n\r\n.jtabs-animation .jtabs-border {\r\n    display: initial;\r\n}\r\n\r\n.jtabs .jtabs-controls {\r\n    margin: 3px;\r\n    margin-left: 10px;\r\n    display: flex;\r\n    min-width: 82px;\r\n}\r\n\r\n.jtabs .jtabs-controls > div {\r\n    cursor: pointer;\r\n    background-position: center;\r\n    background-repeat: no-repeat;\r\n    width: 24px;\r\n    height: 24px;\r\n    line-height: 24px;\r\n}\r\n\r\n.jtabs .jtabs-prev {\r\n    margin-left: 10px;\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n.jtabs .jtabs-prev.disabled {\r\n    margin-left: 10px;\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n.jtabs .jtabs-next {\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n.jtabs .jtabs-next.disabled {\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n.jtabs .jtabs-add {\r\n    background-image: url(\"data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 height=%2724%27 viewBox=%270 0 24 24%27 width=%2724%27%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27 fill=%27%23bbbbbb%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E\");\r\n}\r\n\r\n/** Modern skin **/\r\n\r\n.jtabs.jtabs-modern .jtabs-headers > div:not(.jtabs-border) {\r\n    padding: 4px;\r\n    padding-left: 10px;\r\n    padding-right: 10px;\r\n    background-color: #fff;\r\n}\r\n\r\n.jtabs.jtabs-modern .jtabs-headers > .jtabs-selected  {\r\n    color: #000;\r\n}\r\n\r\n.jtabs.jtabs-modern .jtabs-headers > .jtabs-selected .material-icons {\r\n    color: #000;\r\n}\r\n\r\n.jtabs.jtabs-modern .jtabs-headers {\r\n    background: #EEEEEF !important;\r\n    padding: 2px;\r\n    border-radius: 4px;\r\n}\r\n\r\n.jtabs.jtabs-modern .jtabs-headers .jtabs-border {\r\n    border-color: #EEEEEF !important;\r\n}\r\n\r\n.jtabs.jtabs-modern .jtabs-border {\r\n    background-color: rgba(194, 197, 188, 0.884);\r\n}\n.jtags {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    -ms-flex-direction: row;\r\n    -webkit-flex-direction: row;\r\n    flex-direction: row;\r\n    -ms-flex-pack: flex-start;\r\n    -webkit-justify-content: space-between;\r\n    justify-content: flex-start;\r\n    padding: 1px;\r\n    border: 1px solid #ccc;\r\n    position: relative;\r\n} \r\n\r\n.jtags.jtags-empty:not(.jtags-focus)::before {\r\n    position: absolute;\r\n    margin: 3px;\r\n    color: #ccc;\r\n    content: attr(data-placeholder);\r\n    top: 0;\r\n    margin-left: 6px;\r\n}\r\n\r\n.jtags > div {\r\n    padding: 3px 22px 3px 10px;\r\n    font-size: 0.9em;\r\n    position: relative;\r\n    border-radius: 1px;\r\n    margin: 2px;\r\n    display: block;\r\n    outline: none;\r\n}\r\n\r\n.jtags > div:empty:before {\r\n    content: \" \";\r\n    white-space: pre;\r\n}\r\n\r\n.jtags > div::after {\r\n    content: 'x';\r\n    position: absolute;\r\n    right: 4px;\r\n    width: 12px;\r\n    height: 12px;\r\n    cursor: pointer;\r\n    font-size: 0.9em;\r\n    display: none;\r\n}\r\n\r\n.jtags_label {\r\n    background-color: #e4e4e4 !important;\r\n}\r\n\r\n.jtags_label::after {\r\n    display: inline-block !important;\r\n}\r\n\r\n.jtags_error::after {\r\n    color: #fff  !important;\r\n}\r\n\r\n.jtags_error {\r\n    background-color: #d93025 !important;\r\n    color: #fff;\r\n}\r\n\n.jtoolbar-container {\r\n    border-radius: 2px;\r\n    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);\r\n    display: inline-flex !important;\r\n}\r\n\r\n.jtoolbar {\r\n    cursor: pointer;\r\n    white-space: nowrap;\r\n    display: flex;\r\n    padding:4px;\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n    font-size: 13px;\r\n}\r\n\r\n.jtoolbar-disabled {\r\n    pointer-events: none;\r\n    opacity: 0.4;\r\n}\r\n\r\n.jtoolbar-mobile {\r\n    display: flex;\r\n    position:fixed;\r\n    bottom: 0;\r\n    margin: 0;\r\n    left: 0;\r\n    width: 100%;\r\n    background: #f7f7f8;\r\n    z-index: 1;\r\n    box-sizing: border-box;\r\n    box-shadow: 0 -1px 2px rgba(0,0,0,.1);\r\n    border-radius: 0px;\r\n}\r\n\r\n.jtoolbar > div {\r\n    display: inline-flex;\r\n    align-items: center;\r\n    box-sizing: border-box;\r\n    vertical-align:middle;\r\n    justify-content: space-evenly;\r\n}\r\n\r\n.jtoolbar-mobile > div {\r\n    display: flex;\r\n    width: 100%;\r\n}\r\n\r\n.jtoolbar .jtoolbar-item {\r\n    text-align: center;\r\n    margin: auto;\r\n    padding: 2px;\r\n    padding-left:4px;\r\n    padding-right:4px;\r\n}\r\n\r\n.jtoolbar-mobile .jtoolbar-item {\r\n    position: relative;\r\n    flex:1;\r\n} \r\n\r\n.jtoolbar .jtoolbar-divisor {\r\n    width: 2px;\r\n    height: 18px;\r\n    padding: 0px;\r\n    margin-left: 4px;\r\n    margin-right: 4px;\r\n    background-color: #ddd;\r\n}\r\n\r\n.jtoolbar .jtoolbar-label {\r\n    padding-left: 8px;\r\n    padding-right: 8px;\r\n}\r\n\r\n\r\n\r\n.jtoolbar-mobile a\r\n{\r\n    text-decoration:none;\r\n    display:inline-block;\r\n}\r\n\r\n.jtoolbar-mobile i {\r\n    display: inline-flex !important;\r\n    color:#929292;\r\n}\r\n\r\n.jtoolbar-mobile span {\r\n    font-size:0.7em;\r\n    display:block;\r\n    color:#929292;\r\n}\r\n\r\n.jtoolbar-mobile .jtoolbar-selected a, .jtoolbar-mobile .jtoolbar-selected i, .jtoolbar-mobile .jtoolbar-selected span {\r\n    color:var(--jactive-color) !important;\r\n    background-color:transparent;\r\n}\r\n\r\n.jtoolbar-item {\r\n    -webkit-user-select: none;\r\n    -moz-user-select: none;\r\n    -ms-user-select: none;\r\n    user-select: none;\r\n}\r\n\r\n.jtoolbar-item i {\r\n    display: block;\r\n    color:#333;\r\n}\r\n\r\n.jtoolbar-item:hover {\r\n    background-color:#f2f2f2;\r\n}\r\n\r\n.jtoolbar .jpicker {\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n}\r\n\r\n.jtoolbar .jpicker-header {\r\n    padding: 0 20px 0 8px;\r\n    background-position: top 50% right 0;\r\n    display: flex;\r\n    align-items: center;\r\n}\r\n\r\n.jtoolbar .jpicker-content > div {\r\n    padding: 6px;\r\n}\r\n\r\n.jtoolbar-active {\r\n    background-color:#eee;\r\n}\r\n\r\n.jtoolbar .fa {\r\n    width: 18px;\r\n    height: 18px;\r\n    display: block;\r\n    line-height: 18px;\r\n    font-size: 14px;\r\n}\r\n\r\n.jtoolbar .material-icons {\r\n    font-size: 18px;\r\n    width: 24px;\r\n    height: 24px;\r\n    display: block;\r\n    line-height: 24px;\r\n    transform: rotate(0.03deg);\r\n    text-align: center;\r\n}\r\n\r\n.jtoolbar .jtoolbar-arrow {\r\n    background-repeat: no-repeat;\r\n    background-position: center;\r\n    background-image: url(\"data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z%27/%3E%3C/svg%3E\");\r\n    width: 24px;\r\n    height: 16px;\r\n    margin-left: 4px;\r\n    border-left: 1px solid #f2f2f2;\r\n}\r\n\r\n.jtoolbar-floating {\r\n    position: absolute;\r\n    display: none;\r\n    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.2);\r\n    border-radius: 4px;\r\n    background-color: #fff;\r\n    padding: 4px;\r\n    z-index: 50;\r\n    text-align: left;\r\n    margin-right: 20px;\r\n}\r\n\r\n.jtoolbar-floating .jtoolbar-divisor {\r\n    display: none;\r\n}\r\n\r\n.jtoolbar-arrow-selected .jtoolbar-floating {\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n}\r\n\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/pwstabs/assets/jquery.pwstabs.css":
 /*!**********************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/pwstabs/assets/jquery.pwstabs.css ***!
@@ -28862,6 +32013,59 @@ var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMP
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_jspreadsheet_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _css_loader_dist_cjs_js_jspreadsheet_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _css_loader_dist_cjs_js_jspreadsheet_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./node_modules/jsuites/dist/jsuites.css":
+/*!***********************************************!*\
+  !*** ./node_modules/jsuites/dist/jsuites.css ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _css_loader_dist_cjs_js_jsuites_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../css-loader/dist/cjs.js!./jsuites.css */ "./node_modules/css-loader/dist/cjs.js!./node_modules/jsuites/dist/jsuites.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+options.insert = _style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+options.domAPI = (_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_css_loader_dist_cjs_js_jsuites_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_css_loader_dist_cjs_js_jsuites_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _css_loader_dist_cjs_js_jsuites_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _css_loader_dist_cjs_js_jsuites_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
@@ -43268,7 +46472,7 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 				//type: 'category',
 				//type:  'log' == rawConfig.scale.type ? 'logarithmic' : rawConfig.scale.type,
 				...( extraConfig.isStacked && { stacked: extraConfig.isStacked } ),
-				...( extraConfig.stepped && { beginAtZero: true } ), // For steped up bar chart.
+				...( extraConfig.stepped && { beginAtZero: true } ), // For stepped up bar chart.
 
 				title: {
 					display: !!rawConfig.meta.vlabel.length,
@@ -43364,19 +46568,21 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 						if ( ! rawConfig.label.precision ) {
 							return  undefined;
 						}
-						const formattedNumber = context.raw % 1 === 0 ?  context.raw :  Number( context.raw ).toFixed( rawConfig.label.precision );
+						const formattedNumber = context.raw % 1 === 0 ? context.raw : Number( context.raw ).toFixed( rawConfig.label.precision );
 						return context.dataset.label + ' : ' + formattedNumber;
 					}
 				}
 			},
 			datalabels: {
 				display: 1 === rawConfig.label.showlabel,
+				anchor: 'end',
+				align: 'end',
 				color: rawConfig.label.strokecolor,
 				font: {
 					family: rawConfig.label.fontfamily,
 					size: rawConfig.label.fontsize,
 				},
-				formatter: function( value, context ) {
+				formatter: function ( value, context ) {
 					if ( (0,chart_js_helpers__WEBPACK_IMPORTED_MODULE_10__.isNumber)( value ) && rawConfig.label.precision && value % 1 !== 0 ) {
 						value = value.toFixed( rawConfig.label.precision );
 					}
@@ -43401,7 +46607,7 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 			},
 
 			downloadChartImagePlugin: {
-				enable: 1 === rawConfig.meta.isDownloadable ? true : false,
+				enable: 1 === rawConfig.meta.isDownloadable,
 				buttonText: rawConfig.meta.downloadLabel,
 				buttonColor: '#3932FE',
 				fontSize: 14,
@@ -43473,7 +46679,7 @@ function chartJs( chartSelector, ec_chart_data ) {
 	case 'Line':
 		chartType = 'line';
 		extraConfig['chartType'] = 'Line';
-		extraConfig['tension'] = 0.4;
+		//extraConfig['tension'] = 0.4;
 		break;
 	case 'StackedArea':
 		chartType = 'line';
@@ -43507,6 +46713,14 @@ function chartJs( chartSelector, ec_chart_data ) {
 
 	// Change default options for ALL charts.
 	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.set( 'plugins.datalabels', { anchor: 'center' } );
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.elements.bar.borderWidth = 2;
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.elements.point.radius = 5;
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.elements.point.hoverRadius = 8;
+
+
+	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.elements.line.cubicInterpolationMode = 'monotone';
+
+
 
 	chartJS = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](
 		document.querySelector( chartSelector ),
@@ -43638,10 +46852,6 @@ function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 			return ranges;
 		}
 
-
-		console.log('legend', legend);
-		console.log('converted data', data);
-
 		return {
 			label: legend,
 			data: extraConfig.chartType === 'Waterfall'  ? ranges : data,
@@ -43654,7 +46864,6 @@ function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 					? { backgroundColor : hexToRgba( colorPalette[index % colorPalette.length], 0.5 ) }
 					: {}
 			),
-			//barPercentage: 0.3,
 
 			// Apply tension if requested.
 			...( extraConfig.tension && { tension: 0.4 } ),
@@ -44034,6 +47243,83 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADE
 
 /***/ }),
 
+/***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z%27/%3E%3C/svg%3E":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z%27/%3E%3C/svg%3E ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z%27/%3E%3C/svg%3E":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z%27/%3E%3C/svg%3E ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27black%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2724px%27 height=%2724px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27/%3E%3C/svg%3E":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2724px%27 height=%2724px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27/%3E%3C/svg%3E ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2724px%27 height=%2724px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27red%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27red%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27red%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z%27 fill=%27gray%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z%27 fill=%27gray%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z%27 fill=%27gray%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27%23FFF%27 d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27%23FFF%27 d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27%23FFF%27 d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
 /***/ "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3Cpath d=%27M7 10l5 5 5-5H7z%27 fill=%27gray%27/%3E%3C/svg%3E":
 /*!******************************************************************************************************************************************************************************************************************************************************!*\
   !*** data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3Cpath d=%27M7 10l5 5 5-5H7z%27 fill=%27gray%27/%3E%3C/svg%3E ***!
@@ -44067,6 +47353,50 @@ module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/s
 
 /***/ }),
 
+/***/ "data:image/svg+xml,%3Csvg version=%271.1%27 id=%27Layer_1%27 xmlns=%27http://www.w3.org/2000/svg%27 xmlns:xlink=%27http://www.w3.org/1999/xlink%27 x=%270px%27 y=%270px%27 viewBox=%270 0 512 512%27 style=%27enable-background:new 0 0 512 512;%27 xml:space=%27preserve%27%3E%3Cpath style=%27fill:%23C30B15;%27 d=%27M511.344,274.266C511.77,268.231,512,262.143,512,256C512,114.615,397.385,0,256,0S0,114.615,0,256 c0,117.769,79.53,216.949,187.809,246.801L511.344,274.266z%27/%3E%3Cpath style=%27fill:%2385080E;%27 d=%27M511.344,274.266L314.991,77.913L119.096,434.087l68.714,68.714C209.522,508.787,232.385,512,256,512 C391.243,512,501.976,407.125,511.344,274.266z%27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27278.328,333.913 255.711,77.913 119.096,77.913 119.096,311.652 %27/%3E%3Cpolygon style=%27fill:%23E8E6E6;%27 points=%27392.904,311.652 392.904,155.826 337.252,133.565 314.991,77.913 255.711,77.913 256.067,333.913 %27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27314.991,155.826 314.991,77.913 392.904,155.826 %27/%3E%3Crect x=%27119.096%27 y=%27311.652%27 style=%27fill:%23FC0F1A;%27 width=%27273.809%27 height=%27122.435%27/%3E%3Cg%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M204.871,346.387c13.547,0,21.341,6.659,21.341,18.465c0,12.412-7.795,19.601-21.341,19.601h-9.611 v14.909h-13.471v-52.975L204.871,346.387L204.871,346.387z M195.26,373.858h8.93c5.904,0,9.308-2.952,9.308-8.552 c0-5.525-3.406-8.324-9.308-8.324h-8.93V373.858z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M257.928,346.387c16.649,0,28.152,10.746,28.152,26.487c0,15.666-11.655,26.488-28.683,26.488 h-22.25v-52.975H257.928z M248.619,388.615h9.611c8.249,0,14.151-6.357,14.151-15.665c0-9.384-6.205-15.817-14.757-15.817h-9.006 V388.615z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M308.563,356.982v12.26h23.763v10.596h-23.763v19.525h-13.471v-52.975h39.277v10.595h-25.806 V356.982z%27/%3E%3C/g%3E%3C/svg%3E%0A":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg version=%271.1%27 id=%27Layer_1%27 xmlns=%27http://www.w3.org/2000/svg%27 xmlns:xlink=%27http://www.w3.org/1999/xlink%27 x=%270px%27 y=%270px%27 viewBox=%270 0 512 512%27 style=%27enable-background:new 0 0 512 512;%27 xml:space=%27preserve%27%3E%3Cpath style=%27fill:%23C30B15;%27 d=%27M511.344,274.266C511.77,268.231,512,262.143,512,256C512,114.615,397.385,0,256,0S0,114.615,0,256 c0,117.769,79.53,216.949,187.809,246.801L511.344,274.266z%27/%3E%3Cpath style=%27fill:%2385080E;%27 d=%27M511.344,274.266L314.991,77.913L119.096,434.087l68.714,68.714C209.522,508.787,232.385,512,256,512 C391.243,512,501.976,407.125,511.344,274.266z%27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27278.328,333.913 255.711,77.913 119.096,77.913 119.096,311.652 %27/%3E%3Cpolygon style=%27fill:%23E8E6E6;%27 points=%27392.904,311.652 392.904,155.826 337.252,133.565 314.991,77.913 255.711,77.913 256.067,333.913 %27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27314.991,155.826 314.991,77.913 392.904,155.826 %27/%3E%3Crect x=%27119.096%27 y=%27311.652%27 style=%27fill:%23FC0F1A;%27 width=%27273.809%27 height=%27122.435%27/%3E%3Cg%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M204.871,346.387c13.547,0,21.341,6.659,21.341,18.465c0,12.412-7.795,19.601-21.341,19.601h-9.611 v14.909h-13.471v-52.975L204.871,346.387L204.871,346.387z M195.26,373.858h8.93c5.904,0,9.308-2.952,9.308-8.552 c0-5.525-3.406-8.324-9.308-8.324h-8.93V373.858z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M257.928,346.387c16.649,0,28.152,10.746,28.152,26.487c0,15.666-11.655,26.488-28.683,26.488 h-22.25v-52.975H257.928z M248.619,388.615h9.611c8.249,0,14.151-6.357,14.151-15.665c0-9.384-6.205-15.817-14.757-15.817h-9.006 V388.615z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M308.563,356.982v12.26h23.763v10.596h-23.763v19.525h-13.471v-52.975h39.277v10.595h-25.806 V356.982z%27/%3E%3C/g%3E%3C/svg%3E%0A ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg version=%271.1%27 id=%27Layer_1%27 xmlns=%27http://www.w3.org/2000/svg%27 xmlns:xlink=%27http://www.w3.org/1999/xlink%27 x=%270px%27 y=%270px%27 viewBox=%270 0 512 512%27 style=%27enable-background:new 0 0 512 512;%27 xml:space=%27preserve%27%3E%3Cpath style=%27fill:%23C30B15;%27 d=%27M511.344,274.266C511.77,268.231,512,262.143,512,256C512,114.615,397.385,0,256,0S0,114.615,0,256 c0,117.769,79.53,216.949,187.809,246.801L511.344,274.266z%27/%3E%3Cpath style=%27fill:%2385080E;%27 d=%27M511.344,274.266L314.991,77.913L119.096,434.087l68.714,68.714C209.522,508.787,232.385,512,256,512 C391.243,512,501.976,407.125,511.344,274.266z%27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27278.328,333.913 255.711,77.913 119.096,77.913 119.096,311.652 %27/%3E%3Cpolygon style=%27fill:%23E8E6E6;%27 points=%27392.904,311.652 392.904,155.826 337.252,133.565 314.991,77.913 255.711,77.913 256.067,333.913 %27/%3E%3Cpolygon style=%27fill:%23FFFFFF;%27 points=%27314.991,155.826 314.991,77.913 392.904,155.826 %27/%3E%3Crect x=%27119.096%27 y=%27311.652%27 style=%27fill:%23FC0F1A;%27 width=%27273.809%27 height=%27122.435%27/%3E%3Cg%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M204.871,346.387c13.547,0,21.341,6.659,21.341,18.465c0,12.412-7.795,19.601-21.341,19.601h-9.611 v14.909h-13.471v-52.975L204.871,346.387L204.871,346.387z M195.26,373.858h8.93c5.904,0,9.308-2.952,9.308-8.552 c0-5.525-3.406-8.324-9.308-8.324h-8.93V373.858z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M257.928,346.387c16.649,0,28.152,10.746,28.152,26.487c0,15.666-11.655,26.488-28.683,26.488 h-22.25v-52.975H257.928z M248.619,388.615h9.611c8.249,0,14.151-6.357,14.151-15.665c0-9.384-6.205-15.817-14.757-15.817h-9.006 V388.615z%27/%3E%3Cpath style=%27fill:%23FFFFFF;%27 d=%27M308.563,356.982v12.26h23.763v10.596h-23.763v19.525h-13.471v-52.975h39.277v10.595h-25.806 V356.982z%27/%3E%3C/g%3E%3C/svg%3E%0A";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 height=%2724%27 viewBox=%270 0 24 24%27 width=%2724%27%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27 fill=%27%23bbbbbb%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 height=%2724%27 viewBox=%270 0 24 24%27 width=%2724%27%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27 fill=%27%23bbbbbb%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 height=%2724%27 viewBox=%270 0 24 24%27 width=%2724%27%3E%3Cpath d=%27M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z%27 fill=%27%23bbbbbb%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
 /***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
 /*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
@@ -44075,6 +47405,83 @@ module.exports = "data:image/svg+xml,%0A%3Csvg xmlns=%27http://www.w3.org/2000/s
 
 "use strict";
 module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27gray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27lightgray%27 width=%2718px%27 height=%2718px%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27gray%27%3E%3Cpath d=%27M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27gray%27%3E%3Cpath d=%27M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27gray%27%3E%3Cpath d=%27M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z%27/%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27black%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2720%27 height=%2720%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%27 fill=%27white%27/%3E%3C/svg%3E":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%27 fill=%27white%27/%3E%3C/svg%3E ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3Cpath d=%27M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%27 fill=%27white%27/%3E%3C/svg%3E";
 
 /***/ }),
 
@@ -44097,6 +47504,94 @@ module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%
 
 "use strict";
 module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M14 7l-5 5 5 5V7z%27/%3E%3Cpath fill=%27none%27 d=%27M24 0v24H0V0h24z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z%27/%3E%3Cpath d=%27M0 0h24v24H0z%27 fill=%27none%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27%3E%3Cpath d=%27M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z%27 fill=%27%23000%27 /%3E%3Cpath fill=%27none%27 d=%27M0 0h24v24H0V0z%27/%3E%3C/svg%3E";
+
+/***/ }),
+
+/***/ "data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTcuNDEgMTUuNDFMMTIgMTAuODNsNC41OSA0LjU4TDE4IDE0bC02LTYtNiA2eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTcuNDEgMTUuNDFMMTIgMTAuODNsNC41OSA0LjU4TDE4IDE0bC02LTYtNiA2eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4= ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTcuNDEgMTUuNDFMMTIgMTAuODNsNC41OSA0LjU4TDE4IDE0bC02LTYtNiA2eiIvPjxwYXRoIGQ9Ik0wIDBoMjR2MjRIMHoiIGZpbGw9Im5vbmUiLz48L3N2Zz4=";
+
+/***/ }),
+
+/***/ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxeiIgZmlsbD0iIzAwN2FmZiIvPjwvc3ZnPg==":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxeiIgZmlsbD0iIzAwN2FmZiIvPjwvc3ZnPg== ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTkgMTYuMTdMNC44MyAxMmwtMS40MiAxLjQxTDkgMTkgMjEgN2wtMS40MS0xLjQxeiIgZmlsbD0iIzAwN2FmZiIvPjwvc3ZnPg==";
+
+/***/ }),
+
+/***/ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik05IDE2LjE3TDQuODMgMTJsLTEuNDIgMS40MUw5IDE5IDIxIDdsLTEuNDEtMS40MXoiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo=":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik05IDE2LjE3TDQuODMgMTJsLTEuNDIgMS40MUw5IDE5IDIxIDdsLTEuNDEtMS40MXoiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo= ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIiAvPjxwYXRoIGQ9Ik05IDE2LjE3TDQuODMgMTJsLTEuNDIgMS40MUw5IDE5IDIxIDdsLTEuNDEtMS40MXoiIGZpbGw9IndoaXRlIiAvPjwvc3ZnPgo=";
+
+/***/ }),
+
+/***/ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiIGZpbGw9IiNlNmU2ZTgiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiIGZpbGw9IiNlNmU2ZTgiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+ ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTUuNSAxNGgtLjc5bC0uMjgtLjI3QzE1LjQxIDEyLjU5IDE2IDExLjExIDE2IDkuNSAxNiA1LjkxIDEzLjA5IDMgOS41IDNTMyA1LjkxIDMgOS41IDUuOTEgMTYgOS41IDE2YzEuNjEgMCAzLjA5LS41OSA0LjIzLTEuNTdsLjI3LjI4di43OWw1IDQuOTlMMjAuNDkgMTlsLTQuOTktNXptLTYgMEM3LjAxIDE0IDUgMTEuOTkgNSA5LjVTNy4wMSA1IDkuNSA1IDE0IDcuMDEgMTQgOS41IDExLjk5IDE0IDkuNSAxNHoiIGZpbGw9IiNlNmU2ZTgiLz48cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PC9zdmc+";
+
+/***/ }),
+
+/***/ "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNy40MSA4LjU5TDEyIDEzLjE3bDQuNTktNC41OEwxOCAxMGwtNiA2LTYtNiAxLjQxLTEuNDF6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgwVjB6Ii8+PC9zdmc+":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNy40MSA4LjU5TDEyIDEzLjE3bDQuNTktNC41OEwxOCAxMGwtNiA2LTYtNiAxLjQxLTEuNDF6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgwVjB6Ii8+PC9zdmc+ ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNNy40MSA4LjU5TDEyIDEzLjE3bDQuNTktNC41OEwxOCAxMGwtNiA2LTYtNiAxLjQxLTEuNDF6Ii8+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgyNHYyNEgwVjB6Ii8+PC9zdmc+";
 
 /***/ }),
 
@@ -44256,18 +47751,22 @@ var __webpack_exports__ = {};
   !*** ./src/js/easy-charts-admin.js ***!
   \*************************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jspreadsheet-ce */ "./node_modules/jspreadsheet-ce/dist/index.js");
-/* harmony import */ var jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jspreadsheet_ce_dist_jspreadsheet_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspreadsheet-ce/dist/jspreadsheet.css */ "./node_modules/jspreadsheet-ce/dist/jspreadsheet.css");
-/* harmony import */ var _scss_easy_charts_admin_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../scss/easy-charts-admin.scss */ "./src/scss/easy-charts-admin.scss");
-/* harmony import */ var _chart_js_adapter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./chart-js-adapter */ "./src/js/chart-js-adapter.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
-/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var pwstabs_assets_jquery_pwstabs_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! pwstabs/assets/jquery.pwstabs.css */ "./node_modules/pwstabs/assets/jquery.pwstabs.css");
-/* harmony import */ var pwstabs_assets_jquery_pwstabs_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pwstabs/assets/jquery.pwstabs.js */ "./node_modules/pwstabs/assets/jquery.pwstabs.js");
-/* harmony import */ var pwstabs_assets_jquery_pwstabs_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(pwstabs_assets_jquery_pwstabs_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var jquery_ui_themes_base_all_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery-ui/themes/base/all.css */ "./node_modules/jquery-ui/themes/base/all.css");
+/* harmony import */ var _chart_js_adapter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chart-js-adapter */ "./src/js/chart-js-adapter.js");
+/* harmony import */ var jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspreadsheet-ce */ "./node_modules/jspreadsheet-ce/dist/index.js");
+/* harmony import */ var jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jspreadsheet_ce_dist_jspreadsheet_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jspreadsheet-ce/dist/jspreadsheet.css */ "./node_modules/jspreadsheet-ce/dist/jspreadsheet.css");
+/* harmony import */ var jsuites_dist_jsuites_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! jsuites/dist/jsuites.css */ "./node_modules/jsuites/dist/jsuites.css");
+/* harmony import */ var _scss_easy_charts_admin_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../scss/easy-charts-admin.scss */ "./src/scss/easy-charts-admin.scss");
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/fontawesome-free/js/all.js */ "./node_modules/@fortawesome/fontawesome-free/js/all.js");
+/* harmony import */ var _fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_fortawesome_fontawesome_free_js_all_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var pwstabs_assets_jquery_pwstabs_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! pwstabs/assets/jquery.pwstabs.css */ "./node_modules/pwstabs/assets/jquery.pwstabs.css");
+/* harmony import */ var pwstabs_assets_jquery_pwstabs_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! pwstabs/assets/jquery.pwstabs.js */ "./node_modules/pwstabs/assets/jquery.pwstabs.js");
+/* harmony import */ var pwstabs_assets_jquery_pwstabs_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(pwstabs_assets_jquery_pwstabs_js__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var jquery_ui_themes_base_all_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! jquery-ui/themes/base/all.css */ "./node_modules/jquery-ui/themes/base/all.css");
 // phpcs:disable
+
+
+
 
 
 
@@ -44295,17 +47794,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		var chartCategories = ec_chart_data.chart_categories;
 		var chartDataset = ec_chart_data.chart_data;
 		var chartConfiguration = ec_chart_data.chart_configuration;
-		console.log( 'chartlib', chartLib );
+
 		graphdef = {
 			categories: chartCategories,
 			dataset: chartDataset,
 		};
 
 		if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
-			console.log( 'load chart js' );
+
 			 try {
 				// Code that might throw an error.
-				chartJsChart = (0,_chart_js_adapter__WEBPACK_IMPORTED_MODULE_3__["default"])( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+				chartJsChart = (0,_chart_js_adapter__WEBPACK_IMPORTED_MODULE_0__["default"])( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
 			} catch (error) {
 				// Handle the error
 				console.error( 'Failed to load module', error );
@@ -44330,7 +47829,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		}
 	}
 
-	let spreadsheet = jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_0___default()( jspreadsheetid, {
+	let spreadsheet = jspreadsheet_ce__WEBPACK_IMPORTED_MODULE_1___default()( jspreadsheetid, {
 		worksheets: [{
 			data: data,
 		}],
@@ -44375,7 +47874,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 					// Code that might throw an error.
 					console.log('updated chart data',ec_chart_data.chart_data);
 					ec_chart_data['chart_data']= updated_data.chart_data;
-					chartJsChart = (0,_chart_js_adapter__WEBPACK_IMPORTED_MODULE_3__["default"])( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+					chartJsChart = (0,_chart_js_adapter__WEBPACK_IMPORTED_MODULE_0__["default"])( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
 				} catch (error) {
 					// Handle the error.
 					console.error( 'Failed to load module', error );

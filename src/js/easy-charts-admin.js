@@ -1,8 +1,11 @@
 // phpcs:disable
+
+import chartJs from "./chart-js-adapter";
 import jspreadsheet from "jspreadsheet-ce";
 import "jspreadsheet-ce/dist/jspreadsheet.css";
+import 'jsuites/dist/jsuites.css';
+
 import '../scss/easy-charts-admin.scss';
-import chartJs from "./chart-js-adapter"
 
 // Import all of Font Awesome
 import "@fortawesome/fontawesome-free/js/all.js";
@@ -26,14 +29,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		var chartCategories = ec_chart_data.chart_categories;
 		var chartDataset = ec_chart_data.chart_data;
 		var chartConfiguration = ec_chart_data.chart_configuration;
-		console.log( 'chartlib', chartLib );
+
 		graphdef = {
 			categories: chartCategories,
 			dataset: chartDataset,
 		};
 
 		if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
-			console.log( 'load chart js' );
+
 			 try {
 				// Code that might throw an error.
 				chartJsChart = chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
