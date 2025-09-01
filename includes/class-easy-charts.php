@@ -539,12 +539,7 @@ class Easy_Charts {
 				}
 			}
 
-			if ( 'ec_chartjs_chart' === $ec_chart_data['chart_lib'] ) {
-				$chart_html  = '<div class="ec-chart-wrapper"><canvas  class="ec-chartjs-chart-container ec_object_' . $chart_id . ' chart-js-canvas-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></canvas></div>';
-				$chart_html .= '<div  class="ec-uv-chart-container uv-div-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></div>';
-			} else {
-				$chart_html = '<div  class="ec-uv-chart-container uv-div-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></div>';
-			}
+			$chart_html = '<div class="ec-chart-wrapper"><canvas  class="ec-chartjs-chart-container ec_object_' . $chart_id . ' chart-js-canvas-' . $chart_id . '" data-object="ec_object_' . $chart_id . '"></canvas></div>';
 
 			/**
 			 * Filter to replace html content of chart.

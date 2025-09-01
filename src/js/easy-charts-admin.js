@@ -19,35 +19,14 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	let chartJsChart = null;
 
 	if ( typeof( ec_chart_data ) != 'undefined' ) {
-		var graphdef = {
-			categories: [],
-			dataset: {}
-		};
 
-		var chartLib = ec_chart_data.chart_lib;
-		var chartType = ec_chart_data.chart_type;
-		var chartCategories = ec_chart_data.chart_categories;
-		var chartDataset = ec_chart_data.chart_data;
-		var chartConfiguration = ec_chart_data.chart_configuration;
-
-		graphdef = {
-			categories: chartCategories,
-			dataset: chartDataset,
-		};
-
-		if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
-
-			 try {
-				// Code that might throw an error.
-				chartJsChart = chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
-			} catch (error) {
-				// Handle the error
-				console.error( 'Failed to load module', error );
-			}
-		} else {
-			var chartObject = uv.chart( chartType, graphdef, chartConfiguration );
+		 try {
+			// Code that might throw an error.
+			chartJsChart = chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+		} catch (error) {
+			// Handle the error.
+			console.error( 'Failed to load module', error );
 		}
-		var chartObject = uv.chart( chartType, graphdef, chartConfiguration );
 	}
 
 	var jspreadsheetid = document.getElementById( "jspreadsheet" );
@@ -92,17 +71,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		} )
 			.then( response => response.json() )
 			.then( updated_data => {
-				document.querySelector( '.uv-div-' + ec_chart.chart_id ).innerHTML = '';
-
-				var graphdef = {
-					categories: updated_data.chart_categories,
-					dataset: updated_data.chart_data,
-				};
-
-				var chartObject = uv.chart( updated_data.chart_type, graphdef, chartConfiguration );
 				callback(); // execute js function after success.
-
-				console.log( 'load chart js' );
 				chartJsChart.destroy();
 
 				try {
@@ -169,14 +138,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		containerWidth: '100%',
 		theme: 'pws_theme_orange',
 		effect: 'slidedown'
-	} );
-
-	jQuery( '.uv-chart-div svg.uv-frame g.uv-download-options' ).bind( 'mouseenter', function( event ) {
-		var svg = jQuery( this ).parents( '.uv-chart-div svg.uv-frame' );
-
-		svg[0].setAttribute( 'width', svg[0].getBoundingClientRect().width );
-		svg[0].setAttribute( 'height', svg[0].getBoundingClientRect().height );
-
 	} );
 
 } );

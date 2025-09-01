@@ -94,9 +94,7 @@ class Easy_Charts_Public {
 		 * class.
 		 */
 
-		wp_register_script( 'easy-charts-dependencies-js', EASY_CHARTS_URL . '/build/js/dependencies.js', array( 'jquery' ), $this->version, false );
-
-		wp_register_script( 'easy-charts-public-js', EASY_CHARTS_URL . '/build/js/frontend.js', array( 'jquery', 'easy-charts-dependencies-js' ), $this->version, true );
+		wp_register_script( 'easy-charts-public-js', EASY_CHARTS_URL . '/build/js/frontend.js', array( 'jquery' ), $this->version, true );
 	}
 
 	/**
@@ -122,7 +120,6 @@ class Easy_Charts_Public {
 		if ( $chart_id ) {
 			$plugin = new Easy_Charts();
 
-			wp_enqueue_script( 'easy-charts-dependencies-js' );
 			wp_enqueue_script( 'easy-charts-public-js' );
 
 			return $plugin->ec_render_chart( $chart_id );

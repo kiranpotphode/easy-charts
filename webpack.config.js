@@ -16,7 +16,6 @@ module.exports = {
 		frontend: JSDir + '/easy-charts-public.js', // Entry for main js file.
 		admin: JSDir + '/easy-charts-admin.js',
 		insertChartButton: JSDir + '/insert-chart-button.js',
-		dependencies: JSDir + '/dependencies.js',
 	},
 	output: {
 		path: path.resolve( __dirname, 'build' ),
@@ -56,4 +55,3 @@ module.exports = {
 	mode: devMode ? "development" : "production", // Change to 'development' for debugging.
 	devtool: 'source-map'
 };
-

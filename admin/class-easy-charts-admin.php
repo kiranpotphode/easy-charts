@@ -109,9 +109,7 @@ class Easy_Charts_Admin {
 
 		if ( ( 'post-new.php' === $pagenow || 'post.php' === $pagenow ) && 'easy_charts' === $typenow ) {
 
-			wp_register_script( 'easy-charts-dependencies-js', EASY_CHARTS_URL . '/build/js/dependencies.js', array( 'jquery' ), $this->version, false );
-
-			wp_enqueue_script( 'easy-charts-admin-js', EASY_CHARTS_URL . '/build/js/admin.js', array( 'jquery', 'easy-charts-dependencies-js' ), $this->version, true );
+			wp_enqueue_script( 'easy-charts-admin-js', EASY_CHARTS_URL . '/build/js/admin.js', array( 'jquery' ), $this->version, true );
 
 			wp_enqueue_script( 'jquery-ui-dialog' );
 			wp_enqueue_script( 'jquery-ui-button' );
