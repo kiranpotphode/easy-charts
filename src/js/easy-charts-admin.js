@@ -2,6 +2,7 @@
 import jspreadsheet from "jspreadsheet-ce";
 import "jspreadsheet-ce/dist/jspreadsheet.css";
 import '../scss/easy-charts-admin.scss';
+import chartJs from "./chart-js-adapter"
 
 // Import all of Font Awesome
 import "@fortawesome/fontawesome-free/js/all.js";
@@ -12,6 +13,7 @@ import "pwstabs/assets/jquery.pwstabs.js";
 import "jquery-ui/themes/base/all.css";
 
 document.addEventListener( 'DOMContentLoaded', function () {
+	let chartJsChart = null;
 
 	if ( typeof( ec_chart_data ) != 'undefined' ) {
 		var graphdef = {
@@ -32,11 +34,13 @@ document.addEventListener( 'DOMContentLoaded', function () {
 
 		if ( 'ec_chartjs_chart' === ec_chart_data.chart_lib ) {
 			console.log( 'load chart js' );
-			import( './chart-js-adapter' )
-				.then( ( { default: chartJs } ) => { chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data ) } )
-				.catch( ( err ) => {
-					console.error( 'Failed to load module', err );
-				} );
+			 try {
+				// Code that might throw an error.
+				chartJsChart = chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+			} catch (error) {
+				// Handle the error
+				console.error( 'Failed to load module', error );
+			}
 		} else {
 			var chartObject = uv.chart( chartType, graphdef, chartConfiguration );
 		}
@@ -70,6 +74,55 @@ document.addEventListener( 'DOMContentLoaded', function () {
 	document.getElementById( "ec-button-add-row" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].insertRow() };
 	document.getElementById( "ec-button-remove-row" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].deleteRow() };
 
+	function update_chart_data(callback = () => {}) {
+		// Prepare data to send
+		const formData = new FormData();
+		formData.append( "action", "easy_charts_save_chart_data" ); // Must match the PHP action
+		formData.append( "chart_id", ec_chart.chart_id );
+		formData.append( '_nonce_check', ec_chart.ec_ajax_nonce );
+		formData.append( "chart_data", JSON.stringify( data ) );
+
+		// Send AJAX request
+		fetch( ajaxurl, {
+			method: "POST",
+			body: formData
+		} )
+			.then( response => response.json() )
+			.then( updated_data => {
+				document.querySelector( '.uv-div-' + ec_chart.chart_id ).innerHTML = '';
+
+				var graphdef = {
+					categories: updated_data.chart_categories,
+					dataset: updated_data.chart_data,
+				};
+
+				var chartObject = uv.chart( updated_data.chart_type, graphdef, chartConfiguration );
+				callback(); // execute js function after success.
+
+				console.log( 'load chart js' );
+				chartJsChart.destroy();
+
+				try {
+					// Code that might throw an error.
+					console.log('updated chart data',ec_chart_data.chart_data);
+					ec_chart_data['chart_data']= updated_data.chart_data;
+					chartJsChart = chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+				} catch (error) {
+					// Handle the error.
+					console.error( 'Failed to load module', error );
+				}
+			} )
+			.catch( error => console.error( "Error:", error ) );
+	}
+
+	jQuery('#post').on('submit', function(e) {
+		e.preventDefault(); // stop default submit.
+
+		update_chart_data(function () {
+			jQuery('#post').off('submit').submit();
+		});
+	});
+
 	document.getElementById( "ec-button-save-data" ).addEventListener( 'click', function ( event ) {
 		event.preventDefault();
 		let data = spreadsheet[0].getData();
@@ -86,30 +139,7 @@ document.addEventListener( 'DOMContentLoaded', function () {
 				}
 			} );
 		} else {
-			// Prepare data to send
-			const formData = new FormData();
-			formData.append( "action", "easy_charts_save_chart_data" ); // Must match the PHP action
-			formData.append( "chart_id", ec_chart.chart_id );
-			formData.append( '_nonce_check', ec_chart.ec_ajax_nonce );
-			formData.append( "chart_data", JSON.stringify( data ) );
-
-			// Send AJAX request
-			fetch( ajaxurl, {
-				method: "POST",
-				body: formData
-			} )
-				.then( response => response.json() )
-				.then( updated_data => {
-					document.querySelector( '.uv-div-' + ec_chart.chart_id ).innerHTML = '';
-
-					var graphdef = {
-						categories: updated_data.chart_categories,
-						dataset: updated_data.chart_data,
-					};
-
-					var chartObject = uv.chart( updated_data.chart_type, graphdef, chartConfiguration );
-				} )
-				.catch( error => console.error( "Error:", error ) );
+			update_chart_data();
 		}
 	} );
 

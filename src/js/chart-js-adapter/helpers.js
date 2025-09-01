@@ -87,7 +87,7 @@ export function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 		return {
 			label: legend,
 			data: extraConfig.chartType === 'Waterfall'  ? ranges : data,
-			backgroundColor :  extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
+			backgroundColor :  extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  hexToRgba( colorPalette[index % colorPalette.length], extraConfig['opacity'] ),
 			borderColor : extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
 			fill: extraConfig.fill === true,
 			// Apply semi-transparent fill if using an Area chart.

@@ -221,7 +221,7 @@ function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 				}
 			},
 			stacked100: {
-				enable: 'PercentBar' === rawConfig.graph.chartType
+				enable: 'PercentBar' === extraConfig.chartType || 'PercentArea' === extraConfig.chartType
 			},
 
 			downloadChartImagePlugin: {
@@ -243,6 +243,8 @@ function chartJs( chartSelector, ec_chart_data ) {
 	let extraConfig = {};
 	let chartDataset = ec_chart_data.chart_data;
 	let chartConfiguration = ec_chart_data.chart_configuration;
+
+	extraConfig['opacity'] = chartConfiguration.graph.opacity ? parseFloat( chartConfiguration.graph.opacity ) : 1;
 
 	switch ( ec_chart_data.chart_type ) {
 	case 'Bar':
@@ -272,6 +274,7 @@ function chartJs( chartSelector, ec_chart_data ) {
 		break;
 	case 'PercentBar':
 		chartType = 'bar';
+		extraConfig['chartType'] = 'PercentBar';
 		break;
 	case 'Area':
 		chartType = 'line';
@@ -357,6 +360,8 @@ function chartJs( chartSelector, ec_chart_data ) {
 			chartJS.resize();
 		}, 2500 );
 	} );
+
+	return chartJS;
 }
 
 /***/ }),
@@ -463,7 +468,7 @@ function getDataSets( rawData, labels, colorPalette, extraConfig ) {
 		return {
 			label: legend,
 			data: extraConfig.chartType === 'Waterfall'  ? ranges : data,
-			backgroundColor :  extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
+			backgroundColor :  extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  hexToRgba( colorPalette[index % colorPalette.length], extraConfig['opacity'] ),
 			borderColor : extraConfig.chartType === 'Pie' || extraConfig.chartType === 'PolarArea' ? colorPalette:  colorPalette[index % colorPalette.length],
 			fill: extraConfig.fill === true,
 			// Apply semi-transparent fill if using an Area chart.
