@@ -1,3 +1,4 @@
+// phpcs:disable
 import Chart  from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import ChartjsPluginStacked100 from "chartjs-plugin-stacked100";
@@ -15,7 +16,6 @@ let chartJS;
 
 function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 
-	console.log(rawConfig);
 	// Extract all unique labels dynamically.
 	const labels = getChartLabels( rawData );
 
@@ -314,8 +314,6 @@ export default function chartJs( chartSelector, ec_chart_data ) {
 
 
 	Chart.defaults.elements.line.cubicInterpolationMode = 'monotone';
-
-
 
 	chartJS = new Chart(
 		document.querySelector( chartSelector ),

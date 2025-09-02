@@ -21,7 +21,8 @@ $plugin = new Easy_Charts();
 
 		<div class="ec-data-container">
 			<div class="jspreadsheet-container" style="width: auto; height: auto; overflow: auto;">
-                <div id="jspreadsheet" ></div>
+				<div id="jspreadsheet" ></div>
+					<input type="text" name="easy_charts_chart_data" value="" style="display: none;"/>
 			</div>
 			<div class="jspreadsheet-controls">
 				<div class="button-group">

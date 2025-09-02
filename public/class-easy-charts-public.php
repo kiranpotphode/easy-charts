@@ -136,4 +136,47 @@ class Easy_Charts_Public {
 	public function init() {
 		add_shortcode( 'easy_chart', array( $this, 'easy_chart_shortcode_callback' ) );
 	}
+
+	/**
+	 * Register Gutenberg Block.
+	 *
+	 * @return void
+	 */
+	public function register_gutenberg_blocks() {
+		register_block_type( EASY_CHARTS_PATH . '/build/blocks/easy-chart' );
+	}
+
+	/**
+	 * Register rest route for the chart data.
+	 *
+	 * @return void
+	 */
+	public function register_rest_route() {
+		register_rest_route(
+			'wp/v2',
+			'/easy_charts/(?P<id>\d+)/chart-data',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'get_chart_data_for_easy_charts' ),
+				'permission_callback' => '__return_true',
+			)
+		);
+	}
+
+	/**
+	 * Get chart data by id.
+	 *
+	 * @param WP_REST_Request $request
+	 *
+	 * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+	 */
+	public function get_chart_data_for_easy_charts( WP_REST_Request $request ) {
+		$chart_id = intval( $request['id'] );
+
+		// Replace this with your function to fetch chart data.
+		$plugin = new Easy_Charts();
+
+		$chart_data = $plugin->get_ec_chart_data( $chart_id );
+		return rest_ensure_response( $chart_data );
+	}
 }

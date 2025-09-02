@@ -1,0 +1,16 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "easy-charts/easy-chart",
+	"title": "Easy Chart",
+	"category": "widgets",
+	"icon": "chart-bar",
+	"attributes": {
+	"chartId": {
+		"type": "number"
+	}
+},
+	"usesContext": ["postId"],
+	"editorScript": "file:./index.js",
+    "viewScript": "file:./view.js"
+}

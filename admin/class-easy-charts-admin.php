@@ -159,6 +159,7 @@ class Easy_Charts_Admin {
 		$args = array(
 			'labels'          => $labels,
 			'public'          => false,
+			'show_in_rest'    => true,
 			'show_ui'         => true,
 			'_builtin'        => false,
 			'capability_type' => 'page',
@@ -463,6 +464,12 @@ class Easy_Charts_Admin {
 			'factor'      => filter_input( INPUT_POST, 'ec_chart_donut_factor', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
+		$easy_charts_chart_data = ! empty( $_POST['easy_charts_chart_data'] ) ? sanitize_text_field( wp_unslash( $_POST['easy_charts_chart_data'] ) ) : array();
+
+		if ( ! empty( $easy_charts_chart_data ) ) {
+			update_post_meta( $post_id, '_easy_charts_chart_data', $easy_charts_chart_data );
+		}
+
 		update_post_meta( $post_id, '_ec_chart_lib', filter_input( INPUT_POST, 'ec_chart_lib', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_type', filter_input( INPUT_POST, 'ec_chart_type', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_meta', $ec_chart_meta );
@@ -502,7 +509,8 @@ class Easy_Charts_Admin {
 
 		$chart_id = filter_input( INPUT_POST, 'chart_id', FILTER_SANITIZE_NUMBER_INT );
 
-		update_post_meta( $chart_id, '_easy_charts_chart_data', filter_input( INPUT_POST, 'chart_data', FILTER_UNSAFE_RAW ) );
+		$chart_data = ! empty( $_POST['chart_data'] ) ? sanitize_text_field( wp_unslash( $_POST['chart_data'] ) ) : array();
+		update_post_meta( $chart_id, '_easy_charts_chart_data', $chart_data );
 
 		echo wp_json_encode( $plugin->get_ec_chart_data( $chart_id ) );
 

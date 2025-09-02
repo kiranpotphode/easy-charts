@@ -40,7 +40,6 @@ let chartJS;
 
 function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 
-	console.log(rawConfig);
 	// Extract all unique labels dynamically.
 	const labels = (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.getChartLabels)( rawData );
 

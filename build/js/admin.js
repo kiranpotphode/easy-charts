@@ -46403,6 +46403,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chart_js_adapter_plugin_plot_area_background__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./chart-js-adapter/plugin-plot-area-background */ "./src/js/chart-js-adapter/plugin-plot-area-background.js");
 /* harmony import */ var _chart_js_adapter_plugin_download_chart_image__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./chart-js-adapter/plugin-download-chart-image */ "./src/js/chart-js-adapter/plugin-download-chart-image.js");
 /* harmony import */ var chart_js_helpers__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! chart.js/helpers */ "./node_modules/chart.js/helpers/helpers.js");
+// phpcs:disable
 
 
 
@@ -46420,7 +46421,6 @@ let chartJS;
 
 function parseChartJSData ( rawData, rawConfig, extraConfig ) {
 
-	console.log(rawConfig);
 	// Extract all unique labels dynamically.
 	const labels = (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.getChartLabels)( rawData );
 
@@ -46719,8 +46719,6 @@ function chartJs( chartSelector, ec_chart_data ) {
 
 
 	chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"].defaults.elements.line.cubicInterpolationMode = 'monotone';
-
-
 
 	chartJS = new chart_js_auto__WEBPACK_IMPORTED_MODULE_0__["default"](
 		document.querySelector( chartSelector ),
@@ -47771,8 +47769,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-// Import all of Font Awesome
+// Import all of Font Awesome.
 
 
 
@@ -47814,7 +47811,38 @@ document.addEventListener( 'DOMContentLoaded', function () {
 		}],
 		tableOverflow: true,
 		tableWidth: "200px",
+		onafterchanges: function ( instance ) {
+			update_chart_data_input( JSON.stringify( instance.getData()) );
+		},
+		oninsertrow: function ( instance ) {
+			update_chart_data_input( JSON.stringify( instance.getData()) );
+		},
+		ondeleterow: function ( instance ) {
+			update_chart_data_input( JSON.stringify( instance.getData()) );
+		},
+		oninsertcolumn: function ( instance ) {
+			update_chart_data_input( JSON.stringify( instance.getData()) );
+		},
+		ondeletecolumn: function ( instance ) {
+			update_chart_data_input( JSON.stringify( instance.getData()) );
+		},
+		onmoverow: function ( instance ) {
+			update_chart_data_input( JSON.stringify( instance.getData()) );
+		},
+		onmovecolumn: function ( instance ) {
+			update_chart_data_input( JSON.stringify( instance.getData()) );
+		},
 	} );
+
+	function update_chart_data_input( data ) {
+		// Get the input element by its ID.
+		const dataInput = document.querySelector('input[name="easy_charts_chart_data"]');
+
+		// Change its value.
+		if ( dataInput ) {
+			dataInput.value = data;
+		}
+	}
 
 	document.getElementById( "ec-button-add-col" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].insertColumn() };
 	document.getElementById( "ec-button-remove-col" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].deleteColumn() };
@@ -47837,13 +47865,17 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			.then( response => response.json() )
 			.then( updated_data => {
 				callback(); // execute js function after success.
-				chartJsChart.destroy();
+
+				if ( null !== chartJsChart) {
+					chartJsChart.destroy();
+				}
 
 				try {
-					// Code that might throw an error.
-					console.log('updated chart data',ec_chart_data.chart_data);
-					ec_chart_data['chart_data']= updated_data.chart_data;
-					chartJsChart = (0,_chart_js_adapter__WEBPACK_IMPORTED_MODULE_0__["default"])( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+					if ( typeof( ec_chart_data ) != 'undefined' ) {
+						// Code that might throw an error.
+						ec_chart_data['chart_data']= updated_data.chart_data;
+						chartJsChart = (0,_chart_js_adapter__WEBPACK_IMPORTED_MODULE_0__["default"])( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+					}
 				} catch (error) {
 					// Handle the error.
 					console.error( 'Failed to load module', error );
@@ -47851,14 +47883,6 @@ document.addEventListener( 'DOMContentLoaded', function () {
 			} )
 			.catch( error => console.error( "Error:", error ) );
 	}
-
-	jQuery('#post').on('submit', function(e) {
-		e.preventDefault(); // stop default submit.
-
-		update_chart_data(function () {
-			jQuery('#post').off('submit').submit();
-		});
-	});
 
 	document.getElementById( "ec-button-save-data" ).addEventListener( 'click', function ( event ) {
 		event.preventDefault();
