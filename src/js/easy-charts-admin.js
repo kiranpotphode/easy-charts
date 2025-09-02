@@ -1,169 +1,190 @@
 // phpcs:disable
-import chartJs from "./chart-js-adapter";
-import jspreadsheet from "jspreadsheet-ce";
-import "jspreadsheet-ce/dist/jspreadsheet.css";
+import chartJs from './chart-js-adapter';
+import jspreadsheet from 'jspreadsheet-ce';
+import 'jspreadsheet-ce/dist/jspreadsheet.css';
 import 'jsuites/dist/jsuites.css';
 
 import '../scss/easy-charts-admin.scss';
 
 // Import all of Font Awesome.
-import "@fortawesome/fontawesome-free/js/all.js";
+import '@fortawesome/fontawesome-free/js/all.js';
 
-import "pwstabs/assets/jquery.pwstabs.css";
-import "pwstabs/assets/jquery.pwstabs.js";
+import 'pwstabs/assets/jquery.pwstabs.css';
+import 'pwstabs/assets/jquery.pwstabs.js';
 
-import "jquery-ui/themes/base/all.css";
+import 'jquery-ui/themes/base/all.css';
 
-document.addEventListener( 'DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
 	let chartJsChart = null;
 
-	if ( typeof( ec_chart_data ) != 'undefined' ) {
-
-		 try {
+	if (typeof ec_chart_data != 'undefined') {
+		try {
 			// Code that might throw an error.
-			chartJsChart = chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+			chartJsChart = chartJs(
+				'canvas.chart-js-canvas-' + ec_chart.chart_id,
+				ec_chart_data
+			);
 		} catch (error) {
 			// Handle the error.
-			console.error( 'Failed to load module', error );
+			console.error('Failed to load module', error);
 		}
 	}
 
-	var jspreadsheetid = document.getElementById( "jspreadsheet" );
+	var jspreadsheetid = document.getElementById('jspreadsheet');
 	var data = [
 		['', 'Kia', 'Nissan', 'Toyota', 'Honda'],
 		['2008', 10, 11, 12, 13],
 		['2009', 20, 11, 14, 13],
-		['2010', 30, 15, 12, 13]
+		['2010', 30, 15, 12, 13],
 	];
 
-	if ( typeof( ec_chart ) != 'undefined' ) {
-		if ( ec_chart.chart_data != null ) {
+	if (typeof ec_chart != 'undefined') {
+		if (ec_chart.chart_data != null) {
 			data = ec_chart.chart_data;
 		}
 	}
 
-	let spreadsheet = jspreadsheet( jspreadsheetid, {
-		worksheets: [{
-			data: data,
-		}],
+	let spreadsheet = jspreadsheet(jspreadsheetid, {
+		worksheets: [
+			{
+				data: data,
+			},
+		],
 		tableOverflow: true,
-		tableWidth: "200px",
-		onafterchanges: function ( instance ) {
-			update_chart_data_input( JSON.stringify( instance.getData()) );
+		tableWidth: '200px',
+		onafterchanges: function (instance) {
+			update_chart_data_input(JSON.stringify(instance.getData()));
 		},
-		oninsertrow: function ( instance ) {
-			update_chart_data_input( JSON.stringify( instance.getData()) );
+		oninsertrow: function (instance) {
+			update_chart_data_input(JSON.stringify(instance.getData()));
 		},
-		ondeleterow: function ( instance ) {
-			update_chart_data_input( JSON.stringify( instance.getData()) );
+		ondeleterow: function (instance) {
+			update_chart_data_input(JSON.stringify(instance.getData()));
 		},
-		oninsertcolumn: function ( instance ) {
-			update_chart_data_input( JSON.stringify( instance.getData()) );
+		oninsertcolumn: function (instance) {
+			update_chart_data_input(JSON.stringify(instance.getData()));
 		},
-		ondeletecolumn: function ( instance ) {
-			update_chart_data_input( JSON.stringify( instance.getData()) );
+		ondeletecolumn: function (instance) {
+			update_chart_data_input(JSON.stringify(instance.getData()));
 		},
-		onmoverow: function ( instance ) {
-			update_chart_data_input( JSON.stringify( instance.getData()) );
+		onmoverow: function (instance) {
+			update_chart_data_input(JSON.stringify(instance.getData()));
 		},
-		onmovecolumn: function ( instance ) {
-			update_chart_data_input( JSON.stringify( instance.getData()) );
+		onmovecolumn: function (instance) {
+			update_chart_data_input(JSON.stringify(instance.getData()));
 		},
-	} );
+	});
 
-	function update_chart_data_input( data ) {
+	function update_chart_data_input(data) {
 		// Get the input element by its ID.
-		const dataInput = document.querySelector('input[name="easy_charts_chart_data"]');
+		const dataInput = document.querySelector(
+			'input[name="easy_charts_chart_data"]'
+		);
 
 		// Change its value.
-		if ( dataInput ) {
+		if (dataInput) {
 			dataInput.value = data;
 		}
 	}
 
-	document.getElementById( "ec-button-add-col" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].insertColumn() };
-	document.getElementById( "ec-button-remove-col" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].deleteColumn() };
-	document.getElementById( "ec-button-add-row" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].insertRow() };
-	document.getElementById( "ec-button-remove-row" ).onclick = ( event ) => { event.preventDefault(); spreadsheet[0].deleteRow() };
+	document.getElementById('ec-button-add-col').onclick = (event) => {
+		event.preventDefault();
+		spreadsheet[0].insertColumn();
+	};
+	document.getElementById('ec-button-remove-col').onclick = (event) => {
+		event.preventDefault();
+		spreadsheet[0].deleteColumn();
+	};
+	document.getElementById('ec-button-add-row').onclick = (event) => {
+		event.preventDefault();
+		spreadsheet[0].insertRow();
+	};
+	document.getElementById('ec-button-remove-row').onclick = (event) => {
+		event.preventDefault();
+		spreadsheet[0].deleteRow();
+	};
 
 	function update_chart_data(callback = () => {}) {
 		// Prepare data to send
 		const formData = new FormData();
-		formData.append( "action", "easy_charts_save_chart_data" ); // Must match the PHP action
-		formData.append( "chart_id", ec_chart.chart_id );
-		formData.append( '_nonce_check', ec_chart.ec_ajax_nonce );
-		formData.append( "chart_data", JSON.stringify( data ) );
+		formData.append('action', 'easy_charts_save_chart_data'); // Must match the PHP action
+		formData.append('chart_id', ec_chart.chart_id);
+		formData.append('_nonce_check', ec_chart.ec_ajax_nonce);
+		formData.append('chart_data', JSON.stringify(data));
 
 		// Send AJAX request
-		fetch( ajaxurl, {
-			method: "POST",
-			body: formData
-		} )
-			.then( response => response.json() )
-			.then( updated_data => {
+		fetch(ajaxurl, {
+			method: 'POST',
+			body: formData,
+		})
+			.then((response) => response.json())
+			.then((updated_data) => {
 				callback(); // execute js function after success.
 
-				if ( null !== chartJsChart) {
+				if (null !== chartJsChart) {
 					chartJsChart.destroy();
 				}
 
 				try {
-					if ( typeof( ec_chart_data ) != 'undefined' ) {
+					if (typeof ec_chart_data != 'undefined') {
 						// Code that might throw an error.
-						ec_chart_data['chart_data']= updated_data.chart_data;
-						chartJsChart = chartJs( 'canvas.chart-js-canvas-' + ec_chart.chart_id, ec_chart_data );
+						ec_chart_data['chart_data'] = updated_data.chart_data;
+						chartJsChart = chartJs(
+							'canvas.chart-js-canvas-' + ec_chart.chart_id,
+							ec_chart_data
+						);
 					}
 				} catch (error) {
 					// Handle the error.
-					console.error( 'Failed to load module', error );
+					console.error('Failed to load module', error);
 				}
-			} )
-			.catch( error => console.error( "Error:", error ) );
+			})
+			.catch((error) => console.error('Error:', error));
 	}
 
-	document.getElementById( "ec-button-save-data" ).addEventListener( 'click', function ( event ) {
-		event.preventDefault();
-		let data = spreadsheet[0].getData();
+	document
+		.getElementById('ec-button-save-data')
+		.addEventListener('click', function (event) {
+			event.preventDefault();
+			let data = spreadsheet[0].getData();
 
-		if ( data.flat().every( cell => cell === "" || cell === null ) ) {
-			jQuery( "#dialog-confirm" ).dialog( {
-				resizable: false,
-				height: 400,
-				modal: true,
-				buttons: {
-					"Ok": function() {
-						jQuery( this ).dialog( "close" );
-					}
-				}
-			} );
-		} else {
-			update_chart_data();
-		}
-	} );
+			if (data.flat().every((cell) => cell === '' || cell === null)) {
+				jQuery('#dialog-confirm').dialog({
+					resizable: false,
+					height: 400,
+					modal: true,
+					buttons: {
+						Ok: function () {
+							jQuery(this).dialog('close');
+						},
+					},
+				});
+			} else {
+				update_chart_data();
+			}
+		});
 
 	// jQuery implementation.
-	jQuery( '.ec-color-picker' ).wpColorPicker();
-	jQuery( ".ec-field-buttonset" ).buttonset();
-	jQuery( '.ec-field-slider' ).each( function( index, el ) {
-
-		jQuery( this ).slider( {
-			range: "max",
+	jQuery('.ec-color-picker').wpColorPicker();
+	jQuery('.ec-field-buttonset').buttonset();
+	jQuery('.ec-field-slider').each(function (index, el) {
+		jQuery(this).slider({
+			range: 'max',
 			min: 0,
 			max: 1,
-			value: jQuery( jQuery( this ).data( 'attach' ) ).val(),
+			value: jQuery(jQuery(this).data('attach')).val(),
 			step: 0.1,
-			slide: function( event, ui ) {
-				jQuery( jQuery( this ).data( 'attach' ) ).val( ui.value );
-			}
-		} );
-	} );
+			slide: function (event, ui) {
+				jQuery(jQuery(this).data('attach')).val(ui.value);
+			},
+		});
+	});
 
-	jQuery( '.resp-tabs-container' ).pwstabs( {
+	jQuery('.resp-tabs-container').pwstabs({
 		tabsPosition: 'vertical',
 		responsive: false,
 		containerWidth: '100%',
 		theme: 'pws_theme_orange',
-		effect: 'slidedown'
-	} );
-
-} );
+		effect: 'slidedown',
+	});
+});

@@ -1,7 +1,7 @@
 const downloadChartImagePlugin = {
 	id: 'downloadChartImagePlugin',
 	afterDraw(chart, _args, options) {
-		if ( ! options.enable ) {
+		if (!options.enable) {
 			return;
 		}
 
@@ -38,7 +38,7 @@ const downloadChartImagePlugin = {
 				link.click();
 			}
 		};
-	}
+	},
 };
 
-export  default  downloadChartImagePlugin;
+export default downloadChartImagePlugin;
