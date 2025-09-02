@@ -119,6 +119,15 @@ class Easy_Charts_Admin {
 			wp_enqueue_script( 'iris' );
 			wp_enqueue_script( 'wp-color-picker' );
 		}
+
+		wp_localize_script(
+			'easy-charts-easy-chart-editor-script',
+			'easyChartsSettings',
+			array(
+				'restBase' => esc_url_raw( rest_url() ),
+				'nonce'    => wp_create_nonce( 'easy-charts-fetch-nonce' ),
+			)
+		);
 	}
 
 	/**

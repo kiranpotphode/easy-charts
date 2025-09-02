@@ -73,6 +73,15 @@ class Easy_Charts_Public {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, EASY_CHARTS_URL . '/build/css/frontend.css', array(), $this->version, 'all' );
+
+		wp_localize_script(
+			'easy-charts-easy-chart-view-script',
+			'easyChartsSettings',
+			array(
+				'restBase' => esc_url_raw( rest_url() ),
+				'nonce'    => wp_create_nonce( 'easy-charts-fetch-nonce' ),
+			)
+		);
 	}
 
 	/**
@@ -95,6 +104,15 @@ class Easy_Charts_Public {
 		 */
 
 		wp_register_script( 'easy-charts-public-js', EASY_CHARTS_URL . '/build/js/frontend.js', array( 'jquery' ), $this->version, true );
+
+		wp_localize_script(
+			'easy-charts-easy-chart-view-script',
+			'easyChartsSettings',
+			array(
+				'restBase' => esc_url_raw( rest_url() ),
+				'nonce'    => wp_create_nonce( 'easy-charts-fetch-nonce' ),
+			)
+		);
 	}
 
 	/**
@@ -153,12 +171,17 @@ class Easy_Charts_Public {
 	 */
 	public function register_rest_route() {
 		register_rest_route(
-			'wp/v2',
-			'/easy_charts/(?P<id>\d+)/chart-data',
+			'easy-charts/v1',
+			'/chart/(?P<id>\d+)/',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_chart_data_for_easy_charts' ),
-				'permission_callback' => '__return_true',
+				'permission_callback' => function ( WP_REST_Request $request ) {
+					if ( ! wp_verify_nonce( $request->get_header( 'X-Easy-Charts-Fetch-Nonce' ), 'easy-charts-fetch-nonce' ) ) {
+						return new WP_Error( 'rest_invalid_nonce', 'Invalid nonce', array( 'status' => 403 ) );
+					}
+					return current_user_can( 'read' );
+				},
 			)
 		);
 	}
@@ -166,7 +189,7 @@ class Easy_Charts_Public {
 	/**
 	 * Get chart data by id.
 	 *
-	 * @param WP_REST_Request $request
+	 * @param WP_REST_Request $request REST request.
 	 *
 	 * @return WP_Error|WP_HTTP_Response|WP_REST_Response
 	 */

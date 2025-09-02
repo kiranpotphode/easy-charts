@@ -1,4 +1,5 @@
 import chartJs from '../../js/chart-js-adapter';
+import apiFetch from '@wordpress/api-fetch';
 import "../../scss/easy-charts-public.scss";
 
 document.querySelectorAll('.ec-chartjs-chart-container').forEach((canvas) => {
@@ -9,8 +10,10 @@ document.querySelectorAll('.ec-chartjs-chart-container').forEach((canvas) => {
 	const idNumber = chartId.split('_').pop();
 
 	// Now fetch data (e.g., via REST endpoint or inline logic).
-	fetch(`/wp-json/wp/v2/easy_charts/${idNumber}/chart-data`)
-		.then(res => res.json())
+	//fetch(`/wp-json/wp/v2/easy_charts/${idNumber}/chart-data`)
+	apiFetch({path:`/easy-charts/v1/chart/${idNumber}/`,
+		headers: { 'X-Easy-Charts-Fetch-Nonce': easyChartsSettings.nonce }
+	})
 		.then((data) => {
 			try {
 				chartJs( 'canvas.ec-chartjs-chart-container.' + chartId, data );

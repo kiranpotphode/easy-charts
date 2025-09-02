@@ -20,8 +20,10 @@ export default function Edit({ attributes, setAttributes }) {
 		const canvas = canvasRef.current;
 		const chartId = attributes.chartId;
 		if (!canvas || !chartId) return;
+		console.log(easyChartsSettings);
 
-		apiFetch({ path: `/wp/v2/easy_charts/${chartId}/chart-data` })
+		apiFetch({ path: `/easy-charts/v1/chart/${chartId}/`,
+			headers: { 'X-Easy-Charts-Fetch-Nonce': easyChartsSettings.nonce }})
 			.then((data) => {
 				if (canvas._chart) {
 					canvas._chart.destroy();
