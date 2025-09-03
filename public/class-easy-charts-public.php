@@ -60,18 +60,6 @@ class Easy_Charts_Public {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Easy_Charts_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Easy_Charts_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, EASY_CHARTS_URL . '/build/css/frontend.css', array(), $this->version, 'all' );
 
 		wp_localize_script(
@@ -90,18 +78,6 @@ class Easy_Charts_Public {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Easy_Charts_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Easy_Charts_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
 
 		wp_register_script( 'easy-charts-public-js', EASY_CHARTS_URL . '/build/js/frontend.js', array( 'jquery' ), $this->version, true );
 

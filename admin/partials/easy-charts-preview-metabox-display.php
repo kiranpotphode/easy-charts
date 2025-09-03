@@ -12,7 +12,7 @@
  */
 
 	global $post;
-	$plugin = new Easy_Charts();
+	$easy_chart_plugin = new Easy_Charts();
 ?>
 
 <div id="easy-charts-preview-metabox-wrap">
@@ -34,7 +34,7 @@
 		wp_localize_script( 'easy-charts-admin-js', 'ec_chart', $translation_array );
 		wp_enqueue_script( 'easy-charts-admin-js' );
 
-		echo $plugin->ec_render_chart( $post->ID );
+		echo $easy_chart_plugin->ec_render_chart( $post->ID );
 		?>
 	</div>
 </div>

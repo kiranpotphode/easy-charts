@@ -15,7 +15,7 @@
 /**
  * The core plugin class.
  *
- * This is used to define internationalization, admin-specific hooks, and
+ * This is used to define internationalization, admin-specific hooks, REST Controller and
  * public-facing site hooks.
  *
  * Also maintains the unique identifier of this plugin as well as the current
@@ -27,17 +27,6 @@
  * @author     Kiran Potphode <kiranpotphode15@gmail.com>
  */
 class Easy_Charts {
-
-	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   protected
-	 * @var      Easy_Charts_Loader $loader Maintains and registers all hooks for the plugin.
-	 */
-	protected $loader;
-
 	/**
 	 * The unique identifier of this plugin.
 	 *
@@ -69,12 +58,6 @@ class Easy_Charts {
 
 		$this->plugin_name = 'easy-charts';
 		$this->version     = '1.2.5';
-
-		$this->load_dependencies();
-		$this->set_locale();
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
-        $this->define_rest_api_hooks();
 	}
 
 	/**
@@ -82,25 +65,14 @@ class Easy_Charts {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Easy_Charts_Loader. Orchestrates the hooks of the plugin.
 	 * - Easy_Charts_i18n. Defines internationalization functionality.
 	 * - Easy_Charts_Admin. Defines all hooks for the admin area.
 	 * - Easy_Charts_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
 	private function load_dependencies() {
-
-		/**
-		 * The class responsible for orchestrating the actions and filters of the
-		 * core plugin.
-		 */
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-easy-charts-loader.php';
-
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
@@ -122,9 +94,7 @@ class Easy_Charts {
 		 * The class responsible for defining all actions that occur in the REST API
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( __DIR__ ) . 'rest-api/class-rest-api.php';
-
-		$this->loader = new Easy_Charts_Loader();
+		require_once plugin_dir_path( __DIR__ ) . 'rest-controller/class-easy-charts-rest-controller.php';
 	}
 
 	/**
@@ -140,11 +110,11 @@ class Easy_Charts {
 
 		$plugin_i18n = new Easy_Charts_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Register all the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
@@ -154,18 +124,18 @@ class Easy_Charts {
 
 		$plugin_admin = new Easy_Charts_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'init', $plugin_admin, 'init' );
-		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_boxes' );
-		$this->loader->add_action( 'save_post', $plugin_admin, 'easy_charts_save_meta_box_data' );
-		$this->loader->add_action( 'admin_head', $plugin_admin, 'easy_charts_add_insert_chart_button' );
-		$this->loader->add_action( 'admin_print_scripts', $plugin_admin, 'admin_print_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_menu' );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
+		add_action( 'init', array( $plugin_admin, 'init' ) );
+		add_action( 'add_meta_boxes', array( $plugin_admin, 'add_meta_boxes' ) );
+		add_action( 'save_post', array( $plugin_admin, 'easy_charts_save_meta_box_data' ) );
+		add_action( 'admin_head', array( $plugin_admin, 'easy_charts_add_insert_chart_button' ) );
+		add_action( 'admin_print_scripts', array( $plugin_admin, 'admin_print_scripts' ) );
+		add_action( 'admin_menu', array( $plugin_admin, 'add_options_menu' ) );
 	}
 
 	/**
-	 * Register all of the hooks related to the public-facing functionality
+	 * Register all the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
@@ -175,13 +145,12 @@ class Easy_Charts {
 
 		$plugin_public = new Easy_Charts_Public( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'init', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'init', $plugin_public, 'init' );
-		$this->loader->add_action( 'init', $plugin_public, 'register_gutenberg_blocks' );
-		//$this->loader->add_action( 'rest_api_init', $plugin_public, 'register_rest_route' );
-		$this->loader->add_action( 'wp_ajax_easy_charts_save_chart_data', $plugin_public, 'init' );
-		$this->loader->add_action( 'wp_ajax_easy_charts_get_published_charts', $plugin_public, 'init' );
+		add_action( 'wp_enqueue_scripts', array( $plugin_public, 'enqueue_styles' ) );
+		add_action( 'init', array( $plugin_public, 'enqueue_scripts' ) );
+		add_action( 'init', array( $plugin_public, 'init' ) );
+		add_action( 'init', array( $plugin_public, 'register_gutenberg_blocks' ) );
+		add_action( 'wp_ajax_easy_charts_save_chart_data', array( $plugin_public, 'init' ) );
+		add_action( 'wp_ajax_easy_charts_get_published_charts', array( $plugin_public, 'init' ) );
 	}
 
 	/**
@@ -194,16 +163,20 @@ class Easy_Charts {
 	private function define_rest_api_hooks() {
 
 		$plugin_rest_api = new Easy_Charts_REST_API();
-		$this->loader->add_action( 'rest_api_init', $plugin_rest_api, 'register_rest_routes' );
+		add_action( 'rest_api_init', array( $plugin_rest_api, 'register_rest_routes' ) );
 	}
 
 	/**
-	 * Run the loader to execute all of the hooks with WordPress.
+	 * Run the loader to execute all the hooks with WordPress.
 	 *
 	 * @since    1.0.0
 	 */
 	public function run() {
-		$this->loader->run();
+		$this->load_dependencies();
+		$this->set_locale();
+		$this->define_admin_hooks();
+		$this->define_public_hooks();
+		$this->define_rest_api_hooks();
 	}
 
 	/**
@@ -215,16 +188,6 @@ class Easy_Charts {
 	 */
 	public function get_plugin_name() {
 		return $this->plugin_name;
-	}
-
-	/**
-	 * The reference to the class that orchestrates the hooks with the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    Easy_Charts_Loader    Orchestrates the hooks of the plugin.
-	 */
-	public function get_loader() {
-		return $this->loader;
 	}
 
 	/**

@@ -39,8 +39,6 @@ class Easy_Charts_REST_API {
 
 	}
 
-
-
 	/**
 	 * Permission callback for REST Endpoints.
 	 *

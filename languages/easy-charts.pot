@@ -1,259 +1,314 @@
-# Copyright (C) 2018 Easy Charts
-# This file is distributed under the same license as the Easy Charts package.
+# Copyright (C) 2025 Kiran Potphode
+# This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Charts\n"
+"Project-Id-Version: Easy Charts 1.2.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-charts\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-KeywordsList: __;_e;_ex:1,2c;_n:1,2;_n_noop:1,2;_nx:1,2,4c;_nx_noop:1,2,3c;_x:1,2c;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"POT-Creation-Date: 2025-09-03T15:00:19+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: easy-charts\n"
 
-#: ../admin/class-easy-charts-admin.php:168
+#. Plugin Name of the plugin
+#: easy-charts.php
+msgid "Easy Charts"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: easy-charts.php
+msgid "http://kiranpotphode.github.io/easy-charts/"
+msgstr ""
+
+#. Description of the plugin
+#: easy-charts.php
+msgid "Build simple, reusable, customisable charts on any page or post with ease."
+msgstr ""
+
+#. Author of the plugin
+#: easy-charts.php
+msgid "Kiran Potphode"
+msgstr ""
+
+#: admin/class-easy-charts-admin.php:128
 msgctxt "Post type general name"
 msgid "Easy Charts"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:169
+#: admin/class-easy-charts-admin.php:129
 msgctxt "Post type singular name"
 msgid "Chart"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:170
+#: admin/class-easy-charts-admin.php:130
 msgctxt "Admin menu"
 msgid "Easy Charts"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:171
+#: admin/class-easy-charts-admin.php:131
 msgctxt "Add new chart on admin bar"
 msgid "Chart"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:172
+#: admin/class-easy-charts-admin.php:132
 msgctxt "Add new chart"
 msgid "Add New"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:173
+#: admin/class-easy-charts-admin.php:133
 msgid "Add New Chart"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:174
+#: admin/class-easy-charts-admin.php:134
 msgid "New Chart"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:175
+#: admin/class-easy-charts-admin.php:135
 msgid "Edit Chart"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:176
+#: admin/class-easy-charts-admin.php:136
 msgid "View Chart"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:177
+#: admin/class-easy-charts-admin.php:137
 msgid "All Charts"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:178
+#: admin/class-easy-charts-admin.php:138
 msgid "Search Charts"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:179
+#: admin/class-easy-charts-admin.php:139
 msgid "Parent Charts:"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:180
+#: admin/class-easy-charts-admin.php:140
 msgid "No Charts found."
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:181
+#: admin/class-easy-charts-admin.php:141
 msgid "No Charts found in Trash."
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:218
+#: admin/class-easy-charts-admin.php:178
 msgid "Data"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:225
+#: admin/class-easy-charts-admin.php:185
 msgid "Preview"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:232
+#: admin/class-easy-charts-admin.php:192
 msgid "Configuration"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:239
+#: admin/class-easy-charts-admin.php:199
 msgid "Shortcode"
 msgstr ""
 
-#: ../admin/class-easy-charts-admin.php:255, ../admin/class-easy-charts-admin.php:255
+#: admin/class-easy-charts-admin.php:214
 msgid "Charts settings"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:24
+#: admin/partials/easy-charts-configuration-metabox-display.php:24
 msgid "General"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:28
+#: admin/partials/easy-charts-configuration-metabox-display.php:33
+msgid "UV Charts (legacy)"
+msgstr ""
+
+#: admin/partials/easy-charts-configuration-metabox-display.php:34
+msgid "Chart JS (Modern)"
+msgstr ""
+
+#: admin/partials/easy-charts-configuration-metabox-display.php:44
 msgid "Bar Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:29
+#: admin/partials/easy-charts-configuration-metabox-display.php:45
 msgid "Area Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:30
+#: admin/partials/easy-charts-configuration-metabox-display.php:46
 msgid "Stacked Bar Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:31
+#: admin/partials/easy-charts-configuration-metabox-display.php:47
 msgid "Stacked Area Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:32
+#: admin/partials/easy-charts-configuration-metabox-display.php:48
 msgid "Percent Bar Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:33
+#: admin/partials/easy-charts-configuration-metabox-display.php:49
 msgid "Percent Area Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:34
+#: admin/partials/easy-charts-configuration-metabox-display.php:50
 msgid "Pie Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:35
+#: admin/partials/easy-charts-configuration-metabox-display.php:51
 msgid "Donut Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:36
+#: admin/partials/easy-charts-configuration-metabox-display.php:52
 msgid "Step Up Bar Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:37
+#: admin/partials/easy-charts-configuration-metabox-display.php:53
 msgid "Waterfall Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:38
+#: admin/partials/easy-charts-configuration-metabox-display.php:54
 msgid "Line Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:39
+#: admin/partials/easy-charts-configuration-metabox-display.php:55
 msgid "Polar Area Chart"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:70
+#: admin/partials/easy-charts-configuration-metabox-display.php:105
 msgid "Meta"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:90
+#: admin/partials/easy-charts-configuration-metabox-display.php:131
 msgid "Dimension"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:99
+#: admin/partials/easy-charts-configuration-metabox-display.php:140
 msgid "Margin"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:110
+#: admin/partials/easy-charts-configuration-metabox-display.php:151
 msgid "Frame"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:118
+#: admin/partials/easy-charts-configuration-metabox-display.php:159
 msgid "Axis"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:157
+#: admin/partials/easy-charts-configuration-metabox-display.php:228
 msgid "Label"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:185
+#: admin/partials/easy-charts-configuration-metabox-display.php:268
 msgid "Legend"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:225
+#: admin/partials/easy-charts-configuration-metabox-display.php:338
 msgid "Scale"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:239
+#: admin/partials/easy-charts-configuration-metabox-display.php:358
 msgid "Tooltip"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:251
+#: admin/partials/easy-charts-configuration-metabox-display.php:376
 msgid "Caption"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:286
+#: admin/partials/easy-charts-configuration-metabox-display.php:429
 msgid "Subcaption"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:321
+#: admin/partials/easy-charts-configuration-metabox-display.php:482
 msgid "Bar"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:343
+#: admin/partials/easy-charts-configuration-metabox-display.php:510
 msgid "Line"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:356
+#: admin/partials/easy-charts-configuration-metabox-display.php:529
 msgid "Area"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:376
+#: admin/partials/easy-charts-configuration-metabox-display.php:561
 msgid "Pie"
 msgstr ""
 
-#: ../admin/partials/easy-charts-configuration-metabox-display.php:403
+#: admin/partials/easy-charts-configuration-metabox-display.php:600
 msgid "Donut"
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:29
+#: admin/partials/easy-charts-data-metabox-display.php:30
 msgid "Add Column"
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:31
+#: admin/partials/easy-charts-data-metabox-display.php:32
 msgid "Remove Column"
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:36
+#: admin/partials/easy-charts-data-metabox-display.php:37
 msgid "Add Row"
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:39
+#: admin/partials/easy-charts-data-metabox-display.php:40
 msgid "Remove Row"
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:44
+#: admin/partials/easy-charts-data-metabox-display.php:45
 msgid "Update Chart Data"
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:50
+#: admin/partials/easy-charts-data-metabox-display.php:51
 msgid "There are some empty row and/or columns in chart's datatable."
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:52
+#: admin/partials/easy-charts-data-metabox-display.php:53
 msgid "Please delete these empty rows/columns or fill in data !"
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:56
+#: admin/partials/easy-charts-data-metabox-display.php:57
 msgid "Note: Add/Remove, Move Column/Row using mouse is available in datatable."
 msgstr ""
 
-#: ../admin/partials/easy-charts-data-metabox-display.php:58
+#: admin/partials/easy-charts-data-metabox-display.php:59
 msgid "Try right clicking on datatable headers."
 msgstr ""
 
-#: ../admin/partials/easy-charts-preview-metabox-display.php:25
+#: admin/partials/easy-charts-preview-metabox-display.php:25
 msgid "Please click \"Update chart data\" and save chart for preview."
 msgstr ""
 
-#: ../admin/partials/easy-charts-settings-page-display.php:17
+#: admin/partials/easy-charts-settings-page-display.php:17
 msgid "Charts Settings"
 msgstr ""
 
-#: ../admin/partials/easy-charts-settings-page-display.php:19
+#: admin/partials/easy-charts-settings-page-display.php:19
 msgid "You can find more on "
+msgstr ""
+
+#: rest-controller/class-easy-charts-rest-controller.php:51
+#: rest-controller/class-easy-charts-rest-controller.php:89
+msgid "Invalid nonce"
+msgstr ""
+
+#: build/blocks/easy-chart/index.js:1
+#: src/blocks/easy-chart/edit.js:101
+msgid "Select Chart:"
+msgstr ""
+
+#: build/blocks/easy-chart/index.js:1
+#: src/blocks/easy-chart/edit.js:103
+msgid "Choose a chart by title..."
+msgstr ""
+
+#: build/blocks/easy-chart/index.js:1
+#: src/blocks/easy-chart/edit.js:120
+msgid "Please select a chart to preview."
+msgstr ""
+
+#: build/blocks/easy-chart/block.json
+#: src/blocks/easy-chart/block.json
+msgctxt "block title"
+msgid "Easy Chart"
 msgstr ""

@@ -12,7 +12,7 @@
  */
 
 global $post;
-$plugin = new Easy_Charts();
+$easy_chart_plugin = new Easy_Charts();
 
 ?>
 <div id="easy-charts-data-metabox-wrap">
