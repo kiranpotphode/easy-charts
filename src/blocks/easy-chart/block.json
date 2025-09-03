@@ -6,17 +6,17 @@
 	"category": "widgets",
 	"icon": "chart-bar",
 	"attributes": {
-	"chartId": {
-		"type": "number"
+		"chartId": {
+			"type": "number"
+		},
+		"chartTitle": {
+			"type": "string"
+		},
+		"blockId": {
+			"type": "string"
+		}
 	},
-      "chartTitle": {
-        "type": "string"
-      },
-      "blockId": {
-        "type": "string"
-      }
-    },
 	"usesContext": ["postId"],
 	"editorScript": "file:./index.js",
-    "viewScript": "file:./view.js"
+	"viewScript": "file:./view.js"
 }

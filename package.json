@@ -9,12 +9,12 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "start": "cross-env NODE_ENV=development  webpack --mode development --watch --progress",
     "build:dev": "npm-run-all --parallel start start:blocks",
-    "build:prod": "npm-run-all pretify start start:blocks",
+    "build:prod": "npm-run-all pretify:js pretify:blocks  build:blocks build",
     "pretify:js": "prettier src/js/* --write",
-    "pretify:blocks": "prettier src/js/* --write",
+    "pretify:blocks": "prettier src/blocks/* --write",
     "clean": "rm -rf build",
-    "eslint": "eslint src/js/*",
-    "eslint:fix": "eslint --fix src/js/*"
+    "eslint:js": "eslint src/js/*",
+    "eslint:js:fix": "eslint --fix src/js/*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.0",
