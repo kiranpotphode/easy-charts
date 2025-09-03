@@ -74,6 +74,7 @@ class Easy_Charts {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+        $this->define_rest_api_hooks();
 	}
 
 	/**
@@ -116,6 +117,12 @@ class Easy_Charts {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'public/class-easy-charts-public.php';
+
+		/**
+		 * The class responsible for defining all actions that occur in the REST API
+		 * side of the site.
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'rest-api/class-rest-api.php';
 
 		$this->loader = new Easy_Charts_Loader();
 	}
@@ -172,9 +179,22 @@ class Easy_Charts {
 		$this->loader->add_action( 'init', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_public, 'init' );
 		$this->loader->add_action( 'init', $plugin_public, 'register_gutenberg_blocks' );
-		$this->loader->add_action( 'rest_api_init', $plugin_public, 'register_rest_route' );
+		//$this->loader->add_action( 'rest_api_init', $plugin_public, 'register_rest_route' );
 		$this->loader->add_action( 'wp_ajax_easy_charts_save_chart_data', $plugin_public, 'init' );
 		$this->loader->add_action( 'wp_ajax_easy_charts_get_published_charts', $plugin_public, 'init' );
+	}
+
+	/**
+	 * Register all the hooks related to the public-facing functionality
+	 * of the plugin.
+	 *
+	 * @since    2.0.0
+	 * @access   private
+	 */
+	private function define_rest_api_hooks() {
+
+		$plugin_rest_api = new Easy_Charts_REST_API();
+		$this->loader->add_action( 'rest_api_init', $plugin_rest_api, 'register_rest_routes' );
 	}
 
 	/**
