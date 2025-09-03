@@ -8,6 +8,12 @@
   "attributes": {
     "chartId": {
       "type": "number"
+    },
+    "chartTitle": {
+      "type": "string"
+    },
+    "blockId": {
+      "type": "string"
     }
   },
   "usesContext": [

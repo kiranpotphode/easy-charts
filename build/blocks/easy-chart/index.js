@@ -16946,7 +16946,7 @@ var plugin = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"easy-charts/easy-chart","title":"Easy Chart","category":"widgets","icon":"chart-bar","attributes":{"chartId":{"type":"number"}},"usesContext":["postId"],"editorScript":"file:./index.js","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":2,"name":"easy-charts/easy-chart","title":"Easy Chart","category":"widgets","icon":"chart-bar","attributes":{"chartId":{"type":"number"},"chartTitle":{"type":"string"},"blockId":{"type":"string"}},"usesContext":["postId"],"editorScript":"file:./index.js","viewScript":"file:./view.js"}');
 
 /***/ }),
 
@@ -16963,13 +16963,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
-/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _js_chart_js_adapter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../js/chart-js-adapter */ "./src/js/chart-js-adapter.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _js_chart_js_adapter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../js/chart-js-adapter */ "./src/js/chart-js-adapter.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
+
 
 
 
@@ -16977,26 +16983,36 @@ __webpack_require__.r(__webpack_exports__);
 
 function Edit({
   attributes,
-  setAttributes
+  setAttributes,
+  clientId
 }) {
-  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)();
+  const {
+    blockId,
+    chartTitle
+  } = attributes;
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)();
   const canvasRef = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useRef)();
-  const [charts, setCharts] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-
-  // Fetch chart list once
+  const [chartTitles, setchartTitles] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+  const [isLoading, setIsLoading] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [options, setOptions] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
-      path: '/wp/v2/easy_charts?per_page=100&_fields=id,title'
-    }).then(data => setCharts(data)).catch(console.error);
-  }, []);
+    const allBlocks = wp.data.select('core/block-editor').getBlocks();
+    const duplicateCount = allBlocks.filter(b => b.attributes.blockId === blockId).length;
+
+    // Only set once—when the block is first inserted.
+    if (!blockId || duplicateCount > 1) {
+      setAttributes({
+        blockId: clientId
+      });
+    }
+  }, []); // Run only once on mount
 
   // Render chart preview when chartId changes
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const canvas = canvasRef.current;
     const chartId = attributes.chartId;
     if (!canvas || !chartId) return;
-    console.log(easyChartsSettings);
-    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_2___default()({
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
       path: `/easy-charts/v1/chart/${chartId}/`,
       headers: {
         'X-Easy-Charts-Fetch-Nonce': easyChartsSettings.nonce
@@ -17005,7 +17021,7 @@ function Edit({
       if (canvas._chart) {
         canvas._chart.destroy();
       }
-      canvas._chart = (0,_js_chart_js_adapter__WEBPACK_IMPORTED_MODULE_3__["default"])('canvas.chart-js-canvas-' + chartId, data);
+      canvas._chart = (0,_js_chart_js_adapter__WEBPACK_IMPORTED_MODULE_5__["default"])('canvas.chart-js-canvas-' + blockId + chartId, data);
     }).catch(console.error);
     return () => {
       if (canvas && canvas._chart) {
@@ -17014,36 +17030,58 @@ function Edit({
       }
     };
   }, [attributes.chartId]);
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+  function onFilterValueChange(inputValue) {
+    if (!inputValue) {
+      setOptions([]);
+      return;
+    }
+    setIsLoading(true);
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+      path: '/easy-charts/v1/chart?search=' + encodeURIComponent(inputValue) + '&per_page=10&fields=id,title',
+      headers: {
+        'X-Easy-Charts-Fetch-Nonce': easyChartsSettings.nonce
+      }
+    }).then(data => {
+      setOptions(data.map(c => ({
+        label: c.title || `#${c.id}`,
+        value: c.id
+      })));
+      data.map(function (c) {});
+      setIsLoading(false);
+    }).catch(() => setIsLoading(false));
+  }
+  function onChange(value) {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_4___default()({
+      path: `/easy-charts/v1/chart/${value}/title`,
+      headers: {
+        'X-Easy-Charts-Fetch-Nonce': easyChartsSettings.nonce
+      }
+    }).then(data => {
+      setAttributes({
+        chartId: parseInt(value, 10),
+        chartTitle: data
+      });
+    }).catch(() => setIsLoading(false));
+  }
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
     ...blockProps,
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("label", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("label", {
       htmlFor: "chart-select",
-      children: ["Select Chart:", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("select", {
-        id: "chart-select",
-        value: attributes.chartId || '',
-        onChange: e => setAttributes({
-          chartId: parseInt(e.target.value)
-        }),
-        style: {
-          width: '100%',
-          marginBottom: '12px'
-        },
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-          value: "",
-          disabled: true,
-          children: "Choose a chart..."
-        }), charts.map(chart => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-          value: chart.id,
-          children: chart.title?.rendered || chart.id
-        }, chart.id))]
-      })]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+      children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Select Chart:', 'easy-charts'), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.ComboboxControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Choose a chart by title...', 'easy-charts'),
+        value: attributes.chartId,
+        options: options,
+        isLoading: isLoading,
+        onFilterValueChange: onFilterValueChange,
+        onChange: onChange
+      }), attributes.chartTitle || '']
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
       className: "ec-chart-wrapper",
-      children: attributes.chartId ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("canvas", {
+      children: attributes.chartId ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("canvas", {
         ref: canvasRef,
-        className: `chart-js-canvas-${attributes.chartId}`
-      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-        children: "Please select a chart to preview."
+        className: `chart-js-canvas-${blockId + attributes.chartId}`
+      }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+        children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)("Please select a chart to preview.", "easy-charts")
       })
     })]
   });
@@ -17072,15 +17110,17 @@ function save({
   attributes
 }) {
   const {
-    chartId
+    chartId,
+    blockId
   } = attributes;
   const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save();
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
     ...blockProps,
     className: "ec-chart-wrapper",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("canvas", {
-      className: `ec-chartjs-chart-container ec_object_${chartId} chart-js-canvas-${chartId}`,
-      "data-object": `ec_object_${chartId}`
+      className: `ec-chartjs-chart-container ec_object_${chartId} chart-js-canvas-${blockId + chartId}`,
+      "data-object": `ec_object_${chartId}`,
+      "data-blockid": `${blockId}`
     })
   });
 }
@@ -17893,6 +17933,17 @@ module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
 /***/ "@wordpress/element":
 /*!*********************************!*\
   !*** external ["wp","element"] ***!
@@ -17901,6 +17952,17 @@ module.exports = window["wp"]["blocks"];
 
 "use strict";
 module.exports = window["wp"]["element"];
+
+/***/ }),
+
+/***/ "@wordpress/i18n":
+/*!******************************!*\
+  !*** external ["wp","i18n"] ***!
+  \******************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["wp"]["i18n"];
 
 /***/ }),
 

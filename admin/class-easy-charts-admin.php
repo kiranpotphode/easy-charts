@@ -168,7 +168,6 @@ class Easy_Charts_Admin {
 		$args = array(
 			'labels'          => $labels,
 			'public'          => false,
-			'show_in_rest'    => true,
 			'show_ui'         => true,
 			'_builtin'        => false,
 			'capability_type' => 'page',

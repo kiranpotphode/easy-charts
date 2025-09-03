@@ -17822,6 +17822,7 @@ __webpack_require__.r(__webpack_exports__);
 document.querySelectorAll('.ec-chartjs-chart-container').forEach(canvas => {
   // Access the data-object attribute using dataset.
   const chartId = canvas.dataset.object; // e.g., "ec_object_1988".
+  const blockId = canvas.dataset.blockid; // e.g., "xyzabc123".
 
   // Remove prefix. we need just the numeric part.
   const idNumber = chartId.split('_').pop();
@@ -17835,7 +17836,7 @@ document.querySelectorAll('.ec-chartjs-chart-container').forEach(canvas => {
     }
   }).then(data => {
     try {
-      (0,_js_chart_js_adapter__WEBPACK_IMPORTED_MODULE_0__["default"])('canvas.ec-chartjs-chart-container.' + chartId, data);
+      (0,_js_chart_js_adapter__WEBPACK_IMPORTED_MODULE_0__["default"])('canvas.ec-chartjs-chart-container.chart-js-canvas-' + blockId + idNumber, data);
     } catch (err) {
       console.error('Failed to load module', err);
     }

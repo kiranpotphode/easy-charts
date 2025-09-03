@@ -9,7 +9,9 @@
     "build": "cross-env NODE_ENV=production webpack --mode production",
     "start": "cross-env NODE_ENV=development  webpack --mode development --watch --progress",
     "build:dev": "npm-run-all --parallel start start:blocks",
-    "pretify": "prettier src/js/* --write",
+    "build:prod": "npm-run-all pretify start start:blocks",
+    "pretify:js": "prettier src/js/* --write",
+    "pretify:blocks": "prettier src/js/* --write",
     "clean": "rm -rf build",
     "eslint": "eslint src/js/*",
     "eslint:fix": "eslint --fix src/js/*"

@@ -165,6 +165,19 @@ class Easy_Charts_Public {
 	}
 
 	/**
+	 * Permission callback for REST Endpoints.
+	 *
+	 * @param WP_REST_Request $request REST Request.
+	 *
+	 * @return bool|WP_Error
+	 */
+	public function rest_permission_callback( WP_REST_Request $request ) {
+		if ( ! wp_verify_nonce( $request->get_header( 'X-Easy-Charts-Fetch-Nonce' ), 'easy-charts-fetch-nonce' ) ) {
+			return new WP_Error( 'rest_invalid_nonce', __( 'Invalid nonce', 'easy-charts' ), array( 'status' => 403 ) );
+		}
+		return current_user_can( 'read' );
+	}
+	/**
 	 * Register rest route for the chart data.
 	 *
 	 * @return void
@@ -172,19 +185,121 @@ class Easy_Charts_Public {
 	public function register_rest_route() {
 		register_rest_route(
 			'easy-charts/v1',
-			'/chart/(?P<id>\d+)/',
+			'/chart/(?P<id>\d+)/?$',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( $this, 'get_chart_data_for_easy_charts' ),
+				'permission_callback' => array( $this, 'rest_permission_callback' ),
+			)
+		);
+
+		register_rest_route(
+			'easy-charts/v1',
+			'/chart/(?P<id>\d+)/title/?$',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'get_chart_title' ),
+				'permission_callback' => array( $this, 'rest_permission_callback' ),
+			)
+		);
+
+		register_rest_route(
+			'easy-charts/v1',
+			'/chart/',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( $this, 'ec_get_chart_list' ),
 				'permission_callback' => function ( WP_REST_Request $request ) {
 					if ( ! wp_verify_nonce( $request->get_header( 'X-Easy-Charts-Fetch-Nonce' ), 'easy-charts-fetch-nonce' ) ) {
-						return new WP_Error( 'rest_invalid_nonce', 'Invalid nonce', array( 'status' => 403 ) );
+						return new WP_Error( 'rest_invalid_nonce', __( 'Invalid nonce', 'easy-charts' ), array( 'status' => 403 ) );
 					}
 					return current_user_can( 'read' );
 				},
+				'args'                => array(
+					'search'   => array(
+						'description'       => 'Search term.',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_text_field',
+					),
+					'per_page' => array(
+						'description'       => 'Posts per page.',
+						'type'              => 'integer',
+						'default'           => 10,
+						'sanitize_callback' => 'absint',
+					),
+					'page'     => array(
+						'description'       => 'Page number.',
+						'type'              => 'integer',
+						'default'           => 1,
+						'sanitize_callback' => 'absint',
+					),
+					'fields'   => array(
+						'description'       => 'Fields to include (comma-separated).',
+						'type'              => 'string',
+						'sanitize_callback' => 'sanitize_key',
+					),
+				),
 			)
 		);
 	}
+
+	/**
+	 * Get chart title.
+	 *
+	 * @param WP_REST_Request $request Request object.
+	 *
+	 * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+	 */
+	public function get_chart_title( WP_REST_Request $request ) {
+		$chart_id = intval( $request['id'] );
+		$chart    = get_post( $chart_id );
+
+		return rest_ensure_response( $chart->post_title );
+	}
+	/**
+	 * Get chart list.
+	 *
+	 * @param WP_REST_Request $request REST request.
+	 *
+	 * @return WP_Error|WP_HTTP_Response|WP_REST_Response
+	 */
+	public function ec_get_chart_list( WP_REST_Request $request ) {
+		$search   = $request->get_param( 'search' );
+		$per_page = $request->get_param( 'per_page' );
+		$page     = $request->get_param( 'page' );
+		$fields   = $request->get_param( 'fields' );
+
+		$args = array(
+			'post_type'      => 'easy_charts',
+			's'              => $search,
+			'posts_per_page' => $per_page,
+			'paged'          => $page,
+			'fields'         => 'ids',
+		);
+
+		$query = new WP_Query( $args );
+		$ids   = $query->posts;
+		$data  = array();
+
+		foreach ( $ids as $id ) {
+			$item = array();
+			if ( empty( $fields ) || strpos( $fields, 'id' ) !== false ) {
+				$item['id'] = $id;
+			}
+			if ( empty( $fields ) || strpos( $fields, 'title' ) !== false ) {
+				$item['title'] = get_the_title( $id );
+			}
+			$data[] = $item;
+		}
+
+		$response = rest_ensure_response( $data );
+
+		$response->header( 'X-WP-Total', (int) $query->found_posts );
+		$response->header( 'X-WP-TotalPages', (int) $query->max_num_pages );
+
+		return $response;
+	}
+
 
 	/**
 	 * Get chart data by id.

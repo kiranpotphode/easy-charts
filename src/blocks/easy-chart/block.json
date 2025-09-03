@@ -8,8 +8,14 @@
 	"attributes": {
 	"chartId": {
 		"type": "number"
-	}
-},
+	},
+      "chartTitle": {
+        "type": "string"
+      },
+      "blockId": {
+        "type": "string"
+      }
+    },
 	"usesContext": ["postId"],
 	"editorScript": "file:./index.js",
     "viewScript": "file:./view.js"
