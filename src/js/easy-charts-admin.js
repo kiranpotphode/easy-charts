@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	if (typeof ec_chart_data != 'undefined') {
 		try {
+			console.log(ec_chart_data);
 			// Code that might throw an error.
 			chartJsChart = chartJs(
 				'canvas.chart-js-canvas-' + ec_chart.chart_id,
@@ -166,6 +167,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 	// jQuery implementation.
 	jQuery('.ec-color-picker').wpColorPicker();
+	jQuery('.ec-color-palette').wpColorPicker();
+	jQuery('.add-color').click(function(e){
+		e.preventDefault();
+		const field = jQuery(this).data('field');
+		const newInput = jQuery('<input type="text" class="ec-color-palette" name="' + field + '[]" value="" />');
+		jQuery(this).before(newInput);
+		newInput.wpColorPicker();
+	});
 	jQuery('.ec-field-buttonset').buttonset();
 	jQuery('.ec-field-slider').each(function (index, el) {
 		jQuery(this).slider({

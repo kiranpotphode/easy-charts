@@ -74,8 +74,10 @@ $font_family = $easy_chart_plugin->get_font_family_array();
 							'Candid'     => 'Candid',
 							'Sulphide'   => 'Sulphide',
 							'Lint'       => 'Lint',
+							'Custom'     => 'Custom',
 						)
 					);
+					$easy_chart_plugin->ec_render_field( 'color-palette', 'ec_chart_graph_custom_color_palette', 'Custom Color Palette', $ec_chart_graph['custompalette'] );
 					$easy_chart_plugin->ec_render_field( 'color-picker', 'ec_chart_graph_bgcolor', 'Background Color', $ec_chart_graph['bgcolor'] );
 					$easy_chart_plugin->ec_render_field(
 						'radio',

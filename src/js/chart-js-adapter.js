@@ -22,8 +22,13 @@ let chartJS;
 function parseChartJSData(rawData, rawConfig, extraConfig) {
 	// Extract all unique labels dynamically.
 	const labels = getChartLabels(rawData);
+	let colorPalette = [];
 
-	const colorPalette = chartJSColorPalette[rawConfig.graph.palette];
+	if ( 'Custom' === rawConfig.graph.palette ) {
+		colorPalette = Object.values(rawConfig.graph.custompalette);
+	} else {
+		colorPalette = chartJSColorPalette[rawConfig.graph.palette];
+	}
 
 	// Generate datasets dynamically.
 	const datasets = getDataSets(rawData, labels, colorPalette, extraConfig);

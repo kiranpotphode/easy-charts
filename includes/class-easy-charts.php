@@ -567,11 +567,12 @@ class Easy_Charts {
 
 				case 'graph':
 					$ec_chart_option = array(
-						'palette'     => 'Brink',
-						'responsive'  => 1,
-						'bgcolor'     => '#ffffff',
-						'orientation' => 'Horizontal',
-						'opacity'     => 1,
+						'palette'       => 'Brink',
+						'responsive'    => 1,
+						'bgcolor'       => '#ffffff',
+						'orientation'   => 'Horizontal',
+						'opacity'       => 1,
+						'custompalette' => array(),
 					);
 					break;
 
@@ -760,7 +761,6 @@ class Easy_Charts {
 	 * @param array  $field_options Optional array of options for input field.
 	 */
 	public function ec_render_field( $field_type, $field_name, $field_label, $field_value, $field_options = array() ) {
-
 		switch ( $field_type ) {
 
 			case 'text':
@@ -864,6 +864,35 @@ class Easy_Charts {
 							</td>
 							<td class="ec-td-field">
 								<input type="text" name="<?php echo esc_attr( $field_name ); ?>" class="ec-color-picker" value="<?php echo esc_attr( $field_value ); ?>"/>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<?php
+				break;
+
+			case 'color-palette':
+				?>
+				<div class="field">
+					<table>
+						<tbody>
+						<tr>
+							<td class="ec-td-label">
+								<label><?php echo esc_html( $field_label ); ?> :</label>
+							</td>
+							<td class="ec-td-field">
+								<?php
+								if ( ! is_array( $field_value ) ) {
+									$field_value = array( '#dfdfdf' );
+								}
+								foreach ( $field_value as $index => $color ) {
+									?>
+									<input type="text" name="<?php echo esc_attr( $field_name ); ?>[<?php echo esc_attr( $index ); ?>]" class="ec-color-palette" value="<?php echo esc_attr( $color ); ?>"/>
+									<?php
+								}
+								?>
+								<button class="button add-color" data-field="<?php echo esc_attr( $field_name ); ?>"><?php esc_html_e( 'Add Color', 'easy-charts' ); ?></button>
 							</td>
 						</tr>
 						</tbody>

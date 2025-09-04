@@ -296,13 +296,13 @@ class Easy_Charts_Admin {
 				return;
 		}
 
-		// @todo: implement custom pallete logic.
 		$ec_chart_graph = array(
-			'responsive'  => (bool) filter_input( INPUT_POST, 'ec_chart_graph_responsive', FILTER_SANITIZE_NUMBER_INT ),
-			'palette'     => filter_input( INPUT_POST, 'ec_chart_graph_palette', FILTER_SANITIZE_SPECIAL_CHARS ),
-			'bgcolor'     => filter_input( INPUT_POST, 'ec_chart_graph_bgcolor', FILTER_SANITIZE_SPECIAL_CHARS ),
-			'orientation' => filter_input( INPUT_POST, 'ec_chart_graph_orientation', FILTER_SANITIZE_SPECIAL_CHARS ),
-			'opacity'     => (float) filter_input( INPUT_POST, 'ec_chart_graph_opacity', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'responsive'    => (bool) filter_input( INPUT_POST, 'ec_chart_graph_responsive', FILTER_SANITIZE_NUMBER_INT ),
+			'palette'       => filter_input( INPUT_POST, 'ec_chart_graph_palette', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'custompalette' => array_filter( filter_input( INPUT_POST, 'ec_chart_graph_custom_color_palette', FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY ) ),
+			'bgcolor'       => filter_input( INPUT_POST, 'ec_chart_graph_bgcolor', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'orientation'   => filter_input( INPUT_POST, 'ec_chart_graph_orientation', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'opacity'       => (float) filter_input( INPUT_POST, 'ec_chart_graph_opacity', FILTER_SANITIZE_SPECIAL_CHARS ),
 		);
 
 		$ec_chart_meta = array(
