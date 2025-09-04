@@ -296,6 +296,7 @@ class Easy_Charts_Admin {
 				return;
 		}
 
+		// @todo: implement custom pallete logic.
 		$ec_chart_graph = array(
 			'responsive'  => (bool) filter_input( INPUT_POST, 'ec_chart_graph_responsive', FILTER_SANITIZE_NUMBER_INT ),
 			'palette'     => filter_input( INPUT_POST, 'ec_chart_graph_palette', FILTER_SANITIZE_SPECIAL_CHARS ),
@@ -446,7 +447,6 @@ class Easy_Charts_Admin {
 			update_post_meta( $post_id, '_easy_charts_chart_data', $easy_charts_chart_data );
 		}
 
-		update_post_meta( $post_id, '_ec_chart_lib', filter_input( INPUT_POST, 'ec_chart_lib', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_type', filter_input( INPUT_POST, 'ec_chart_type', FILTER_SANITIZE_SPECIAL_CHARS ) );
 		update_post_meta( $post_id, '_ec_chart_meta', $ec_chart_meta );
 		update_post_meta( $post_id, '_ec_chart_graph', $ec_chart_graph );

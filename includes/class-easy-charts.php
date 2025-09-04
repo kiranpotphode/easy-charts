@@ -208,33 +208,25 @@ class Easy_Charts {
 	 * @access private
 	 * @return string  HTML string of output.
 	 */
-	private function easy_chart_dropdown( $args = '' ) {
+	private function easy_chart_dropdown( $args = array() ) {
 		$defaults = array(
-			'selected'              => 0,
-			'echo'                  => 1,
-			'name'                  => 'ec_dropdown',
-			'id'                    => '',
-			'options'               => array(),
-			'show_option_none'      => '',
-			'show_option_no_change' => '',
-			'option_none_value'     => '',
+			'selected' => 0,
+			'echo'     => 1,
+			'name'     => 'ec_dropdown',
+			'id'       => '',
+			'options'  => array(),
 		);
 
 		$r      = wp_parse_args( $args, $defaults );
 		$output = '';
-		// Back-compat with old system where both id and name were based on $name argument.
+
 		if ( empty( $r['id'] ) ) {
 			$r['id'] = $r['name'];
 		}
 
 		if ( ! empty( $r['options'] ) ) {
 			$output = "<select name='" . esc_attr( $r['name'] ) . "' id='" . esc_attr( $r['id'] ) . "' class='ec-dropdown-select'>\n";
-			if ( $r['show_option_no_change'] ) {
-				$output .= "\t<option value=\"-1\" " . selected( $r['selected'], - 1, 0 ) . '>' . $r['show_option_no_change'] . "</option>\n";
-			}
-			if ( $r['show_option_none'] ) {
-				$output .= "\t<option value=\"" . esc_attr( $r['option_none_value'] ) . '" ' . selected( $r['selected'], esc_attr( $r['option_none_value'] ), 0 ) . '>' . $r['show_option_none'] . "</option>\n";
-			}
+
 			foreach ( $r['options'] as $key => $value ) {
 				$output .= "\t<option value=\"" . esc_attr( $key ) . '" ' . selected( $r['selected'], esc_attr( $key ), 0 ) . '>' . $value . "</option>\n";
 			}
@@ -248,11 +240,12 @@ class Easy_Charts {
 		 * @since 1.0.0
 		 *
 		 * @param string $output HTML output.
+		 * @param array $args    Dropdown arguments.
 		 */
-		$html = apply_filters( 'easy_chart_dropdown', $output );
+		$html = apply_filters( 'easy_chart_dropdown', $output, $args );
 
 		if ( $r['echo'] ) {
-			echo $html;
+			echo $html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		return $html;
@@ -264,21 +257,21 @@ class Easy_Charts {
 	 * @since 1.0.0
 	 * @access private
 	 *
-	 * @param array               $array An 2D array to transpose.
+	 * @param array               $raw_array An 2D array to transpose.
 	 * @param integer|string|bool $selectkey Key on which transpose the array    Optional  Default us false.
 	 *
 	 * @return array    Transposed array.
 	 */
-	private function array_transpose( $array, $selectkey = false ) {
-		if ( ! is_array( $array ) ) {
+	private function array_transpose( $raw_array, $selectkey = false ) {
+		if ( ! is_array( $raw_array ) ) {
 			return false;
 		}
 		$return = array();
 
-		foreach ( $array as $key => $value ) {
+		foreach ( $raw_array as $key => $value ) {
 
 			if ( ! is_array( $value ) ) {
-				return $array;
+				return $raw_array;
 			}
 
 			if ( $selectkey ) {
@@ -354,7 +347,6 @@ class Easy_Charts {
 		$ec_chart_categories    = array();
 		$ec_chart_configuration = array();
 
-		$ec_chart_lib  = get_post_meta( $chart_id, '_ec_chart_lib', true );
 		$ec_chart_type = get_post_meta( $chart_id, '_ec_chart_type', true );
 
 		switch ( $ec_chart_type ) {
@@ -456,7 +448,6 @@ class Easy_Charts {
 		$ec_chart_donut      = $this->ec_get_chart_configuration( $chart_id, 'donut' );
 
 		$ec_chart_data = array(
-			'chart_lib'           => $ec_chart_lib,
 			'chart_type'          => $ec_chart_type,
 			'chart_data'          => $translated_dataset,
 			'chart_categories'    => $ec_chart_categories,

@@ -134,6 +134,8 @@ class Easy_Charts_Public {
 	/**
 	 * Register Gutenberg Block.
 	 *
+	 * @since 2.0.0
+	 *
 	 * @return void
 	 */
 	public function register_gutenberg_blocks() {

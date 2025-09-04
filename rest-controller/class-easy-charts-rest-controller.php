@@ -42,6 +42,8 @@ class Easy_Charts_REST_API {
 	/**
 	 * Permission callback for REST Endpoints.
 	 *
+	 * @since      2.0.0
+	 *
 	 * @param WP_REST_Request $request REST Request.
 	 *
 	 * @return bool|WP_Error
@@ -54,6 +56,8 @@ class Easy_Charts_REST_API {
 	}
 	/**
 	 * Register rest route for the chart data.
+	 *
+	 * @since      2.0.0
 	 *
 	 * @return void
 	 */
@@ -121,6 +125,8 @@ class Easy_Charts_REST_API {
 	/**
 	 * Get chart title.
 	 *
+	 * @since 2.0.0
+	 *
 	 * @param WP_REST_Request $request Request object.
 	 *
 	 * @return WP_Error|WP_HTTP_Response|WP_REST_Response
@@ -178,6 +184,8 @@ class Easy_Charts_REST_API {
 
 	/**
 	 * Get chart data by id.
+	 *
+	 * @since 2.0.0
 	 *
 	 * @param WP_REST_Request $request REST request.
 	 *

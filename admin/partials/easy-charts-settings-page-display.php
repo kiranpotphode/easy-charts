@@ -11,6 +11,7 @@
  * @subpackage Easy_Charts/admin/partials
  */
 
+// @todo: implement support for global options.
 ?>
 <div class="wrap">
 	<div id="icon-tools" class="icon32"></div>
