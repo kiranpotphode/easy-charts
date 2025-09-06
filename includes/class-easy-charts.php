@@ -585,10 +585,10 @@ class Easy_Charts {
 
 				case 'margin':
 					$ec_chart_option = array(
-						'top'    => 50,
-						'bottom' => 150,
-						'left'   => 100,
-						'right'  => 100,
+						'top'    => 5,
+						'bottom' => 5,
+						'left'   => 5,
+						'right'  => 5,
 					);
 					break;
 
@@ -604,6 +604,7 @@ class Easy_Charts {
 						'ticks'        => 8,
 						'subticks'     => 2,
 						'padding'      => 5,
+						'grace'        => 5,
 						'strokecolor'  => '#000000',
 						'minor'        => - 10,
 						'fontfamily'   => 'Arial',
@@ -628,9 +629,11 @@ class Easy_Charts {
 					);
 					break;
 
+				// @todo : implement legend title?
 				case 'legend':
 					$ec_chart_option = array(
 						'position'      => 'bottom',
+						'align'         => 'center',
 						'fontfamily'    => 'Arial',
 						'fontsize'      => '11',
 						'fontweight'    => 'normal',

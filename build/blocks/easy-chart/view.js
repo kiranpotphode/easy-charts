@@ -16992,15 +16992,13 @@ function parseChartJSData(rawData, rawConfig, extraConfig) {
     color: (0,_chart_js_adapter_helpers__WEBPACK_IMPORTED_MODULE_3__.hexToRgba)(rawConfig.axis.strokecolor, rawConfig.axis.opacity)
   };
   const scaleTicksStyles = {
-    maxTicksLimit: rawConfig.axis.ticks,
-    // Limits the number of x-axis ticks.
     padding: rawConfig.axis.padding,
     display: rawConfig.axis.showtext,
-    color: rawConfig.label.strokecolor,
+    color: rawConfig.axis.strokecolor,
     font: {
-      size: rawConfig.label.fontsize,
-      family: rawConfig.label.fontfamily,
-      weight: rawConfig.label.fontweight
+      size: rawConfig.axis.fontsize,
+      family: rawConfig.axis.fontfamily,
+      weight: rawConfig.axis.fontweight
     }
   };
   const scaleTitleFontStyles = {
@@ -17042,34 +17040,27 @@ function parseChartJSData(rawData, rawConfig, extraConfig) {
           text: [rawConfig.meta.vlabel, rawConfig.meta.vsublabel],
           // Vertical caption.
           font: {
-            size: rawConfig.axis.fontsize,
-            family: rawConfig.axis.fontfamily,
-            weight: rawConfig.axis.fontweight
+            size: parseInt(rawConfig.label.fontsize),
+            family: rawConfig.label.fontfamily,
+            weight: rawConfig.label.fontweight
           }
         },
         ticks: {
-          //stepSize: 10,
+          count: rawConfig.axis.ticks + 1,
           autoSkip: false,
-          maxTicksLimit: rawConfig.axis.ticks,
           major: {
             enabled: true
           },
           ...scaleTicksStyles
-          //stepSize: 30, // Adjusts tick intervals instead of major/minor
-          /*callback: function(value, index, values) {
-          	return index % 2 === 0 ? value : ''; // Show every alternate tick
-          }*/
         },
-        grid: scaleGrid
+        grid: scaleGrid,
+        grace: (rawConfig.axis.grace ? parseInt(rawConfig.axis.grace).toString() : 0) + '%'
       },
       x: {
         ...(extraConfig.isStacked && {
           stacked: extraConfig.isStacked
         }),
         beginAtZero: true,
-        //offset: true,
-        //stacked: true,
-
         title: {
           display: !!rawConfig.meta.hlabel.length,
           text: [rawConfig.meta.hlabel, rawConfig.meta.hsublabel],
@@ -17081,21 +17072,15 @@ function parseChartJSData(rawData, rawConfig, extraConfig) {
           }
         },
         ticks: {
-          //stepSize: 10,
+          count: rawConfig.axis.ticks + 1,
           autoSkip: false,
-          maxTicksLimit: rawConfig.axis.ticks,
           major: {
             enabled: true
           },
-          minor: {
-            font: {
-              size: 10,
-              color: '#888'
-            }
-          },
           ...scaleTicksStyles
         },
-        grid: scaleGrid
+        grid: scaleGrid,
+        grace: (rawConfig.axis.grace ? parseInt(rawConfig.axis.grace).toString() : 0) + '%'
       }
     },
     plugins: {
@@ -17134,7 +17119,7 @@ function parseChartJSData(rawData, rawConfig, extraConfig) {
               return undefined;
             }
             const formattedNumber = context.raw % 1 === 0 ? context.raw : Number(context.raw).toFixed(rawConfig.label.precision);
-            return context.dataset.label + ' : ' + formattedNumber;
+            return context.dataset.label + ' : ' + rawConfig.label.prefix + formattedNumber + rawConfig.label.suffix;
           }
         }
       },
@@ -17157,6 +17142,7 @@ function parseChartJSData(rawData, rawConfig, extraConfig) {
       legend: {
         display: 1 === rawConfig.legend.showlegends,
         position: rawConfig.legend.position,
+        align: rawConfig.legend.align,
         labels: {
           boxWidth: rawConfig.legend.symbolsize,
           font: {

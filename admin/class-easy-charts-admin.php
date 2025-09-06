@@ -299,7 +299,7 @@ class Easy_Charts_Admin {
 		$ec_chart_graph = array(
 			'responsive'    => (bool) filter_input( INPUT_POST, 'ec_chart_graph_responsive', FILTER_SANITIZE_NUMBER_INT ),
 			'palette'       => filter_input( INPUT_POST, 'ec_chart_graph_palette', FILTER_SANITIZE_SPECIAL_CHARS ),
-			'custompalette' => array_filter( filter_input( INPUT_POST, 'ec_chart_graph_custom_color_palette', FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY ) ),
+			'custompalette' => filter_input( INPUT_POST, 'ec_chart_graph_custom_color_palette', FILTER_SANITIZE_SPECIAL_CHARS, FILTER_REQUIRE_ARRAY ),
 			'bgcolor'       => filter_input( INPUT_POST, 'ec_chart_graph_bgcolor', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'orientation'   => filter_input( INPUT_POST, 'ec_chart_graph_orientation', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'opacity'       => (float) filter_input( INPUT_POST, 'ec_chart_graph_opacity', FILTER_SANITIZE_SPECIAL_CHARS ),
@@ -338,6 +338,7 @@ class Easy_Charts_Admin {
 			'ticks'        => (int) filter_input( INPUT_POST, 'ec_chart_axis_ticks', FILTER_SANITIZE_NUMBER_INT ),
 			'subticks'     => (int) filter_input( INPUT_POST, 'ec_chart_axis_subticks', FILTER_SANITIZE_NUMBER_INT ),
 			'padding'      => (int) filter_input( INPUT_POST, 'ec_chart_axis_padding', FILTER_SANITIZE_NUMBER_INT ),
+			'grace'        => (int) filter_input( INPUT_POST, 'ec_chart_axis_grace', FILTER_SANITIZE_NUMBER_INT ),
 			'strokecolor'  => filter_input( INPUT_POST, 'ec_chart_axis_strokecolor', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'minor'        => (int) filter_input( INPUT_POST, 'ec_chart_axis_minor', FILTER_SANITIZE_NUMBER_INT ),
 			'fontfamily'   => filter_input( INPUT_POST, 'ec_chart_axis_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
@@ -361,6 +362,7 @@ class Easy_Charts_Admin {
 
 		$ec_chart_legend = array(
 			'position'      => filter_input( INPUT_POST, 'ec_chart_legend_position', FILTER_SANITIZE_SPECIAL_CHARS ),
+			'align'      => filter_input( INPUT_POST, 'ec_chart_legend_align', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'fontfamily'    => filter_input( INPUT_POST, 'ec_chart_legend_fontfamily', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'fontsize'      => filter_input( INPUT_POST, 'ec_chart_legend_fontsize', FILTER_SANITIZE_SPECIAL_CHARS ),
 			'fontweight'    => filter_input( INPUT_POST, 'ec_chart_legend_fontweight', FILTER_SANITIZE_SPECIAL_CHARS ),

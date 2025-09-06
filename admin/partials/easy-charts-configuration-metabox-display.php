@@ -164,56 +164,67 @@ $font_family = $easy_chart_plugin->get_font_family_array();
 					);
 					$easy_chart_plugin->ec_render_field( 'number', 'ec_chart_axis_subticks', 'Subticks', $ec_chart_axis['subticks'], array( 'min' => 0 ) );
 					$easy_chart_plugin->ec_render_field( 'number', 'ec_chart_axis_padding', 'Padding', $ec_chart_axis['padding'], array( 'min' => 0 ) );
-					$easy_chart_plugin->ec_render_field( 'color-picker', 'ec_chart_axis_strokecolor', 'Stroke Color', $ec_chart_axis['strokecolor'] );
-					$easy_chart_plugin->ec_render_field( 'number', 'ec_chart_axis_minor', 'Minor', $ec_chart_axis['minor'], array( 'max' => 0 ) );
-					$easy_chart_plugin->ec_render_field( 'dropdown', 'ec_chart_axis_fontfamily', 'Font Family', $ec_chart_axis['fontfamily'], $font_family, 'Arial' );
-					$easy_chart_plugin->ec_render_field( 'number', 'ec_chart_axis_fontsize', 'Font Size', $ec_chart_axis['fontsize'], array( 'min' => 0 ) );
-					$easy_chart_plugin->ec_render_field(
-						'dropdown',
-						'ec_chart_axis_fontweight',
-						'Font Weight',
-						$ec_chart_axis['fontweight'],
-						array(
-							'100' => 100,
-							'200' => 200,
-							'300' => 300,
-							'400' => 400,
-							'500' => 500,
-							'600' => 600,
-							'700' => 700,
-						)
-					);
-					$easy_chart_plugin->ec_render_field(
-						'radio',
-						'ec_chart_axis_showticks',
-						'Show Ticks',
-						$ec_chart_axis['showticks'],
-						array(
-							'Yes' => 1,
-							'No'  => 0,
-						)
-					);
-					$easy_chart_plugin->ec_render_field(
-						'radio',
-						'ec_chart_axis_showsubticks',
-						'Show Sub Ticks',
-						$ec_chart_axis['showsubticks'],
-						array(
-							'Yes' => 1,
-							'No'  => 0,
-						)
-					);
-					$easy_chart_plugin->ec_render_field(
-						'radio',
-						'ec_chart_axis_showtext',
-						'Show Text',
-						$ec_chart_axis['showtext'],
-						array(
-							'Yes' => 1,
-							'No'  => 0,
-						)
-					);
-					?>
+						$easy_chart_plugin->ec_render_field(
+							'number',
+							'ec_chart_axis_grace',
+							'Grace',
+							$ec_chart_axis['grace'],
+							array(
+								'min'  => 0,
+								'max'  => 100,
+								'step' => 5,
+							)
+						);
+						$easy_chart_plugin->ec_render_field( 'color-picker', 'ec_chart_axis_strokecolor', 'Stroke Color', $ec_chart_axis['strokecolor'] );
+						$easy_chart_plugin->ec_render_field( 'number', 'ec_chart_axis_minor', 'Minor', $ec_chart_axis['minor'], array( 'max' => 0 ) );
+						$easy_chart_plugin->ec_render_field( 'dropdown', 'ec_chart_axis_fontfamily', 'Font Family', $ec_chart_axis['fontfamily'], $font_family, 'Arial' );
+						$easy_chart_plugin->ec_render_field( 'number', 'ec_chart_axis_fontsize', 'Font Size', $ec_chart_axis['fontsize'], array( 'min' => 0 ) );
+						$easy_chart_plugin->ec_render_field(
+							'dropdown',
+							'ec_chart_axis_fontweight',
+							'Font Weight',
+							$ec_chart_axis['fontweight'],
+							array(
+								'100' => 100,
+								'200' => 200,
+								'300' => 300,
+								'400' => 400,
+								'500' => 500,
+								'600' => 600,
+								'700' => 700,
+							)
+						);
+						$easy_chart_plugin->ec_render_field(
+							'radio',
+							'ec_chart_axis_showticks',
+							'Show Ticks',
+							$ec_chart_axis['showticks'],
+							array(
+								'Yes' => 1,
+								'No'  => 0,
+							)
+						);
+						$easy_chart_plugin->ec_render_field(
+							'radio',
+							'ec_chart_axis_showsubticks',
+							'Show Sub Ticks',
+							$ec_chart_axis['showsubticks'],
+							array(
+								'Yes' => 1,
+								'No'  => 0,
+							)
+						);
+						$easy_chart_plugin->ec_render_field(
+							'radio',
+							'ec_chart_axis_showtext',
+							'Show Text',
+							$ec_chart_axis['showtext'],
+							array(
+								'Yes' => 1,
+								'No'  => 0,
+							)
+						);
+						?>
 				</div>
 
 				<div id="ec-tabs-label" class="ec-tab" data-pws-tab-name="<?php esc_attr_e( 'Label', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-label" data-pws-tab-icon="fa-tag">
@@ -258,6 +269,7 @@ $font_family = $easy_chart_plugin->get_font_family_array();
 
 				<div id="ec-tabs-legend" class="ec-tab" data-pws-tab-name="<?php esc_attr_e( 'Legend', 'easy-charts' ); ?>" data-pws-tab="ec-tabs-legend" data-pws-tab-icon="fa-info">
 					<?php
+                     // @todo : adjust position of legends.
 					$ec_chart_legend = $easy_chart_plugin->ec_get_chart_configuration( $post->ID, 'legend' );
 					$easy_chart_plugin->ec_render_field(
 						'dropdown',
@@ -265,8 +277,22 @@ $font_family = $easy_chart_plugin->get_font_family_array();
 						'Position',
 						$ec_chart_legend['position'],
 						array(
-							'bottom' => 'Bottom',
-							'right'  => 'Right',
+							'bottom'    => 'Bottom',
+							'right'     => 'Right',
+							'top'       => 'Top',
+							'left'      => 'Left',
+							'chartArea' => 'Chart Area',
+						)
+					);
+					$easy_chart_plugin->ec_render_field(
+						'dropdown',
+						'ec_chart_legend_align',
+						'Align',
+						$ec_chart_legend['align'],
+						array(
+							'start'  => 'Start',
+							'center' => 'Center',
+							'end'    => 'End',
 						)
 					);
 					$easy_chart_plugin->ec_render_field(
