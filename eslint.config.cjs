@@ -17,7 +17,6 @@ const WORDPRESS_MODULES = [
 	'@wordpress/data',
 	'@wordpress/element',
 	'@wordpress/i18n',
-	'@wordpress/icons',
 	'@wordpress/url',
 ];
 

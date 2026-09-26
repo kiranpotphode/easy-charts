@@ -40,6 +40,8 @@
 		"uuid": "11.1.1"
 	},
 	"dependencies": {
-		"echarts": "6.1.0"
+		"echarts": "6.1.0",
+		"jspreadsheet-ce": "5.0.4",
+		"jsuites": "5.13.5"
 	}
 }

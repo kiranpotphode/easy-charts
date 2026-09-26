@@ -112,29 +112,44 @@ export function parseNumber( text ) {
 }
 
 /**
- * Parse pasted text into a chart data grid.
+ * Cell as trimmed text.
  *
- * @param {string} text Pasted text.
+ * @param {unknown} cell Cell value.
+ * @return {string} Text.
+ */
+function cellText( cell ) {
+	return cell === null || cell === undefined ? '' : String( cell ).trim();
+}
+
+/**
+ * Turn rows of cells (header first) into a chart data grid. Blank rows, and blank columns after
+ * the first, are dropped: they are spreadsheet padding.
+ *
+ * @param {Array<Array<unknown>>} grid Rows of cells.
  * @return {{columns: string[], rows: Array<Array<string|number|null>>}|null} Data grid, or null
  *         when there is no header row with at least one series.
  */
-export function parseTable( text ) {
-	if ( typeof text !== 'string' || text.trim() === '' ) {
+export function fromGrid( grid ) {
+	if ( ! Array.isArray( grid ) ) {
 		return null;
 	}
-	const lines = split( text, detectDelimiter( text ) ).filter( ( row ) =>
-		row.some( ( cell ) => cell.trim() !== '' )
-	);
+	const lines = grid
+		.filter( Array.isArray )
+		.map( ( row ) => row.map( cellText ) )
+		.filter( ( row ) => row.some( ( cell ) => cell !== '' ) );
 	if ( lines.length === 0 ) {
 		return null;
 	}
 
 	const width = Math.max( ...lines.map( ( row ) => row.length ) );
-	if ( width < 2 ) {
+	const keep = Array.from( { length: width }, ( _, i ) => i ).filter(
+		( i ) => i === 0 || lines.some( ( row ) => ( row[ i ] ?? '' ) !== '' )
+	);
+	if ( keep.length < 2 ) {
 		return null;
 	}
 	const [ header, ...body ] = lines.map( ( row ) =>
-		Array.from( { length: width }, ( _, i ) => ( row[ i ] ?? '' ).trim() )
+		keep.map( ( i ) => row[ i ] ?? '' )
 	);
 
 	return {
@@ -149,6 +164,34 @@ export function parseTable( text ) {
 			} ),
 		] ),
 	};
+}
+
+/**
+ * Parse pasted text into a chart data grid.
+ *
+ * @param {string} text Pasted text.
+ * @return {{columns: string[], rows: Array<Array<string|number|null>>}|null} Data grid, or null
+ *         when there is no header row with at least one series.
+ */
+export function parseTable( text ) {
+	if ( typeof text !== 'string' || text.trim() === '' ) {
+		return null;
+	}
+	return fromGrid( split( text, detectDelimiter( text ) ) );
+}
+
+/**
+ * A data grid as rows of text cells, header first (for a spreadsheet component).
+ *
+ * @param {{columns: string[], rows: Array<Array>}} data Data grid.
+ * @return {string[][]} Rows of cells.
+ */
+export function toGrid( data ) {
+	return [ data?.columns ?? [], ...( data?.rows ?? [] ) ].map( ( row ) =>
+		row.map( ( cell ) =>
+			cell === null || cell === undefined ? '' : String( cell )
+		)
+	);
 }
 
 /**

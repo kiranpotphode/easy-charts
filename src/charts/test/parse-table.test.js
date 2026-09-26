@@ -8,8 +8,10 @@ import { describe, expect, it } from 'vitest';
  */
 import {
 	detectDelimiter,
+	fromGrid,
 	parseNumber,
 	parseTable,
+	toGrid,
 	toText,
 } from '../parse-table';
 
@@ -102,5 +104,58 @@ describe( 'toText', () => {
 			],
 		};
 		expect( parseTable( toText( data ) ) ).toEqual( data );
+	} );
+} );
+
+describe( 'fromGrid and toGrid', () => {
+	it( 'drops spreadsheet padding and reads numbers', () => {
+		expect(
+			fromGrid( [
+				[ '', 'Kia', '', '' ],
+				[ '2008', '10', '', '' ],
+				[ '', '', '', '' ],
+				[ '2009', ' 1,5 ', '', '' ],
+				[ '', '', '', '' ],
+			] )
+		).toEqual( {
+			columns: [ '', 'Kia' ],
+			rows: [
+				[ '2008', 10 ],
+				[ '2009', 1.5 ],
+			],
+		} );
+	} );
+
+	it( 'keeps a named series without values', () => {
+		expect(
+			fromGrid( [
+				[ '', 'A', 'B' ],
+				[ 'x', 1, '' ],
+			] ).columns
+		).toEqual( [ '', 'A', 'B' ] );
+	} );
+
+	it( 'rejects grids without a series', () => {
+		expect( fromGrid( [ [ 'only labels' ], [ 'x' ] ] ) ).toBeNull();
+		expect( fromGrid( [ [ '', '' ] ] ) ).toBeNull();
+		expect( fromGrid( 'nope' ) ).toBeNull();
+	} );
+
+	it( 'round-trips', () => {
+		const data = {
+			columns: [ '', 'A' ],
+			rows: [
+				[ 'x', 1.5 ],
+				[ 'y', null ],
+				[ 'z', 'n/a' ],
+			],
+		};
+		expect( toGrid( data ) ).toEqual( [
+			[ '', 'A' ],
+			[ 'x', '1.5' ],
+			[ 'y', '' ],
+			[ 'z', 'n/a' ],
+		] );
+		expect( fromGrid( toGrid( data ) ) ).toEqual( data );
 	} );
 } );
