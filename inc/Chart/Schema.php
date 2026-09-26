@@ -83,13 +83,7 @@ final class Schema {
 						),
 					),
 				),
-				'settings' => array(
-					'type'                 => 'object',
-					'additionalProperties' => array(
-						'type'                 => 'object',
-						'additionalProperties' => true,
-					),
-				),
+				'settings' => self::settings_schema(),
 				'source'   => array(
 					'type'                 => 'object',
 					'additionalProperties' => false,
@@ -97,6 +91,24 @@ final class Schema {
 						'templateId' => array( 'type' => array( 'integer', 'null' ) ),
 					),
 				),
+			),
+		);
+	}
+
+	/**
+	 * Schema of a settings object: groups (legend, tooltip, ...) of option values.
+	 *
+	 * Shared by chart overrides and the global settings option. Group contents stay open until the
+	 * ECharts option builder defines them.
+	 *
+	 * @return array
+	 */
+	public static function settings_schema() {
+		return array(
+			'type'                 => 'object',
+			'additionalProperties' => array(
+				'type'                 => 'object',
+				'additionalProperties' => true,
 			),
 		);
 	}

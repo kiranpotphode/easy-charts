@@ -82,6 +82,7 @@ final class Plugin {
 		return array(
 			new PostType\ChartPostType(),
 			new Chart\ChartMeta(),
+			new Settings\GlobalSettings(),
 		);
 	}
 }
