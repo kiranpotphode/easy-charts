@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
  * The code that runs during plugin activation.
  * This action is documented in includes/class-easy-charts-activator.php
  */
-function activate_easy_charts() {
+function easy_charts_activate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-easy-charts-activator.php';
 	Easy_Charts_Activator::activate();
 }
@@ -35,13 +35,13 @@ function activate_easy_charts() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-easy-charts-deactivator.php
  */
-function deactivate_easy_charts() {
+function easy_charts_deactivate() {
 	require_once plugin_dir_path( __FILE__ ) . 'includes/class-easy-charts-deactivator.php';
 	Easy_Charts_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_easy_charts' );
-register_deactivation_hook( __FILE__, 'deactivate_easy_charts' );
+register_activation_hook( __FILE__, 'easy_charts_activate' );
+register_deactivation_hook( __FILE__, 'easy_charts_deactivate' );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -54,10 +54,9 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-easy-charts.php';
  *
  * @since    1.0.0
  */
-function run_easy_charts() {
+function easy_charts_run() {
 
 	$plugin = new Easy_Charts();
 	$plugin->run();
-
 }
-run_easy_charts();
+easy_charts_run();
