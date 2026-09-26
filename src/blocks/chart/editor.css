@@ -1,3 +1,10 @@
 .wp-block-easy-charts-chart .components-placeholder {
 	min-height: 200px;
 }
+
+.easy-charts-preview__empty {
+	margin: 0;
+	padding: 2em;
+	border: 1px dashed currentcolor;
+	text-align: center;
+}

@@ -6,13 +6,30 @@ import { Placeholder } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
 /**
+ * Internal dependencies
+ */
+import ChartPreview from './components/chart-preview';
+
+/**
  * Block editor for a chart.
  *
+ * @param {Object} props            Block props.
+ * @param {Object} props.attributes Block attributes.
  * @return {Element} Editor view.
  */
-export default function Edit() {
+export default function Edit( { attributes } ) {
+	const blockProps = useBlockProps();
+
+	if ( attributes.chart ) {
+		return (
+			<div { ...blockProps }>
+				<ChartPreview doc={ attributes.chart } />
+			</div>
+		);
+	}
+
 	return (
-		<div { ...useBlockProps() }>
+		<div { ...blockProps }>
 			<Placeholder
 				icon="chart-bar"
 				label={ __( 'Chart', 'easy-charts' ) }

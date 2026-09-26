@@ -142,19 +142,31 @@ class LegacyEditorGuardTest extends WP_Ajax_UnitTestCase {
 		$this->assertStringContainsString( 'easy-charts-chart--pie', $html );
 	}
 
-	public function test_1x_editor_scripts_are_dequeued_for_v2_charts_only() {
+	public function test_1x_editor_assets_load_only_on_1x_chart_screens() {
 		$guard = Plugin::instance()->get( LegacyEditorGuard::class );
 		wp_register_script( 'easy-charts-admin-js', 'https://example.test/admin.js', array(), '1', true );
+		wp_register_style( 'jspreadsheet-css', 'https://example.test/grid.css', array(), '1' );
+		$cases = array(
+			'1.x chart' => array( 'easy_charts', $this->chart( false ), true ),
+			'v2 chart'  => array( 'easy_charts', $this->chart( true ), false ),
+			'post'      => array( 'post', self::factory()->post->create(), false ),
+			'page'      => array( 'page', self::factory()->post->create( array( 'post_type' => 'page' ) ), false ),
+		);
 
-		foreach ( array( true, false ) as $with_v2 ) {
-			$GLOBALS['post'] = get_post( $this->chart( $with_v2 ) ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Simulate the edit screen.
+		foreach ( $cases as $label => list( $screen, $post_id, $loaded ) ) {
+			set_current_screen( $screen );
+			$GLOBALS['post'] = get_post( $post_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Simulate the edit screen.
 			wp_enqueue_script( 'easy-charts-admin-js' );
+			wp_enqueue_style( 'jspreadsheet-css' );
 
-			$guard->dequeue_legacy_scripts();
+			$guard->dequeue_legacy_assets();
 
-			$this->assertSame( ! $with_v2, wp_script_is( 'easy-charts-admin-js', 'enqueued' ), $with_v2 ? 'v2' : '1.x' );
+			$this->assertSame( $loaded, wp_script_is( 'easy-charts-admin-js', 'enqueued' ), $label . ' script' );
+			$this->assertSame( $loaded, wp_style_is( 'jspreadsheet-css', 'enqueued' ), $label . ' style' );
 			wp_dequeue_script( 'easy-charts-admin-js' );
+			wp_dequeue_style( 'jspreadsheet-css' );
 		}
+		set_current_screen( 'front' );
 	}
 
 	public function test_1x_ajax_save_is_refused_for_v2_charts() {

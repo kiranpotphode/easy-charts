@@ -22,8 +22,11 @@ use WP_Post;
  *
  * - replaces the 1.x Data, Preview and Configuration metaboxes with a notice and a preview drawn
  *   by the new renderer,
- * - dequeues the 1.x editor scripts on that screen,
+ * - dequeues the 1.x editor scripts and styles on that screen,
  * - refuses the 1.x AJAX data save.
+ *
+ * It also dequeues them on the edit screens of other post types, where 1.x loads them by mistake
+ * (an operator-precedence slip in its enqueue condition) and they throw errors in the block editor.
  *
  * Charts without a stored v2 document keep the full 1.x editor, plus a preview of how 2.0 draws
  * them (converted from their 1.x meta) right after the 1.x preview, for comparison.
@@ -51,6 +54,15 @@ final class LegacyEditorGuard implements Service {
 		'uvhcharts-js',
 		'responsive-tabs-js',
 		'bootstrap-touchspin-js',
+	);
+
+	const LEGACY_STYLES = array(
+		'easy-charts',
+		'jsuites-css',
+		'jspreadsheet-css',
+		'jquery-ui-css',
+		'responsive-tabs-css',
+		'font-awesome-css',
 	);
 
 	/**
@@ -87,7 +99,7 @@ final class LegacyEditorGuard implements Service {
 		// Runs after the generic add_meta_boxes action the 1.x admin uses.
 		add_action( 'add_meta_boxes_' . ChartPostType::POST_TYPE, array( $this, 'replace_metaboxes' ), 20 );
 		add_filter( 'get_user_option_meta-box-order_' . ChartPostType::POST_TYPE, array( $this, 'place_comparison_in_saved_order' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'dequeue_legacy_scripts' ), 20 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'dequeue_legacy_assets' ), 20 );
 		// Before the 1.x handler (default priority).
 		add_action( 'wp_ajax_easy_charts_save_chart_data', array( $this, 'refuse_legacy_save' ), 1 );
 	}
@@ -218,18 +230,25 @@ final class LegacyEditorGuard implements Service {
 	}
 
 	/**
-	 * Drop the 1.x editor scripts when editing a v2 chart; they expect the removed metaboxes.
+	 * Drop the 1.x editor scripts and styles everywhere except the edit screen of a 1.x chart: on
+	 * a v2 chart they expect the removed metaboxes, and other screens never needed them.
 	 *
 	 * @return void
 	 */
-	public function dequeue_legacy_scripts() {
-		$post = get_post();
-		if ( ! $post || ChartPostType::POST_TYPE !== $post->post_type || ! $this->is_v2_chart( $post->ID ) ) {
-			return;
+	public function dequeue_legacy_assets() {
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+		if ( $screen && ChartPostType::POST_TYPE === $screen->post_type ) {
+			$post = get_post();
+			if ( ! $post || ! $this->is_v2_chart( $post->ID ) ) {
+				return;
+			}
 		}
 
 		foreach ( self::LEGACY_SCRIPTS as $handle ) {
 			wp_dequeue_script( $handle );
+		}
+		foreach ( self::LEGACY_STYLES as $handle ) {
+			wp_dequeue_style( $handle );
 		}
 	}
 
