@@ -1,7 +1,12 @@
 /**
  * WordPress dependencies
  */
-import { Button, Placeholder, TextareaControl } from '@wordpress/components';
+import {
+	Button,
+	Notice,
+	Placeholder,
+	TextareaControl,
+} from '@wordpress/components';
 import { useMemo, useState } from '@wordpress/element';
 import { __, _n, sprintf } from '@wordpress/i18n';
 
@@ -9,7 +14,10 @@ import { __, _n, sprintf } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { parseTable } from '../../../charts/parse-table';
+import { toSettings } from '../../../charts/settings';
+import { getChart } from '../api';
 import { newChart, sampleData } from '../chart-types';
+import ChartPicker from './chart-picker';
 import TypePicker from './type-picker';
 
 /**
@@ -68,13 +76,108 @@ function PasteStep( { text, onChange } ) {
 }
 
 /**
+ * Step: pick an existing chart, then embed it or copy its data or settings.
+ *
+ * @param {Object}                                                props          Component props.
+ * @param {(chart: Object, options: {editData: boolean}) => void} props.onCreate Called with a new chart.
+ * @param {(chartId: number) => void}                             props.onEmbed  Called to embed a chart.
+ * @param {Element}                                               props.back     Back button.
+ * @return {Element} Existing-chart step.
+ */
+function ExistingStep( { onCreate, onEmbed, back } ) {
+	const [ selected, setSelected ] = useState( null );
+	const [ busy, setBusy ] = useState( false );
+	const [ error, setError ] = useState( '' );
+
+	const copy = async ( what ) => {
+		setBusy( true );
+		setError( '' );
+		try {
+			const source = await getChart( selected.id );
+			const doc = source.document;
+			if ( what === 'data' ) {
+				onCreate( newChart( doc.type, doc.data ), { editData: false } );
+			} else {
+				onCreate(
+					{
+						...newChart( doc.type, sampleData( doc.type ) ),
+						settings: toSettings( doc.settings ),
+					},
+					{ editData: true }
+				);
+			}
+		} catch ( e ) {
+			setError( e.message );
+			setBusy( false );
+		}
+	};
+
+	return (
+		<div className="easy-charts-wizard__step">
+			<ChartPicker selectedId={ selected?.id } onSelect={ setSelected } />
+			{ error && (
+				<Notice status="error" isDismissible={ false }>
+					{ error }
+				</Notice>
+			) }
+			<div className="easy-charts-wizard__choices">
+				<Button
+					variant="primary"
+					disabled={ ! selected || busy }
+					accessibleWhenDisabled
+					onClick={ () => onEmbed( selected.id ) }
+					description={ __(
+						'Show the chart here. Later changes to it appear everywhere it is used.',
+						'easy-charts'
+					) }
+				>
+					{ __( 'Embed', 'easy-charts' ) }
+				</Button>
+				<Button
+					variant="secondary"
+					disabled={ ! selected || busy }
+					accessibleWhenDisabled
+					onClick={ () => copy( 'data' ) }
+					description={ __(
+						'Start a new chart in this block with a copy of its type and data.',
+						'easy-charts'
+					) }
+				>
+					{ __( 'Copy data', 'easy-charts' ) }
+				</Button>
+				<Button
+					variant="secondary"
+					disabled={ ! selected || busy }
+					accessibleWhenDisabled
+					onClick={ () => copy( 'settings' ) }
+					description={ __(
+						'Start a new chart in this block with its type and settings, and your own data.',
+						'easy-charts'
+					) }
+				>
+					{ __( 'Copy settings', 'easy-charts' ) }
+				</Button>
+			</div>
+			<p className="easy-charts-wizard__status">
+				{ __(
+					'Embed shows the chart itself. Copies are independent: changing them never changes the original.',
+					'easy-charts'
+				) }
+			</p>
+			<div className="easy-charts-wizard__actions">{ back }</div>
+		</div>
+	);
+}
+
+/**
  * Placeholder wizard shown until the block has a chart.
  *
- * @param {Object}                  props          Component props.
- * @param {(chart: Object) => void} props.onCreate Called with the new chart document.
+ * @param {Object}                                                props          Component props.
+ * @param {(chart: Object, options: {editData: boolean}) => void} props.onCreate Called with a new chart.
+ * @param {(chartId: number) => void}                             props.onEmbed  Called to embed a chart.
  * @return {Element} Wizard.
  */
-export default function Wizard( { onCreate } ) {
+export default function Wizard( { onCreate, onEmbed } ) {
 	const [ step, setStep ] = useState( 'start' );
 	const [ text, setText ] = useState( '' );
 	const pasted = useMemo( () => parseTable( text ), [ text ] );
@@ -104,6 +207,7 @@ export default function Wizard( { onCreate } ) {
 			</div>
 		);
 	} else if ( step === 'new-type' || step === 'pasted-type' ) {
+		const fromPaste = step === 'pasted-type' && pasted;
 		content = (
 			<div className="easy-charts-wizard__step">
 				<TypePicker
@@ -112,15 +216,22 @@ export default function Wizard( { onCreate } ) {
 						onCreate(
 							newChart(
 								type,
-								step === 'pasted-type' && pasted
-									? pasted
-									: sampleData( type )
-							)
+								fromPaste ? pasted : sampleData( type )
+							),
+							{ editData: ! fromPaste }
 						)
 					}
 				/>
 				<div className="easy-charts-wizard__actions">{ back }</div>
 			</div>
+		);
+	} else if ( step === 'existing' ) {
+		content = (
+			<ExistingStep
+				onCreate={ onCreate }
+				onEmbed={ onEmbed }
+				back={ back }
+			/>
 		);
 	} else {
 		content = (
@@ -137,6 +248,12 @@ export default function Wizard( { onCreate } ) {
 				>
 					{ __( 'Paste data', 'easy-charts' ) }
 				</Button>
+				<Button
+					variant="secondary"
+					onClick={ () => setStep( 'existing' ) }
+				>
+					{ __( 'Use an existing chart', 'easy-charts' ) }
+				</Button>
 			</div>
 		);
 	}
@@ -148,7 +265,7 @@ export default function Wizard( { onCreate } ) {
 			instructions={
 				step === 'start'
 					? __(
-							'Start a new chart with sample data, or paste your own data.',
+							'Start a new chart with sample data, paste your own data, or reuse a chart you already made.',
 							'easy-charts'
 						)
 					: undefined

@@ -13,15 +13,24 @@ import { getEditorData, resolveSettings } from '../editor-data';
 /**
  * Chart drawn with ECharts, the same way the front end draws it.
  *
- * @param {Object} props       Component props.
- * @param {Object} props.doc   Chart document.
- * @param {string} props.title Title when the settings have none (e.g. the chart post title).
+ * @param {Object} props            Component props.
+ * @param {Object} props.doc        Chart document.
+ * @param {Object} [props.settings] Effective settings from the server (embedded charts, whose
+ *                                  template the editor can't resolve); otherwise resolved here.
+ * @param {string} props.title      Title when the settings have none (e.g. the chart post title).
  * @return {Element} Preview.
  */
-export default function ChartPreview( { doc, title = '' } ) {
+export default function ChartPreview( {
+	doc,
+	settings: resolved,
+	title = '',
+} ) {
 	const boxRef = useRef();
 	const chartRef = useRef();
-	const settings = useMemo( () => resolveSettings( doc ), [ doc ] );
+	const settings = useMemo(
+		() => resolved ?? resolveSettings( doc ),
+		[ doc, resolved ]
+	);
 	const hasData = doc?.data?.rows?.length > 0;
 
 	const option = useMemo(

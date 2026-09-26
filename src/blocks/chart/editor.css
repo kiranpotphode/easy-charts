@@ -117,3 +117,32 @@
 .easy-charts-setting .easy-charts-setting__reset {
 	margin-top: 4px;
 }
+
+.easy-charts-picker__list {
+	max-height: 260px;
+	margin: 8px 0;
+	padding: 0;
+	overflow: auto;
+	list-style: none;
+}
+
+.easy-charts-picker__list .easy-charts-picker__item {
+	flex-direction: column;
+	align-items: flex-start;
+	width: 100%;
+	height: auto;
+	padding: 8px 12px;
+	text-align: left;
+}
+
+.easy-charts-picker__meta {
+	font-size: 12px;
+	opacity: 0.75;
+}
+
+.easy-charts-wizard__choices,
+.easy-charts-embedded__actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}

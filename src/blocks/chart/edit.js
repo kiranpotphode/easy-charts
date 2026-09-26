@@ -14,6 +14,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import ChartPreview from './components/chart-preview';
+import EmbeddedChart from './components/embedded-chart';
 import Wizard from './components/wizard';
 import DataEditorModal from './data-editor/data-editor-modal';
 import ChartInspector from './inspector/chart-inspector';
@@ -28,17 +29,32 @@ import ChartInspector from './inspector/chart-inspector';
  */
 export default function Edit( { attributes, setAttributes } ) {
 	const blockProps = useBlockProps();
-	const { chart } = attributes;
+	const { chart, chartId } = attributes;
 	const [ isEditingData, setEditingData ] = useState( false );
+
+	if ( chartId ) {
+		return (
+			<div { ...blockProps }>
+				<EmbeddedChart
+					chartId={ chartId }
+					onDetach={ ( copy ) =>
+						setAttributes( { chartId: undefined, chart: copy } )
+					}
+					onReplace={ () => setAttributes( { chartId: undefined } ) }
+				/>
+			</div>
+		);
+	}
 
 	if ( ! chart ) {
 		return (
 			<div { ...blockProps }>
 				<Wizard
-					onCreate={ ( created ) => {
+					onCreate={ ( created, { editData } ) => {
 						setAttributes( { chart: created } );
-						setEditingData( true );
+						setEditingData( editData );
 					} }
+					onEmbed={ ( id ) => setAttributes( { chartId: id } ) }
 				/>
 			</div>
 		);
