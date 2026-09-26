@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<ruleset name="Easy Charts">
+	<description>Coding standards for Easy Charts.</description>
+
+	<file>.</file>
+
+	<!-- 1.x code, replaced during the 2.0 rewrite. -->
+	<exclude-pattern>/admin/*</exclude-pattern>
+	<exclude-pattern>/includes/*</exclude-pattern>
+	<exclude-pattern>/public/*</exclude-pattern>
+
+	<exclude-pattern>/build/*</exclude-pattern>
+	<exclude-pattern>/node_modules/*</exclude-pattern>
+	<exclude-pattern>/vendor/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="basepath" value="."/>
+	<arg name="parallel" value="8"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<config name="testVersion" value="7.4-"/>
+	<config name="minimum_wp_version" value="6.6"/>
+
+	<rule ref="WordPress"/>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="easy-charts"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="easy_charts"/>
+				<element value="EasyCharts"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

@@ -14,7 +14,10 @@
 		"env:destroy": "wp-env destroy",
 		"env:logs": "wp-env logs",
 		"env:debug-log": "wp-env run cli tail -n 100 wp-content/debug.log",
-		"wp": "wp-env run cli wp"
+		"wp": "wp-env run cli wp",
+		"composer": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer",
+		"lint:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer lint",
+		"format:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer format"
 	},
 	"devDependencies": {
 		"@wordpress/env": "11.16.0"

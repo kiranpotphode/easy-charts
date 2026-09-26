@@ -7,8 +7,9 @@
 .idea/vcs.xml
 .idea/workspace.xml
 
-# Node / wp-env
+# Dependencies / wp-env
 node_modules/
+vendor/
 .wp-env.override.json
 
 # AI agent instructions and planning notes (kept local, backed up separately)
