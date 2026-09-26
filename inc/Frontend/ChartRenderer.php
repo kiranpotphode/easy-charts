@@ -8,6 +8,7 @@
 namespace EasyCharts\Frontend;
 
 use EasyCharts\Chart\ChartRepository;
+use EasyCharts\Chart\Schema;
 use EasyCharts\Service;
 use EasyCharts\Settings\SettingsResolver;
 
@@ -94,22 +95,67 @@ final class ChartRenderer implements Service {
 		}
 
 		$settings = $this->settings->resolve( $doc );
-		$title    = $this->title( $chart_id, $settings );
-		$config   = array(
+		$html     = $this->markup( $doc, $settings, $this->title( $chart_id, $settings ), $chart_id );
+
+		/** This filter is documented in includes/class-easy-charts.php (1.x). */
+		return apply_filters( 'easy_charts_render_chart', $html, $chart_id );
+	}
+
+	/**
+	 * Render a chart that has no chart post, e.g. one stored in a block's attributes.
+	 *
+	 * The document is validated first: block attributes can be edited by anyone who can edit the
+	 * post, so they are untrusted input.
+	 *
+	 * @param mixed $doc Chart document.
+	 * @return string HTML, or an empty string if the document is invalid.
+	 */
+	public function render_document( $doc ) {
+		$doc = is_array( $doc ) ? Schema::sanitize( $doc ) : null;
+		if ( ! is_array( $doc ) ) {
+			return '';
+		}
+
+		$settings = $this->settings->resolve( $doc );
+		$title    = isset( $settings['title']['text'] ) && is_string( $settings['title']['text'] ) ? $settings['title']['text'] : '';
+
+		return $this->markup( $doc, $settings, $title, 0 );
+	}
+
+	/**
+	 * Strings the chart script needs, translated.
+	 *
+	 * @return array
+	 */
+	public static function strings() {
+		return array(
+			'increase' => __( 'Increase', 'easy-charts' ),
+			'decrease' => __( 'Decrease', 'easy-charts' ),
+		);
+	}
+
+	/**
+	 * Chart markup, and the assets to draw it.
+	 *
+	 * @param array  $doc      Valid chart document.
+	 * @param array  $settings Resolved settings.
+	 * @param string $title    Chart title.
+	 * @param int    $chart_id Chart post ID, or 0 for a chart without a post.
+	 * @return string HTML.
+	 */
+	private function markup( array $doc, array $settings, $title, $chart_id ) {
+		$config = array(
 			'type'     => $doc['type'],
 			'data'     => $doc['data'],
 			'settings' => $settings,
 			'title'    => $title,
-			'strings'  => array(
-				'increase' => __( 'Increase', 'easy-charts' ),
-				'decrease' => __( 'Decrease', 'easy-charts' ),
-			),
+			'strings'  => self::strings(),
 		);
 
 		$html = sprintf(
-			'<figure class="easy-charts-chart easy-charts-chart--%1$s" data-chart-id="%2$d"><div class="easy-charts-chart__canvas" style="%3$s"></div><script type="application/json" class="easy-charts-chart__config">%4$s</script>%5$s%6$s</figure>',
+			'<figure class="easy-charts-chart easy-charts-chart--%1$s"%2$s><div class="easy-charts-chart__canvas" style="%3$s"></div><script type="application/json" class="easy-charts-chart__config">%4$s</script>%5$s%6$s</figure>',
 			esc_attr( $doc['type'] ),
-			$chart_id,
+			$chart_id > 0 ? sprintf( ' data-chart-id="%d"', $chart_id ) : '',
 			esc_attr( $this->box_style( $settings ) ),
 			wp_json_encode( $config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ),
 			$this->download_button( $settings ),
@@ -118,8 +164,7 @@ final class ChartRenderer implements Service {
 
 		$this->enqueue();
 
-		/** This filter is documented in includes/class-easy-charts.php (1.x). */
-		return apply_filters( 'easy_charts_render_chart', $html, $chart_id );
+		return $html;
 	}
 
 	/**

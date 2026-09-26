@@ -45,12 +45,20 @@ final class SettingsResolver {
 	 * @return array
 	 */
 	public function resolve( array $doc ) {
-		$settings = self::merge( Defaults::get(), GlobalSettings::get() );
-		$settings = self::merge( $settings, $this->template_settings( $doc ) );
+		$settings = self::merge( self::base(), $this->template_settings( $doc ) );
 
 		$own = isset( $doc['settings'] ) && is_array( $doc['settings'] ) ? $doc['settings'] : array();
 
 		return self::merge( $settings, $own );
+	}
+
+	/**
+	 * The layers every chart shares: defaults with the site-wide settings applied.
+	 *
+	 * @return array
+	 */
+	public static function base() {
+		return self::merge( Defaults::get(), GlobalSettings::get() );
 	}
 
 	/**

@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "easy-charts/chart",
+	"title": "Chart",
+	"category": "widgets",
+	"icon": "chart-bar",
+	"description": "Show data as a bar, line, area, pie or other chart, or embed a chart you already made.",
+	"keywords": [ "chart", "graph", "easy charts", "data" ],
+	"textdomain": "easy-charts",
+	"attributes": {
+		"chartId": {
+			"type": "number"
+		},
+		"chart": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"anchor": true
+	},
+	"editorScript": [ "file:./index.js", "easy-charts-echarts" ],
+	"editorStyle": "file:./index.css"
+}

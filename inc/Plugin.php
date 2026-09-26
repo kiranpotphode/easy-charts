@@ -89,6 +89,7 @@ final class Plugin {
 			new Settings\GlobalSettings(),
 			$renderer,
 			new Shortcode\ChartShortcode( $charts, $renderer ),
+			new Block\ChartBlock( $renderer ),
 			new Admin\LegacyEditorGuard( $charts, $renderer ),
 		);
 
