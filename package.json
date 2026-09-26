@@ -13,7 +13,7 @@
 		"env:reset": "wp-env clean all",
 		"env:destroy": "wp-env destroy",
 		"env:logs": "wp-env logs",
-		"env:debug-log": "wp-env run cli tail -n 100 wp-content/debug.log",
+		"env:debug-log": "wp-env run cli -- sh -c \"tail -n 100 wp-content/debug.log 2>/dev/null || echo 'No debug.log yet (nothing logged).'\"",
 		"wp": "wp-env run cli wp",
 		"composer": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer",
 		"lint:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer lint",
