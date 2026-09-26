@@ -25,6 +25,12 @@
 	<rule ref="WordPress"/>
 	<rule ref="PHPCompatibilityWP"/>
 
+	<!-- Namespaced code uses PSR-4 file names (Plugin.php), not class-plugin.php. -->
+	<rule ref="WordPress.Files.FileName">
+		<exclude-pattern>/inc/*</exclude-pattern>
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">

@@ -22,6 +22,32 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+define( 'EASY_CHARTS_VERSION', '1.2.5' );
+define( 'EASY_CHARTS_FILE', __FILE__ );
+define( 'EASY_CHARTS_DIR', plugin_dir_path( __FILE__ ) );
+
+/*
+ * 2.0 core (namespaced classes in inc/, loaded by Composer). It runs alongside
+ * the 1.x classes below until each 1.x piece is replaced.
+ */
+if ( is_readable( EASY_CHARTS_DIR . 'vendor/autoload.php' ) ) {
+	require_once EASY_CHARTS_DIR . 'vendor/autoload.php';
+	EasyCharts\Plugin::instance()->boot();
+} else {
+	add_action(
+		'admin_notices',
+		static function () {
+			if ( ! current_user_can( 'activate_plugins' ) ) {
+				return;
+			}
+			printf(
+				'<div class="notice notice-error"><p>%s</p></div>',
+				esc_html__( 'Easy Charts: the vendor/autoload.php file is missing. Run "composer install" in the plugin folder.', 'easy-charts' )
+			);
+		}
+	);
+}
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-easy-charts-activator.php
