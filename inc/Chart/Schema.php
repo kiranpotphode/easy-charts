@@ -177,7 +177,7 @@ final class Schema {
 		$rows = array();
 		foreach ( $doc['data']['rows'] as $row ) {
 			$row    = array_slice( array_values( $row ), 0, $width );
-			$rows[] = array_pad( $row, $width, null );
+			$rows[] = array_map( array( self::class, 'normalize_cell' ), array_pad( $row, $width, null ) );
 		}
 		$doc['data']['rows'] = $rows;
 
@@ -189,5 +189,21 @@ final class Schema {
 		$doc['source'] = array( 'templateId' => $template_id > 0 ? $template_id : null );
 
 		return $doc;
+	}
+
+	/**
+	 * Keep whole numbers as integers.
+	 *
+	 * REST sanitization casts every "number" to float, which would turn 10 into 10.0.
+	 *
+	 * @param mixed $cell Cell value.
+	 * @return mixed
+	 */
+	private static function normalize_cell( $cell ) {
+		if ( is_float( $cell ) && is_finite( $cell ) && floor( $cell ) === $cell && abs( $cell ) <= PHP_INT_MAX ) {
+			return (int) $cell;
+		}
+
+		return $cell;
 	}
 }
