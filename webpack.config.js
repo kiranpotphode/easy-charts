@@ -33,5 +33,7 @@ module.exports = {
 		echarts: './src/echarts/index.js',
 		// Draws charts on the front end (handle: easy-charts-frontend).
 		frontend: './src/frontend/index.js',
+		// Easy Charts → Settings page (handle: easy-charts-settings).
+		settings: './src/settings/index.js',
 	} ),
 };

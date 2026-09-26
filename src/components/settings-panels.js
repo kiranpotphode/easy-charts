@@ -24,6 +24,7 @@ import {
 	toSettings,
 } from '../charts/settings';
 import PaletteControl from './palette-control';
+import './components.css';
 
 const PIE_TYPES = [ 'pie', 'donut', 'polar-area' ];
 

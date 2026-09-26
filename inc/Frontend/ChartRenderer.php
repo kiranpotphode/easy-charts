@@ -7,6 +7,7 @@
 
 namespace EasyCharts\Frontend;
 
+use EasyCharts\Assets;
 use EasyCharts\Chart\ChartRepository;
 use EasyCharts\Chart\Schema;
 use EasyCharts\Service;
@@ -62,23 +63,21 @@ final class ChartRenderer implements Service {
 	 * @return void
 	 */
 	public function register_assets() {
-		$echarts  = $this->asset( 'echarts' );
-		$frontend = $this->asset( 'frontend' );
+		$echarts  = Assets::get( 'echarts' );
+		$frontend = Assets::get( 'frontend' );
 		if ( null === $echarts || null === $frontend ) {
 			return;
 		}
 
-		$build_url = plugins_url( 'build/', EASY_CHARTS_FILE );
-
-		wp_register_script( self::SCRIPT_ECHARTS, $build_url . 'echarts.js', $echarts['dependencies'], $echarts['version'], true );
+		wp_register_script( self::SCRIPT_ECHARTS, Assets::url( 'echarts.js' ), $echarts['dependencies'], $echarts['version'], true );
 		wp_register_script(
 			self::SCRIPT_FRONTEND,
-			$build_url . 'frontend.js',
+			Assets::url( 'frontend.js' ),
 			array_merge( $frontend['dependencies'], array( self::SCRIPT_ECHARTS ) ),
 			$frontend['version'],
 			true
 		);
-		wp_register_style( self::STYLE_FRONTEND, $build_url . 'frontend.css', array(), $frontend['version'] );
+		wp_register_style( self::STYLE_FRONTEND, Assets::url( 'frontend.css' ), array(), $frontend['version'] );
 	}
 
 	/**
@@ -281,22 +280,5 @@ final class ChartRenderer implements Service {
 			wp_enqueue_script( self::SCRIPT_FRONTEND );
 			wp_enqueue_style( self::STYLE_FRONTEND );
 		}
-	}
-
-	/**
-	 * Read a build/<name>.asset.php file.
-	 *
-	 * @param string $name Entry name.
-	 * @return array|null Dependencies and version, or null if the build is missing.
-	 */
-	private function asset( $name ) {
-		$file = EASY_CHARTS_DIR . 'build/' . $name . '.asset.php';
-		if ( ! is_readable( $file ) ) {
-			return null;
-		}
-
-		$asset = require $file;
-
-		return is_array( $asset ) ? $asset : null;
 	}
 }

@@ -61,6 +61,7 @@ final class ChartBlock implements Service {
 		}
 
 		register_block_type( $dir, array( 'render_callback' => array( $this, 'render' ) ) );
+		wp_set_script_translations( generate_block_asset_handle( self::NAME, 'editorScript' ), 'easy-charts', EASY_CHARTS_DIR . 'languages' );
 	}
 
 	/**

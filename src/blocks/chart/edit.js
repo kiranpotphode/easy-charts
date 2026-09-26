@@ -13,7 +13,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import ChartPreview from './components/chart-preview';
+import ChartPreview from '../../components/chart-preview';
 import EmbeddedChart from './components/embedded-chart';
 import Wizard from './components/wizard';
 import DataEditorModal from './data-editor/data-editor-modal';

@@ -14,7 +14,7 @@ import { __ } from '@wordpress/i18n';
  */
 import SettingsPanels from '../../../components/settings-panels';
 import { CHART_TYPE_OPTIONS } from '../chart-types';
-import { getEditorData } from '../editor-data';
+import { getEditorData } from '../../../components/editor-data';
 
 const PIE_TYPES = [ 'pie', 'donut', 'polar-area' ];
 

@@ -155,7 +155,6 @@ class Easy_Charts {
 		$this->loader->add_action( 'save_post', $plugin_admin, 'easy_charts_save_meta_box_data' );
 		$this->loader->add_action( 'admin_head', $plugin_admin, 'easy_charts_add_insert_chart_button' );
 		$this->loader->add_action( 'admin_print_scripts', $plugin_admin, 'admin_print_scripts' );
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_options_menu' );
 	}
 
 	/**

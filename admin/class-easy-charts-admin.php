@@ -215,24 +215,6 @@ class Easy_Charts_Admin {
 	}
 
 	/**
-	 * Add settings menu to easy charts.
-	 *
-	 * @since 1.0.0
-	 */
-	public function add_options_menu() {
-		add_submenu_page( 'edit.php?post_type=easy_charts', __( 'Charts settings', 'easy-charts' ), __( 'Charts settings', 'easy-charts' ), 'manage_options', 'easy-charts-settings', array( $this, 'easy_charts_settings_page_callback' ) );
-	}
-
-	/**
-	 * Display settings page.
-	 *
-	 * @since 1.0.0
-	 */
-	public function easy_charts_settings_page_callback() {
-		require_once plugin_dir_path( __FILE__ ) . 'partials/easy-charts-settings-page-display.php';
-	}
-
-	/**
 	 * Render Data Meta Box content.
 	 *
 	 * @param WP_Post $post The post object.

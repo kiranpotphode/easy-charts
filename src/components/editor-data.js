@@ -1,11 +1,12 @@
 /**
- * Data the server passes to the editor script (see `EasyCharts\Block\ChartBlock::editor_data()`).
+ * Data the server passes to the chart scripts in wp-admin (`window.easyChartsEditor`, see
+ * `EasyCharts\Block\ChartBlock::editor_data()` and `EasyCharts\Admin\SettingsPage`).
  */
 
 /**
  * Internal dependencies
  */
-import { mergeSettings } from '../../charts/settings';
+import { mergeSettings } from '../charts/settings';
 
 /**
  * Base settings (defaults + global settings) and translated chart strings.

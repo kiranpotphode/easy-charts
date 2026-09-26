@@ -92,6 +92,7 @@ final class Plugin {
 			new Block\ChartBlock( $renderer ),
 			new Rest\ChartsController( $charts, $settings ),
 			new Admin\LegacyEditorGuard( $charts, $renderer ),
+			new Admin\SettingsPage(),
 		);
 
 		if ( Cli\SeedCommand::is_available() ) {

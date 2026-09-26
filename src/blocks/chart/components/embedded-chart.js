@@ -17,7 +17,7 @@ import { __ } from '@wordpress/i18n';
  */
 import { toSettings } from '../../../charts/settings';
 import { getChart } from '../api';
-import ChartPreview from './chart-preview';
+import ChartPreview from '../../../components/chart-preview';
 
 /**
  * Block view for an embedded chart post: read-only preview, with a link to edit the chart itself

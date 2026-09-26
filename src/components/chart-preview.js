@@ -7,8 +7,9 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
-import { buildOption } from '../../../charts/build-option';
-import { getEditorData, resolveSettings } from '../editor-data';
+import { buildOption } from '../charts/build-option';
+import { getEditorData, resolveSettings } from './editor-data';
+import './components.css';
 
 /**
  * Chart drawn with ECharts, the same way the front end draws it.
