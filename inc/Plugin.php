@@ -79,10 +79,14 @@ final class Plugin {
 	 * @return Service[]
 	 */
 	private function create_services() {
+		$charts   = new Chart\ChartRepository();
+		$settings = new Settings\SettingsResolver( $charts );
+
 		return array(
 			new PostType\ChartPostType(),
 			new Chart\ChartMeta(),
 			new Settings\GlobalSettings(),
+			new Frontend\ChartRenderer( $charts, $settings ),
 		);
 	}
 }

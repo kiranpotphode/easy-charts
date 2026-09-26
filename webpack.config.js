@@ -15,5 +15,7 @@ module.exports = {
 	entry: {
 		// Shared ECharts runtime (handle: easy-charts-echarts).
 		echarts: './src/echarts/index.js',
+		// Draws charts on the front end (handle: easy-charts-frontend).
+		frontend: './src/frontend/index.js',
 	},
 };
