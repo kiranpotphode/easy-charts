@@ -6,6 +6,7 @@
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+.vscode/
 
 # Dependencies / wp-env
 node_modules/
