@@ -35,5 +35,7 @@ module.exports = {
 		frontend: './src/frontend/index.js',
 		// Easy Charts → Settings page (handle: easy-charts-settings).
 		settings: './src/settings/index.js',
+		// Chart post edit screen extras (handle: easy-charts-chart-post).
+		'chart-post': './src/chart-post/index.js',
 	} ),
 };

@@ -24,8 +24,10 @@ final class ChartPostType implements Service {
 	public function register() {
 		add_action( 'init', array( $this, 'register_post_type' ) );
 
-		// Temporary: charts are edited with the 1.x classic metaboxes until the block-based editor lands.
-		add_filter( 'use_block_editor_for_post_type', array( $this, 'disable_block_editor' ), 10, 2 );
+		// Charts can only be edited in the block editor, so keep them there even when the
+		// Classic Editor plugin (which filters at priority 100) switches other posts to classic.
+		add_filter( 'use_block_editor_for_post_type', array( $this, 'force_block_editor_for_type' ), 200, 2 );
+		add_filter( 'use_block_editor_for_post', array( $this, 'force_block_editor_for_post' ), 200, 2 );
 	}
 
 	/**
@@ -65,19 +67,33 @@ final class ChartPostType implements Service {
 				'show_in_rest'    => true,
 				'rest_base'       => 'easy-charts',
 				// custom-fields is required for registered meta to appear in REST responses.
-				'supports'        => array( 'title', 'custom-fields' ),
+				'supports'        => array( 'title', 'editor', 'custom-fields' ),
+				// One locked chart block, bound to the chart's _easy_charts_chart meta.
+				'template'        => array( array( 'easy-charts/chart' ) ),
+				'template_lock'   => 'all',
 			)
 		);
 	}
 
 	/**
-	 * Keep charts on the classic editor for now.
+	 * Always use the block editor for the chart post type.
 	 *
 	 * @param bool   $use_block_editor Whether the post type can be edited with the block editor.
 	 * @param string $post_type        Post type being checked.
 	 * @return bool
 	 */
-	public function disable_block_editor( $use_block_editor, $post_type ) {
-		return self::POST_TYPE === $post_type ? false : $use_block_editor;
+	public function force_block_editor_for_type( $use_block_editor, $post_type ) {
+		return self::POST_TYPE === $post_type ? true : $use_block_editor;
+	}
+
+	/**
+	 * Always use the block editor for chart posts.
+	 *
+	 * @param bool         $use_block_editor Whether the post can be edited with the block editor.
+	 * @param \WP_Post|int $post             Post being checked.
+	 * @return bool
+	 */
+	public function force_block_editor_for_post( $use_block_editor, $post ) {
+		return self::POST_TYPE === get_post_type( $post ) ? true : $use_block_editor;
 	}
 }

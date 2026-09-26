@@ -16,6 +16,7 @@
 			"type": "object"
 		}
 	},
+	"usesContext": [ "postId", "postType" ],
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ],

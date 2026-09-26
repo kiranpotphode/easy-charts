@@ -15,14 +15,16 @@ const WORDPRESS_MODULES = [
 	'@wordpress/compose',
 	'@wordpress/core-data',
 	'@wordpress/data',
+	'@wordpress/editor',
 	'@wordpress/element',
 	'@wordpress/i18n',
+	'@wordpress/plugins',
 	'@wordpress/url',
 ];
 
 module.exports = [
 	{
-		ignores: [ 'admin/**', 'includes/**', 'public/**' ],
+		ignores: [ 'includes/**', 'public/**' ],
 	},
 	...defaultConfig,
 	{

@@ -121,18 +121,20 @@ function ExistingStep( { onCreate, onEmbed, back } ) {
 				</Notice>
 			) }
 			<div className="easy-charts-wizard__choices">
-				<Button
-					variant="primary"
-					disabled={ ! selected || busy }
-					accessibleWhenDisabled
-					onClick={ () => onEmbed( selected.id ) }
-					description={ __(
-						'Show the chart here. Later changes to it appear everywhere it is used.',
-						'easy-charts'
-					) }
-				>
-					{ __( 'Embed', 'easy-charts' ) }
-				</Button>
+				{ onEmbed && (
+					<Button
+						variant="primary"
+						disabled={ ! selected || busy }
+						accessibleWhenDisabled
+						onClick={ () => onEmbed( selected.id ) }
+						description={ __(
+							'Show the chart here. Later changes to it appear everywhere it is used.',
+							'easy-charts'
+						) }
+					>
+						{ __( 'Embed', 'easy-charts' ) }
+					</Button>
+				) }
 				<Button
 					variant="secondary"
 					disabled={ ! selected || busy }
@@ -159,10 +161,15 @@ function ExistingStep( { onCreate, onEmbed, back } ) {
 				</Button>
 			</div>
 			<p className="easy-charts-wizard__status">
-				{ __(
-					'Embed shows the chart itself. Copies are independent: changing them never changes the original.',
-					'easy-charts'
-				) }
+				{ onEmbed
+					? __(
+							'Embed shows the chart itself. Copies are independent: changing them never changes the original.',
+							'easy-charts'
+						)
+					: __(
+							'Copies are independent: changing them never changes the original.',
+							'easy-charts'
+						) }
 			</p>
 			<div className="easy-charts-wizard__actions">{ back }</div>
 		</div>

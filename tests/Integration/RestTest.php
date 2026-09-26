@@ -83,9 +83,27 @@ class RestTest extends WP_UnitTestCase {
 		$this->assertTrue( post_type_supports( 'easy_charts', 'custom-fields' ) );
 	}
 
-	public function test_charts_stay_on_the_classic_editor_for_now() {
-		$this->assertFalse( use_block_editor_for_post_type( 'easy_charts' ) );
-		$this->assertTrue( use_block_editor_for_post_type( 'post' ) );
+	public function test_charts_use_the_block_editor_with_one_locked_chart_block() {
+		$type = get_post_type_object( 'easy_charts' );
+
+		$this->assertTrue( use_block_editor_for_post_type( 'easy_charts' ) );
+		$this->assertTrue( post_type_supports( 'easy_charts', 'editor' ) );
+		$this->assertSame( array( array( 'easy-charts/chart' ) ), $type->template );
+		$this->assertSame( 'all', $type->template_lock );
+	}
+
+	public function test_charts_keep_the_block_editor_when_the_classic_editor_plugin_is_on() {
+		// The Classic Editor plugin switches everything to classic at priority 100.
+		add_filter( 'use_block_editor_for_post_type', '__return_false', 100 );
+		add_filter( 'use_block_editor_for_post', '__return_false', 100 );
+
+		$this->assertTrue( use_block_editor_for_post_type( 'easy_charts' ) );
+		$this->assertTrue( use_block_editor_for_post( $this->chart() ) );
+		$this->assertFalse( use_block_editor_for_post_type( 'post' ) );
+		$this->assertFalse( use_block_editor_for_post( self::factory()->post->create() ) );
+
+		remove_filter( 'use_block_editor_for_post_type', '__return_false', 100 );
+		remove_filter( 'use_block_editor_for_post', '__return_false', 100 );
 	}
 
 	public function test_editor_can_update_the_document() {

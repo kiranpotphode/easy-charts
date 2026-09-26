@@ -72,7 +72,7 @@ class Easy_Charts {
 
 		$this->load_dependencies();
 		$this->set_locale();
-		$this->define_admin_hooks();
+		// 2.0: the admin area is handled by EasyCharts\Plugin (block editor, settings page).
 		$this->define_public_hooks();
 
 	}
@@ -84,7 +84,6 @@ class Easy_Charts {
 	 *
 	 * - Easy_Charts_Loader. Orchestrates the hooks of the plugin.
 	 * - Easy_Charts_i18n. Defines internationalization functionality.
-	 * - Easy_Charts_Admin. Defines all hooks for the admin area.
 	 * - Easy_Charts_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
@@ -106,11 +105,6 @@ class Easy_Charts {
 		 * of the plugin.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'includes/class-easy-charts-i18n.php';
-
-		/**
-		 * The class responsible for defining all actions that occur in the admin area.
-		 */
-		require_once plugin_dir_path( __DIR__ ) . 'admin/class-easy-charts-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
@@ -138,26 +132,6 @@ class Easy_Charts {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 */
-	private function define_admin_hooks() {
-
-		$plugin_admin = new Easy_Charts_Admin( $this->get_plugin_name(), $this->get_version() );
-
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'init', $plugin_admin, 'init' );
-		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'add_meta_boxes' );
-		$this->loader->add_action( 'save_post', $plugin_admin, 'easy_charts_save_meta_box_data' );
-		$this->loader->add_action( 'admin_head', $plugin_admin, 'easy_charts_add_insert_chart_button' );
-		$this->loader->add_action( 'admin_print_scripts', $plugin_admin, 'admin_print_scripts' );
-	}
-
-	/**
 	 * Register all of the hooks related to the public-facing functionality
 	 * of the plugin.
 	 *
@@ -171,8 +145,6 @@ class Easy_Charts {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'init', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_public, 'init' );
-		$this->loader->add_action( 'wp_ajax_easy_charts_save_chart_data', $plugin_public, 'init' );
-		$this->loader->add_action( 'wp_ajax_easy_charts_get_published_charts', $plugin_public, 'init' );
 	}
 
 	/**

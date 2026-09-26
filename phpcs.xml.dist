@@ -5,7 +5,6 @@
 	<file>.</file>
 
 	<!-- 1.x code, replaced during the 2.0 rewrite. -->
-	<exclude-pattern>/admin/*</exclude-pattern>
 	<exclude-pattern>/includes/*</exclude-pattern>
 	<exclude-pattern>/public/*</exclude-pattern>
 
