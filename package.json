@@ -1,0 +1,25 @@
+{
+	"name": "easy-charts",
+	"version": "1.2.5",
+	"private": true,
+	"description": "Build simple, reusable, customizable charts on any page or post with ease.",
+	"license": "GPL-2.0-or-later",
+	"engines": {
+		"node": ">=24"
+	},
+	"scripts": {
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop",
+		"env:reset": "wp-env clean all",
+		"env:destroy": "wp-env destroy",
+		"env:logs": "wp-env logs",
+		"env:debug-log": "wp-env run cli tail -n 100 wp-content/debug.log",
+		"wp": "wp-env run cli wp"
+	},
+	"devDependencies": {
+		"@wordpress/env": "11.16.0"
+	},
+	"overrides": {
+		"qs": "6.16.0"
+	}
+}
