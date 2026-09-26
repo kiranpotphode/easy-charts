@@ -1,7 +1,11 @@
 /**
  * WordPress dependencies
  */
-import { BlockControls, useBlockProps } from '@wordpress/block-editor';
+import {
+	BlockControls,
+	InspectorControls,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { ToolbarButton, ToolbarGroup } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -12,6 +16,7 @@ import { __ } from '@wordpress/i18n';
 import ChartPreview from './components/chart-preview';
 import Wizard from './components/wizard';
 import DataEditorModal from './data-editor/data-editor-modal';
+import ChartInspector from './inspector/chart-inspector';
 
 /**
  * Block editor for a chart.
@@ -50,6 +55,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					/>
 				</ToolbarGroup>
 			</BlockControls>
+			<InspectorControls>
+				<ChartInspector
+					chart={ chart }
+					onChange={ ( next ) => setAttributes( { chart: next } ) }
+					onEditData={ () => setEditingData( true ) }
+				/>
+			</InspectorControls>
 			<div { ...blockProps }>
 				<ChartPreview doc={ chart } />
 			</div>

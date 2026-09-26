@@ -50,3 +50,57 @@ export function mergeSettings( base, overrides ) {
 	} );
 	return result;
 }
+
+/**
+ * Whether a chart overrides one setting.
+ *
+ * @param {Object} settings Chart overrides.
+ * @param {string} group    Settings group.
+ * @param {string} key      Setting key.
+ * @return {boolean} True when the chart sets its own value.
+ */
+export function hasOverride( settings, group, key ) {
+	const values = toSettings( settings )[ group ];
+	return isObject( values ) && Object.hasOwn( values, key );
+}
+
+/**
+ * Set one override.
+ *
+ * @param {Object}  settings Chart overrides.
+ * @param {string}  group    Settings group.
+ * @param {string}  key      Setting key.
+ * @param {unknown} value    New value.
+ * @return {Object} New overrides (input unchanged).
+ */
+export function setOverride( settings, group, key, value ) {
+	const current = toSettings( settings );
+	return {
+		...current,
+		[ group ]: { ...toSettings( current[ group ] ), [ key ]: value },
+	};
+}
+
+/**
+ * Remove overrides so those settings follow the global settings again. Groups left empty are
+ * removed too.
+ *
+ * @param {Object}                  settings Chart overrides.
+ * @param {Array<[string, string]>} entries  [group, key] pairs to remove.
+ * @return {Object} New overrides (input unchanged).
+ */
+export function removeOverrides( settings, entries ) {
+	const result = { ...toSettings( settings ) };
+	entries.forEach( ( [ group, key ] ) => {
+		if ( ! hasOverride( result, group, key ) ) {
+			return;
+		}
+		const { [ key ]: removed, ...rest } = result[ group ];
+		if ( Object.keys( rest ).length ) {
+			result[ group ] = rest;
+		} else {
+			delete result[ group ];
+		}
+	} );
+	return result;
+}

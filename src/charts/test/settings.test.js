@@ -6,7 +6,13 @@ import { describe, expect, it } from 'vitest';
 /**
  * Internal dependencies
  */
-import { mergeSettings, toSettings } from '../settings';
+import {
+	hasOverride,
+	mergeSettings,
+	removeOverrides,
+	setOverride,
+	toSettings,
+} from '../settings';
 
 const base = {
 	legend: { show: true, position: 'bottom' },
@@ -56,5 +62,39 @@ describe( 'mergeSettings', () => {
 		expect( toSettings( [] ) ).toEqual( {} );
 		expect( toSettings( null ) ).toEqual( {} );
 		expect( mergeSettings( base, [] ) ).toEqual( base );
+	} );
+} );
+
+describe( 'overrides', () => {
+	it( 'sets one value without touching others', () => {
+		const settings = { legend: { show: false } };
+		const next = setOverride( settings, 'legend', 'position', 'top' );
+		expect( next ).toEqual( { legend: { show: false, position: 'top' } } );
+		expect( settings ).toEqual( { legend: { show: false } } );
+		expect( setOverride( [], 'title', 'text', 'A' ) ).toEqual( {
+			title: { text: 'A' },
+		} );
+	} );
+
+	it( 'knows which values are overridden', () => {
+		const settings = { legend: { show: false } };
+		expect( hasOverride( settings, 'legend', 'show' ) ).toBe( true );
+		expect( hasOverride( settings, 'legend', 'position' ) ).toBe( false );
+		expect( hasOverride( [], 'legend', 'show' ) ).toBe( false );
+	} );
+
+	it( 'removes overrides and empty groups', () => {
+		const settings = {
+			legend: { show: false, position: 'top' },
+			labels: { suffix: '%' },
+		};
+		expect(
+			removeOverrides( settings, [
+				[ 'legend', 'show' ],
+				[ 'labels', 'suffix' ],
+				[ 'title', 'text' ],
+			] )
+		).toEqual( { legend: { position: 'top' } } );
+		expect( settings.labels ).toEqual( { suffix: '%' } );
 	} );
 } );
