@@ -92,6 +92,7 @@ final class Plugin {
 			new Block\ChartBlock( $renderer ),
 			new Rest\ChartsController( $charts, $settings ),
 			new Admin\ChartEditor(),
+			new Admin\ChartList( $charts ),
 			new Admin\SettingsPage(),
 		);
 
