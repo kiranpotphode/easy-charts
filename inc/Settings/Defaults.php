@@ -34,6 +34,10 @@ final class Defaults {
 				// Empty list: use the chart library's default colours.
 				'colors' => array(),
 			),
+			'layout'   => array(
+				// Bar charts: 'vertical' columns or 'horizontal' bars.
+				'orientation' => 'vertical',
+			),
 			'frame'    => array(
 				'background' => '#ffffff',
 			),
