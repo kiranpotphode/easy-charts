@@ -81,6 +81,7 @@ final class Plugin {
 	private function create_services() {
 		return array(
 			new PostType\ChartPostType(),
+			new Chart\ChartMeta(),
 		);
 	}
 }

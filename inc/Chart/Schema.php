@@ -1,0 +1,181 @@
+<?php
+/**
+ * Chart document schema (v2).
+ *
+ * @package EasyCharts
+ */
+
+namespace EasyCharts\Chart;
+
+use WP_Error;
+
+/**
+ * Defines, validates and normalizes the v2 chart document.
+ *
+ * A document looks like:
+ *
+ *     {
+ *       "schema": 2,
+ *       "type": "bar",
+ *       "data": { "columns": [ "", "Kia", "Nissan" ], "rows": [ [ "2008", 10, 11 ] ] },
+ *       "settings": { "legend": { "position": "bottom" } },
+ *       "source": { "templateId": null }
+ *     }
+ *
+ * The data grid keeps the 1.x orientation: column 0 holds the row labels and every
+ * later column is one series. `settings` holds only values that override the
+ * defaults, global settings and template (see SettingsResolver).
+ */
+final class Schema {
+
+	const VERSION = 2;
+
+	const TYPES = array(
+		'bar',
+		'stacked-bar',
+		'step-up-bar',
+		'percent-bar',
+		'area',
+		'stacked-area',
+		'percent-area',
+		'line',
+		'pie',
+		'donut',
+		'polar-area',
+		'waterfall',
+	);
+
+	/**
+	 * JSON schema of a chart document, in the subset understood by the WordPress REST API.
+	 *
+	 * @return array
+	 */
+	public static function get() {
+		return array(
+			'type'                 => 'object',
+			'additionalProperties' => false,
+			'required'             => array( 'schema', 'type', 'data' ),
+			'properties'           => array(
+				'schema'   => array(
+					'type' => 'integer',
+					'enum' => array( self::VERSION ),
+				),
+				'type'     => array(
+					'type' => 'string',
+					'enum' => self::TYPES,
+				),
+				'data'     => array(
+					'type'                 => 'object',
+					'additionalProperties' => false,
+					'required'             => array( 'columns', 'rows' ),
+					'properties'           => array(
+						'columns' => array(
+							'type'     => 'array',
+							'minItems' => 1,
+							'items'    => array( 'type' => 'string' ),
+						),
+						'rows'    => array(
+							'type'  => 'array',
+							'items' => array(
+								'type'  => 'array',
+								'items' => array( 'type' => array( 'string', 'number', 'null' ) ),
+							),
+						),
+					),
+				),
+				'settings' => array(
+					'type'                 => 'object',
+					'additionalProperties' => array(
+						'type'                 => 'object',
+						'additionalProperties' => true,
+					),
+				),
+				'source'   => array(
+					'type'                 => 'object',
+					'additionalProperties' => false,
+					'properties'           => array(
+						'templateId' => array( 'type' => array( 'integer', 'null' ) ),
+					),
+				),
+			),
+		);
+	}
+
+	/**
+	 * A new, empty chart document.
+	 *
+	 * @return array
+	 */
+	public static function empty_document() {
+		return array(
+			'schema'   => self::VERSION,
+			'type'     => 'bar',
+			'data'     => array(
+				'columns' => array( '' ),
+				'rows'    => array(),
+			),
+			'settings' => array(),
+			'source'   => array( 'templateId' => null ),
+		);
+	}
+
+	/**
+	 * Validate a document against the schema.
+	 *
+	 * @param mixed $value Candidate document.
+	 * @return true|WP_Error
+	 */
+	public static function validate( $value ) {
+		return rest_validate_value_from_schema( $value, self::get(), 'chart' );
+	}
+
+	/**
+	 * Sanitize a document against the schema, then normalize it.
+	 *
+	 * Also used as the post meta sanitize callback, so it must accept any value.
+	 *
+	 * @param mixed $value Candidate document.
+	 * @return array|WP_Error
+	 */
+	public static function sanitize( $value ) {
+		$valid = self::validate( $value );
+		if ( is_wp_error( $valid ) ) {
+			return $valid;
+		}
+
+		$value = rest_sanitize_value_from_schema( $value, self::get(), 'chart' );
+		if ( is_wp_error( $value ) ) {
+			return $value;
+		}
+
+		return self::normalize( $value );
+	}
+
+	/**
+	 * Fill optional parts and make every row as long as the header row.
+	 *
+	 * Short rows are padded with null and long rows are trimmed, so renderers can rely on a rectangular grid.
+	 *
+	 * @param array $doc A document that passed validation.
+	 * @return array
+	 */
+	public static function normalize( array $doc ) {
+		$width = count( $doc['data']['columns'] );
+
+		$rows = array();
+		foreach ( $doc['data']['rows'] as $row ) {
+			$row    = array_slice( array_values( $row ), 0, $width );
+			$rows[] = array_pad( $row, $width, null );
+		}
+		$doc['data']['rows'] = $rows;
+
+		if ( ! isset( $doc['settings'] ) ) {
+			$doc['settings'] = array();
+		}
+
+		$template_id   = isset( $doc['source']['templateId'] ) ? (int) $doc['source']['templateId'] : 0;
+		$doc['source'] = array( 'templateId' => $template_id > 0 ? $template_id : null );
+
+		return $doc;
+	}
+}
