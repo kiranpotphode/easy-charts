@@ -79,6 +79,8 @@ final class Plugin {
 	 * @return Service[]
 	 */
 	private function create_services() {
-		return array();
+		return array(
+			new PostType\ChartPostType(),
+		);
 	}
 }
