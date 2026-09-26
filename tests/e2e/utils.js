@@ -33,17 +33,32 @@ async function axe( page, include ) {
 	} ) );
 }
 
+// WP-CLI on the site under test. WP_CLI_COMMAND points it at another site, e.g. one running the
+// minimum supported WordPress version.
+const WP_CLI = process.env.WP_CLI_COMMAND || 'npm run -s test-env:wp --';
+
 /**
- * Run WP-CLI on the test site.
+ * Run WP-CLI on the site under test. Retried once: `wp-env run` sometimes fails to connect on
+ * slow networks.
  *
- * @param {string} args WP-CLI arguments.
+ * @param {string}  args          WP-CLI arguments.
+ * @param {Object}  [options]     Options.
+ * @param {boolean} [options.log] Show the output instead of returning it.
  * @return {string} Output.
  */
-function wp( args ) {
-	return execSync( `npm run -s test-env:wp -- ${ args }`, {
-		encoding: 'utf8',
-		stdio: [ 'ignore', 'pipe', 'ignore' ],
-	} ).trim();
+function wp( args, { log = false } = {} ) {
+	const run = () =>
+		execSync( `${ WP_CLI } ${ args }`, {
+			encoding: 'utf8',
+			stdio: [ 'ignore', log ? 'inherit' : 'pipe', 'pipe' ],
+		} );
+	let output;
+	try {
+		output = run();
+	} catch {
+		output = run();
+	}
+	return ( output ?? '' ).trim();
 }
 
 /**

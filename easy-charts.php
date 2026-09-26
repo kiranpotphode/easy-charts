@@ -10,6 +10,8 @@
  * Plugin URI:        http://kiranpotphode.github.io/easy-charts/
  * Description:       Build simple, reusable, customisable charts on any page or post with ease.
  * Version:           2.0.0-beta.1
+ * Requires at least: 6.6
+ * Requires PHP:      7.4
  * Author:            Kiran Potphode
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
