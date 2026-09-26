@@ -97,7 +97,7 @@ final class Plugin {
 		);
 
 		if ( Cli\SeedCommand::is_available() ) {
-			$services[] = new Cli\SeedCommand( $charts );
+			$services[] = new Cli\SeedCommand( new Demo\Examples( $charts ) );
 		}
 
 		return $services;
