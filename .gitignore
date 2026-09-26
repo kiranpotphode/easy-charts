@@ -10,6 +10,7 @@
 # Dependencies / wp-env
 node_modules/
 vendor/
+build/
 .phpunit.result.cache
 .wp-env.override.json
 .wp-env.test.override.json

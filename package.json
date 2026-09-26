@@ -8,6 +8,12 @@
 		"node": ">=24"
 	},
 	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"lint:js": "wp-scripts lint-js src",
+		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",
+		"format:js": "wp-scripts format src",
+		"test:js": "wp-scripts test-unit-js",
 		"env:start": "wp-env start",
 		"env:stop": "wp-env stop",
 		"env:reset": "wp-env clean all",
@@ -23,9 +29,17 @@
 		"test:php": "wp-env run cli --config=.wp-env.test.json --env-cwd=wp-content/plugins/easy-charts -- vendor/bin/phpunit"
 	},
 	"devDependencies": {
-		"@wordpress/env": "11.16.0"
+		"@wordpress/env": "11.16.0",
+		"@wordpress/scripts": "36.0.0",
+		"vite": "8.3.1",
+		"vitest": "5.0.2"
 	},
 	"overrides": {
-		"qs": "6.16.0"
+		"qs": "6.16.0",
+		"serialize-javascript": "7.1.2",
+		"uuid": "11.1.1"
+	},
+	"dependencies": {
+		"echarts": "6.1.0"
 	}
 }
