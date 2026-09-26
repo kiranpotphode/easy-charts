@@ -11,6 +11,7 @@
 node_modules/
 vendor/
 .wp-env.override.json
+.wp-env.test.override.json
 
 # AI agent instructions and planning notes (kept local, backed up separately)
 CLAUDE.md

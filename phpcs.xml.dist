@@ -31,6 +31,11 @@
 		<exclude-pattern>/tests/*</exclude-pattern>
 	</rule>
 
+	<!-- Test method names describe the behaviour under test; docblocks would only repeat them. -->
+	<rule ref="Squiz.Commenting.FunctionComment.Missing">
+		<exclude-pattern>/tests/*</exclude-pattern>
+	</rule>
+
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">

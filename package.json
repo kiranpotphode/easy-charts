@@ -17,7 +17,10 @@
 		"wp": "wp-env run cli wp",
 		"composer": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer",
 		"lint:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer lint",
-		"format:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer format"
+		"format:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer format",
+		"test-env:start": "wp-env start --config=.wp-env.test.json",
+		"test-env:stop": "wp-env stop --config=.wp-env.test.json",
+		"test:php": "wp-env run cli --config=.wp-env.test.json --env-cwd=wp-content/plugins/easy-charts -- vendor/bin/phpunit"
 	},
 	"devDependencies": {
 		"@wordpress/env": "11.16.0"
