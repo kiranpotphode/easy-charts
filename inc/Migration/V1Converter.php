@@ -53,6 +53,28 @@ final class V1Converter {
 	const PIE_TYPES = array( 'pie', 'donut', 'polar-area' );
 
 	/**
+	 * The 1.x font choices by the generic family that 2.0 draws them with (only generic families
+	 * are sure to exist on every visitor's device; 1.x never loaded its fonts). Arial, the 1.x
+	 * default, is left out: charts that kept it follow the site-wide font setting.
+	 */
+	const FONT_FAMILIES = array(
+		'Arial Black'         => 'sans-serif',
+		'Arial Narrow'        => 'sans-serif',
+		'Century Gothic'      => 'sans-serif',
+		'Gill Sans'           => 'sans-serif',
+		'Impact'              => 'sans-serif',
+		'Lucida Sans Unicode' => 'sans-serif',
+		'Tahoma'              => 'sans-serif',
+		'Trebuchet MS'        => 'sans-serif',
+		'Verdana'             => 'sans-serif',
+		'Georgia'             => 'serif',
+		'Palatino Linotype'   => 'serif',
+		'Times New Roman'     => 'serif',
+		'Courier New'         => 'monospace',
+		'Lucida Console'      => 'monospace',
+	);
+
+	/**
 	 * The 1.x configuration groups the converter reads, with the 1.x fallback values used when a
 	 * group was never saved (1.x `Easy_Charts::ec_get_chart_configuration()`).
 	 */
@@ -76,10 +98,24 @@ final class V1Converter {
 			'height' => 400,
 		),
 		'label'     => array(
+			'fontsize'  => 11,
 			'showlabel' => 1,
 			'precision' => 2,
 			'prefix'    => '',
 			'suffix'    => '',
+		),
+		'caption'   => array(
+			'fontfamily' => 'Arial',
+		),
+		'line'      => array(
+			'interpolation' => 'linear',
+		),
+		'area'      => array(
+			'interpolation' => 'linear',
+			'opacity'       => 0.2,
+		),
+		'donut'     => array(
+			'factor' => 0.4,
 		),
 		'legend'    => array(
 			'position'    => 'bottom',
@@ -239,6 +275,22 @@ final class V1Converter {
 		$option = apply_filters( 'easy_charts_get_chart_configurations', $option, $chart_id, $group );
 
 		return is_array( $option ) ? $option : array();
+	}
+
+	/**
+	 * A 1.x slider value (0 to 1), or null when it is missing, not a number or the 1.x default.
+	 *
+	 * @param mixed $value      Saved value (a string from the 1.x form).
+	 * @param float $v1_default The 1.x default.
+	 * @return float|null
+	 */
+	private static function fraction( $value, $v1_default ) {
+		$value = self::scalar( $value );
+		if ( ! is_numeric( $value ) || abs( (float) $value - $v1_default ) < 0.001 ) {
+			return null;
+		}
+
+		return round( (float) $value, 2 );
 	}
 
 	/**
@@ -409,6 +461,37 @@ final class V1Converter {
 				'label'   => self::text( $meta['downloadLabel'] ),
 			),
 		);
+
+		// Values left at their 1.x default follow the 2.0 (and site-wide) settings; only values
+		// the chart's author changed are kept.
+		$family = trim( (string) self::scalar( $groups['caption']['fontfamily'] ) );
+		if ( isset( self::FONT_FAMILIES[ $family ] ) ) {
+			$settings['font']['family'] = self::FONT_FAMILIES[ $family ];
+		}
+		$size = (int) self::scalar( $groups['label']['fontsize'] );
+		if ( $size > 0 && 11 !== $size ) {
+			$settings['font']['size'] = min( max( $size, 8 ), 32 );
+		}
+
+		$area = in_array( $type, array( 'area', 'stacked-area', 'percent-area' ), true );
+		if ( 'line' === $type || $area ) {
+			$curve = strtolower( trim( (string) self::scalar( $groups[ $area ? 'area' : 'line' ]['interpolation'] ) ) );
+			if ( '' !== $curve && 'linear' !== $curve ) {
+				$settings['line']['smooth'] = true;
+			}
+		}
+		if ( $area ) {
+			$opacity = self::fraction( $groups['area']['opacity'], 0.2 );
+			if ( null !== $opacity ) {
+				$settings['area']['opacity'] = min( max( $opacity, 0 ), 1 );
+			}
+		}
+		if ( 'donut' === $type ) {
+			$hole = self::fraction( $groups['donut']['factor'], 0.4 );
+			if ( null !== $hole ) {
+				$settings['donut']['hole'] = min( max( $hole, 0.1 ), 0.9 );
+			}
+		}
 
 		$background = is_string( $graph['bgcolor'] ) ? sanitize_hex_color( trim( $graph['bgcolor'] ) ) : null;
 		if ( $background ) {

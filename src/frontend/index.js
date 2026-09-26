@@ -91,7 +91,13 @@ function renderChart( figure, echarts ) {
 		return;
 	}
 
-	const option = withMotionPreference( buildOption( config ) );
+	const option = withMotionPreference(
+		buildOption( {
+			...config,
+			// For the "site font" setting: the font of the text around the chart.
+			siteFont: window.getComputedStyle( figure ).fontFamily,
+		} )
+	);
 	const chart = echarts.init( box, null, { renderer: 'svg' } );
 	chart.setOption( option );
 	hideDrawing( box );

@@ -130,6 +130,34 @@ describe( 'rendering with ECharts', () => {
 		}
 	);
 
+	it.each( [ 'bar', 'area', 'donut' ] )(
+		'draws every text of a %s chart in the chosen font and size',
+		( type ) => {
+			const svg = renderSvg(
+				buildOption( {
+					type,
+					data,
+					settings: {
+						...settings,
+						font: { family: 'serif', size: 16 },
+						line: { smooth: true },
+						area: { opacity: 0.7 },
+						donut: { hole: 0.3 },
+					},
+					title: 'Revenue',
+				} )
+			);
+
+			const texts = svg.match( /<text[^>]*>/g ) ?? [];
+			expect( texts.length ).toBeGreaterThan( 3 );
+			for ( const text of texts ) {
+				expect( text ).toContain( 'Georgia' );
+			}
+			// The title is drawn one and a half times the base size.
+			expect( svg ).toMatch( /font-size:24px;font-family:Georgia/ );
+		}
+	);
+
 	it( 'renders a chart with no rows', () => {
 		const svg = renderSvg(
 			buildOption( {

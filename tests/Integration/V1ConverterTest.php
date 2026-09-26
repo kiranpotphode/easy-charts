@@ -185,6 +185,58 @@ class V1ConverterTest extends WP_UnitTestCase {
 		);
 	}
 
+	public function test_fonts_curves_opacity_and_donut_hole_are_kept_only_when_changed() {
+		$defaults = array(
+			'caption' => array( 'fontfamily' => 'Arial' ),
+			'label'   => array( 'fontsize' => '11' ),
+			'line'    => array( 'interpolation' => 'linear' ),
+			'area'    => array(
+				'interpolation' => 'linear',
+				'opacity'       => '0.2',
+			),
+			'donut'   => array( 'factor' => '0.4' ),
+		);
+		foreach ( array( 'ec_line_chart', 'ec_area_chart', 'ec_donut_chart' ) as $type ) {
+			$settings = $this->convert( $type, $defaults )['settings'];
+			foreach ( array( 'font', 'line', 'area', 'donut' ) as $group ) {
+				$this->assertArrayNotHasKey( $group, $settings, "$type: 1.x defaults follow the 2.0 settings ($group)" );
+			}
+		}
+
+		$changed = array(
+			'caption' => array( 'fontfamily' => 'Georgia' ),
+			'label'   => array( 'fontsize' => '14' ),
+			'line'    => array( 'interpolation' => 'monotone' ),
+			'area'    => array(
+				'interpolation' => 'basis',
+				'opacity'       => '0.65',
+			),
+			'donut'   => array( 'factor' => '0.25' ),
+		);
+		$this->assertSame(
+			array(
+				'family' => 'serif',
+				'size'   => 14,
+			),
+			$this->convert( 'ec_bar_chart', $changed )['settings']['font']
+		);
+		$this->assertSame( array( 'smooth' => true ), $this->convert( 'ec_line_chart', $changed )['settings']['line'] );
+
+		$area = $this->convert( 'ec_stacked_area_chart', $changed )['settings'];
+		$this->assertSame( array( 'smooth' => true ), $area['line'] );
+		$this->assertSame( array( 'opacity' => 0.65 ), $area['area'] );
+
+		$this->assertSame( array( 'hole' => 0.25 ), $this->convert( 'ec_donut_chart', $changed )['settings']['donut'] );
+		$bar = $this->convert( 'ec_bar_chart', $changed )['settings'];
+		foreach ( array( 'line', 'area', 'donut' ) as $group ) {
+			$this->assertArrayNotHasKey( $group, $bar, "bar charts don't use $group settings" );
+		}
+
+		$this->assertSame( 'monospace', $this->convert( 'ec_bar_chart', array( 'caption' => array( 'fontfamily' => 'Courier New' ) ) )['settings']['font']['family'] );
+		$this->assertArrayNotHasKey( 'font', $this->convert( 'ec_bar_chart', array( 'caption' => array( 'fontfamily' => 'Comic Sans' ) ) )['settings'], 'unknown fonts follow the site font' );
+		$this->assertSame( array( 'hole' => 0.9 ), $this->convert( 'ec_donut_chart', array( 'donut' => array( 'factor' => '5' ) ) )['settings']['donut'], 'clamped' );
+	}
+
 	public function test_horizontal_charts_swap_the_axis_labels() {
 		$settings = $this->convert(
 			'ec_bar_chart',

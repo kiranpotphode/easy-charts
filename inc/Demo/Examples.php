@@ -356,11 +356,12 @@ final class Examples {
 				),
 			),
 			'ec_percent_bar_chart'  => array(
-				'title'  => '1.x percent bar: vertical',
+				'title'  => '1.x percent bar: vertical, Georgia font',
 				'data'   => $cars,
 				'config' => array(
-					'graph' => $vertical,
-					'label' => array( 'precision' => 0 ),
+					'graph'   => $vertical,
+					'label'   => array( 'precision' => 0 ),
+					'caption' => array( 'fontfamily' => 'Georgia' ),
 				),
 			),
 			'ec_step_up_bar_chart'  => array(
@@ -401,9 +402,13 @@ final class Examples {
 				),
 			),
 			'ec_stacked_area_chart' => array(
-				'title'  => '1.x stacked area: vertical, fixed 500x300, grey background',
+				'title'  => '1.x stacked area: vertical, fixed 500x300, grey background, curved, opacity 0.6',
 				'data'   => $cars,
 				'config' => array(
+					'area'      => array(
+						'interpolation' => 'cardinal',
+						'opacity'       => '0.6',
+					),
 					'graph'     => array(
 						'responsive' => false,
 						'bgcolor'    => '#f4f4f4',
@@ -431,9 +436,10 @@ final class Examples {
 				),
 			),
 			'ec_donut_chart'        => array(
-				'title'  => '1.x donut: no tooltip, % suffix',
+				'title'  => '1.x donut: no tooltip, % suffix, large hole',
 				'data'   => $cars,
 				'config' => array(
+					'donut'   => array( 'factor' => '0.7' ),
 					'tooltip' => array( 'show' => 0 ),
 					'label'   => array( 'suffix' => '%' ),
 				),

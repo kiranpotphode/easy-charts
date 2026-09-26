@@ -27,6 +27,8 @@ import PaletteControl from './palette-control';
 import './components.css';
 
 const PIE_TYPES = [ 'pie', 'donut', 'polar-area' ];
+const LINE_TYPES = [ 'line', 'area', 'stacked-area', 'percent-area' ];
+const AREA_TYPES = [ 'area', 'stacked-area', 'percent-area' ];
 
 /**
  * Panels for chart settings, shared by the chart block sidebar and the global settings page.
@@ -54,6 +56,9 @@ export default function SettingsPanels( {
 	const settings = mergeSettings( base, overrides );
 	const isGlobal = ! type;
 	const isAxis = isGlobal || ! PIE_TYPES.includes( type );
+	const isLine = isGlobal || LINE_TYPES.includes( type );
+	const isArea = isGlobal || AREA_TYPES.includes( type );
+	const isDonut = isGlobal || type === 'donut';
 
 	const update = ( group, key, value ) =>
 		onChange( setOverride( overrides, group, key, value ) );
@@ -168,6 +173,35 @@ export default function SettingsPanels( {
 				}
 			/>
 		);
+	// A 0–1 setting shown as a percentage.
+	const percent = ( group, key, label, min, max ) =>
+		item(
+			group,
+			key,
+			label,
+			<RangeControl
+				__next40pxDefaultSize
+				__nextHasNoMarginBottom
+				label={ label }
+				min={ min }
+				max={ max }
+				step={ 5 }
+				renderTooltipContent={ ( next ) => `${ next }%` }
+				value={ Math.round(
+					( Number( value( group, key ) ) || 0 ) * 100
+				) }
+				onChange={ ( next ) =>
+					update(
+						group,
+						key,
+						Math.min(
+							max,
+							Math.max( min, Number( next ) || min )
+						) / 100
+					)
+				}
+			/>
+		);
 	const select = ( group, key, label, options ) =>
 		item(
 			group,
@@ -278,6 +312,81 @@ export default function SettingsPanels( {
 							'axis',
 							'yLabel',
 							__( 'Value axis label', 'easy-charts' )
+						),
+					]
+				) }
+
+			{ panel(
+				__( 'Text', 'easy-charts' ),
+				[
+					[ 'font', 'family' ],
+					[ 'font', 'size' ],
+				],
+				[
+					select( 'font', 'family', __( 'Font', 'easy-charts' ), [
+						{
+							value: 'site',
+							label: __( 'Site font', 'easy-charts' ),
+						},
+						{
+							value: 'sans-serif',
+							label: __( 'Sans-serif', 'easy-charts' ),
+						},
+						{ value: 'serif', label: __( 'Serif', 'easy-charts' ) },
+						{
+							value: 'monospace',
+							label: __( 'Monospace', 'easy-charts' ),
+						},
+					] ),
+					range(
+						'font',
+						'size',
+						__( 'Text size (px)', 'easy-charts' ),
+						8,
+						32
+					),
+				]
+			) }
+
+			{ isLine &&
+				panel(
+					isArea
+						? __( 'Lines & areas', 'easy-charts' )
+						: __( 'Lines', 'easy-charts' ),
+					isArea
+						? [
+								[ 'line', 'smooth' ],
+								[ 'area', 'opacity' ],
+							]
+						: [ [ 'line', 'smooth' ] ],
+					[
+						toggle(
+							'line',
+							'smooth',
+							__( 'Curved lines', 'easy-charts' )
+						),
+						isArea &&
+							percent(
+								'area',
+								'opacity',
+								__( 'Area opacity (%)', 'easy-charts' ),
+								0,
+								100
+							),
+					]
+				) }
+
+			{ isDonut &&
+				panel(
+					__( 'Donut', 'easy-charts' ),
+					[ [ 'donut', 'hole' ] ],
+					[
+						percent(
+							'donut',
+							'hole',
+							__( 'Hole size (%)', 'easy-charts' ),
+							10,
+							90
 						),
 					]
 				) }

@@ -10,6 +10,7 @@ import {
 	CHART_TYPES,
 	buildOption,
 	describeChart,
+	resolveFont,
 	formatValue,
 	isColor,
 	toNumber,
@@ -81,6 +82,102 @@ describe( 'helpers', () => {
 			size: [ 10, 5, 3, null ],
 			rising: [ true, true, false, true ],
 		} );
+	} );
+} );
+
+describe( 'resolveFont', () => {
+	it( 'uses the site font by default, and generic stacks otherwise', () => {
+		expect( resolveFont( undefined, '"Inter", sans-serif' ) ).toEqual( {
+			family: '"Inter", sans-serif',
+			size: 12,
+		} );
+		expect( resolveFont( { family: 'serif', size: 18 }, 'Inter' ) ).toEqual(
+			{
+				family: "Georgia, 'Times New Roman', Times, serif",
+				size: 18,
+			}
+		);
+		expect( resolveFont( { family: 'monospace' } ).family ).toMatch(
+			/monospace$/
+		);
+		// No site font (e.g. server-side): a system sans-serif.
+		expect( resolveFont( { family: 'site' } ).family ).toMatch(
+			/sans-serif$/
+		);
+	} );
+
+	it( 'ignores unknown families and clamps the size', () => {
+		for ( const family of [
+			'Comic Sans',
+			'constructor',
+			'__proto__',
+			7,
+		] ) {
+			expect( resolveFont( { family }, 'Inter' ).family ).toBe( 'Inter' );
+		}
+		expect( resolveFont( { size: 200 } ).size ).toBe( 32 );
+		expect( resolveFont( { size: 2 } ).size ).toBe( 8 );
+		expect( resolveFont( { size: '15' } ).size ).toBe( 15 );
+		expect( resolveFont( { size: 'big' } ).size ).toBe( 12 );
+	} );
+} );
+
+describe( 'font, curves, area opacity and donut hole', () => {
+	const option = ( type, extra ) =>
+		buildOption( {
+			type,
+			data,
+			settings: { ...settings, ...extra },
+			title: 'Sales',
+			siteFont: 'Inter',
+		} );
+
+	it( 'applies the font to the title, legend, axes, labels and tooltip', () => {
+		const result = option( 'bar', { font: { family: 'site', size: 14 } } );
+		expect( result.textStyle ).toEqual( {
+			fontFamily: 'Inter',
+			fontSize: 14,
+		} );
+		expect( result.title.textStyle.fontSize ).toBe( 21 );
+		expect( result.title.subtextStyle.fontSize ).toBe( 14 );
+		expect( result.legend.textStyle.fontSize ).toBe( 14 );
+		expect( result.xAxis.axisLabel.fontSize ).toBe( 14 );
+		expect( result.yAxis.axisLabel.fontFamily ).toBe( 'Inter' );
+		expect( result.series[ 0 ].label.fontSize ).toBe( 14 );
+		expect( result.tooltip.textStyle.fontSize ).toBe( 14 );
+	} );
+
+	it( 'curves lines and areas only when asked', () => {
+		expect( option( 'line' ).series[ 0 ].smooth ).toBe( false );
+		expect(
+			option( 'stacked-area', { line: { smooth: true } } ).series[ 0 ]
+				.smooth
+		).toBe( true );
+		expect(
+			option( 'line', { line: { smooth: 'yes' } } ).series[ 0 ].smooth
+		).toBe( false );
+		expect(
+			option( 'bar', { line: { smooth: true } } ).series[ 0 ]
+		).not.toHaveProperty( 'smooth' );
+	} );
+
+	it( 'sets the area opacity within 0 to 1', () => {
+		const opacity = ( value ) =>
+			option( 'area', { area: { opacity: value } } ).series[ 0 ].areaStyle
+				.opacity;
+		expect( opacity( undefined ) ).toBe( 0.4 );
+		expect( opacity( 0.75 ) ).toBe( 0.75 );
+		expect( opacity( 3 ) ).toBe( 1 );
+		expect( opacity( 'x' ) ).toBe( 0.4 );
+	} );
+
+	it( 'sizes the donut hole as a fraction of the outer radius', () => {
+		const radius = ( value ) =>
+			option( 'donut', { donut: { hole: value } } ).series[ 0 ].radius;
+		expect( radius( undefined ) ).toEqual( [ '39%', '65%' ] );
+		expect( radius( 0.4 ) ).toEqual( [ '26%', '65%' ] );
+		expect( radius( 0 ) ).toEqual( [ '7%', '65%' ] );
+		expect( radius( 1 ) ).toEqual( [ '59%', '65%' ] );
 	} );
 } );
 
@@ -247,7 +344,7 @@ describe( 'buildOption', () => {
 	it( 'gives donut and polar-area charts their shapes', () => {
 		expect(
 			buildOption( { type: 'donut', data, settings } ).series[ 0 ].radius
-		).toEqual( [ '40%', '65%' ] );
+		).toEqual( [ '39%', '65%' ] );
 		expect(
 			buildOption( { type: 'polar-area', data, settings } ).series[ 0 ]
 				.roseType

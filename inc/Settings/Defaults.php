@@ -43,6 +43,24 @@ final class Defaults {
 			'frame'    => array(
 				'background' => '#ffffff',
 			),
+			'font'     => array(
+				// 'site' (the font of the text around the chart), 'sans-serif', 'serif' or 'monospace'.
+				'family' => 'site',
+				// Base size in px; the title is drawn larger.
+				'size'   => 12,
+			),
+			'line'     => array(
+				// Curved lines, for line and area charts.
+				'smooth' => false,
+			),
+			'area'     => array(
+				// Fill opacity of area charts, 0 to 1.
+				'opacity' => 0.4,
+			),
+			'donut'    => array(
+				// Hole size as a fraction of the outer radius, 0.1 to 0.9.
+				'hole' => 0.6,
+			),
 			'axis'     => array(
 				'xLabel' => '',
 				'yLabel' => '',

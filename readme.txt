@@ -24,7 +24,7 @@ Add the **Chart** block and choose how to start:
 * **Paste data**: copy cells from Excel, Google Sheets or Numbers, or paste CSV.
 * **Use an existing chart**: embed a saved chart, or copy its data or its settings into a new one.
 
-Edit the data in a spreadsheet-style table, or paste it as text. Style the chart in the block sidebar: title, size, orientation, axis labels, legend, tooltips, value labels with a prefix and suffix, colours, background and a download button.
+Edit the data in a spreadsheet-style table, or paste it as text. Style the chart in the block sidebar: title, size, font, orientation, axis labels, legend, tooltips, value labels with a prefix and suffix, colours, background, curved lines, area opacity, donut hole size and a download button.
 
 ### Reusable charts
 
@@ -32,7 +32,7 @@ Edit the data in a spreadsheet-style table, or paste it as text. Style the chart
 
 ### Site-wide chart settings
 
-**Easy Charts → Settings** sets the defaults for every chart on the site: colours, legend, tooltips, value labels, size and more. A chart's own settings override them.
+**Easy Charts → Settings** sets the defaults for every chart on the site: font, colours, legend, tooltips, value labels, size and more. A chart's own settings override them. By default, charts use your theme's font.
 
 ### 12 chart types
 
@@ -62,9 +62,11 @@ Chart scripts load only on pages that show a chart. Easy Charts adds no database
 
 Updating keeps all your charts and shortcodes. Nothing is changed in the database when you update: each 1.x chart is converted when it is shown or opened. A chart is saved in the 2.0 format only when you edit and save it, and its 1.x data is kept as it was.
 
-Charts look a little different, because 2.0 draws them with Apache ECharts instead of uvCharts. Charts that used the 1.x "Default" colours follow the site-wide colours from **Easy Charts → Settings**.
+Charts look a little different, because 2.0 draws them with Apache ECharts instead of uvCharts. Styling left at its 1.x default (the "Default" colours, the Arial font, straight lines, area opacity and donut hole size) follows the 2.0 and site-wide settings; styling you changed in 1.x is kept.
 
-**Options that 2.0 no longer has:** fonts, margins, axis tick, opacity and line settings, logarithmic, power and square-root scales, curved lines, area opacity, donut hole size, plot background, axis sub-labels, legend type, start and symbol size, and tooltip format.
+**Fonts:** 1.x let you pick one of 15 fonts, separately for each part of the chart, but never loaded them, so visitors without that font saw a fallback. 2.0 has one font setting per chart: your theme's font, sans-serif, serif or monospace, plus a text size. A 1.x chart's caption font is converted to the matching one of these.
+
+**Options that 2.0 no longer has:** fonts per chart part, font weights and colours, margins, axis tick, opacity and line settings, logarithmic, power and square-root scales, area offset, pie and donut outlines, plot background, axis sub-labels, legend type, start and symbol size, and tooltip format.
 
 **Behaviour changes:**
 
@@ -146,6 +148,8 @@ Easy Charts includes these libraries, all under licences compatible with the GPL
 * New: saved charts are edited in the block editor, with a "Use this chart" panel showing the shortcode.
 * New: every chart comes with a data table for screen readers, visitors without JavaScript and search engines.
 * New: horizontal orientation for line, area, step-up and waterfall charts, and a custom chart title.
+* New: font setting (theme font, sans-serif, serif or monospace) and text size, site-wide or per chart.
+* New: curved lines, area opacity and donut hole size settings; values changed in 1.x are kept.
 * Changed: 1.x charts are converted when shown or opened, and stored in the 2.0 format only when saved. Their 1.x data is kept.
 * Removed: uvCharts and its scripts, the 1.x chart editor, the Classic Editor toolbar button, and the options listed under "Upgrading from 1.x".
 * Security: chart data is validated and escaped on output. The 1.x admin-ajax handlers are removed.

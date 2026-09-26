@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { useEffect, useMemo, useRef } from '@wordpress/element';
+import { useEffect, useMemo, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /**
@@ -29,6 +29,8 @@ export default function ChartPreview( {
 } ) {
 	const boxRef = useRef();
 	const chartRef = useRef();
+	// The font of the text around the preview, for the "site font" setting.
+	const [ siteFont, setSiteFont ] = useState( '' );
 	const settings = useMemo(
 		() => resolved ?? resolveSettings( doc ),
 		[ doc, resolved ]
@@ -43,8 +45,9 @@ export default function ChartPreview( {
 				settings,
 				title: settings.title?.text || title,
 				strings: getEditorData().strings,
+				siteFont,
 			} ),
-		[ doc, settings, title ]
+		[ doc, settings, title, siteFont ]
 	);
 
 	useEffect( () => {
@@ -57,8 +60,11 @@ export default function ChartPreview( {
 		hideDrawing( box );
 		chartRef.current = chart;
 
-		// The editor canvas is an iframe: observe with that window's ResizeObserver.
+		// The editor canvas is an iframe: read the style with that window.
 		const view = box.ownerDocument.defaultView;
+		setSiteFont( view?.getComputedStyle( box ).fontFamily ?? '' );
+
+		// Observe with the iframe window's ResizeObserver too.
 		const observer = view?.ResizeObserver
 			? new view.ResizeObserver( () => chart.resize() )
 			: null;
