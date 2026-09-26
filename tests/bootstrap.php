@@ -27,4 +27,22 @@ tests_add_filter(
 	}
 );
 
+// Ajax tests fire admin_init, which checks WordPress.org for updates. Report every check as just
+// done so tests never depend on the network.
+foreach ( array( 'update_core', 'update_plugins', 'update_themes' ) as $easy_charts_transient ) {
+	tests_add_filter(
+		'pre_site_transient_' . $easy_charts_transient,
+		static function () {
+			return (object) array(
+				'last_checked'    => time(),
+				'version_checked' => $GLOBALS['wp_version'],
+				'updates'         => array(),
+				'translations'    => array(),
+				'response'        => array(),
+				'checked'         => array(),
+			);
+		}
+	);
+}
+
 require $easy_charts_tests_dir . '/includes/bootstrap.php';

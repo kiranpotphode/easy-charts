@@ -69,7 +69,7 @@ class ChartRepositoryTest extends WP_UnitTestCase {
 		$this->assertTrue( $this->repo->save( $id, $this->doc() ) );
 	}
 
-	public function test_find_returns_null_without_a_document() {
+	public function test_find_returns_null_without_a_document_or_1x_data() {
 		$this->assertNull( $this->repo->find( $this->chart() ) );
 	}
 
@@ -112,5 +112,54 @@ class ChartRepositoryTest extends WP_UnitTestCase {
 		foreach ( $legacy as $key => $value ) {
 			$this->assertSame( $value, get_post_meta( $id, $key, true ), $key );
 		}
+	}
+
+	/**
+	 * Create a chart that only has 1.x meta.
+	 *
+	 * @return int
+	 */
+	private function v1_chart() {
+		$id = self::factory()->post->create(
+			array(
+				'post_type'   => 'easy_charts',
+				'post_status' => 'publish',
+			)
+		);
+		update_post_meta( $id, '_easy_charts_chart_data', '[["","Kia","Nissan"],["2008","10","11"]]' );
+		update_post_meta( $id, '_ec_chart_type', 'ec_pie_chart' );
+		update_post_meta( $id, '_ec_chart_meta', array( 'caption' => 'Sales &#38; more' ) );
+
+		return $id;
+	}
+
+	public function test_find_converts_1x_charts_without_storing_them() {
+		$id  = $this->v1_chart();
+		$doc = $this->repo->find( $id );
+
+		$this->assertSame( 'pie', $doc['type'] );
+		$this->assertSame( array( array( 'Kia', 10 ), array( 'Nissan', 11 ) ), $doc['data']['rows'] );
+		$this->assertNull( $this->repo->find_stored( $id ) );
+		$this->assertSame( '', get_post_meta( $id, ChartMeta::KEY, true ) );
+	}
+
+	public function test_a_stored_document_wins_over_1x_meta() {
+		$id = $this->v1_chart();
+		$this->repo->save( $id, $this->doc() );
+
+		$this->assertSame( $this->doc(), $this->repo->find( $id ) );
+		$this->assertSame( $this->doc(), $this->repo->find_stored( $id ) );
+	}
+
+	public function test_reading_and_rendering_1x_charts_never_changes_any_meta() {
+		$id     = $this->v1_chart();
+		$before = get_post_meta( $id );
+
+		$this->repo->find( $id );
+		do_shortcode( '[easy_chart chart_id="' . $id . '"]' );
+		rest_do_request( new \WP_REST_Request( 'GET', '/wp/v2/easy-charts/' . $id ) );
+
+		wp_cache_flush();
+		$this->assertSame( $before, get_post_meta( $id ) );
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 /**
- * Tests for the [easy_chart] shortcode rollout (v2 charts on ECharts, others on 1.x).
+ * Tests for the [easy_chart] shortcode (ECharts, with the 1.x path only for unconvertible charts).
  *
  * @package EasyCharts
  */
@@ -55,8 +55,18 @@ class ChartShortcodeTest extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( 'uv-div-', $html );
 	}
 
-	public function test_chart_without_v2_document_uses_the_1x_path() {
+	public function test_1x_chart_renders_with_echarts_after_conversion() {
 		$id   = $this->chart( false );
+		$html = do_shortcode( "[easy_chart chart_id='" . $id . "']" );
+
+		// No 1.x type saved: 1.x drew a bar chart.
+		$this->assertStringContainsString( 'easy-charts-chart--bar', $html );
+		$this->assertStringNotContainsString( 'uv-div-', $html );
+	}
+
+	public function test_unconvertible_1x_chart_uses_the_1x_path() {
+		$id = $this->chart( false );
+		update_post_meta( $id, '_easy_charts_chart_data', 'not a grid' );
 		$html = do_shortcode( "[easy_chart chart_id='" . $id . "']" );
 
 		$this->assertStringContainsString( 'uv-div-' . $id, $html );

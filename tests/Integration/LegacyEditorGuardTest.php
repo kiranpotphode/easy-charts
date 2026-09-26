@@ -37,6 +37,8 @@ class LegacyEditorGuardTest extends WP_Ajax_UnitTestCase {
 	 */
 	private function chart( $with_v2 ) {
 		$id = self::factory()->post->create( array( 'post_type' => 'easy_charts' ) );
+		// Every chart has 1.x data, which converts; only a stored v2 document switches the editor.
+		update_post_meta( $id, '_easy_charts_chart_data', '[["","Kia"],["2008","10"]]' );
 		if ( $with_v2 ) {
 			( new ChartRepository() )->save(
 				$id,
@@ -133,6 +135,6 @@ class LegacyEditorGuardTest extends WP_Ajax_UnitTestCase {
 		}
 
 		$this->assertFalse( json_decode( $this->_last_response, true )['success'] );
-		$this->assertSame( '', get_post_meta( $id, '_easy_charts_chart_data', true ) );
+		$this->assertSame( '[["","Kia"],["2008","10"]]', get_post_meta( $id, '_easy_charts_chart_data', true ) );
 	}
 }

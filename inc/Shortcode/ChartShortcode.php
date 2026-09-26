@@ -14,8 +14,9 @@ use EasyCharts\Service;
 /**
  * Handles `[easy_chart chart_id="N"]`.
  *
- * Charts with a v2 document render with ECharts. Charts without one still go through the
- * unchanged 1.x uvCharts path until the 1.x converter gives every chart a v2 document.
+ * Every chart renders with ECharts: from its stored v2 document, or from one converted from its
+ * 1.x meta. Only a chart whose 1.x data cannot be converted (missing or broken grid) still goes
+ * through the unchanged 1.x uvCharts path, until that path is removed before the 2.0 beta.
  */
 final class ChartShortcode implements Service {
 
@@ -77,8 +78,8 @@ final class ChartShortcode implements Service {
 			return '';
 		}
 
-		// Only the presence of a v2 document decides the path, so a v2 chart the renderer
-		// declines (e.g. private) never falls back to the 1.x output.
+		// Only the presence of a document decides the path, so a chart the renderer declines
+		// (e.g. private) never falls back to the 1.x output.
 		if ( null !== $this->charts->find( $chart_id ) ) {
 			return $this->renderer->render( $chart_id );
 		}

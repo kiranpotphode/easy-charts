@@ -89,13 +89,13 @@ final class LegacyEditorGuard implements Service {
 	}
 
 	/**
-	 * Whether a chart has a stored v2 document.
+	 * Whether a chart has a stored v2 document. Charts only converted from 1.x on the fly don't.
 	 *
 	 * @param int $chart_id Chart post ID.
 	 * @return bool
 	 */
 	public function is_v2_chart( $chart_id ) {
-		return null !== $this->charts->find( (int) $chart_id );
+		return null !== $this->charts->find_stored( (int) $chart_id );
 	}
 
 	/**
