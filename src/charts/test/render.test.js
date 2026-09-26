@@ -71,19 +71,22 @@ describe( 'rendering with ECharts', () => {
 		expect( svg.length ).toBeGreaterThan( 2000 );
 	} );
 
-	it( 'renders horizontal bars', () => {
-		const svg = renderSvg(
-			buildOption( {
-				type: 'stacked-bar',
-				data,
-				settings: {
-					...settings,
-					layout: { orientation: 'horizontal' },
-				},
-			} )
-		);
-		expect( svg ).toMatch( /^<svg/ );
-	} );
+	it.each( [ 'stacked-bar', 'line', 'step-up-bar', 'waterfall' ] )(
+		'renders a horizontal %s chart',
+		( type ) => {
+			const svg = renderSvg(
+				buildOption( {
+					type,
+					data,
+					settings: {
+						...settings,
+						layout: { orientation: 'horizontal' },
+					},
+				} )
+			);
+			expect( svg ).toMatch( /^<svg/ );
+		}
+	);
 
 	it( 'renders a chart with no rows', () => {
 		const svg = renderSvg(

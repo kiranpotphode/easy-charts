@@ -106,7 +106,7 @@ export function toPercentages( series ) {
 /**
  * Floating bars for step-up and waterfall charts: each bar starts where the previous one ended.
  *
- * @param {Array<number|null>} values Values of one series.
+ * @param {Array<number|null>} values Values in drawing order.
  * @return {{base: Array<number|null>, size: Array<number|null>, rising: Array<boolean>}} Invisible
  *         base heights, visible bar heights, and whether each step went up.
  */
@@ -132,16 +132,17 @@ export function toSteps( values ) {
 }
 
 /**
- * Title component.
+ * Title component. A custom `title.text` setting replaces the chart's own title.
  *
  * @param {string} title    Chart title.
  * @param {Object} settings Resolved settings.
  * @return {Object} ECharts title option.
  */
 function buildTitle( title, settings ) {
+	const text = settings.title?.text || title || '';
 	const subtext = settings.title?.subtext ?? '';
-	const show = settings.title?.show !== false && Boolean( title || subtext );
-	return { show, text: title || '', subtext, left: 'center' };
+	const show = settings.title?.show !== false && Boolean( text || subtext );
+	return { show, text, subtext, left: 'center' };
 }
 
 /**
@@ -204,8 +205,7 @@ function buildAxisChart( input ) {
 	const { type, categories, names, series, settings, space, strings } = input;
 	const labels = settings.labels ?? {};
 	const showLabels = labels.show !== false;
-	const horizontal =
-		type.endsWith( 'bar' ) && settings.layout?.orientation === 'horizontal';
+	const horizontal = settings.layout?.orientation === 'horizontal';
 	const percent = type === 'percent-bar' || type === 'percent-area';
 	const stacked =
 		[ 'stacked-bar', 'stacked-area' ].includes( type ) || percent;
@@ -236,7 +236,12 @@ function buildAxisChart( input ) {
 			steps.size.map( ( size, i ) =>
 				steps.rising[ i ] === up ? size : null
 			);
-		const floating = { type: 'bar', stack: 'waterfall', label };
+		const floating = {
+			type: 'bar',
+			stack: 'waterfall',
+			stackStrategy: 'all',
+			label,
+		};
 		legendNames = [ strings.increase, strings.decrease ];
 		chartSeries = [
 			invisibleBase( 'waterfall', steps.base ),
@@ -244,17 +249,25 @@ function buildAxisChart( input ) {
 			{ ...floating, name: strings.decrease, data: pick( false ) },
 		];
 	} else if ( type === 'step-up-bar' ) {
-		chartSeries = values.flatMap( ( data, i ) => {
-			const steps = toSteps( data );
+		// As in 1.x (uvCharts): within each category, every series starts where the previous
+		// series ended, and the steps stand side by side.
+		const steps = categories.map( ( _, row ) =>
+			toSteps( values.map( ( data ) => data[ row ] ) )
+		);
+		chartSeries = values.flatMap( ( _, i ) => {
 			const stack = `step-${ i }`;
 			return [
-				invisibleBase( stack, steps.base ),
+				invisibleBase(
+					stack,
+					steps.map( ( step ) => step.base[ i ] )
+				),
 				{
 					type: 'bar',
 					name: names[ i ],
 					stack,
+					stackStrategy: 'all',
 					label,
-					data: steps.size,
+					data: steps.map( ( step ) => step.size[ i ] ),
 				},
 			];
 		} );
@@ -273,18 +286,21 @@ function buildAxisChart( input ) {
 		} ) );
 	}
 
+	// xLabel names the category axis and yLabel the value axis, whichever way the chart runs.
+	// Horizontal charts list categories top to bottom, as 1.x did.
 	const categoryAxis = {
 		type: 'category',
 		data: categories,
 		name: settings.axis?.xLabel || '',
 		nameLocation: 'middle',
-		nameGap: 32,
+		nameGap: horizontal ? 48 : 32,
+		...( horizontal ? { inverse: true } : {} ),
 	};
 	const valueAxis = {
 		type: 'value',
 		name: settings.axis?.yLabel || '',
 		nameLocation: 'middle',
-		nameGap: 48,
+		nameGap: horizontal ? 32 : 48,
 		...( percent
 			? { max: 100, axisLabel: { formatter: '{value}%' } }
 			: {
@@ -331,6 +347,7 @@ function invisibleBase( stack, data ) {
 	return {
 		type: 'bar',
 		stack,
+		stackStrategy: 'all',
 		data,
 		silent: true,
 		itemStyle: { color: 'transparent', borderColor: 'transparent' },

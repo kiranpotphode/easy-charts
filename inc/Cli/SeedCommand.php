@@ -222,14 +222,13 @@ final class SeedCommand implements Service {
 				),
 			),
 			'step-up-bar'  => array(
-				'title' => 'Monthly sign-ups (cumulative steps)',
+				'title' => 'Sign-ups by channel, stepping up to each quarter\'s total',
 				'data'  => array(
-					'columns' => array( '', 'Organic', 'Paid' ),
-					'rows'    => array_map(
-						null,
-						$months,
-						array( 40, 35, 52, 48, 60, 58 ),
-						array( 20, 28, 25, 30, 34, 31 )
+					'columns' => array( '', 'Organic', 'Paid', 'Referral' ),
+					'rows'    => array(
+						array( 'Q1', 120, 60, 25 ),
+						array( 'Q2', 135, 80, 30 ),
+						array( 'Q3', 150, 72, 41 ),
 					),
 				),
 			),

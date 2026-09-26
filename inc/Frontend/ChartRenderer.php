@@ -93,9 +93,8 @@ final class ChartRenderer implements Service {
 			return '';
 		}
 
-		// Raw title: ECharts draws plain text (get_the_title() would add HTML entities); the table escapes it.
-		$title    = (string) get_post_field( 'post_title', $chart_id, 'raw' );
 		$settings = $this->settings->resolve( $doc );
+		$title    = $this->title( $chart_id, $settings );
 		$config   = array(
 			'type'     => $doc['type'],
 			'data'     => $doc['data'],
@@ -136,6 +135,22 @@ final class ChartRenderer implements Service {
 		}
 
 		return false !== $status;
+	}
+
+	/**
+	 * Chart title: the custom `title.text` setting, or else the post title.
+	 *
+	 * Raw post title: ECharts draws plain text (get_the_title() would add HTML entities); the table
+	 * escapes it.
+	 *
+	 * @param int   $chart_id Chart post ID.
+	 * @param array $settings Resolved settings.
+	 * @return string
+	 */
+	private function title( $chart_id, array $settings ) {
+		$custom = isset( $settings['title']['text'] ) && is_string( $settings['title']['text'] ) ? $settings['title']['text'] : '';
+
+		return '' !== $custom ? $custom : (string) get_post_field( 'post_title', $chart_id, 'raw' );
 	}
 
 	/**

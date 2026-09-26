@@ -23,6 +23,8 @@ final class Defaults {
 		$defaults = array(
 			'title'    => array(
 				'show'    => true,
+				// Empty: use the chart's post title.
+				'text'    => '',
 				'subtext' => '',
 			),
 			'size'     => array(

@@ -102,15 +102,25 @@ describe( 'buildOption', () => {
 		expect( option.series[ 0 ].stack ).toBeUndefined();
 	} );
 
-	it( 'swaps axes for horizontal bars', () => {
-		const option = buildOption( {
-			type: 'bar',
-			data,
-			settings: { ...settings, layout: { orientation: 'horizontal' } },
-		} );
-		expect( option.yAxis.type ).toBe( 'category' );
-		expect( option.xAxis.type ).toBe( 'value' );
-	} );
+	it.each( [ 'bar', 'line', 'area', 'step-up-bar', 'waterfall' ] )(
+		'swaps axes for a horizontal %s chart',
+		( type ) => {
+			const option = buildOption( {
+				type,
+				data,
+				settings: {
+					...settings,
+					layout: { orientation: 'horizontal' },
+					axis: { xLabel: 'Year', yLabel: 'Units' },
+				},
+			} );
+			expect( option.yAxis.type ).toBe( 'category' );
+			expect( option.yAxis.inverse ).toBe( true );
+			expect( option.yAxis.name ).toBe( 'Year' );
+			expect( option.xAxis.type ).toBe( 'value' );
+			expect( option.xAxis.name ).toBe( 'Units' );
+		}
+	);
 
 	it( 'stacks stacked charts', () => {
 		for ( const type of [ 'stacked-bar', 'stacked-area' ] ) {
@@ -134,13 +144,26 @@ describe( 'buildOption', () => {
 		expect( option.series[ 0 ].areaStyle ).toBeDefined();
 	} );
 
-	it( 'draws step-up bars on an invisible base per series', () => {
+	it( 'steps up across the series within each category', () => {
 		const option = buildOption( { type: 'step-up-bar', data, settings } );
+		const [ kiaBase, kia, nissanBase, nissan ] = option.series;
 		expect( option.series ).toHaveLength( 4 );
-		expect( option.series[ 0 ].silent ).toBe( true );
-		expect( option.series[ 0 ].data ).toEqual( [ 0, 10, null ] );
-		expect( option.series[ 1 ].data ).toEqual( [ 10, 20, null ] );
-		expect( option.series[ 2 ].stack ).toBe( 'step-1' );
+		expect( kiaBase.silent ).toBe( true );
+		expect( kiaBase.data ).toEqual( [ 0, 0, null ] );
+		expect( kia.data ).toEqual( [ 10, 20, null ] );
+		// Nissan starts where Kia ended in the same year; 2010 has no Kia value.
+		expect( nissanBase.data ).toEqual( [ 10, 20, 0 ] );
+		expect( nissan.data ).toEqual( [ 30, 5, 15 ] );
+		expect( nissan.stack ).toBe( 'step-1' );
+	} );
+
+	it( 'stacks floating bars on bases below zero', () => {
+		for ( const type of [ 'step-up-bar', 'waterfall' ] ) {
+			const option = buildOption( { type, data, settings } );
+			expect(
+				option.series.every( ( s ) => s.stackStrategy === 'all' )
+			).toBe( true );
+		}
 	} );
 
 	it( 'splits waterfall steps into increase and decrease', () => {
@@ -205,6 +228,17 @@ describe( 'buildOption', () => {
 			const option = buildOption( { type, data, settings } );
 			expect( option.tooltip.formatter ).toBeUndefined();
 		}
+	} );
+
+	it( 'prefers a custom title text over the chart title', () => {
+		const option = buildOption( {
+			type: 'bar',
+			data,
+			settings: { ...settings, title: { text: 'Custom' } },
+			title: 'Post title',
+		} );
+		expect( option.title.text ).toBe( 'Custom' );
+		expect( option.title.show ).toBe( true );
 	} );
 
 	it( 'hides the title when there is nothing to show', () => {

@@ -133,6 +133,13 @@ class ChartRendererTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<th scope="row">&lt;b&gt;2008&lt;/b&gt;</th><td></td>', $html );
 	}
 
+	public function test_custom_title_text_replaces_the_post_title() {
+		$html = $this->renderer->render( $this->chart( array( 'settings' => array( 'title' => array( 'text' => 'Q1 & Q2' ) ) ) ) );
+
+		$this->assertSame( 'Q1 & Q2', $this->config( $html )['title'] );
+		$this->assertStringContainsString( '<caption>Q1 &amp; Q2</caption>', $html );
+	}
+
 	public function test_download_button_only_when_enabled() {
 		$this->assertStringNotContainsString( 'easy-charts-chart__download', $this->renderer->render( $this->chart() ) );
 
