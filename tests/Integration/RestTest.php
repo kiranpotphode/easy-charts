@@ -90,6 +90,7 @@ class RestTest extends WP_UnitTestCase {
 		$this->assertTrue( post_type_supports( 'easy_charts', 'editor' ) );
 		$this->assertSame( array( array( 'easy-charts/chart' ) ), $type->template );
 		$this->assertSame( 'all', $type->template_lock );
+		$this->assertSame( 'Chart updated.', $type->labels->item_updated );
 	}
 
 	public function test_charts_keep_the_block_editor_when_the_classic_editor_plugin_is_on() {

@@ -29,6 +29,10 @@ export const CHART_TYPES = [ ...AXIS_TYPES, ...PIE_TYPES ];
 const DEFAULT_STRINGS = {
 	increase: 'Increase',
 	decrease: 'Decrease',
+	types: {},
+	chartLabel: '%1$s (%2$s chart).',
+	untitledChart: '%s chart.',
+	tableNote: '',
 };
 
 const COLOR_PATTERN =
@@ -418,6 +422,38 @@ function buildPieChart( input ) {
 }
 
 /**
+ * Fill `%s`, `%1$s` and `%2$s` placeholders in a translated string.
+ *
+ * @param {string}    template Translated string.
+ * @param {...string} values   Values.
+ * @return {string} Text.
+ */
+function fillPlaceholders( template, ...values ) {
+	let next = 0;
+	return String( template ).replace( /%(?:(\d)\$)?s/g, ( _, position ) =>
+		String( values[ position ? position - 1 : next++ ] ?? '' )
+	);
+}
+
+/**
+ * Short accessible description of a chart: its title and type, and where to find the values.
+ * Replaces ECharts' generated description, which reads out every value (the data table already
+ * has them) with series indexes mixed in.
+ *
+ * @param {string} type    Chart type.
+ * @param {string} title   Chart title.
+ * @param {Object} strings Translated strings.
+ * @return {string} Description.
+ */
+export function describeChart( type, title, strings ) {
+	const typeName = strings.types?.[ type ] || type;
+	const label = title
+		? fillPlaceholders( strings.chartLabel, title, typeName )
+		: fillPlaceholders( strings.untitledChart, typeName );
+	return [ label, strings.tableNote ].filter( Boolean ).join( ' ' );
+}
+
+/**
  * Build the ECharts option for a chart.
  *
  * @param {Object} input           Chart input.
@@ -425,7 +461,7 @@ function buildPieChart( input ) {
  * @param {Object} input.data      Data grid: { columns: string[], rows: Array<Array> }.
  * @param {Object} input.settings  Resolved settings (defaults, global, template and overrides merged).
  * @param {string} [input.title]   Chart title.
- * @param {Object} [input.strings] Translated UI strings (increase, decrease).
+ * @param {Object} [input.strings] Translated UI strings (see ChartRenderer::strings()).
  * @return {Object} ECharts option.
  */
 export function buildOption( {
@@ -456,6 +492,11 @@ export function buildOption( {
 		space,
 		strings: { ...DEFAULT_STRINGS, ...strings },
 	};
+	const description = describeChart(
+		chartType,
+		settings.title?.text || title,
+		input.strings
+	);
 	const chart = PIE_TYPES.includes( chartType )
 		? buildPieChart( input )
 		: buildAxisChart( input );
@@ -464,7 +505,7 @@ export function buildOption( {
 	const background = settings.frame?.background;
 
 	return {
-		aria: { enabled: true },
+		aria: { enabled: true, label: { description } },
 		...( isColor( background ) ? { backgroundColor: background } : {} ),
 		...( colors.length ? { color: colors } : {} ),
 		title: titleOption,

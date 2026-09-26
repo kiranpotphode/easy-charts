@@ -136,12 +136,20 @@ final class ChartRenderer implements Service {
 	/**
 	 * Strings the chart script needs, translated.
 	 *
+	 * @param bool $with_table Whether the chart is followed by its data table (front end), which
+	 *                         its accessible description then points to.
 	 * @return array
 	 */
-	public static function strings() {
+	public static function strings( $with_table = true ) {
 		return array(
-			'increase' => __( 'Increase', 'easy-charts' ),
-			'decrease' => __( 'Decrease', 'easy-charts' ),
+			'increase'      => __( 'Increase', 'easy-charts' ),
+			'decrease'      => __( 'Decrease', 'easy-charts' ),
+			'types'         => Schema::type_labels(),
+			/* translators: 1: chart title, 2: chart type, e.g. "Stacked bar". */
+			'chartLabel'    => __( '%1$s (%2$s chart).', 'easy-charts' ),
+			/* translators: %s: chart type, e.g. "Stacked bar". */
+			'untitledChart' => __( '%s chart.', 'easy-charts' ),
+			'tableNote'     => $with_table ? __( 'The values are in the table that follows.', 'easy-charts' ) : '',
 		);
 	}
 
@@ -169,7 +177,7 @@ final class ChartRenderer implements Service {
 			$chart_id > 0 ? sprintf( ' data-chart-id="%d"', $chart_id ) : '',
 			esc_attr( $this->box_style( $settings ) ),
 			wp_json_encode( $config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ),
-			$this->download_button( $settings ),
+			$this->download_button( $settings, $title ),
 			$this->table( $doc['data'], $title )
 		);
 
@@ -262,10 +270,11 @@ final class ChartRenderer implements Service {
 	/**
 	 * Download button, hidden until the script enables it.
 	 *
-	 * @param array $settings Resolved settings.
+	 * @param array  $settings Resolved settings.
+	 * @param string $title    Chart title, for the button's accessible name.
 	 * @return string HTML.
 	 */
-	private function download_button( array $settings ) {
+	private function download_button( array $settings, $title ) {
 		if ( empty( $settings['download']['enabled'] ) ) {
 			return '';
 		}
@@ -274,7 +283,17 @@ final class ChartRenderer implements Service {
 			? $settings['download']['label']
 			: __( 'Download', 'easy-charts' );
 
-		return sprintf( '<button type="button" class="easy-charts-chart__download" hidden>%s</button>', esc_html( $label ) );
+		// Several charts on a page would otherwise have identical "Download" buttons.
+		$target = '' !== $title
+			/* translators: %s: chart title. */
+			? sprintf( __( 'PNG image of "%s"', 'easy-charts' ), $title )
+			: __( 'PNG image of the chart', 'easy-charts' );
+
+		return sprintf(
+			'<button type="button" class="easy-charts-chart__download" hidden>%1$s<span class="easy-charts-chart__sr"> (%2$s)</span></button>',
+			esc_html( $label ),
+			esc_html( $target )
+		);
 	}
 
 	/**

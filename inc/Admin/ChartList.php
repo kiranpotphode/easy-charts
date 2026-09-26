@@ -8,6 +8,7 @@
 namespace EasyCharts\Admin;
 
 use EasyCharts\Chart\ChartRepository;
+use EasyCharts\Chart\Schema;
 use EasyCharts\PostType\ChartPostType;
 use EasyCharts\Service;
 
@@ -40,28 +41,6 @@ final class ChartList implements Service {
 	public function register() {
 		add_filter( 'manage_' . ChartPostType::POST_TYPE . '_posts_columns', array( $this, 'columns' ) );
 		add_action( 'manage_' . ChartPostType::POST_TYPE . '_posts_custom_column', array( $this, 'column' ), 10, 2 );
-	}
-
-	/**
-	 * Chart type names.
-	 *
-	 * @return array Labels keyed by type slug.
-	 */
-	public static function type_labels() {
-		return array(
-			'bar'          => __( 'Bar', 'easy-charts' ),
-			'stacked-bar'  => __( 'Stacked bar', 'easy-charts' ),
-			'percent-bar'  => __( 'Percent bar', 'easy-charts' ),
-			'step-up-bar'  => __( 'Step-up bar', 'easy-charts' ),
-			'waterfall'    => __( 'Waterfall', 'easy-charts' ),
-			'line'         => __( 'Line', 'easy-charts' ),
-			'area'         => __( 'Area', 'easy-charts' ),
-			'stacked-area' => __( 'Stacked area', 'easy-charts' ),
-			'percent-area' => __( 'Percent area', 'easy-charts' ),
-			'pie'          => __( 'Pie', 'easy-charts' ),
-			'donut'        => __( 'Donut', 'easy-charts' ),
-			'polar-area'   => __( 'Polar area', 'easy-charts' ),
-		);
 	}
 
 	/**
@@ -100,7 +79,7 @@ final class ChartList implements Service {
 		}
 
 		$doc    = $this->charts->find( (int) $post_id );
-		$labels = self::type_labels();
+		$labels = Schema::type_labels();
 		if ( null === $doc ) {
 			echo '<span aria-hidden="true">&#8212;</span><span class="screen-reader-text">' . esc_html__( 'No data', 'easy-charts' ) . '</span>';
 			return;

@@ -144,7 +144,18 @@ class ChartRendererTest extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( 'easy-charts-chart__download', $this->renderer->render( $this->chart() ) );
 
 		$html = $this->renderer->render( $this->chart( array( 'settings' => array( 'download' => array( 'enabled' => true ) ) ) ) );
-		$this->assertStringContainsString( '<button type="button" class="easy-charts-chart__download" hidden>Download</button>', $html );
+		$this->assertStringContainsString( '<button type="button" class="easy-charts-chart__download" hidden>Download<span class="easy-charts-chart__sr"> (PNG image of &quot;Sales&quot;)</span></button>', $html );
+	}
+
+	public function test_charts_get_a_short_translated_description() {
+		$html    = $this->renderer->render( $this->chart() );
+		$strings = $this->config( $html )['strings'];
+
+		$this->assertSame( 'Bar', $strings['types']['bar'] );
+		$this->assertSame( '%1$s (%2$s chart).', $strings['chartLabel'] );
+		$this->assertSame( 'The values are in the table that follows.', $strings['tableNote'] );
+		// The editor preview has no data table to point to.
+		$this->assertSame( '', ChartRenderer::strings( false )['tableNote'] );
 	}
 
 	public function test_fixed_size_charts_get_a_width() {

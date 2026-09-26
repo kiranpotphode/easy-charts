@@ -10,6 +10,7 @@
  * Internal dependencies
  */
 import { buildOption } from '../charts/build-option';
+import { hideDrawing, withMotionPreference } from '../charts/display';
 import './frontend.css';
 
 const SELECTOR = '.easy-charts-chart';
@@ -90,9 +91,10 @@ function renderChart( figure, echarts ) {
 		return;
 	}
 
-	const option = buildOption( config );
+	const option = withMotionPreference( buildOption( config ) );
 	const chart = echarts.init( box, null, { renderer: 'svg' } );
 	chart.setOption( option );
+	hideDrawing( box );
 	figure.classList.add( 'is-rendered' );
 
 	if (

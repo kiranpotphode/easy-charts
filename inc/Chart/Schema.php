@@ -46,6 +46,28 @@ final class Schema {
 	);
 
 	/**
+	 * Chart type names, translated.
+	 *
+	 * @return array Labels keyed by type slug.
+	 */
+	public static function type_labels() {
+		return array(
+			'bar'          => __( 'Bar', 'easy-charts' ),
+			'stacked-bar'  => __( 'Stacked bar', 'easy-charts' ),
+			'percent-bar'  => __( 'Percent bar', 'easy-charts' ),
+			'step-up-bar'  => __( 'Step-up bar', 'easy-charts' ),
+			'waterfall'    => __( 'Waterfall', 'easy-charts' ),
+			'line'         => __( 'Line', 'easy-charts' ),
+			'area'         => __( 'Area', 'easy-charts' ),
+			'stacked-area' => __( 'Stacked area', 'easy-charts' ),
+			'percent-area' => __( 'Percent area', 'easy-charts' ),
+			'pie'          => __( 'Pie', 'easy-charts' ),
+			'donut'        => __( 'Donut', 'easy-charts' ),
+			'polar-area'   => __( 'Polar area', 'easy-charts' ),
+		);
+	}
+
+	/**
 	 * JSON schema of a chart document, in the subset understood by the WordPress REST API.
 	 *
 	 * @return array

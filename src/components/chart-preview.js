@@ -8,6 +8,7 @@ import { __ } from '@wordpress/i18n';
  * Internal dependencies
  */
 import { buildOption } from '../charts/build-option';
+import { hideDrawing, withMotionPreference } from '../charts/display';
 import { getEditorData, resolveSettings } from './editor-data';
 import './components.css';
 
@@ -53,6 +54,7 @@ export default function ChartPreview( {
 			return;
 		}
 		const chart = echarts.init( box, null, { renderer: 'svg' } );
+		hideDrawing( box );
 		chartRef.current = chart;
 
 		// The editor canvas is an iframe: observe with that window's ResizeObserver.
@@ -71,7 +73,14 @@ export default function ChartPreview( {
 
 	useEffect( () => {
 		// Replace the whole option so removed series and settings disappear.
-		chartRef.current?.setOption( option, true );
+		const chart = chartRef.current;
+		chart?.setOption(
+			withMotionPreference(
+				option,
+				boxRef.current?.ownerDocument.defaultView
+			),
+			true
+		);
 	}, [ option, hasData ] );
 
 	if ( ! hasData ) {

@@ -98,7 +98,7 @@ final class SettingsPage implements Service {
 
 		$data = array(
 			'baseSettings' => Defaults::get(),
-			'strings'      => ChartRenderer::strings(),
+			'strings'      => ChartRenderer::strings( false ),
 			'settings'     => (object) GlobalSettings::get(),
 		);
 		wp_add_inline_script( self::SCRIPT, 'window.easyChartsEditor = ' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );

@@ -38,3 +38,16 @@
 .easy-charts-chart__download {
 	margin-top: 0.5em;
 }
+
+/* Screen reader text (not every theme defines .screen-reader-text). */
+.easy-charts-chart__sr {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}

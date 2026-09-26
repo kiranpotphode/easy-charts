@@ -77,7 +77,7 @@ final class ChartBlock implements Service {
 
 		$data = array(
 			'baseSettings' => SettingsResolver::base(),
-			'strings'      => ChartRenderer::strings(),
+			'strings'      => ChartRenderer::strings( false ),
 		);
 
 		wp_add_inline_script( $handle, 'window.easyChartsEditor = ' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );

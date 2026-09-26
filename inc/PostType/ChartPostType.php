@@ -37,20 +37,27 @@ final class ChartPostType implements Service {
 	 */
 	public function register_post_type() {
 		$labels = array(
-			'name'               => _x( 'Easy Charts', 'Post type general name', 'easy-charts' ),
-			'singular_name'      => _x( 'Chart', 'Post type singular name', 'easy-charts' ),
-			'menu_name'          => _x( 'Easy Charts', 'Admin menu', 'easy-charts' ),
-			'name_admin_bar'     => _x( 'Chart', 'Add new chart on admin bar', 'easy-charts' ),
-			'add_new'            => _x( 'Add New', 'Add new chart', 'easy-charts' ),
-			'add_new_item'       => __( 'Add New Chart', 'easy-charts' ),
-			'new_item'           => __( 'New Chart', 'easy-charts' ),
-			'edit_item'          => __( 'Edit Chart', 'easy-charts' ),
-			'view_item'          => __( 'View Chart', 'easy-charts' ),
-			'all_items'          => __( 'All Charts', 'easy-charts' ),
-			'search_items'       => __( 'Search Charts', 'easy-charts' ),
-			'parent_item_colon'  => __( 'Parent Charts:', 'easy-charts' ),
-			'not_found'          => __( 'No Charts found.', 'easy-charts' ),
-			'not_found_in_trash' => __( 'No Charts found in Trash.', 'easy-charts' ),
+			'name'                     => _x( 'Easy Charts', 'Post type general name', 'easy-charts' ),
+			'singular_name'            => _x( 'Chart', 'Post type singular name', 'easy-charts' ),
+			'menu_name'                => _x( 'Easy Charts', 'Admin menu', 'easy-charts' ),
+			'name_admin_bar'           => _x( 'Chart', 'Add new chart on admin bar', 'easy-charts' ),
+			'add_new'                  => _x( 'Add New', 'Add new chart', 'easy-charts' ),
+			'add_new_item'             => __( 'Add New Chart', 'easy-charts' ),
+			'new_item'                 => __( 'New Chart', 'easy-charts' ),
+			'edit_item'                => __( 'Edit Chart', 'easy-charts' ),
+			'view_item'                => __( 'View Chart', 'easy-charts' ),
+			'all_items'                => __( 'All Charts', 'easy-charts' ),
+			'search_items'             => __( 'Search Charts', 'easy-charts' ),
+			'parent_item_colon'        => __( 'Parent Charts:', 'easy-charts' ),
+			'not_found'                => __( 'No Charts found.', 'easy-charts' ),
+			'not_found_in_trash'       => __( 'No Charts found in Trash.', 'easy-charts' ),
+			// Block editor notices; charts would otherwise say "Page updated." (page capabilities).
+			'item_published'           => __( 'Chart published.', 'easy-charts' ),
+			'item_published_privately' => __( 'Chart published privately.', 'easy-charts' ),
+			'item_reverted_to_draft'   => __( 'Chart reverted to draft.', 'easy-charts' ),
+			'item_scheduled'           => __( 'Chart scheduled.', 'easy-charts' ),
+			'item_updated'             => __( 'Chart updated.', 'easy-charts' ),
+			'item_trashed'             => __( 'Chart trashed.', 'easy-charts' ),
 		);
 
 		register_post_type(

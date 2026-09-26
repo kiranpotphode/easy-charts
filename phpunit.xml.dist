@@ -11,4 +11,8 @@
 			<directory suffix="Test.php">tests/Integration</directory>
 		</testsuite>
 	</testsuites>
+	<php>
+		<!-- Own tables: the test site's wp_ tables are used by the end-to-end tests. -->
+		<env name="WORDPRESS_TABLE_PREFIX" value="wptests_"/>
+	</php>
 </phpunit>

@@ -9,6 +9,7 @@ import { describe, expect, it } from 'vitest';
 import {
 	CHART_TYPES,
 	buildOption,
+	describeChart,
 	formatValue,
 	isColor,
 	toNumber,
@@ -80,6 +81,45 @@ describe( 'helpers', () => {
 			size: [ 10, 5, 3, null ],
 			rising: [ true, true, false, true ],
 		} );
+	} );
+} );
+
+describe( 'describeChart', () => {
+	const strings = {
+		types: { 'stacked-bar': 'Stacked bar' },
+		chartLabel: '%1$s (%2$s chart).',
+		untitledChart: '%s chart.',
+		tableNote: 'The values are in the table that follows.',
+	};
+
+	it( 'names the title and type, and points to the table', () => {
+		expect( describeChart( 'stacked-bar', 'Sales', strings ) ).toBe(
+			'Sales (Stacked bar chart). The values are in the table that follows.'
+		);
+	} );
+
+	it( 'handles untitled charts, no table and reordered placeholders', () => {
+		expect(
+			describeChart( 'stacked-bar', '', { ...strings, tableNote: '' } )
+		).toBe( 'Stacked bar chart.' );
+		expect(
+			describeChart( 'pie', 'Share', {
+				...strings,
+				chartLabel: '%2$s: %1$s',
+				tableNote: '',
+			} )
+		).toBe( 'pie: Share' );
+	} );
+
+	it( 'replaces the ECharts description, using the custom title', () => {
+		const option = buildOption( {
+			type: 'line',
+			data,
+			settings: { ...settings, title: { text: 'Custom' } },
+			title: 'Post title',
+			strings: { types: { line: 'Line' } },
+		} );
+		expect( option.aria.label.description ).toBe( 'Custom (Line chart).' );
 	} );
 } );
 

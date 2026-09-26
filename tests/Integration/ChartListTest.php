@@ -69,6 +69,6 @@ class ChartListTest extends WP_UnitTestCase {
 	}
 
 	public function test_every_chart_type_has_a_label() {
-		$this->assertEqualSets( Schema::TYPES, array_keys( ChartList::type_labels() ) );
+		$this->assertEqualSets( Schema::TYPES, array_keys( Schema::type_labels() ) );
 	}
 }
