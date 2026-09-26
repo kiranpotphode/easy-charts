@@ -7,9 +7,24 @@
 	"engines": {
 		"node": ">=24"
 	},
+	"files": [
+		"easy-charts.php",
+		"uninstall.php",
+		"index.php",
+		"inc/",
+		"build/",
+		"src/",
+		"languages/",
+		"vendor/autoload.php",
+		"vendor/composer/",
+		"composer.json",
+		"webpack.config.js"
+	],
 	"scripts": {
 		"build": "wp-scripts build",
 		"start": "wp-scripts start",
+		"plugin-zip": "npm run build && npm run composer -- dump-autoload --no-dev --classmap-authoritative && wp-scripts plugin-zip && npm run composer -- dump-autoload",
+		"i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- wp i18n make-pot . languages/easy-charts.pot --exclude=src,node_modules,vendor,tests,artifacts,build/echarts.js",
 		"lint:js": "wp-scripts lint-js src tests/e2e playwright.config.js",
 		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",
 		"format:js": "wp-scripts format src tests/e2e playwright.config.js",
