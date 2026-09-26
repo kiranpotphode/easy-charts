@@ -7,7 +7,9 @@
 
 namespace EasyCharts\Cli;
 
+use EasyCharts\Chart\ChartMeta;
 use EasyCharts\Chart\ChartRepository;
+use EasyCharts\Migration\V1Converter;
 use EasyCharts\PostType\ChartPostType;
 use EasyCharts\Service;
 use WP_CLI;
@@ -15,6 +17,9 @@ use WP_CLI;
 /**
  * `wp easy-charts seed-examples`: creates one published example chart per chart type and a page
  * showing them all. Only registered on local and development sites.
+ *
+ * With `--v1`, the charts are stored in the 1.x format instead (meta exactly as the 1.x editor
+ * saves it), to compare the converted 2.0 drawing with the 1.x preview on each chart's edit screen.
  *
  * Re-running updates the existing examples instead of duplicating them (tracked by the
  * `_easy_charts_example` meta key).
@@ -60,13 +65,26 @@ final class SeedCommand implements Service {
 	/**
 	 * Create or update the example charts and the page that shows them.
 	 *
+	 * ## OPTIONS
+	 *
+	 * [--v1]
+	 * : Store the charts in the 1.x format (converted when drawn) instead of the 2.0 format.
+	 *
 	 * ## EXAMPLES
 	 *
 	 *     wp easy-charts seed-examples
+	 *     wp easy-charts seed-examples --v1
 	 *
+	 * @param array $args       Positional arguments (unused).
+	 * @param array $assoc_args Options.
 	 * @return void
 	 */
-	public function seed() {
+	public function seed( $args = array(), $assoc_args = array() ) {
+		if ( ! empty( $assoc_args['v1'] ) ) {
+			$this->seed_v1();
+			return;
+		}
+
 		$sections = '';
 
 		foreach ( self::examples() as $type => $example ) {
@@ -93,26 +111,346 @@ final class SeedCommand implements Service {
 			}
 			$this->clear_legacy_meta( $chart_id );
 
-			$sections .= sprintf(
-				"<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">%s (%s)</h2>\n<!-- /wp:heading -->\n\n<!-- wp:shortcode -->\n[easy_chart chart_id=\"%d\"]\n<!-- /wp:shortcode -->\n\n",
-				esc_html( $example['title'] ),
-				esc_html( $type ),
-				$chart_id
-			);
+			$sections .= self::section( $example['title'], $type, $chart_id );
 			WP_CLI::log( sprintf( 'Chart %d: %s', $chart_id, $type ) );
 		}
 
+		$this->publish_page( 'page', 'Easy Charts examples', $sections );
+	}
+
+	/**
+	 * Create or update the 1.x-format example charts and their page.
+	 *
+	 * @return void
+	 */
+	private function seed_v1() {
+		$sections = '';
+
+		foreach ( self::v1_examples() as $slug => $example ) {
+			$chart_id = $this->upsert(
+				'v1-' . $slug,
+				array(
+					'post_type'   => ChartPostType::POST_TYPE,
+					'post_status' => 'publish',
+					'post_title'  => $example['title'],
+				)
+			);
+
+			// A 1.x chart has no stored v2 document; this one is ours, so a stale one can go.
+			delete_post_meta( $chart_id, ChartMeta::KEY );
+			update_post_meta( $chart_id, V1Converter::DATA_KEY, wp_slash( wp_json_encode( $example['data'] ) ) );
+			update_post_meta( $chart_id, V1Converter::TYPE_KEY, $slug );
+			foreach ( self::v1_groups( $chart_id, $example['config'] ) as $group => $values ) {
+				update_post_meta( $chart_id, '_ec_chart_' . $group, $values );
+			}
+
+			$sections .= self::section( $example['title'], $slug, $chart_id );
+			WP_CLI::log( sprintf( 'Chart %d: %s (1.x format) %s', $chart_id, $slug, admin_url( 'post.php?post=' . $chart_id . '&action=edit' ) ) );
+		}
+
+		$this->publish_page( 'v1-page', 'Easy Charts 1.x examples', $sections );
+	}
+
+	/**
+	 * Page content for one chart: a heading and its shortcode.
+	 *
+	 * @param string $title    Chart title.
+	 * @param string $type     Chart type.
+	 * @param int    $chart_id Chart ID.
+	 * @return string Block markup.
+	 */
+	private static function section( $title, $type, $chart_id ) {
+		return sprintf(
+			"<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">%s (%s)</h2>\n<!-- /wp:heading -->\n\n<!-- wp:shortcode -->\n[easy_chart chart_id=\"%d\"]\n<!-- /wp:shortcode -->\n\n",
+			esc_html( $title ),
+			esc_html( $type ),
+			$chart_id
+		);
+	}
+
+	/**
+	 * Create or update an example page and print its URL.
+	 *
+	 * @param string $key     Example key.
+	 * @param string $title   Page title.
+	 * @param string $content Page content.
+	 * @return void
+	 */
+	private function publish_page( $key, $title, $content ) {
 		$page_id = $this->upsert(
-			'page',
+			$key,
 			array(
 				'post_type'    => 'page',
 				'post_status'  => 'publish',
-				'post_title'   => 'Easy Charts examples',
-				'post_content' => $sections,
+				'post_title'   => $title,
+				'post_content' => $content,
 			)
 		);
 
 		WP_CLI::success( sprintf( 'Example page: %s', get_permalink( $page_id ) ) );
+	}
+
+	/**
+	 * All 17 1.x configuration groups as the 1.x editor saves them: its form defaults with the
+	 * given changes, text HTML-encoded by FILTER_SANITIZE_SPECIAL_CHARS.
+	 *
+	 * @param int   $chart_id Chart ID.
+	 * @param array $changes  Changed values by group and key (plain text).
+	 * @return array
+	 */
+	private static function v1_groups( $chart_id, array $changes ) {
+		$font   = array(
+			'fontfamily' => 'Arial',
+			'fontsize'   => '11',
+			'fontweight' => '700',
+		);
+		$groups = array(
+			'meta'       => array(
+				'position'       => '.uv-div-' . $chart_id,
+				'caption'        => '',
+				'subcaption'     => '',
+				'hlabel'         => '',
+				'hsublabel'      => '',
+				'vlabel'         => '',
+				'vsublabel'      => '',
+				'isDownloadable' => 0,
+				'downloadLabel'  => 'Download',
+			),
+			'graph'      => array(
+				'responsive'  => true,
+				// The form has no "Brink" option, so the browser submits the first one.
+				'palette'     => 'Default',
+				'bgcolor'     => '#ffffff',
+				'orientation' => 'Horizontal',
+				'opacity'     => 1.0,
+			),
+			'dimension'  => array(
+				'width'  => 400,
+				'height' => 400,
+			),
+			'margin'     => array(
+				'top'    => 50,
+				'bottom' => 150,
+				'left'   => 100,
+				'right'  => 100,
+			),
+			'frame'      => array( 'bgcolor' => '#ffffff' ),
+			'axis'       => array(
+				'opacity'      => 0.1,
+				'ticks'        => 8,
+				'subticks'     => 2,
+				'padding'      => 5,
+				'strokecolor'  => '#000000',
+				'minor'        => -10,
+				'showticks'    => 1,
+				'showsubticks' => 1,
+				'showtext'     => 1,
+			) + $font,
+			'label'      => array(
+				'strokecolor' => '#000000',
+				'showlabel'   => 1,
+				'precision'   => 2,
+				'prefix'      => '',
+				'suffix'      => '',
+			) + $font,
+			'legend'     => array(
+				'position'      => 'bottom',
+				'color'         => '#000000',
+				'strokewidth'   => 0.15,
+				'textmargin'    => 15,
+				'symbolsize'    => 10,
+				'inactivecolor' => '#DDD',
+				'legendstart'   => 0,
+				'legendtype'    => 'categories',
+				'showlegends'   => 1,
+			) + $font,
+			'scale'      => array(
+				'type'       => 'linear',
+				'ordinality' => 0.2,
+			),
+			'tooltip'    => array(
+				'show'   => 1,
+				'format' => '%c [%l] : %v',
+			),
+			'caption'    => array(
+				'textdecoration' => 'none',
+				'strokecolor'    => '#000000',
+				'cursor'         => 'pointer',
+			) + $font,
+			'subcaption' => array(
+				'textdecoration' => 'none',
+				'strokecolor'    => '#000000',
+				'cursor'         => 'pointer',
+			) + $font,
+			'bar'        => array(
+				'strokecolor' => 'none',
+				'textcolor'   => '#000000',
+			) + $font,
+			'line'       => array( 'interpolation' => 'linear' ),
+			'area'       => array(
+				'interpolation' => 'linear',
+				'opacity'       => 0.2,
+				'offset'        => 'zero',
+			),
+			'pie'        => array(
+				'fontvariant' => 'small-caps',
+				'fontfill'    => '#000000',
+				'strokecolor' => '#ffffff',
+				'strokewidth' => '1',
+			) + $font,
+			'donut'      => array(
+				'fontvariant' => 'small-caps',
+				'fontfill'    => '#000000',
+				'strokecolor' => '#ffffff',
+				'strokewidth' => '1',
+				'factor'      => '0.4',
+			) + $font,
+		);
+
+		foreach ( $changes as $group => $values ) {
+			$groups[ $group ] = array_merge( $groups[ $group ], $values );
+		}
+
+		foreach ( $groups as $group => $values ) {
+			foreach ( $values as $key => $value ) {
+				if ( is_string( $value ) ) {
+					$groups[ $group ][ $key ] = filter_var( $value, FILTER_SANITIZE_SPECIAL_CHARS );
+				}
+			}
+		}
+
+		return $groups;
+	}
+
+	/**
+	 * 1.x example charts: data as the 1.x spreadsheet saves it (strings), and the settings changed
+	 * from the 1.x form defaults.
+	 *
+	 * @return array Examples keyed by 1.x type slug.
+	 */
+	private static function v1_examples() {
+		$cars     = array(
+			array( '', 'Kia', 'Nissan', 'Toyota', 'Honda' ),
+			array( '2008', '10', '11', '12', '13' ),
+			array( '2009', '20', '11', '14', '13' ),
+			array( '2010', '30', '15', '12', '13' ),
+		);
+		$vertical = array( 'orientation' => 'Vertical' );
+
+		return array(
+			'ec_bar_chart'          => array(
+				'title'  => '1.x bar: default horizontal, caption & axis labels',
+				'data'   => $cars,
+				'config' => array(
+					'meta' => array(
+						'caption'    => 'Car sales & service',
+						'subcaption' => 'Units "sold"',
+						'hlabel'     => 'Units',
+						'vlabel'     => 'Year',
+					),
+				),
+			),
+			'ec_stacked_bar_chart'  => array(
+				'title'  => '1.x stacked bar: vertical, Android palette, legend right',
+				'data'   => $cars,
+				'config' => array(
+					'graph'  => array( 'palette' => 'Android' ) + $vertical,
+					'legend' => array( 'position' => 'right' ),
+					'meta'   => array(
+						'hlabel' => 'Year',
+						'vlabel' => 'Units',
+					),
+				),
+			),
+			'ec_percent_bar_chart'  => array(
+				'title'  => '1.x percent bar: vertical',
+				'data'   => $cars,
+				'config' => array(
+					'graph' => $vertical,
+					'label' => array( 'precision' => 0 ),
+				),
+			),
+			'ec_step_up_bar_chart'  => array(
+				'title'  => '1.x step-up bar: vertical',
+				'data'   => $cars,
+				'config' => array( 'graph' => $vertical ),
+			),
+			'ec_waterfall_chart'    => array(
+				'title'  => '1.x waterfall: vertical, $ prefix, download',
+				'data'   => array(
+					array( '', 'Change' ),
+					array( 'Opening', '120' ),
+					array( 'Sales', '45' ),
+					array( 'Costs', '-30' ),
+					array( 'Tax', '-15' ),
+					array( 'Other', '8' ),
+				),
+				'config' => array(
+					'graph' => $vertical,
+					'label' => array( 'prefix' => '$' ),
+					'meta'  => array(
+						'isDownloadable' => 1,
+						'downloadLabel'  => 'Save chart',
+					),
+				),
+			),
+			'ec_line_chart'         => array(
+				'title'  => '1.x line: default horizontal (drawn sideways)',
+				'data'   => $cars,
+				'config' => array( 'label' => array( 'suffix' => ' units' ) ),
+			),
+			'ec_area_chart'         => array(
+				'title'  => '1.x area: vertical, Soft palette, no labels',
+				'data'   => $cars,
+				'config' => array(
+					'graph' => array( 'palette' => 'Soft' ) + $vertical,
+					'label' => array( 'showlabel' => 0 ),
+				),
+			),
+			'ec_stacked_area_chart' => array(
+				'title'  => '1.x stacked area: vertical, fixed 500x300, grey background',
+				'data'   => $cars,
+				'config' => array(
+					'graph'     => array(
+						'responsive' => false,
+						'bgcolor'    => '#f4f4f4',
+					) + $vertical,
+					'dimension' => array(
+						'width'  => 500,
+						'height' => 300,
+					),
+				),
+			),
+			'ec_percent_area_chart' => array(
+				'title'  => '1.x percent area: vertical, no legend',
+				'data'   => $cars,
+				'config' => array(
+					'graph'  => $vertical,
+					'legend' => array( 'showlegends' => 0 ),
+				),
+			),
+			'ec_pie_chart'          => array(
+				'title'  => '1.x pie: Candid palette (first data row)',
+				'data'   => $cars,
+				'config' => array(
+					'graph' => array( 'palette' => 'Candid' ),
+					'meta'  => array( 'caption' => 'Sales in 2008' ),
+				),
+			),
+			'ec_donut_chart'        => array(
+				'title'  => '1.x donut: no tooltip, % suffix',
+				'data'   => $cars,
+				'config' => array(
+					'tooltip' => array( 'show' => 0 ),
+					'label'   => array( 'suffix' => '%' ),
+				),
+			),
+			'ec_polar_area_chart'   => array(
+				'title'  => '1.x polar area: legend right',
+				'data'   => $cars,
+				'config' => array( 'legend' => array( 'position' => 'right' ) ),
+			),
+		);
 	}
 
 	/**

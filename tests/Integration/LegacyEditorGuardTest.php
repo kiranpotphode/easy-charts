@@ -80,13 +80,54 @@ class LegacyEditorGuardTest extends WP_Ajax_UnitTestCase {
 		$this->assertArrayHasKey( 'easy_charts_shortcode_metabox', $boxes['side']['default'], 'shortcode box stays' );
 	}
 
-	public function test_1x_chart_keeps_the_1x_editor() {
+	public function test_1x_chart_keeps_the_1x_editor_with_a_2_0_preview_after_the_1x_preview() {
 		$boxes = $this->metaboxes( $this->chart( false ) );
 
 		foreach ( LegacyEditorGuard::LEGACY_METABOXES as $legacy ) {
 			$this->assertIsArray( $boxes['advanced']['default'][ $legacy ], $legacy . ' kept' );
 		}
 		$this->assertArrayNotHasKey( 'normal', $boxes );
+		$this->assertSame(
+			array( 'easy_charts_data_metabox', 'easy_charts_preview_metabox', LegacyEditorGuard::COMPARISON_METABOX, 'easy_charts_configuration_metabox' ),
+			array_keys( $boxes['advanced']['default'] )
+		);
+	}
+
+	public function test_comparison_preview_draws_the_converted_chart() {
+		$guard = Plugin::instance()->get( LegacyEditorGuard::class );
+		$id    = $this->chart( false );
+
+		ob_start();
+		$guard->render_comparison( get_post( $id ) );
+		$html = ob_get_clean();
+
+		$this->assertStringContainsString( 'easy-charts-chart--bar', $html );
+		$this->assertSame( '', get_post_meta( $id, '_easy_charts_chart', true ), 'nothing stored' );
+	}
+
+	public function test_saved_metabox_order_keeps_the_comparison_after_the_1x_preview() {
+		$guard = Plugin::instance()->get( LegacyEditorGuard::class );
+		$saved = array(
+			'side'     => 'submitdiv',
+			'advanced' => 'easy_charts_data_metabox,easy_charts_preview_metabox,easy_charts_configuration_metabox',
+		);
+
+		$order = $guard->place_comparison_in_saved_order( $saved );
+		$this->assertSame( 'easy_charts_data_metabox,easy_charts_preview_metabox,' . LegacyEditorGuard::COMPARISON_METABOX . ',easy_charts_configuration_metabox', $order['advanced'] );
+
+		// Once the user has placed the box, their order is kept.
+		$moved = array( 'side' => LegacyEditorGuard::COMPARISON_METABOX . ',submitdiv' ) + $saved;
+		$this->assertSame( $moved, $guard->place_comparison_in_saved_order( $moved ) );
+		$this->assertFalse( $guard->place_comparison_in_saved_order( false ) );
+	}
+
+	public function test_no_comparison_preview_for_unconvertible_or_v2_charts() {
+		$broken = $this->chart( false );
+		update_post_meta( $broken, '_easy_charts_chart_data', 'not a grid' );
+		$this->assertArrayNotHasKey( LegacyEditorGuard::COMPARISON_METABOX, $this->metaboxes( $broken )['advanced']['default'] );
+
+		$GLOBALS['wp_meta_boxes'] = array(); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- Reset between charts.
+		$this->assertArrayNotHasKey( LegacyEditorGuard::COMPARISON_METABOX, $this->metaboxes( $this->chart( true ) )['advanced']['default'] );
 	}
 
 	public function test_preview_shows_notice_and_v2_chart() {

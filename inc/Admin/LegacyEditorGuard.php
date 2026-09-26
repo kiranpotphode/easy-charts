@@ -25,11 +25,14 @@ use WP_Post;
  * - dequeues the 1.x editor scripts on that screen,
  * - refuses the 1.x AJAX data save.
  *
- * Charts without a stored v2 document keep the full 1.x editor.
+ * Charts without a stored v2 document keep the full 1.x editor, plus a preview of how 2.0 draws
+ * them (converted from their 1.x meta) right after the 1.x preview, for comparison.
  */
 final class LegacyEditorGuard implements Service {
 
 	const PREVIEW_METABOX = 'easy_charts_v2_preview';
+
+	const COMPARISON_METABOX = 'easy_charts_v2_comparison';
 
 	const LEGACY_METABOXES = array(
 		'easy_charts_data_metabox',
@@ -83,6 +86,7 @@ final class LegacyEditorGuard implements Service {
 	public function register() {
 		// Runs after the generic add_meta_boxes action the 1.x admin uses.
 		add_action( 'add_meta_boxes_' . ChartPostType::POST_TYPE, array( $this, 'replace_metaboxes' ), 20 );
+		add_filter( 'get_user_option_meta-box-order_' . ChartPostType::POST_TYPE, array( $this, 'place_comparison_in_saved_order' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'dequeue_legacy_scripts' ), 20 );
 		// Before the 1.x handler (default priority).
 		add_action( 'wp_ajax_easy_charts_save_chart_data', array( $this, 'refuse_legacy_save' ), 1 );
@@ -105,7 +109,11 @@ final class LegacyEditorGuard implements Service {
 	 * @return void
 	 */
 	public function replace_metaboxes( $post ) {
-		if ( ! $post instanceof WP_Post || ! $this->is_v2_chart( $post->ID ) ) {
+		if ( ! $post instanceof WP_Post ) {
+			return;
+		}
+		if ( ! $this->is_v2_chart( $post->ID ) ) {
+			$this->add_comparison( $post );
 			return;
 		}
 
@@ -121,6 +129,77 @@ final class LegacyEditorGuard implements Service {
 			'normal',
 			'high'
 		);
+	}
+
+	/**
+	 * For a 1.x chart that converts, add the 2.0 preview right after the 1.x preview.
+	 *
+	 * @param WP_Post $post Chart being edited.
+	 * @return void
+	 */
+	private function add_comparison( WP_Post $post ) {
+		if ( null === $this->charts->find( $post->ID ) ) {
+			return;
+		}
+
+		add_meta_box(
+			self::COMPARISON_METABOX,
+			__( 'Easy Charts 2.0 preview', 'easy-charts' ),
+			array( $this, 'render_comparison' ),
+			ChartPostType::POST_TYPE,
+			'advanced'
+		);
+
+		// Move it from the end of the list to just after the 1.x preview.
+		global $wp_meta_boxes;
+		$boxes = &$wp_meta_boxes[ ChartPostType::POST_TYPE ]['advanced']['default'];
+		if ( ! isset( $boxes['easy_charts_preview_metabox'] ) ) {
+			return;
+		}
+		$comparison = array( self::COMPARISON_METABOX => $boxes[ self::COMPARISON_METABOX ] );
+		unset( $boxes[ self::COMPARISON_METABOX ] );
+		$at    = array_search( 'easy_charts_preview_metabox', array_keys( $boxes ), true ) + 1;
+		$boxes = array_slice( $boxes, 0, $at, true ) + $comparison + array_slice( $boxes, $at, null, true );
+	}
+
+	/**
+	 * Keep the 2.0 preview after the 1.x preview when the user has a saved metabox order, which
+	 * would otherwise put the new box last. Once the user moves the box, their order wins.
+	 *
+	 * @param mixed $order Saved order: comma-separated box IDs by context.
+	 * @return mixed
+	 */
+	public function place_comparison_in_saved_order( $order ) {
+		if ( ! is_array( $order ) || false !== strpos( implode( ',', $order ), self::COMPARISON_METABOX ) ) {
+			return $order;
+		}
+
+		foreach ( $order as $context => $ids ) {
+			$list = explode( ',', (string) $ids );
+			$at   = array_search( 'easy_charts_preview_metabox', $list, true );
+			if ( false !== $at ) {
+				array_splice( $list, $at + 1, 0, self::COMPARISON_METABOX );
+				$order[ $context ] = implode( ',', $list );
+				break;
+			}
+		}
+
+		return $order;
+	}
+
+	/**
+	 * Metabox: the 1.x chart as 2.0 will draw it.
+	 *
+	 * @param WP_Post $post Chart being edited.
+	 * @return void
+	 */
+	public function render_comparison( $post ) {
+		printf(
+			'<p class="description">%s</p>',
+			esc_html__( 'How Easy Charts 2.0 will draw this chart, converted from its 1.x data and settings. Nothing is saved in the 2.0 format. Reload the page after saving to update this preview.', 'easy-charts' )
+		);
+
+		echo $this->renderer->render( $post->ID ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- ChartRenderer escapes its output.
 	}
 
 	/**
