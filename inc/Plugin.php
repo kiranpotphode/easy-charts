@@ -81,12 +81,14 @@ final class Plugin {
 	private function create_services() {
 		$charts   = new Chart\ChartRepository();
 		$settings = new Settings\SettingsResolver( $charts );
+		$renderer = new Frontend\ChartRenderer( $charts, $settings );
 
 		return array(
 			new PostType\ChartPostType(),
 			new Chart\ChartMeta(),
 			new Settings\GlobalSettings(),
-			new Frontend\ChartRenderer( $charts, $settings ),
+			$renderer,
+			new Shortcode\ChartShortcode( $charts, $renderer ),
 		);
 	}
 }
