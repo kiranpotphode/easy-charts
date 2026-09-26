@@ -489,11 +489,15 @@ class Easy_Charts_Admin {
 
 		check_ajax_referer( 'ec-ajax-nonce', '_nonce_check' );
 
+		$chart_id = isset( $_POST['chart_id'] ) ? absint( wp_unslash( $_POST['chart_id'] ) ) : 0;
+
+		if ( 'easy_charts' !== get_post_type( $chart_id ) || ! current_user_can( 'edit_post', $chart_id ) ) {
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to edit this chart.', 'easy-charts' ) ), 403 );
+		}
+
 		if ( 'easy_charts_save_chart_data' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_SPECIAL_CHARS ) ) {
 			exit( 0 );
 		}
-
-		$chart_id = filter_input( INPUT_POST, 'chart_id', FILTER_SANITIZE_NUMBER_INT );
 
 		update_post_meta( $chart_id, '_easy_charts_chart_data', filter_input( INPUT_POST, 'chart_data', FILTER_UNSAFE_RAW ) );
 
@@ -508,6 +512,10 @@ class Easy_Charts_Admin {
 	 * @since 1.0.0
 	 */
 	public function easy_charts_get_published_charts_callback() {
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to list charts.', 'easy-charts' ) ), 403 );
+		}
+
 		if ( 'easy_charts_get_published_charts' !== filter_input( INPUT_POST, 'action', FILTER_SANITIZE_SPECIAL_CHARS ) ) {
 			exit( 0 );
 		}
