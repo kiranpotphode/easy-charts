@@ -1,0 +1,80 @@
+name: Release
+
+# Pushing a tag like v2.0.0 or v2.0.0-beta.1 builds the plugin zip and creates a GitHub release
+# with it. Tags with a pre-release suffix (a "-") become GitHub pre-releases, which are not deployed
+# to WordPress.org (see deploy.yml).
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      # No dependency cache in the release job: the zip is built from a clean install.
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php: '7.4'
+          tools: composer:v2
+          coverage: none
+
+      - name: Check the tag matches the plugin version
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          version="${TAG#v}"
+          header=$(sed -n 's/^ \* Version: *//p' easy-charts.php)
+          constant=$(sed -n "s/^define( 'EASY_CHARTS_VERSION', '\(.*\)' );/\1/p" easy-charts.php)
+          package=$(node -p "require('./package.json').version")
+          for found in "$header" "$constant" "$package"; do
+            if [ "$found" != "$version" ]; then
+              echo "::error::Tag $TAG does not match the versions in easy-charts.php ($header, $constant) and package.json ($package)."
+              exit 1
+            fi
+          done
+          if [[ "$version" != *-* ]]; then
+            stable=$(sed -n 's/^Stable tag: *//p' readme.txt)
+            if [ "$stable" != "$version" ]; then
+              echo "::error::readme.txt Stable tag is $stable, expected $version."
+              exit 1
+            fi
+          fi
+
+      - run: npm ci
+      - name: Composer autoloader without dev packages
+        run: composer install --no-dev --classmap-authoritative --no-interaction --no-progress
+      - run: npm run build
+      - run: npx wp-scripts plugin-zip
+
+      - name: Create the GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          zip_url="https://github.com/$REPO/releases/download/$TAG/easy-charts.zip"
+          playground=$(node -e '
+            const blueprint = require( "./.wordpress-org/blueprints/blueprint.json" );
+            blueprint.steps.find( ( s ) => s.step === "installPlugin" ).pluginData = { resource: "url", url: process.argv[ 1 ] };
+            console.log( "https://playground.wordpress.net/#" + encodeURIComponent( JSON.stringify( blueprint ) ) );
+          ' "$zip_url")
+          notes="Install: download easy-charts.zip below and upload it under Plugins → Add New → Upload Plugin.
+
+          Try it in your browser: [open in WordPress Playground]($playground) (example charts included).
+
+          See the changelog and the \"Upgrading from 1.x\" notes in readme.txt."
+          flags=()
+          if [[ "$TAG" == *-* ]]; then flags+=(--prerelease); fi
+          gh release create "$TAG" easy-charts.zip --title "Easy Charts ${TAG#v}" --notes "$notes" --verify-tag "${flags[@]}"
