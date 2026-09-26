@@ -91,6 +91,7 @@ final class SeedCommand implements Service {
 			if ( is_wp_error( $saved ) ) {
 				WP_CLI::error( sprintf( '%s: %s', $type, $saved->get_error_message() ) );
 			}
+			$this->clear_legacy_meta( $chart_id );
 
 			$sections .= sprintf(
 				"<!-- wp:heading -->\n<h2 class=\"wp-block-heading\">%s (%s)</h2>\n<!-- /wp:heading -->\n\n<!-- wp:shortcode -->\n[easy_chart chart_id=\"%d\"]\n<!-- /wp:shortcode -->\n\n",
@@ -144,6 +145,28 @@ final class SeedCommand implements Service {
 		update_post_meta( $post_id, self::META, $key );
 
 		return $post_id;
+	}
+
+	/**
+	 * Remove 1.x meta from an example chart, e.g. demo data saved by opening it in the 1.x editor.
+	 *
+	 * Only ever called for charts this command created (they carry the example marker), never for
+	 * real 1.x charts, whose meta must stay untouched.
+	 *
+	 * @param int $chart_id Example chart ID.
+	 * @return void
+	 */
+	private function clear_legacy_meta( $chart_id ) {
+		if ( '' === get_post_meta( $chart_id, self::META, true ) ) {
+			return;
+		}
+
+		$groups = array( 'type', 'meta', 'graph', 'dimension', 'margin', 'frame', 'axis', 'label', 'legend', 'scale', 'tooltip', 'caption', 'subcaption', 'bar', 'line', 'area', 'pie', 'donut' );
+
+		delete_post_meta( $chart_id, '_easy_charts_chart_data' );
+		foreach ( $groups as $group ) {
+			delete_post_meta( $chart_id, '_ec_chart_' . $group );
+		}
 	}
 
 	/**

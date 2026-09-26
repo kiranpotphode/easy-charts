@@ -89,6 +89,7 @@ final class Plugin {
 			new Settings\GlobalSettings(),
 			$renderer,
 			new Shortcode\ChartShortcode( $charts, $renderer ),
+			new Admin\LegacyEditorGuard( $charts, $renderer ),
 		);
 
 		if ( Cli\SeedCommand::is_available() ) {
