@@ -231,23 +231,39 @@ function buildAxisChart( input ) {
 	let legendNames = names;
 
 	if ( type === 'waterfall' ) {
+		// Rises and falls each get their own two-series stack (invisible base + bar), drawn in
+		// the same slot. A single three-series stack would break: with stackStrategy "all" each
+		// value stacks on the series just before it, which is empty for half of the steps.
 		const steps = toSteps( values[ 0 ] ?? [] );
-		const pick = ( up ) =>
-			steps.size.map( ( size, i ) =>
-				steps.rising[ i ] === up ? size : null
+		const pick = ( list, up ) =>
+			list.map( ( value, i ) =>
+				steps.rising[ i ] === up ? value : null
 			);
-		const floating = {
-			type: 'bar',
-			stack: 'waterfall',
-			stackStrategy: 'all',
-			label,
-		};
 		legendNames = [ strings.increase, strings.decrease ];
 		chartSeries = [
-			invisibleBase( 'waterfall', steps.base ),
-			{ ...floating, name: strings.increase, data: pick( true ) },
-			{ ...floating, name: strings.decrease, data: pick( false ) },
-		];
+			[ 'rise', strings.increase, true ],
+			[ 'fall', strings.decrease, false ],
+		].flatMap( ( [ stack, name, up ] ) => {
+			// Falling bars are drawn with their size; labels and tooltips show the signed change.
+			const signed = ( value ) =>
+				format( up || value === null ? value : -value );
+			return [
+				invisibleBase( stack, pick( steps.base, up ) ),
+				{
+					type: 'bar',
+					name,
+					stack,
+					stackStrategy: 'all',
+					barGap: '-100%',
+					label: {
+						...label,
+						formatter: ( params ) => signed( params.value ),
+					},
+					tooltip: { valueFormatter: signed },
+					data: pick( steps.size, up ),
+				},
+			];
+		} );
 	} else if ( type === 'step-up-bar' ) {
 		// As in 1.x (uvCharts): within each category, every series starts where the previous
 		// series ended, and the steps stand side by side.

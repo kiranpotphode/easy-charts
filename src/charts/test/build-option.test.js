@@ -180,10 +180,18 @@ describe( 'buildOption', () => {
 			settings,
 			strings: { increase: 'Up', decrease: 'Down' },
 		} );
-		const [ base, up, down ] = option.series;
-		expect( base.data ).toEqual( [ 0, 70, 70 ] );
+		const [ riseBase, up, fallBase, down ] = option.series;
+		expect( riseBase.data ).toEqual( [ 0, null, 70 ] );
 		expect( up.data ).toEqual( [ 100, null, 20 ] );
+		expect( fallBase.data ).toEqual( [ null, 70, null ] );
 		expect( down.data ).toEqual( [ null, 30, null ] );
+		// Each visible series stacks only on its own base, in the same slot.
+		expect( [ up.stack, down.stack ] ).toEqual( [ 'rise', 'fall' ] );
+		expect( down.barGap ).toBe( '-100%' );
+		// Falling steps are labelled with their signed change.
+		expect( down.label.formatter( { value: 30 } ) ).toBe( '-30' );
+		expect( down.tooltip.valueFormatter( 30 ) ).toBe( '-30' );
+		expect( up.label.formatter( { value: 20 } ) ).toBe( '20' );
 		expect( option.legend.data ).toEqual( [ 'Up', 'Down' ] );
 	} );
 
@@ -227,6 +235,9 @@ describe( 'buildOption', () => {
 		for ( const type of CHART_TYPES ) {
 			const option = buildOption( { type, data, settings } );
 			expect( option.tooltip.formatter ).toBeUndefined();
+			option.series.forEach( ( series ) =>
+				expect( series.tooltip?.formatter ).toBeUndefined()
+			);
 		}
 	} );
 

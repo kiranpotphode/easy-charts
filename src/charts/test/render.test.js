@@ -88,6 +88,48 @@ describe( 'rendering with ECharts', () => {
 		}
 	);
 
+	it.each( [ 'waterfall', 'step-up-bar' ] )(
+		'lays out every floating %s bar, rising or falling',
+		( type ) => {
+			renderSvg(
+				buildOption( {
+					type,
+					data: {
+						columns: [ '', 'Change', 'Other' ],
+						rows: [
+							[ 'Start', 100, 5 ],
+							[ 'Costs', -130, -10 ],
+							[ 'Income', 40, 20 ],
+						],
+					},
+					settings,
+				} )
+			);
+			const visible = chart
+				.getModel()
+				.getSeries()
+				.filter( ( series ) => ! series.get( 'silent' ) );
+			const heights = visible.flatMap( ( series ) => {
+				const seriesData = series.getData();
+				return seriesData
+					.mapArray( ( i ) => ( {
+						value: seriesData.get(
+							series.getData().mapDimension( 'y' ),
+							i
+						),
+						layout: seriesData.getItemLayout( i ),
+					} ) )
+					.filter( ( item ) => ! Number.isNaN( item.value ) )
+					.map( ( item ) => Math.abs( item.layout?.height ?? 0 ) );
+			} );
+			// Waterfall: 3 steps; step-up: 3 categories x 2 series.
+			expect( heights ).toHaveLength( type === 'waterfall' ? 3 : 6 );
+			heights.forEach( ( height ) =>
+				expect( height ).toBeGreaterThan( 0 )
+			);
+		}
+	);
+
 	it( 'renders a chart with no rows', () => {
 		const svg = renderSvg(
 			buildOption( {
