@@ -54,7 +54,7 @@ final class V1Converter {
 
 	/**
 	 * The 1.x configuration groups the converter reads, with the 1.x fallback values used when a
-	 * group was never saved (`Easy_Charts::ec_get_chart_configuration()`).
+	 * group was never saved (1.x `Easy_Charts::ec_get_chart_configuration()`).
 	 */
 	const GROUP_DEFAULTS = array(
 		'graph'     => array(
@@ -226,7 +226,16 @@ final class V1Converter {
 			$option = self::GROUP_DEFAULTS[ $group ];
 		}
 
-		/** This filter is documented in includes/class-easy-charts.php (1.x). */
+		/**
+		 * Filters a 1.x configuration group before the chart is converted.
+		 *
+		 * @since 1.0.3
+		 * @since 2.0.0 Only read when converting a chart that has no 2.0 document yet.
+		 *
+		 * @param array  $option   Configuration group (uvCharts keys).
+		 * @param int    $chart_id Chart post ID.
+		 * @param string $group    Group name, e.g. `meta` or `legend`.
+		 */
 		$option = apply_filters( 'easy_charts_get_chart_configurations', $option, $chart_id, $group );
 
 		return is_array( $option ) ? $option : array();

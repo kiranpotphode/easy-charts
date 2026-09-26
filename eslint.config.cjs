@@ -23,9 +23,6 @@ const WORDPRESS_MODULES = [
 ];
 
 module.exports = [
-	{
-		ignores: [ 'includes/**', 'public/**' ],
-	},
 	...defaultConfig,
 	{
 		settings: {

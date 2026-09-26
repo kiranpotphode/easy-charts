@@ -88,7 +88,7 @@ final class Plugin {
 			new Chart\ChartMeta(),
 			new Settings\GlobalSettings(),
 			$renderer,
-			new Shortcode\ChartShortcode( $charts, $renderer ),
+			new Shortcode\ChartShortcode( $renderer ),
 			new Block\ChartBlock( $renderer ),
 			new Rest\ChartsController( $charts, $settings ),
 			new Admin\ChartEditor(),

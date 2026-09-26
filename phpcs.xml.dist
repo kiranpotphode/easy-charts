@@ -4,10 +4,6 @@
 
 	<file>.</file>
 
-	<!-- 1.x code, replaced during the 2.0 rewrite. -->
-	<exclude-pattern>/includes/*</exclude-pattern>
-	<exclude-pattern>/public/*</exclude-pattern>
-
 	<exclude-pattern>/build/*</exclude-pattern>
 	<exclude-pattern>/node_modules/*</exclude-pattern>
 	<exclude-pattern>/vendor/*</exclude-pattern>

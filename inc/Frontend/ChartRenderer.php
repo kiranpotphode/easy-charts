@@ -84,19 +84,31 @@ final class ChartRenderer implements Service {
 	 * Render a chart.
 	 *
 	 * @param int $chart_id Chart post ID.
-	 * @return string HTML, or an empty string if the chart has no v2 document or may not be shown.
+	 * @return string HTML; for a chart without usable data, a notice for its editors and nothing
+	 *                for anyone else; an empty string if the chart may not be shown.
 	 */
 	public function render( $chart_id ) {
 		$chart_id = (int) $chart_id;
 		$doc      = $this->charts->find( $chart_id );
-		if ( null === $doc || ! $this->can_show( $chart_id ) ) {
+		if ( null === $doc ) {
+			return $this->no_data_notice( $chart_id );
+		}
+		if ( ! $this->can_show( $chart_id ) ) {
 			return '';
 		}
 
 		$settings = $this->settings->resolve( $doc );
 		$html     = $this->markup( $doc, $settings, $this->title( $chart_id, $settings ), $chart_id );
 
-		/** This filter is documented in includes/class-easy-charts.php (1.x). */
+		/**
+		 * Filters the HTML of a chart post's chart.
+		 *
+		 * @since 1.0.3
+		 * @since 2.0.0 The HTML is the ECharts figure with its data table, not the uvCharts container.
+		 *
+		 * @param string $html     Chart HTML.
+		 * @param int    $chart_id Chart post ID.
+		 */
 		return apply_filters( 'easy_charts_render_chart', $html, $chart_id );
 	}
 
@@ -179,6 +191,38 @@ final class ChartRenderer implements Service {
 		}
 
 		return false !== $status;
+	}
+
+	/**
+	 * Tell people who can edit a chart that it can't be drawn (no data, or 1.x data that can't be
+	 * converted). Visitors get nothing: there is no data to show them.
+	 *
+	 * @param int $chart_id Chart post ID.
+	 * @return string HTML.
+	 */
+	private function no_data_notice( $chart_id ) {
+		if ( ! $this->charts->is_chart( $chart_id ) || 'trash' === get_post_status( $chart_id ) || ! current_user_can( 'edit_post', $chart_id ) ) {
+			return '';
+		}
+
+		$title = (string) get_post_field( 'post_title', $chart_id, 'raw' );
+		if ( '' === $title ) {
+			/* translators: %d: chart post ID. */
+			$title = sprintf( __( '#%d (no title)', 'easy-charts' ), $chart_id );
+		}
+
+		return sprintf(
+			'<p class="easy-charts-notice">%1$s <a href="%2$s">%3$s</a></p>',
+			esc_html(
+				sprintf(
+					/* translators: %s: chart title. */
+					__( 'Easy Charts: the chart "%s" has no data that can be drawn, so visitors see nothing here. Only people who can edit the chart see this message.', 'easy-charts' ),
+					$title
+				)
+			),
+			esc_url( admin_url( 'post.php?post=' . $chart_id . '&action=edit' ) ),
+			esc_html__( 'Edit chart', 'easy-charts' )
+		);
 	}
 
 	/**
