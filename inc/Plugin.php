@@ -83,12 +83,18 @@ final class Plugin {
 		$settings = new Settings\SettingsResolver( $charts );
 		$renderer = new Frontend\ChartRenderer( $charts, $settings );
 
-		return array(
+		$services = array(
 			new PostType\ChartPostType(),
 			new Chart\ChartMeta(),
 			new Settings\GlobalSettings(),
 			$renderer,
 			new Shortcode\ChartShortcode( $charts, $renderer ),
 		);
+
+		if ( Cli\SeedCommand::is_available() ) {
+			$services[] = new Cli\SeedCommand( $charts );
+		}
+
+		return $services;
 	}
 }
