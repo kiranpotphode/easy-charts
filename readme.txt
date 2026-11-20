@@ -16,6 +16,8 @@ Easy Charts turns a table of numbers into an interactive chart that you can plac
 
 Version 2.0 draws charts with [Apache ECharts](https://echarts.apache.org/) and adds a Chart block for the block editor. Charts made with Easy Charts 1.x, and the `[easy_chart]` shortcodes that show them, keep working.
 
+**Version 2.0 is a major update with breaking changes.** Your charts are kept and keep their 1.x look until you choose to migrate them, but some 1.x options and features are gone. Read "Upgrading from 1.x" below before you update.
+
 ### Make a chart in the block editor
 
 Add the **Chart** block and choose how to start:
@@ -32,7 +34,7 @@ Edit the data in a spreadsheet-style table, or paste it as text. Style the chart
 
 ### Site-wide chart settings
 
-**Easy Charts → Settings** sets the defaults for every chart on the site: font, colours, legend, tooltips, value labels, size and more. A chart's own settings override them. By default, charts use your theme's font.
+**Easy Charts → Settings** sets the defaults for every chart on the site: font, colours, legend, tooltips, value labels, size and more. A chart's own settings override them. By default, charts use your theme's font. Charts made with Easy Charts 1.x follow these settings once you migrate them.
 
 ### 12 chart types
 
@@ -60,31 +62,46 @@ Chart scripts load only on pages that show a chart. Easy Charts adds no database
 
 ### Upgrading from 1.x
 
-Updating keeps all your charts and shortcodes. Nothing is changed in the database when you update: each 1.x chart is converted when it is shown or opened. A chart is saved in the 2.0 format only when you edit and save it, and its 1.x data is kept as it was.
+#### Your charts are kept
 
-Charts look a little different, because 2.0 draws them with Apache ECharts instead of uvCharts. Styling left at its 1.x default (the "Default" colours, the Arial font, straight lines, area opacity and donut hole size) follows the 2.0 and site-wide settings; styling you changed in 1.x is kept.
+* Updating changes nothing in the database. Your 1.x charts and their settings stay as they are, and every `[easy_chart]` shortcode keeps working.
+* Each 1.x chart keeps its 1.x look: its colours (including the 1.x "Default" palette), fonts, sizes and other settings. The site-wide settings under **Easy Charts → Settings** don't apply to it. You can edit and save it in 2.0 without changing that.
+* When you are ready, migrate a chart to the 2.0 styling: open it and choose **Migrate to 2.0**, or migrate all of them at once under **Easy Charts → Settings**. A migrated chart keeps everything you changed in 1.x, and uses the 2.0 styling and the site-wide settings for the rest, so its default colours and font can change.
+* Migrating, and saving a chart in 2.0, store the chart in a new place. The 1.x data is never changed or deleted, so you can go back to 1.2.5 (see below).
 
-**Fonts:** 1.x let you pick one of 15 fonts, separately for each part of the chart, but never loaded them, so visitors without that font saw a fallback. 2.0 has one font setting per chart: your theme's font, sans-serif, serif or monospace, plus a text size. A 1.x chart's caption font is converted to the matching one of these.
+#### What's new
 
-**Options that 2.0 no longer has:** fonts per chart part, font weights and colours, margins, axis tick, opacity and line settings, logarithmic, power and square-root scales, area offset, pie and donut outlines, plot background, axis sub-labels, legend type, start and symbol size, and tooltip format.
+* Charts are drawn with Apache ECharts: sharper, interactive and responsive.
+* A Chart block for the block editor, with a setup wizard, a spreadsheet-style data editor, pasting from spreadsheets and CSV, and a settings sidebar with a live preview.
+* Saved charts are edited in the block editor too, with a "Use this chart" panel that shows the shortcode.
+* Site-wide chart settings, including a font setting (your theme's font, sans-serif, serif or monospace) and a text size.
+* Every chart comes with its data as a table, for screen readers, visitors without JavaScript and search engines.
+* Horizontal line, area, step-up and waterfall charts, a custom chart title, curved lines, area opacity and donut hole size.
 
-**Behaviour changes:**
+#### Breaking changes
 
-* Private charts are shown only to people who are allowed to read them. 1.x showed them to every visitor.
-* Empty cells are drawn as gaps. 1.x drew them as 0.
-* Numbers written with thousands separators, such as "1,234", are read as text. 1.x plotted them as 1.
-* The Easy Charts button in the Classic Editor toolbar is gone. Use the shortcode, shown in the "Use this chart" panel when you edit a chart.
-* A chart that has no data shows nothing to visitors. People who can edit it see a notice with a link to fix it.
+* **Charts are drawn differently.** 2.0 draws with Apache ECharts instead of uvCharts. Even while a chart keeps its 1.x look, its bars, lines, legend, labels and tooltips are drawn in the ECharts style, so it won't be pixel-identical to 1.x.
+* **Some 1.x options are gone** and have no effect: fonts and font sizes for each part of the chart (2.0 has one font and one text size per chart; a 1.x chart's caption font and label size are used), font weights and colours, margins, axis tick, opacity and line settings, logarithmic, power and square-root scales, area offset, pie and donut outlines, plot background, axis sub-labels, legend type, start and symbol size, and tooltip format. 1.x let you pick one of 15 fonts but never loaded them, so visitors without that font saw a fallback; 2.0 uses the matching generic font (sans-serif, serif or monospace).
+* **The 1.x chart editor is replaced.** Charts are edited in the block editor, even when the Classic Editor plugin is active.
+* **The Easy Charts button in the Classic Editor toolbar is gone.** Use the shortcode, shown in the "Use this chart" panel when you edit a chart.
+* **Private charts** are shown only to people who are allowed to read them. 1.x showed them to every visitor.
+* **Empty cells** are drawn as gaps. 1.x drew them as 0.
+* **Numbers with thousands separators**, such as "1,234", are read as text. 1.x plotted them as 1.
+* **A chart with no data** shows nothing to visitors. People who can edit it see a notice with a link to fix it.
+* **New requirements:** WordPress 6.6 and PHP 7.4. 1.x ran on WordPress 3.0.
 
-**For developers:**
+#### Breaking changes for developers
 
-* The uvCharts, D3, canvg and FileSaver scripts and the `Easy_Charts` class are removed.
+* The chart markup changed. A chart is now a `<figure class="easy-charts-chart">` with an `.easy-charts-chart__canvas` box and an `.easy-charts-chart__table` data table. The 1.x `.ec-uv-chart-container` and `.uv-div-{ID}` elements, the `ec_object_{ID}` JavaScript objects and the `uv` global no longer exist, so custom CSS or JavaScript that targets them needs updating.
+* The uvCharts, D3, canvg and FileSaver scripts, the `Easy_Charts` class and the `easy_charts_save_chart_data` and `easy_charts_get_published_charts` admin-ajax actions are removed.
 * The `easy_charts_render_chart` filter is kept. It now filters the ECharts chart markup.
 * `easy_charts_get_chart_configurations` is still applied when a 1.x chart is converted.
 * `easy_charts_get_chart_data` is deprecated, because the uvCharts data it filtered is no longer used. Use `easy_charts_convert_v1_chart` to change a converted chart.
 * The `easy_charts_fonts` and `easy_chart_dropdown` filters are removed.
 
-**Going back to 1.2.5:** charts you haven't edited in 2.0 are unchanged. Charts you edited and saved in 2.0 go back to how they were before those edits, because their 1.x data was kept. Charts created in 2.0, and Chart blocks, don't show in 1.x.
+#### Going back to 1.2.5
+
+Charts you haven't saved or migrated in 2.0 are unchanged. Charts you saved or migrated in 2.0 go back to how they were in 1.x, because their 1.x data was kept; changes made in 2.0 don't show in 1.x. Charts created in 2.0, and Chart blocks, don't show in 1.x.
 
 == Installation ==
 
@@ -105,7 +122,7 @@ Yes. Charts are made in the block editor, and you place them in classic content 
 
 = What happens to my 1.x charts? =
 
-They keep working. See "Upgrading from 1.x" above.
+They keep working and keep their 1.x look until you migrate them, one at a time or all at once. See "Upgrading from 1.x" above.
 
 = Where is my data stored? =
 
@@ -150,7 +167,7 @@ Easy Charts includes these libraries, all under licences compatible with the GPL
 * New: horizontal orientation for line, area, step-up and waterfall charts, and a custom chart title.
 * New: font setting (theme font, sans-serif, serif or monospace) and text size, site-wide or per chart.
 * New: curved lines, area opacity and donut hole size settings; values changed in 1.x are kept.
-* Changed: 1.x charts are converted when shown or opened, and stored in the 2.0 format only when saved. Their 1.x data is kept.
+* Changed: 1.x charts are converted when shown or opened, and keep their 1.x look (colours, fonts and other settings) until you migrate them, per chart or all at once. Their 1.x data is never changed.
 * Removed: uvCharts and its scripts, the 1.x chart editor, the Classic Editor toolbar button, and the options listed under "Upgrading from 1.x".
 * Security: chart data is validated and escaped on output. The 1.x admin-ajax handlers are removed.
 * Requires WordPress 6.6 and PHP 7.4.
@@ -217,4 +234,4 @@ Easy Charts includes these libraries, all under licences compatible with the GPL
 == Upgrade Notice ==
 
 = 2.0.0 =
-Major update: charts are drawn with Apache ECharts and there is a new Chart block. Existing charts and shortcodes keep working, but some 1.x styling options are gone. See "Upgrading from 1.x" before updating.
+Major update with breaking changes: charts are drawn with Apache ECharts and some 1.x options are gone. Your charts keep their 1.x look until you migrate them. Read "Upgrading from 1.x" before updating.
