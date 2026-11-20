@@ -38,8 +38,12 @@ jobs:
       - run: npm run lint:css
       - run: npm run test:js
       - run: npm run build
-      - name: npm audit
-        run: npm audit --audit-level=moderate
+      # Only the runtime dependencies end up in the plugin zip, so they block.
+      - name: npm audit (shipped dependencies)
+        run: npm audit --omit=dev --audit-level=moderate
+      # Dev tooling advisories often have no fixed release yet; Dependabot proposes the updates.
+      - name: npm audit (dev tooling)
+        run: npm audit --audit-level=high || echo "::warning title=npm audit::High or critical advisories in dev tooling, see the log of this step."
 
   php:
     name: PHPUnit (WordPress ${{ matrix.wp }}, PHP ${{ matrix.php }})
