@@ -8,6 +8,7 @@
 namespace EasyCharts\Settings;
 
 use EasyCharts\Chart\ChartRepository;
+use EasyCharts\Migration\V1Converter;
 
 /**
  * Works out a chart's effective settings from four layers, lowest first:
@@ -45,7 +46,10 @@ final class SettingsResolver {
 	 * @return array
 	 */
 	public function resolve( array $doc ) {
-		$settings = self::merge( self::base(), $this->template_settings( $doc ) );
+		// A 1.x chart that keeps its 1.x look is drawn on the 1.x look, not the site-wide settings.
+		$settings = empty( $doc['source']['v1Look'] )
+			? self::merge( self::base(), $this->template_settings( $doc ) )
+			: V1Converter::look_settings();
 
 		$own = isset( $doc['settings'] ) && is_array( $doc['settings'] ) ? $doc['settings'] : array();
 

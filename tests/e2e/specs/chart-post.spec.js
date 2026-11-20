@@ -78,6 +78,48 @@ test.describe( 'Chart post editor', () => {
 		).toBe( v1Data );
 	} );
 
+	test( 'migrates a 1.x chart to 2.0 styling', async ( {
+		admin,
+		editor,
+		page,
+		requestUtils,
+	} ) => {
+		const chartId = await findChart( requestUtils, '1.x pie' );
+		const v1Data = wp(
+			`post meta get ${ chartId } _easy_charts_chart_data`
+		);
+		await admin.editPost( chartId );
+
+		const block = editor.canvas.getByRole( 'document', {
+			name: 'Block: Chart',
+		} );
+		await editor.selectBlocks( block );
+		await editor.openDocumentSettingsSidebar();
+		const sidebar = page.getByRole( 'region', { name: 'Editor settings' } );
+		await sidebar.getByRole( 'button', { name: 'Migrate to 2.0' } ).click();
+		await expect(
+			sidebar.getByText( 'Save the chart to keep the change.' )
+		).toBeVisible();
+
+		await page
+			.getByRole( 'region', { name: 'Editor top bar' } )
+			.getByRole( 'button', { name: 'Save', exact: true } )
+			.click();
+		await expect(
+			page
+				.getByRole( 'button', { name: 'Dismiss this notice' } )
+				.filter( { hasText: 'Chart updated.' } )
+		).toBeVisible();
+
+		const saved = await requestUtils.rest( {
+			path: `/easy-charts/v1/charts/${ chartId }`,
+		} );
+		expect( saved.document.source ).toEqual( { templateId: null } );
+		expect(
+			wp( `post meta get ${ chartId } _easy_charts_chart_data` )
+		).toBe( v1Data );
+	} );
+
 	test( 'shows the shortcode for the chart', async ( {
 		admin,
 		editor,

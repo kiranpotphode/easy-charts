@@ -111,6 +111,8 @@ final class Schema {
 					'additionalProperties' => false,
 					'properties'           => array(
 						'templateId' => array( 'type' => array( 'integer', 'null' ) ),
+						// A converted 1.x chart that keeps its 1.x look until it is migrated.
+						'v1Look'     => array( 'type' => 'boolean' ),
 					),
 				),
 			),
@@ -208,7 +210,11 @@ final class Schema {
 		}
 
 		$template_id   = isset( $doc['source']['templateId'] ) ? (int) $doc['source']['templateId'] : 0;
+		$v1_look       = ! empty( $doc['source']['v1Look'] );
 		$doc['source'] = array( 'templateId' => $template_id > 0 ? $template_id : null );
+		if ( $v1_look ) {
+			$doc['source']['v1Look'] = true;
+		}
 
 		return $doc;
 	}

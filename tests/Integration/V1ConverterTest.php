@@ -7,8 +7,10 @@
 
 namespace EasyCharts\Tests\Integration;
 
+use EasyCharts\Chart\ChartRepository;
 use EasyCharts\Chart\Schema;
 use EasyCharts\Migration\V1Converter;
+use EasyCharts\Settings\SettingsResolver;
 use WP_UnitTestCase;
 
 /**
@@ -278,11 +280,67 @@ class V1ConverterTest extends WP_UnitTestCase {
 		$this->assertSame( array( 'show' => false ), $title( '' ) );
 	}
 
-	public function test_default_palette_follows_the_global_palette() {
+	public function test_default_palette_keeps_the_uvcharts_default_colours() {
 		foreach ( array( 'Default', 'Brink', 'Unknown' ) as $palette ) {
 			$settings = $this->convert( 'ec_bar_chart', array( 'graph' => array( 'palette' => $palette ) ) )['settings'];
+			// Not an override: the 1.x look supplies the uvCharts Default colours until migration.
 			$this->assertArrayNotHasKey( 'palette', $settings, $palette );
 		}
+		$this->assertSame( V1Converter::DEFAULT_COLORS, V1Converter::look_settings()['palette']['colors'] );
+	}
+
+	public function test_converted_charts_keep_their_1x_look() {
+		$doc = $this->convert();
+		$this->assertSame(
+			array(
+				'templateId' => null,
+				'v1Look'     => true,
+			),
+			$doc['source']
+		);
+
+		// Site-wide settings don't apply until the chart is migrated.
+		update_option(
+			'easy_charts_settings',
+			array(
+				'palette' => array( 'colors' => array( '#111111' ) ),
+				'legend'  => array( 'position' => 'top' ),
+			)
+		);
+		$resolver = new SettingsResolver( new ChartRepository() );
+		$settings = $resolver->resolve( $doc );
+		$this->assertSame( V1Converter::DEFAULT_COLORS, $settings['palette']['colors'] );
+		$this->assertSame( 'bottom', $settings['legend']['position'] );
+		$this->assertSame( 'sans-serif', $settings['font']['family'] );
+		$this->assertSame( 11, $settings['font']['size'] );
+
+		// Migrated: what the chart didn't change in 1.x follows the site.
+		unset( $doc['source']['v1Look'] );
+		$settings = $resolver->resolve( $doc );
+		$this->assertSame( array( '#111111' ), $settings['palette']['colors'] );
+		$this->assertSame( 'top', $settings['legend']['position'] );
+		$this->assertSame( 'site', $settings['font']['family'] );
+		$this->assertSame( 'horizontal', $settings['layout']['orientation'], 'the 1.x orientation stays' );
+	}
+
+	public function test_explicit_1x_choices_stay_after_migration_even_when_they_equal_2x_defaults() {
+		$settings = $this->convert(
+			'ec_area_chart',
+			array(
+				'area'    => array( 'opacity' => '0.4' ),
+				'caption' => array( 'fontfamily' => 'Verdana' ),
+				'label'   => array( 'fontsize' => '12' ),
+			)
+		)['settings'];
+
+		$this->assertSame( array( 'opacity' => 0.4 ), $settings['area'] );
+		$this->assertSame(
+			array(
+				'size'   => 12,
+				'family' => 'sans-serif',
+			),
+			$settings['font']
+		);
 	}
 
 	public function test_pie_charts_get_no_axis_settings_and_waterfall_no_legend() {

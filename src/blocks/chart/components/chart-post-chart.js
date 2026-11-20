@@ -1,7 +1,7 @@
 /**
  * WordPress dependencies
  */
-import { PanelBody, Spinner } from '@wordpress/components';
+import { Button, PanelBody, Spinner } from '@wordpress/components';
 import { useEntityProp } from '@wordpress/core-data';
 import { useSelect } from '@wordpress/data';
 import { useEffect, useState } from '@wordpress/element';
@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
 /**
  * Internal dependencies
  */
+import { keeps1xLook } from '../../../components/editor-data';
 import { getChart } from '../api';
 import ChartEditor from './chart-editor';
 
@@ -37,7 +38,8 @@ function isDocument( value ) {
  * meta (saved with the post).
  *
  * A 1.x chart has no stored document yet: it opens converted from its 1.x data, and is stored in
- * the 2.0 format only when the user changes something and saves. Its 1.x data is never changed.
+ * the 2.0 format only when the user changes something and saves. It keeps its 1.x look (and so
+ * ignores the site-wide settings) until the user migrates it. Its 1.x data is never changed.
  *
  * @param {Object} props        Component props.
  * @param {number} props.postId Chart post ID.
@@ -62,6 +64,8 @@ export default function ChartPostChart( { postId } ) {
 		[]
 	);
 	// Only a saved chart without a stored document can have 1.x data to convert.
+	// Set when "Migrate to 2.0" is used in this editor session, until the page reloads.
+	const [ migrated, setMigrated ] = useState( false );
 	const [ legacy, setLegacy ] = useState( () =>
 		stored || isNew ? { status: 'none' } : { status: 'loading' }
 	);
@@ -91,26 +95,56 @@ export default function ChartPostChart( { postId } ) {
 	}
 
 	const converted = ! stored && legacy.status === 'ready';
+	const chart = stored ?? ( converted ? legacy.chart : null );
+	const save = ( next ) => setMeta( { ...meta, [ META_KEY ]: next } );
+
+	let notice = null;
+	if ( keeps1xLook( chart ) ) {
+		notice = (
+			<PanelBody>
+				<p className="easy-charts-converted-notice">
+					{ __(
+						'This chart was made with Easy Charts 1.x and keeps its 1.x look: the site-wide chart settings don’t apply to it. You can edit and save it without changing that.',
+						'easy-charts'
+					) }
+				</p>
+				<p className="easy-charts-converted-notice">
+					{ __(
+						'Migrate it to use the 2.0 styling and the site-wide settings for everything it didn’t change in 1.x. Its 1.x data is kept either way.',
+						'easy-charts'
+					) }
+				</p>
+				<Button
+					variant="secondary"
+					onClick={ () => {
+						const { v1Look, ...source } = chart.source ?? {};
+						save( { ...chart, source } );
+						setMigrated( true );
+					} }
+				>
+					{ __( 'Migrate to 2.0', 'easy-charts' ) }
+				</Button>
+			</PanelBody>
+		);
+	} else if ( migrated ) {
+		notice = (
+			<PanelBody>
+				<p className="easy-charts-converted-notice" role="status">
+					{ __(
+						'Migrated to 2.0. Save the chart to keep the change.',
+						'easy-charts'
+					) }
+				</p>
+			</PanelBody>
+		);
+	}
 
 	return (
 		<ChartEditor
-			chart={ stored ?? ( converted ? legacy.chart : null ) }
+			chart={ chart }
 			title={ title }
-			onChange={ ( chart ) =>
-				setMeta( { ...meta, [ META_KEY ]: chart } )
-			}
-			notice={
-				converted && (
-					<PanelBody>
-						<p className="easy-charts-converted-notice">
-							{ __(
-								'This chart was made with Easy Charts 1.x and is shown converted. It is saved in the 2.0 format when you change and save it; its 1.x data stays as it was.',
-								'easy-charts'
-							) }
-						</p>
-					</PanelBody>
-				)
-			}
+			onChange={ save }
+			notice={ notice }
 		/>
 	);
 }

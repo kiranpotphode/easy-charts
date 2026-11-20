@@ -9,6 +9,7 @@ namespace EasyCharts\Migration;
 
 use EasyCharts\Chart\Schema;
 use EasyCharts\Settings\Defaults;
+use EasyCharts\Settings\SettingsResolver;
 
 /**
  * Builds a v2 document from a chart's 1.x post meta, in memory.
@@ -127,8 +128,30 @@ final class V1Converter {
 	);
 
 	/**
-	 * Palettes from uvCharts. "Default" is left out on purpose: charts that used it follow the site's
-	 * global palette instead.
+	 * The uvCharts "Default" palette, used by 1.x charts that never chose another one.
+	 */
+	const DEFAULT_COLORS = array( '#00BBC9', '#EC63AB', '#AA8AE4', '#83CE44', '#ff8f25', '#009EAA', '#CA4F7F', '#9C70C0', '#6BAF3B' );
+
+	/**
+	 * How 1.x drew charts where 2.0's defaults differ, for charts that keep their 1.x look.
+	 *
+	 * A converted chart's own settings hold only what its author changed in 1.x. Until it is
+	 * migrated it is drawn on top of these values (not the site-wide settings); once migrated, the
+	 * values it didn't change follow the 2.0 and site-wide settings.
+	 */
+	const LOOK = array(
+		'palette' => array( 'colors' => self::DEFAULT_COLORS ),
+		// 1.x drew in Arial; the generic sans-serif stack includes it.
+		'font'    => array(
+			'family' => 'sans-serif',
+			'size'   => 11,
+		),
+		'area'    => array( 'opacity' => 0.2 ),
+		'donut'   => array( 'hole' => 0.4 ),
+	);
+
+	/**
+	 * Palettes from uvCharts, by their 1.x name ("Default" is DEFAULT_COLORS).
 	 */
 	const PALETTES = array(
 		'OldDefault' => array( '#7E6DA1', '#C2CF30', '#FF8900', '#FE2600', '#E3003F', '#8E1E5F', '#FE2AC2', '#CCF030', '#9900EC', '#3A1AA8', '#3932FE', '#3276FF', '#35B9F6', '#42BC6A', '#91E0CB' ),
@@ -243,8 +266,11 @@ final class V1Converter {
 					'columns' => $columns,
 					'rows'    => $rows,
 				),
-				'settings' => self::overrides( self::settings( $type, $groups, (string) $post_title ), Defaults::get() ),
-				'source'   => array( 'templateId' => null ),
+				'settings' => self::own_settings( $type, $groups, (string) $post_title ),
+				'source'   => array(
+					'templateId' => null,
+					'v1Look'     => true,
+				),
 			)
 		);
 	}
@@ -439,7 +465,9 @@ final class V1Converter {
 				'responsive' => self::flag( $graph['responsive'] ),
 			),
 			'palette'  => array(
-				'colors' => is_string( $graph['palette'] ) && isset( self::PALETTES[ $graph['palette'] ] ) ? self::PALETTES[ $graph['palette'] ] : array(),
+				// "Default", and the never-saved fallback "Brink" (not a uvCharts palette), draw in the
+				// uvCharts Default colours.
+				'colors' => is_string( $graph['palette'] ) && isset( self::PALETTES[ $graph['palette'] ] ) ? self::PALETTES[ $graph['palette'] ] : self::DEFAULT_COLORS,
 			),
 			'legend'   => array(
 				// uvCharts never drew a legend for waterfall charts.
@@ -462,8 +490,8 @@ final class V1Converter {
 			),
 		);
 
-		// Values left at their 1.x default follow the 2.0 (and site-wide) settings; only values
-		// the chart's author changed are kept.
+		// Style values are recorded only when the chart's author changed them from the 1.x
+		// default (see LOOK).
 		$family = trim( (string) self::scalar( $groups['caption']['fontfamily'] ) );
 		if ( isset( self::FONT_FAMILIES[ $family ] ) ) {
 			$settings['font']['family'] = self::FONT_FAMILIES[ $family ];
@@ -537,10 +565,41 @@ final class V1Converter {
 	}
 
 	/**
-	 * Keep only the settings that differ from the v2 defaults.
+	 * The settings 1.x charts are drawn on until they are migrated: the 2.0 defaults with the 1.x
+	 * look (LOOK) on top. Site-wide settings don't apply.
+	 *
+	 * @return array
+	 */
+	public static function look_settings() {
+		return SettingsResolver::merge( Defaults::get(), self::LOOK );
+	}
+
+	/**
+	 * A converted chart's own settings: what differs from the 1.x look.
+	 *
+	 * @param string $type       v2 type.
+	 * @param array  $groups     1.x groups, merged with their defaults.
+	 * @param string $post_title Chart post title.
+	 * @return array
+	 */
+	private static function own_settings( $type, array $groups, $post_title ) {
+		$settings = self::settings( $type, $groups, $post_title );
+		$own      = self::overrides( $settings, self::look_settings() );
+
+		// A font picked in 1.x stays the chart's own choice even where it maps to the 1.x default
+		// family, so it doesn't change to the site font after migration.
+		if ( isset( $settings['font']['family'] ) ) {
+			$own['font']['family'] = $settings['font']['family'];
+		}
+
+		return $own;
+	}
+
+	/**
+	 * Values that differ from a base, by group.
 	 *
 	 * @param array $settings Settings by group.
-	 * @param array $defaults Default settings by group.
+	 * @param array $defaults Base settings by group.
 	 * @return array
 	 */
 	private static function overrides( array $settings, array $defaults ) {

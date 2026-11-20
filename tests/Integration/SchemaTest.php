@@ -96,6 +96,20 @@ class SchemaTest extends WP_UnitTestCase {
 		$this->assertSame( array( 'templateId' => null ), $result['source'] );
 	}
 
+	public function test_the_1x_look_flag_is_kept_only_when_set() {
+		$doc = Schema::empty_document();
+		$this->assertArrayNotHasKey( 'v1Look', Schema::sanitize( $doc )['source'] );
+
+		$doc['source']['v1Look'] = true;
+		$this->assertTrue( Schema::sanitize( $doc )['source']['v1Look'] );
+
+		$doc['source']['v1Look'] = false;
+		$this->assertArrayNotHasKey( 'v1Look', Schema::sanitize( $doc )['source'] );
+
+		$doc['source']['v1Look'] = 'yes';
+		$this->assertWPError( Schema::sanitize( $doc ) );
+	}
+
 	public function test_empty_document_is_valid() {
 		$this->assertTrue( Schema::validate( Schema::empty_document() ) );
 	}

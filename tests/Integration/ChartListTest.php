@@ -63,7 +63,7 @@ class ChartListTest extends WP_UnitTestCase {
 		$empty = self::factory()->post->create( array( 'post_type' => 'easy_charts' ) );
 
 		$this->assertSame( 'Polar area', $this->cell( 'easy_charts_type', $v2 ) );
-		$this->assertSame( 'Line <em>(1.x)</em>', $this->cell( 'easy_charts_type', $v1 ) );
+		$this->assertSame( 'Line <em>(1.x look)</em>', $this->cell( 'easy_charts_type', $v1 ) );
 		$this->assertStringContainsString( 'No data', $this->cell( 'easy_charts_type', $empty ) );
 		$this->assertSame( '<code>[easy_chart chart_id="' . $v2 . '"]</code>', $this->cell( 'easy_charts_shortcode', $v2 ) );
 	}

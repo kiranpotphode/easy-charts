@@ -86,8 +86,8 @@ final class ChartList implements Service {
 		}
 
 		echo esc_html( isset( $labels[ $doc['type'] ] ) ? $labels[ $doc['type'] ] : $doc['type'] );
-		if ( null === $this->charts->find_stored( (int) $post_id ) ) {
-			echo ' <em>' . esc_html__( '(1.x)', 'easy-charts' ) . '</em>';
+		if ( ! empty( $doc['source']['v1Look'] ) ) {
+			echo ' <em>' . esc_html__( '(1.x look)', 'easy-charts' ) . '</em>';
 		}
 	}
 }

@@ -8,6 +8,7 @@
 namespace EasyCharts\Block;
 
 use EasyCharts\Frontend\ChartRenderer;
+use EasyCharts\Migration\V1Converter;
 use EasyCharts\Service;
 use EasyCharts\Settings\SettingsResolver;
 
@@ -76,8 +77,10 @@ final class ChartBlock implements Service {
 		}
 
 		$data = array(
-			'baseSettings' => SettingsResolver::base(),
-			'strings'      => ChartRenderer::strings( false ),
+			'baseSettings'   => SettingsResolver::base(),
+			// For 1.x charts that keep their 1.x look (see V1Converter::look_settings()).
+			'v1BaseSettings' => V1Converter::look_settings(),
+			'strings'        => ChartRenderer::strings( false ),
 		);
 
 		wp_add_inline_script( $handle, 'window.easyChartsEditor = ' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );

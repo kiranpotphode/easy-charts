@@ -29,3 +29,12 @@
 	gap: 8px;
 	margin-top: 16px;
 }
+
+.easy-charts-settings__migration {
+	margin-bottom: 16px;
+}
+
+.easy-charts-settings__migration h2 {
+	margin-top: 0;
+	font-size: 1.1em;
+}

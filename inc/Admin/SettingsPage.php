@@ -9,6 +9,7 @@ namespace EasyCharts\Admin;
 
 use EasyCharts\Assets;
 use EasyCharts\Frontend\ChartRenderer;
+use EasyCharts\Migration\Migrator;
 use EasyCharts\PostType\ChartPostType;
 use EasyCharts\Service;
 use EasyCharts\Settings\Defaults;
@@ -33,6 +34,22 @@ final class SettingsPage implements Service {
 	 * @var string
 	 */
 	private $hook = '';
+
+	/**
+	 * Migrator, for the number of charts that keep their 1.x look.
+	 *
+	 * @var Migrator|null
+	 */
+	private $migrator;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param Migrator|null $migrator Migrator.
+	 */
+	public function __construct( ?Migrator $migrator = null ) {
+		$this->migrator = $migrator;
+	}
 
 	/**
 	 * Attach hooks.
@@ -100,6 +117,8 @@ final class SettingsPage implements Service {
 			'baseSettings' => Defaults::get(),
 			'strings'      => ChartRenderer::strings( false ),
 			'settings'     => (object) GlobalSettings::get(),
+			// Charts that keep their 1.x look and so ignore these settings until migrated.
+			'v1Pending'    => $this->migrator ? $this->migrator->count_pending() : 0,
 		);
 		wp_add_inline_script( self::SCRIPT, 'window.easyChartsEditor = ' . wp_json_encode( $data, JSON_HEX_TAG | JSON_HEX_AMP ) . ';', 'before' );
 	}

@@ -14,7 +14,7 @@ import { __ } from '@wordpress/i18n';
  */
 import SettingsPanels from '../../../components/settings-panels';
 import { CHART_TYPE_OPTIONS } from '../chart-types';
-import { getEditorData } from '../../../components/editor-data';
+import { baseSettingsFor } from '../../../components/editor-data';
 
 const PIE_TYPES = [ 'pie', 'donut', 'polar-area' ];
 
@@ -67,7 +67,7 @@ export default function ChartInspector( { chart, onChange, onEditData } ) {
 				</BaseControl>
 			</PanelBody>
 			<SettingsPanels
-				base={ getEditorData().baseSettings }
+				base={ baseSettingsFor( chart ) }
 				overrides={ chart.settings }
 				type={ chart.type }
 				onChange={ ( settings ) => onChange( { ...chart, settings } ) }

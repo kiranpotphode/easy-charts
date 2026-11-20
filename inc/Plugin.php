@@ -82,6 +82,7 @@ final class Plugin {
 		$charts   = new Chart\ChartRepository();
 		$settings = new Settings\SettingsResolver( $charts );
 		$renderer = new Frontend\ChartRenderer( $charts, $settings );
+		$migrator = new Migration\Migrator( $charts );
 
 		$services = array(
 			new PostType\ChartPostType(),
@@ -91,9 +92,10 @@ final class Plugin {
 			new Shortcode\ChartShortcode( $renderer ),
 			new Block\ChartBlock( $renderer ),
 			new Rest\ChartsController( $charts, $settings ),
+			new Rest\MigrationController( $migrator ),
 			new Admin\ChartEditor(),
 			new Admin\ChartList( $charts ),
-			new Admin\SettingsPage(),
+			new Admin\SettingsPage( $migrator ),
 		);
 
 		if ( Cli\SeedCommand::is_available() ) {
