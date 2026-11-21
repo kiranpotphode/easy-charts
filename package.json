@@ -1,6 +1,6 @@
 {
 	"name": "easy-charts",
-	"version": "2.0.0-beta.1",
+	"version": "2.0.0",
 	"private": true,
 	"description": "Build simple, reusable, customizable charts on any page or post with ease.",
 	"license": "GPL-2.0-or-later",

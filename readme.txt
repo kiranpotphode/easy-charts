@@ -4,7 +4,7 @@ Tags: chart, charts, graph, bar chart, pie chart
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.5
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -156,7 +156,7 @@ Easy Charts includes these libraries, all under licences compatible with the GPL
 
 == Changelog ==
 
-= 2.0.0-beta.1 =
+= 2.0.0 =
 
 * New: charts are drawn with Apache ECharts.
 * New: Chart block with a setup wizard, a spreadsheet-style data editor, paste from spreadsheets or CSV, and a settings sidebar with live preview.
