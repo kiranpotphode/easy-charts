@@ -61,6 +61,6 @@
 	"dependencies": {
 		"echarts": "6.1.0",
 		"jspreadsheet-ce": "5.0.4",
-		"jsuites": "5.13.5"
+		"jsuites": "6.6.1"
 	}
 }
