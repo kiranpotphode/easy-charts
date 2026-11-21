@@ -134,7 +134,7 @@ Visitors without JavaScript see the chart's data as a table.
 
 = Where is the source code? =
 
-The plugin includes its JavaScript source in the `src` folder, next to the built files in `build`. Development happens on [GitHub](https://github.com/kiranpotphode/easy-charts). To build it yourself, run `npm ci` and `npm run build`, then `composer install --no-dev`.
+The files in `build` are compiled from the source code on [GitHub](https://github.com/kiranpotphode/easy-charts), where each release has a matching tag (for example `v2.0.0`). To build it yourself, check out the tag, run `npm ci` and `npm run build`, then `composer install --no-dev`.
 
 == Screenshots ==
 

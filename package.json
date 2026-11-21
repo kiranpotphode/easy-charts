@@ -13,17 +13,16 @@
 		"index.php",
 		"inc/",
 		"build/",
-		"src/",
 		"languages/",
 		"vendor/autoload.php",
 		"vendor/composer/",
-		"composer.json",
-		"webpack.config.js"
+		"composer.json"
 	],
 	"scripts": {
 		"build": "wp-scripts build",
 		"start": "wp-scripts start",
-		"plugin-zip": "npm run build && npm run composer -- dump-autoload --no-dev --classmap-authoritative && wp-scripts plugin-zip && npm run composer -- dump-autoload",
+		"zip": "wp-scripts plugin-zip && node -e \"const Zip = require('adm-zip'); const zip = new Zip('easy-charts.zip'); zip.deleteFile('easy-charts/package.json'); zip.writeZip();\"",
+		"plugin-zip": "npm run build && npm run composer -- dump-autoload --no-dev --classmap-authoritative && npm run zip && npm run composer -- dump-autoload",
 		"i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- wp i18n make-pot . languages/easy-charts.pot --exclude=src,node_modules,vendor,tests,artifacts,build/echarts.js",
 		"lint:js": "wp-scripts lint-js src tests/e2e playwright.config.js",
 		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",

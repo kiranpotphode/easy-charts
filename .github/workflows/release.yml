@@ -56,7 +56,8 @@ jobs:
       - name: Composer autoloader without dev packages
         run: composer install --no-dev --classmap-authoritative --no-interaction --no-progress
       - run: npm run build
-      - run: npx wp-scripts plugin-zip
+      # The zip holds only runtime files (package.json "files", minus package.json itself).
+      - run: npm run zip
 
       - name: Create the GitHub release
         env:
