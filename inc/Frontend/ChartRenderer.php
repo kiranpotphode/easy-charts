@@ -299,6 +299,10 @@ final class ChartRenderer implements Service {
 	/**
 	 * Data table: visible without JavaScript, read by screen readers, indexed by search engines.
 	 *
+	 * The wrapper is what gets visually hidden once the chart draws: a table ignores `width`
+	 * and `overflow`, so hiding the table itself leaves its full width and makes narrow pages
+	 * scroll sideways.
+	 *
 	 * @param array  $data  Data grid.
 	 * @param string $title Chart title.
 	 * @return string HTML.
@@ -326,7 +330,7 @@ final class ChartRenderer implements Service {
 		}
 
 		return sprintf(
-			'<table class="easy-charts-chart__table"><caption>%s</caption><thead><tr>%s</tr></thead><tbody>%s</tbody></table>',
+			'<div class="easy-charts-chart__data"><table class="easy-charts-chart__table"><caption>%s</caption><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>',
 			esc_html( $caption ),
 			$head,
 			$body

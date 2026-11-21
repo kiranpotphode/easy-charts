@@ -9,9 +9,11 @@
 
 /*
  * The data table is visible without JavaScript.
- * Once the chart draws, only screen readers get it.
+ * Once the chart draws, only screen readers get it. The wrapper is hidden,
+ * not the table: a table ignores width and overflow, so it would keep its
+ * full width and make narrow pages scroll sideways.
  */
-.easy-charts-chart.is-rendered .easy-charts-chart__table {
+.easy-charts-chart.is-rendered .easy-charts-chart__data {
 	position: absolute !important;
 	width: 1px;
 	height: 1px;

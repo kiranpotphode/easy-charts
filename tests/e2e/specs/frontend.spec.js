@@ -37,12 +37,31 @@ test.describe( 'Charts on the front end', () => {
 				// The table is for screen readers once the chart is drawn.
 				const table = figure.locator( '.easy-charts-chart__table' );
 				await expect( table.locator( 'caption' ) ).not.toBeEmpty();
-				await expect( table ).toHaveCSS( 'position', 'absolute' );
+				await expect(
+					figure.locator( '.easy-charts-chart__data' )
+				).toHaveCSS( 'position', 'absolute' );
 			}
 
 			expect( await axe( page, '.easy-charts-chart' ) ).toEqual( [] );
 		} );
 	}
+
+	test( 'fit a phone screen without scrolling sideways', async ( {
+		page,
+	} ) => {
+		await page.setViewportSize( { width: 375, height: 800 } );
+		for ( const [ slug ] of PAGES ) {
+			await page.goto( `/${ slug }/` );
+			await expect(
+				page.locator( 'figure.easy-charts-chart.is-rendered' )
+			).toHaveCount( 12 );
+			const { scroll, client } = await page.evaluate( () => ( {
+				scroll: document.documentElement.scrollWidth,
+				client: document.documentElement.clientWidth,
+			} ) );
+			expect( scroll, slug ).toBeLessThanOrEqual( client );
+		}
+	} );
 
 	test( 'no uvCharts scripts are loaded', async ( { page } ) => {
 		const scripts = [];

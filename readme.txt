@@ -92,7 +92,7 @@ Chart scripts load only on pages that show a chart. Easy Charts adds no database
 
 #### Breaking changes for developers
 
-* The chart markup changed. A chart is now a `<figure class="easy-charts-chart">` with an `.easy-charts-chart__canvas` box and an `.easy-charts-chart__table` data table. The 1.x `.ec-uv-chart-container` and `.uv-div-{ID}` elements, the `ec_object_{ID}` JavaScript objects and the `uv` global no longer exist, so custom CSS or JavaScript that targets them needs updating.
+* The chart markup changed. A chart is now a `<figure class="easy-charts-chart">` with an `.easy-charts-chart__canvas` box and an `.easy-charts-chart__table` data table inside `.easy-charts-chart__data`. The 1.x `.ec-uv-chart-container` and `.uv-div-{ID}` elements, the `ec_object_{ID}` JavaScript objects and the `uv` global no longer exist, so custom CSS or JavaScript that targets them needs updating.
 * The uvCharts, D3, canvg and FileSaver scripts, the `Easy_Charts` class and the `easy_charts_save_chart_data` and `easy_charts_get_published_charts` admin-ajax actions are removed.
 * The `easy_charts_render_chart` filter is kept. It now filters the ECharts chart markup.
 * `easy_charts_get_chart_configurations` is still applied when a 1.x chart is converted.
