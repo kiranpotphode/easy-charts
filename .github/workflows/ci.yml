@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  push:
+    branches: [master, rewrite-v2]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint, unit tests and audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        with:
+          php: '8.3'
+          tools: composer:v2
+          coverage: none
+      - run: npm ci
+      - run: composer install --no-interaction --no-progress
+      - name: PHPCS
+        run: composer lint
+      - run: npm run lint:js
+      - run: npm run lint:css
+      - run: npm run test:js
+      - run: npm run build
+      # Only the runtime dependencies end up in the plugin zip, so they block.
+      - name: npm audit (shipped dependencies)
+        run: npm audit --omit=dev --audit-level=moderate
+      # Dev tooling advisories often have no fixed release yet; Dependabot proposes the updates.
+      - name: npm audit (dev tooling)
+        run: npm audit --audit-level=high || echo "::warning title=npm audit::High or critical advisories in dev tooling, see the log of this step."
+
+  php:
+    name: PHPUnit (WordPress ${{ matrix.wp }}, PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Minimum supported versions.
+          - wp: '6.6.2'
+            core: https://wordpress.org/wordpress-6.6.2.zip
+            php: '7.4'
+          - wp: latest
+            core: ''
+            php: '8.3'
+    env:
+      WP_ENV_CORE: ${{ matrix.core }}
+      WP_ENV_PHP_VERSION: ${{ matrix.php }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test-env:start
+      - name: Composer install (in the wp-env PHP)
+        run: npx wp-env run cli --config=.wp-env.test.json --env-cwd=wp-content/plugins/easy-charts -- composer install --no-interaction --no-progress
+      - run: npm run test:php
+
+  e2e:
+    name: End-to-end (WordPress ${{ matrix.wp }}, PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - wp: '6.6.2'
+            core: https://wordpress.org/wordpress-6.6.2.zip
+            php: '7.4'
+          - wp: latest
+            core: ''
+            php: '8.3'
+    env:
+      WP_ENV_CORE: ${{ matrix.core }}
+      WP_ENV_PHP_VERSION: ${{ matrix.php }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test-env:start
+      - name: Composer install (in the wp-env PHP)
+        run: npx wp-env run cli --config=.wp-env.test.json --env-cwd=wp-content/plugins/easy-charts -- composer install --no-interaction --no-progress
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: e2e-artifacts-${{ matrix.wp }}
+          path: artifacts/
+          retention-days: 7

@@ -6,3 +6,29 @@
 .idea/modules.xml
 .idea/vcs.xml
 .idea/workspace.xml
+.vscode/
+
+# Dependencies / wp-env
+node_modules/
+vendor/
+build/
+.phpunit.result.cache
+artifacts/
+easy-charts.zip
+.wp-env.override.json
+.wp-env.test.override.json
+
+# AI agent instructions and planning notes (kept local, backed up separately)
+CLAUDE.md
+CLAUDE.local.md
+AGENTS.md
+GEMINI.md
+TODO.md
+docs/plan-*.md
+.claude/
+.cursor/
+.cursorrules
+.codex/
+.gemini/
+.github/copilot-instructions.md
+.mcp.json

@@ -1,0 +1,28 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Easy Charts demo",
+		"description": "Easy Charts with example charts: the 12 chart types made in 2.0, and the same types made with 1.x and converted.",
+		"author": "kiranpotphode",
+		"categories": [ "Content" ]
+	},
+	"landingPage": "/?pagename=easy-charts-examples",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "latest"
+	},
+	"login": true,
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "easy-charts"
+			}
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require_once '/wordpress/wp-load.php'; $examples = new EasyCharts\\Demo\\Examples(); $examples->create(); $examples->create( true );"
+		}
+	]
+}

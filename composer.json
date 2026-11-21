@@ -1,0 +1,34 @@
+{
+	"name": "kiranpotphode/easy-charts",
+	"description": "Build simple, reusable, customizable charts on any page or post with ease.",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"require": {
+		"php": ">=7.4"
+	},
+	"require-dev": {
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.2",
+		"phpcompatibility/phpcompatibility-wp": "^2.1",
+		"phpunit/phpunit": "^9.6",
+		"wp-coding-standards/wpcs": "^3.4",
+		"yoast/phpunit-polyfills": "^2.0 || ^3.0 || ^4.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"EasyCharts\\": "inc/"
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		},
+		"platform": {
+			"php": "7.4.33"
+		},
+		"sort-packages": true
+	},
+	"scripts": {
+		"lint": "phpcs",
+		"format": "phpcbf"
+	}
+}

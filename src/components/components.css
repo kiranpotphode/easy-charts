@@ -1,0 +1,36 @@
+/* Shared by the chart block and the settings page. */
+
+.easy-charts-preview__empty {
+	margin: 0;
+	padding: 2em;
+	border: 1px dashed currentcolor;
+	text-align: center;
+}
+
+.easy-charts-palette {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px;
+}
+
+.easy-charts-palette .easy-charts-palette__swatch {
+	padding: 4px;
+	min-width: 0;
+	height: auto;
+}
+
+.easy-charts-palette__picker {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 8px;
+}
+
+.easy-charts-setting {
+	margin-bottom: 16px;
+}
+
+.easy-charts-setting .easy-charts-setting__reset {
+	margin-top: 4px;
+}

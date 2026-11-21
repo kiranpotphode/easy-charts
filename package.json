@@ -1,0 +1,66 @@
+{
+	"name": "easy-charts",
+	"version": "2.0.0",
+	"private": true,
+	"description": "Build simple, reusable, customizable charts on any page or post with ease.",
+	"license": "GPL-2.0-or-later",
+	"engines": {
+		"node": ">=24"
+	},
+	"files": [
+		"easy-charts.php",
+		"uninstall.php",
+		"index.php",
+		"inc/",
+		"build/",
+		"languages/",
+		"vendor/autoload.php",
+		"vendor/composer/",
+		"composer.json"
+	],
+	"scripts": {
+		"build": "wp-scripts build",
+		"start": "wp-scripts start",
+		"zip": "wp-scripts plugin-zip && node -e \"const Zip = require('adm-zip'); const zip = new Zip('easy-charts.zip'); zip.deleteFile('easy-charts/package.json'); zip.writeZip();\"",
+		"plugin-zip": "npm run build && npm run composer -- dump-autoload --no-dev --classmap-authoritative && npm run zip && npm run composer -- dump-autoload",
+		"i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- wp i18n make-pot . languages/easy-charts.pot --exclude=src,node_modules,vendor,tests,artifacts,build/echarts.js",
+		"lint:js": "wp-scripts lint-js src tests/e2e playwright.config.js",
+		"lint:css": "wp-scripts lint-style \"src/**/*.css\"",
+		"format:js": "wp-scripts format src tests/e2e playwright.config.js",
+		"test:js": "wp-scripts test-unit-js",
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop",
+		"env:reset": "wp-env clean all",
+		"env:destroy": "wp-env destroy",
+		"env:logs": "wp-env logs",
+		"env:debug-log": "wp-env run cli -- sh -c \"tail -n 100 wp-content/debug.log 2>/dev/null || echo 'No debug.log yet (nothing logged).'\"",
+		"wp": "wp-env run cli wp",
+		"composer": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer",
+		"lint:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer lint",
+		"format:php": "wp-env run cli --env-cwd=wp-content/plugins/easy-charts -- composer format",
+		"test-env:start": "wp-env start --config=.wp-env.test.json",
+		"test-env:stop": "wp-env stop --config=.wp-env.test.json",
+		"test-env:wp": "wp-env run cli --config=.wp-env.test.json wp",
+		"test:php": "wp-env run cli --config=.wp-env.test.json --env-cwd=wp-content/plugins/easy-charts -- vendor/bin/phpunit",
+		"test:e2e": "playwright test"
+	},
+	"devDependencies": {
+		"@axe-core/playwright": "4.13.0",
+		"@playwright/test": "1.63.0",
+		"@wordpress/e2e-test-utils-playwright": "2.1.0",
+		"@wordpress/env": "11.16.0",
+		"@wordpress/scripts": "36.0.0",
+		"vite": "8.3.8",
+		"vitest": "5.1.1"
+	},
+	"overrides": {
+		"qs": "6.16.0",
+		"serialize-javascript": "7.1.2",
+		"uuid": "11.1.1"
+	},
+	"dependencies": {
+		"echarts": "6.1.0",
+		"jspreadsheet-ce": "5.0.4",
+		"jsuites": "5.13.5"
+	}
+}

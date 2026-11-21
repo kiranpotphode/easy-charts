@@ -1,18 +1,20 @@
 <?php
-/** Plugin headers
+/**
+ * Plugin headers
  *
  * @link              https://kiranpotphode.com/
- * @since             1.0.0
- * @package           Easy_Charts
+ * @package           EasyCharts
  *
  * @wordpress-plugin
  * Plugin Name:       Easy Charts
  * Plugin URI:        http://kiranpotphode.github.io/easy-charts/
  * Description:       Build simple, reusable, customisable charts on any page or post with ease.
- * Version:           1.2.5
+ * Version:           2.0.0
+ * Requires at least: 6.6
+ * Requires PHP:      7.4
  * Author:            Kiran Potphode
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       easy-charts
  * Domain Path:       /languages
  */
@@ -22,42 +24,25 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-/**
- * The code that runs during plugin activation.
- * This action is documented in includes/class-easy-charts-activator.php
- */
-function activate_easy_charts() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-easy-charts-activator.php';
-	Easy_Charts_Activator::activate();
+define( 'EASY_CHARTS_VERSION', '2.0.0' );
+define( 'EASY_CHARTS_FILE', __FILE__ );
+define( 'EASY_CHARTS_DIR', plugin_dir_path( __FILE__ ) );
+
+// Namespaced classes in inc/, loaded by Composer's autoloader (shipped in the release zip).
+if ( is_readable( EASY_CHARTS_DIR . 'vendor/autoload.php' ) ) {
+	require_once EASY_CHARTS_DIR . 'vendor/autoload.php';
+	EasyCharts\Plugin::instance()->boot();
+} else {
+	add_action(
+		'admin_notices',
+		static function () {
+			if ( ! current_user_can( 'activate_plugins' ) ) {
+				return;
+			}
+			printf(
+				'<div class="notice notice-error"><p>%s</p></div>',
+				esc_html__( 'Easy Charts: the vendor/autoload.php file is missing. Run "composer install" in the plugin folder.', 'easy-charts' )
+			);
+		}
+	);
 }
-
-/**
- * The code that runs during plugin deactivation.
- * This action is documented in includes/class-easy-charts-deactivator.php
- */
-function deactivate_easy_charts() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-easy-charts-deactivator.php';
-	Easy_Charts_Deactivator::deactivate();
-}
-
-register_activation_hook( __FILE__, 'activate_easy_charts' );
-register_deactivation_hook( __FILE__, 'deactivate_easy_charts' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'includes/class-easy-charts.php';
-
-/**
- * Begins execution of the plugin.
- *
- * @since    1.0.0
- */
-function run_easy_charts() {
-
-	$plugin = new Easy_Charts();
-	$plugin->run();
-
-}
-run_easy_charts();

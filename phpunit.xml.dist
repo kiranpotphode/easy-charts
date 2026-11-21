@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	convertDeprecationsToExceptions="true"
+>
+	<testsuites>
+		<testsuite name="integration">
+			<directory suffix="Test.php">tests/Integration</directory>
+		</testsuite>
+	</testsuites>
+	<php>
+		<!-- Own tables: the test site's wp_ tables are used by the end-to-end tests. -->
+		<env name="WORDPRESS_TABLE_PREFIX" value="wptests_"/>
+	</php>
+</phpunit>

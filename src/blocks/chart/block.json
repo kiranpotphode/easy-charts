@@ -1,0 +1,52 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "easy-charts/chart",
+	"title": "Chart",
+	"category": "widgets",
+	"icon": "chart-bar",
+	"description": "Show data as a bar, line, area, pie or other chart, or embed a chart you already made.",
+	"keywords": [ "chart", "graph", "easy charts", "data" ],
+	"textdomain": "easy-charts",
+	"attributes": {
+		"chartId": {
+			"type": "number"
+		},
+		"chart": {
+			"type": "object"
+		}
+	},
+	"usesContext": [ "postId", "postType" ],
+	"supports": {
+		"html": false,
+		"align": [ "wide", "full" ],
+		"anchor": true
+	},
+	"editorScript": [ "file:./index.js", "easy-charts-echarts" ],
+	"editorStyle": "file:./index.css",
+	"example": {
+		"attributes": {
+			"chart": {
+				"schema": 2,
+				"type": "bar",
+				"data": {
+					"columns": [ "", "North", "South" ],
+					"rows": [
+						[ "Q1", 120, 95 ],
+						[ "Q2", 135, 102 ],
+						[ "Q3", 128, 110 ],
+						[ "Q4", 150, 121 ]
+					]
+				},
+				"settings": {
+					"size": {
+						"height": 260
+					},
+					"labels": {
+						"show": false
+					}
+				}
+			}
+		}
+	}
+}
