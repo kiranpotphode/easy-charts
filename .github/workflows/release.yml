@@ -1,8 +1,11 @@
 name: Release
 
 # Pushing a tag like v2.0.0 or v2.0.0-beta.1 builds the plugin zip and creates a GitHub release
-# with it. Tags with a pre-release suffix (a "-") become GitHub pre-releases, which are not deployed
-# to WordPress.org (see deploy.yml).
+# with it. Tags with a pre-release suffix (a "-") become GitHub pre-releases and stop there; other
+# tags then deploy the release's zip to WordPress.org (the deploy job).
+#
+# The deploy is a job here, not a workflow on the "release published" event: a release created with
+# the workflow's own token doesn't trigger other workflows.
 on:
   push:
     tags: ['v*']
@@ -79,3 +82,35 @@ jobs:
           flags=()
           if [[ "$TAG" == *-* ]]; then flags+=(--prerelease); fi
           gh release create "$TAG" easy-charts.zip --title "Easy Charts ${TAG#v}" --notes "$notes" --verify-tag "${flags[@]}"
+
+  # Publishes the release's easy-charts.zip to SVN trunk and a tag, and .wordpress-org/ to the SVN
+  # assets. Needs the SVN_USERNAME and SVN_PASSWORD secrets on the "wordpress-org" environment, where
+  # a required reviewer approves each deploy and only v* tags may deploy.
+  deploy:
+    needs: release
+    if: ${{ !contains(github.ref_name, '-') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: wordpress-org
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Unpack the release zip
+        id: zip
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          gh release download "$TAG" --repo "$REPO" --pattern easy-charts.zip
+          unzip -q easy-charts.zip -d dist
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+      - uses: 10up/action-wordpress-plugin-deploy@54bd289b8525fd23a5c365ec369185f2966529c2 # 2.3.0
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: easy-charts
+          BUILD_DIR: dist/easy-charts
+          ASSETS_DIR: .wordpress-org
+          VERSION: ${{ steps.zip.outputs.version }}
