@@ -1,14 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Easy Charts : Easy and Elegant Charts">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Easy Charts 2.0: turn a table of numbers into a clear, interactive chart in WordPress. 12 chart types, a Chart block, a shortcode, and a data table for every chart.">
 
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/icon-256x256.png">
 
-    <title>Easy Charts</title>
+    <title>Easy Charts – interactive charts for WordPress</title>
+    <style>
+      #main_content img { display: block; max-width: 100%; box-sizing: border-box; margin: 10px 0 4px; border: 1px solid #ddd; height: auto; }
+      #main_content figure { margin: 0 0 24px; }
+      #main_content figcaption { font-size: 14px; color: #666; }
+      .facts { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+      .facts th, .facts td { text-align: left; padding: 6px 10px; border-bottom: 1px solid #ddd; }
+      .facts th { width: 40%; }
+      .notice { background: #fff8e5; border-left: 4px solid #dba617; padding: 10px 15px; margin: 20px 0; }
+    </style>
   </head>
 
   <body>
@@ -19,11 +29,11 @@
           <a id="forkme_banner" href="https://github.com/kiranpotphode/easy-charts">View on GitHub</a>
 
           <h1 id="project_title">Easy Charts</h1>
-          <h2 id="project_tagline">Easy and Elegant Charts</h2>
+          <h2 id="project_tagline">Turn a table of numbers into a clear, interactive chart</h2>
 
             <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/kiranpotphode/easy-charts/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/kiranpotphode/easy-charts/tarball/master">Download this project as a tar.gz file</a>
+              <a class="zip_download_link" href="https://downloads.wordpress.org/plugin/easy-charts.2.0.0.zip">Download Easy Charts 2.0.0 (.zip)</a>
+              <a class="tar_download_link" href="https://github.com/kiranpotphode/easy-charts/archive/refs/tags/v2.0.0.tar.gz">Download the v2.0.0 source (.tar.gz)</a>
             </section>
         </header>
     </div>
@@ -31,106 +41,184 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h1>
-<a id="easy-charts" class="anchor" href="#easy-charts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy Charts</h1>
 
-<p>Contributors: kiranpotphode<br>
-License: GPLv2 or later<br>
-License URI: <a href="http://www.gnu.org/licenses/gpl-2.0.html">http://www.gnu.org/licenses/gpl-2.0.html</a></p>
+<img src="https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/banner-1544x500.png" alt="Easy Charts banner">
 
-<blockquote>
-<p>Build simple, reusable, customizable charts on any page or post with ease.</p>
-</blockquote>
+<p>Easy Charts turns a table of numbers into an interactive chart that you can place on any post or page. Version 2.0 draws charts with <a href="https://echarts.apache.org/">Apache ECharts</a> and adds a Chart block for the block editor. Charts made with Easy Charts 1.x, and the <code>[easy_chart]</code> shortcodes that show them, keep working.</p>
 
-<hr>
+<p>
+  <a href="https://wordpress.org/plugins/easy-charts/"><strong>Get it on WordPress.org</strong></a> ·
+  <a href="https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/blueprints/blueprint.json">Try the live demo</a> ·
+  <a href="https://github.com/kiranpotphode/easy-charts">Source on GitHub</a>
+</p>
 
-<h2>
-<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description</h2>
+<table class="facts">
+  <tr><th>Version</th><td>2.0.0</td></tr>
+  <tr><th>Requires WordPress</th><td>6.6 or later</td></tr>
+  <tr><th>Tested up to</th><td>7.1</td></tr>
+  <tr><th>Requires PHP</th><td>7.4 or later</td></tr>
+  <tr><th>License</th><td><a href="https://www.gnu.org/licenses/gpl-2.0.html">GPLv2 or later</a></td></tr>
+  <tr><th>Contributors</th><td><a href="https://profiles.wordpress.org/kiranpotphode/">kiranpotphode</a></td></tr>
+</table>
 
-<p>This plugin is a easy to use and  powerful way to generate charts to show on your website page and posts. Charts created using this plugin are simple to create, easy to manage.</p>
+<div class="notice">
+  <p><strong>Version 2.0 is a major update with breaking changes.</strong> Your charts are kept and keep their 1.x look until you choose to migrate them, but some 1.x options and features are gone. Read <a href="#upgrading-from-1x">Upgrading from 1.x</a> before you update.</p>
+</div>
 
-<p>Charts are created using SVG and CSS3 transitions; so are interactive.
-This plugin is developed using uvCharts javascript liabrary <a href="http://imaginea.github.io/uvCharts/index.html">http://imaginea.github.io/uvCharts/index.html</a>.</p>
+<h2 id="features">Features</h2>
 
-<h3>
-<a id="12-chart-types" class="anchor" href="#12-chart-types" aria-hidden="true"><span class="octicon octicon-link"></span></a>12 Chart types</h3>
+<h3>Make a chart in the block editor</h3>
+<p>Add the <strong>Chart</strong> block and choose how to start:</p>
+<ul>
+  <li><strong>New chart</strong>: pick one of the 12 chart types and start from sample data.</li>
+  <li><strong>Paste data</strong>: copy cells from Excel, Google Sheets or Numbers, or paste CSV.</li>
+  <li><strong>Use an existing chart</strong>: embed a saved chart, or copy its data or its settings into a new one.</li>
+</ul>
+<p>Edit the data in a spreadsheet-style table, or paste it as text. Style the chart in the block sidebar: title, size, font, orientation, axis labels, legend, tooltips, value labels with a prefix and suffix, colours, background, curved lines, area opacity, donut hole size and a download button.</p>
 
-<p>Lots of chart type you can choose from.
-Follow some quick steps and create interactive charts embed anywhere in post or page.
-You can add multiple charts or single chart multiple times on single page.</p>
+<h3>Reusable charts</h3>
+<p><strong>Easy Charts → Add New Chart</strong> saves a chart that you can show in many places, with the Chart block ("Use an existing chart") or with its shortcode, for example <code>[easy_chart chart_id="123"]</code>. The shortcode also works in the Classic Editor and in widgets. Change the chart once and every page that shows it is updated.</p>
 
-<p>Supported charts are:
-1. Bar Chart
-2. Stacked Bar Chart
-3. Step Up Bar Chart
-4. Percent Bar Chart
-5. Area Chart
-6. Stacked Area Chart
-7. Percent Area Chart
-8. Line Chart
-9. Pie Chart
-10. Donut Chart
-11. Polar Area Chart
-12. Waterfall Chart</p>
+<h3>Site-wide chart settings</h3>
+<p><strong>Easy Charts → Settings</strong> sets the defaults for every chart on the site: font, colours, legend, tooltips, value labels, size and more. A chart's own settings override them. By default, charts use your theme's font.</p>
 
-<h3>
-<a id="uniform-data-representation" class="anchor" href="#uniform-data-representation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Uniform Data Representation</h3>
+<h3>12 chart types</h3>
+<ul>
+  <li>Bar, stacked bar, percent bar and step-up bar</li>
+  <li>Line</li>
+  <li>Area, stacked area and percent area</li>
+  <li>Pie, donut and polar area</li>
+  <li>Waterfall</li>
+</ul>
+<p>Every chart type uses the same data table, so you can switch types without changing the data. Bar, line, area and waterfall charts can be drawn vertically or horizontally.</p>
 
-<p>Provide data to chart and it will work for any chart type.
-You can switch to any chart type without making any changes in data.
-Manage your data with excel sheet like experience.</p>
+<h3>Accessible</h3>
+<ul>
+  <li>Every chart comes with its data as a table: screen readers read it, visitors without JavaScript see it, and search engines can index it.</li>
+  <li>Each chart has a short text description, and animations are turned off for visitors who prefer reduced motion.</li>
+  <li>The editor works with the keyboard. Charts, the editor and the settings page are tested with axe against WCAG 2.2 AA.</li>
+</ul>
 
-<h3>
-<a id="simple-and-customizable" class="anchor" href="#simple-and-customizable" aria-hidden="true"><span class="octicon octicon-link"></span></a>Simple and customizable</h3>
+<h3>Download as PNG</h3>
+<p>Turn on a download button to let visitors save a chart as a PNG image.</p>
 
-<p>Charts are simple to manage and highly customizable with many categorized configuration options.
-Live preview of charts on screen make it easy to have an idea about how your chart is going to look.</p>
+<h3>Light on your pages</h3>
+<p>Chart scripts load only on pages that show a chart. Easy Charts adds no database tables: saved charts are posts, block charts live in the block, and site-wide settings are one option.</p>
 
-<h3>
-<a id="download-as-image" class="anchor" href="#download-as-image" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download as Image</h3>
+<h2 id="screenshots">Screenshots</h2>
+<figure><img src="https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/screenshot-1.png" alt="The Chart block placeholder with options to start a new chart, paste data or use an existing chart"><figcaption>1. The Chart block: start a new chart, paste data or use an existing chart.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/screenshot-2.png" alt="Chart data being edited in a spreadsheet-style table"><figcaption>2. Editing chart data in the table.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/screenshot-3.png" alt="Chart settings in the block editor sidebar"><figcaption>3. Chart settings in the block sidebar.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/screenshot-4.png" alt="The Easy Charts site-wide settings screen"><figcaption>4. Site-wide chart settings.</figcaption></figure>
+<figure><img src="https://raw.githubusercontent.com/kiranpotphode/easy-charts/master/.wordpress-org/screenshot-5.png" alt="Several charts shown on a published page"><figcaption>5. Charts on a page.</figcaption></figure>
 
-<p>Options is provided so that user can download chart as an image.</p>
-
-<h3>
-<a id="embed-anywhere" class="anchor" href="#embed-anywhere" aria-hidden="true"><span class="octicon octicon-link"></span></a>Embed anywhere</h3>
-
-<p>With Quick insert button to visual editor you can quickly add available charts to any post or page.</p>
-
-<h3>
-<a id="elegant-designs" class="anchor" href="#elegant-designs" aria-hidden="true"><span class="octicon octicon-link"></span></a>Elegant designs</h3>
-
-<p>Charts configuration come with many predefined design and color preferences.
-Easy charts are responsive too.</p>
-
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
-
+<h2 id="installation">Installation</h2>
 <ol>
-<li>Upload <code>easy-charts</code> to the <code>/wp-content/plugins/</code> directory</li>
-<li>Activate the plugin through the 'Plugins' menu in WordPress</li>
+  <li>In your WordPress admin, go to <strong>Plugins → Add New</strong>, search for "Easy Charts", then install and activate it.</li>
+  <li>Add a <strong>Chart</strong> block to a post or page, or go to <strong>Easy Charts → Add New Chart</strong> to make a reusable chart.</li>
 </ol>
+<p>Easy Charts needs WordPress 6.6 or later and PHP 7.4 or later.</p>
 
-<h2>
-<a id="frequently-asked-questions" class="anchor" href="#frequently-asked-questions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Frequently Asked Questions</h2>
+<h2 id="upgrading-from-1x">Upgrading from 1.x</h2>
 
-<h3>
-<a id="how-can-i-embed-a-chart-in-a-post" class="anchor" href="#how-can-i-embed-a-chart-in-a-post" aria-hidden="true"><span class="octicon octicon-link"></span></a>How can I embed a chart in a post</h3>
+<h3>Your charts are kept</h3>
+<ul>
+  <li>Updating changes nothing in the database. Your 1.x charts and their settings stay as they are, and every <code>[easy_chart]</code> shortcode keeps working.</li>
+  <li>Each 1.x chart keeps its 1.x look until you migrate it: open it and choose <strong>Migrate to 2.0</strong>, or migrate all of them at once under <strong>Easy Charts → Settings</strong>.</li>
+  <li>The 1.x data is never changed or deleted, so you can go back to 1.2.5.</li>
+</ul>
 
-<p>You can use either method from below:
-1. Copy shortcode generated in 'Shortcode' section of published charts.
-2. Click on Easy Charts button on Visual Editor and choose from available charts to embed.</p>
+<h3>Breaking changes</h3>
+<ul>
+  <li><strong>Charts are drawn differently.</strong> 2.0 draws with Apache ECharts instead of uvCharts, so charts won't be pixel-identical to 1.x.</li>
+  <li><strong>Some 1.x options are gone</strong>, including per-part fonts and font sizes, margins, several axis and line settings, and logarithmic, power and square-root scales. 2.0 uses one font (theme, sans-serif, serif or monospace) and one text size per chart.</li>
+  <li><strong>The 1.x chart editor is replaced.</strong> Charts are edited in the block editor, even when the Classic Editor plugin is active.</li>
+  <li><strong>The Easy Charts button in the Classic Editor toolbar is gone.</strong> Use the shortcode, shown in the "Use this chart" panel.</li>
+  <li><strong>Private charts</strong> are shown only to people who are allowed to read them.</li>
+  <li><strong>Empty cells</strong> are drawn as gaps, not 0.</li>
+  <li><strong>Numbers with thousands separators</strong>, such as "1,234", are read as text.</li>
+  <li><strong>A chart with no data</strong> shows nothing to visitors.</li>
+  <li><strong>New requirements:</strong> WordPress 6.6 and PHP 7.4.</li>
+</ul>
+
+<h3>For developers</h3>
+<ul>
+  <li>A chart is now a <code>&lt;figure class="easy-charts-chart"&gt;</code> with an <code>.easy-charts-chart__canvas</code> box and an <code>.easy-charts-chart__table</code> data table. The 1.x <code>.ec-uv-chart-container</code> elements, <code>ec_object_{ID}</code> objects and the <code>uv</code> global are gone.</li>
+  <li>The uvCharts, D3, canvg and FileSaver scripts and the 1.x admin-ajax actions are removed.</li>
+  <li>The <code>easy_charts_render_chart</code> filter is kept and now filters the ECharts markup. <code>easy_charts_get_chart_data</code> is deprecated; use <code>easy_charts_convert_v1_chart</code>.</li>
+</ul>
+<p>The full upgrade notes are on the <a href="https://wordpress.org/plugins/easy-charts/">WordPress.org plugin page</a>.</p>
+
+<h2 id="faq">Frequently Asked Questions</h2>
+
+<h3>How do I show a chart in a post or page?</h3>
+<p>In the block editor, add a Chart block. To show a chart saved under Easy Charts, choose "Use an existing chart" and then "Embed". Anywhere else, use the chart's shortcode from the "Use this chart" panel on the chart's edit screen.</p>
+
+<h3>Can I use Easy Charts with the Classic Editor?</h3>
+<p>Yes. Charts are made in the block editor, and you place them in classic content with their shortcode, for example <code>[easy_chart chart_id="123"]</code>.</p>
+
+<h3>What happens to my 1.x charts?</h3>
+<p>They keep working and keep their 1.x look until you migrate them, one at a time or all at once.</p>
+
+<h3>Where is my data stored?</h3>
+<p>Saved charts are posts of the <code>easy_charts</code> type, with the chart in post meta. Charts made in a Chart block are stored in that block. Site-wide settings are stored in the <code>easy_charts_settings</code> option. Easy Charts creates no database tables.</p>
+
+<h3>Does the chart work without JavaScript?</h3>
+<p>Visitors without JavaScript see the chart's data as a table.</p>
+
+<h3>Where is the source code?</h3>
+<p>On <a href="https://github.com/kiranpotphode/easy-charts">GitHub</a>, where each release has a matching tag (for example <code>v2.0.0</code>). To build it yourself, check out the tag, run <code>npm ci</code> and <code>npm run build</code>, then <code>composer install --no-dev</code>.</p>
+
+<h2 id="changelog">Changelog</h2>
+
+<h3>2.0.0</h3>
+<ul>
+  <li>New: charts are drawn with Apache ECharts.</li>
+  <li>New: Chart block with a setup wizard, a spreadsheet-style data editor, paste from spreadsheets or CSV, and a settings sidebar with live preview.</li>
+  <li>New: embed a saved chart in the Chart block, or copy its data or settings.</li>
+  <li>New: site-wide chart settings under Easy Charts → Settings.</li>
+  <li>New: saved charts are edited in the block editor, with a "Use this chart" panel showing the shortcode.</li>
+  <li>New: every chart comes with a data table for screen readers, visitors without JavaScript and search engines.</li>
+  <li>New: horizontal orientation for line, area, step-up and waterfall charts, and a custom chart title.</li>
+  <li>New: font setting and text size, site-wide or per chart.</li>
+  <li>New: curved lines, area opacity and donut hole size settings.</li>
+  <li>Changed: 1.x charts are converted when shown or opened, and keep their 1.x look until you migrate them. Their 1.x data is never changed.</li>
+  <li>Removed: uvCharts and its scripts, the 1.x chart editor, the Classic Editor toolbar button, and the options listed under "Upgrading from 1.x".</li>
+  <li>Security: chart data is validated and escaped on output. The 1.x admin-ajax handlers are removed.</li>
+  <li>Requires WordPress 6.6 and PHP 7.4.</li>
+</ul>
+
+<h3>Earlier versions</h3>
+<ul>
+  <li><strong>1.2.5</strong> (25 Aug 2025): replaced Handsontable with Jspreadsheet.</li>
+  <li><strong>1.2.4</strong> (18 Feb 2025): added sanitization for shortcode attributes.</li>
+  <li><strong>1.2.3</strong> (4 May 2024): PHPCS coding standard fixes.</li>
+  <li><strong>1.2.2</strong> (6 May 2023): fixed deprecation warnings.</li>
+  <li><strong>1.2.1</strong> (20 Sep 2018): PHPCS coding standard fixes.</li>
+  <li><strong>1.2</strong> (10 Jun 2017): updated the charts library and added colour palettes.</li>
+  <li><strong>1.1</strong> (4 Sep 2016): legend configuration and coding standards refactor.</li>
+  <li><strong>1.0.0 – 1.0.3</strong> (2016): initial release and fixes.</li>
+</ul>
+
+<h2 id="libraries">Third-party libraries</h2>
+<ul>
+  <li><a href="https://echarts.apache.org/">Apache ECharts</a> 6.1.0: Apache License 2.0</li>
+  <li><a href="https://github.com/ecomfe/zrender">ZRender</a> 6.1.0: BSD 3-Clause</li>
+  <li><a href="https://github.com/microsoft/tslib">tslib</a> 2.3.0: 0BSD</li>
+  <li><a href="https://github.com/jspreadsheet/ce">Jspreadsheet CE</a> 5.0.4: MIT (editor only)</li>
+  <li><a href="https://github.com/jsuites/jsuites">jSuites</a> 5.13.5: MIT (editor only)</li>
+</ul>
+
       </section>
     </div>
 
     <!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Easy Charts maintained by <a href="https://github.com/kiranpotphode">kiranpotphode</a></p>
+        <p class="copyright">Easy Charts maintained by <a href="https://github.com/kiranpotphode">kiranpotphode</a> · <a href="https://kiranpotphode.com/easy-charts/">kiranpotphode.com/easy-charts</a></p>
         <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-    
 
   </body>
 </html>
