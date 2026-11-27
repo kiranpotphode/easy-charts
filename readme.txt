@@ -4,7 +4,7 @@ Tags: chart, charts, graph, bar chart, pie chart
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,11 +126,20 @@ They keep working and keep their 1.x look until you migrate them, one at a time 
 
 = Where is my data stored? =
 
-Saved charts are posts of the `easy_charts` type, with the chart in post meta. Charts made in a Chart block are stored in that block. Site-wide settings are stored in the `easy_charts_settings` option. Easy Charts creates no database tables.
+Saved charts are posts of the `easy_charts` type, with the chart in post meta. Charts made in a Chart block are stored in that block. Site-wide settings are stored in the `easy_charts_settings` option. Easy Charts creates no database tables. Deleting the plugin keeps all of this, including data from 1.x, so your charts come back if you install it again.
 
 = Does the chart work without JavaScript? =
 
 Visitors without JavaScript see the chart's data as a table.
+
+= A chart doesn't show, or shows only its data table. What can I check? =
+
+* Clear your caching plugin's cache and your CDN's cache, then look at the page logged out, in a private window.
+* "Delay JavaScript execution" (WP Rocket, LiteSpeed Cache, SiteGround Optimizer and others): charts then draw only after the visitor's first click, scroll or key press. To draw them right away, exclude `easy-charts` from delaying. Deferred JavaScript is fine.
+* "Remove unused CSS" or "Unique CSS": safelist `easy-charts`, or exclude `easy-charts/build/frontend.css`.
+* Cloudflare Rocket Loader, and plugins that combine JavaScript files: if charts still don't draw, exclude `easy-charts` from them.
+* Open your browser's console: a chart that can't be drawn logs a message starting with "Easy Charts:" and shows its data table instead.
+* A chart inside a tab, popup, accordion or slider draws when it is shown. If a theme or plugin shows charts in a way Easy Charts can't notice, it can run `window.easyCharts.refresh()` or dispatch an `easy-charts:refresh` event on `document`.
 
 = Where is the source code? =
 
@@ -155,6 +164,21 @@ Easy Charts includes these libraries, all under licences compatible with the GPL
 * [jSuites](https://github.com/jsuites/jsuites) 5.13.5: MIT (editor only)
 
 == Changelog ==
+
+= 2.0.1 =
+
+* Security: tightened access checks for chart data and for unpublished and password-protected charts. Such charts are shown only to people who can open them, or in posts whose author can.
+* Security: hardened the handling of chart settings.
+* Fixed: charts in hidden tabs, accordions, popups and sliders draw when they are shown, at the right size.
+* Fixed: charts added to a page later (popups, infinite scroll, AJAX, slider copies) are drawn.
+* Fixed: one chart that can't be drawn no longer leaves the other charts on the page blank; it shows its data table instead.
+* Fixed: charts draw when an optimisation plugin loads JavaScript late or in a different order, and their data tables stay hidden when "remove unused CSS" drops the plugin's styles.
+* Fixed: printed charts and PDFs fit the page width instead of being cut off.
+* Fixed: charts with a fixed width are resized on narrow screens.
+* Improved: pages with many charts no longer freeze while the charts are drawn.
+* Improved: on narrow screens (under 480 px), side legends move below the chart, pie labels show only the value and long row labels are shortened. This also applies to charts that keep their 1.x look.
+* Improved: value labels that would overlap are hidden; the tooltip and the data table still show them.
+* New: `window.easyCharts.refresh()` and the `easy-charts:refresh` event, to draw charts that a theme or plugin shows in a way Easy Charts can't notice.
 
 = 2.0.0 =
 
@@ -232,6 +256,9 @@ Easy Charts includes these libraries, all under licences compatible with the GPL
 * Plugin released.
 
 == Upgrade Notice ==
+
+= 2.0.1 =
+Security and reliability fixes: tighter access checks, and charts now draw in tabs, popups and print. Clear your page cache after updating.
 
 = 2.0.0 =
 Major update with breaking changes: charts are drawn with Apache ECharts and some 1.x options are gone. Your charts keep their 1.x look until you migrate them. Read "Upgrading from 1.x" before updating.

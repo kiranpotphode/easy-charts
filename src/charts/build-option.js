@@ -26,6 +26,27 @@ const PIE_TYPES = [ 'pie', 'donut', 'polar-area' ];
 
 export const CHART_TYPES = [ ...AXIS_TYPES, ...PIE_TYPES ];
 
+/**
+ * Below this width (px) a chart uses the compact (phone) layout.
+ */
+export const COMPACT_WIDTH = 480;
+
+/**
+ * Hide value labels that would overlap others (they stay in the tooltip and the data table).
+ */
+const HIDE_OVERLAP = { hideOverlap: true };
+
+/**
+ * Whether a chart of this width uses the compact layout. Unknown widths (0, or not a positive
+ * finite number) use the full layout.
+ *
+ * @param {number} width Chart width in px.
+ * @return {boolean} True below COMPACT_WIDTH.
+ */
+export function isCompact( width ) {
+	return Number.isFinite( width ) && width > 0 && width < COMPACT_WIDTH;
+}
+
 const DEFAULT_STRINGS = {
 	increase: 'Increase',
 	decrease: 'Decrease',
@@ -211,11 +232,16 @@ function buildTitle( title, settings, font ) {
  * @param {Object}  settings Resolved settings.
  * @param {boolean} hasTitle Whether a title is shown.
  * @param {Object}  font     Resolved font (see resolveFont).
+ * @param {boolean} compact  Narrow chart: a side legend would take too much of the width.
  * @return {{legend: Object, space: Object}} Legend option and reserved space.
  */
-function buildLegend( settings, hasTitle, font ) {
+function buildLegend( settings, hasTitle, font, compact ) {
 	const show = settings.legend?.show !== false;
-	const position = settings.legend?.position ?? 'bottom';
+	const chosen = settings.legend?.position ?? 'bottom';
+	const position =
+		compact && ( chosen === 'left' || chosen === 'right' )
+			? 'bottom'
+			: chosen;
 	// Title and legend heights grow with the font (40, 64 and 32 px at the default 12 px).
 	let titleSpace = 0;
 	if ( hasTitle ) {
@@ -264,6 +290,8 @@ function buildLegend( settings, hasTitle, font ) {
  * @property {Object}                    space      Space reserved around the plot by title and legend.
  * @property {Object}                    strings    Translated UI strings.
  * @property {Object}                    font       Resolved font (see resolveFont).
+ * @property {number}                    width      Chart width in px, or 0 if unknown.
+ * @property {boolean}                   compact    Narrow chart (see isCompact).
  */
 
 /**
@@ -273,8 +301,18 @@ function buildLegend( settings, hasTitle, font ) {
  * @return {Object} Axis, grid and series options.
  */
 function buildAxisChart( input ) {
-	const { type, categories, names, series, settings, space, strings, font } =
-		input;
+	const {
+		type,
+		categories,
+		names,
+		series,
+		settings,
+		space,
+		strings,
+		font,
+		width,
+		compact,
+	} = input;
 	const labels = settings.labels ?? {};
 	const showLabels = labels.show !== false;
 	const text = { fontFamily: font.family, fontSize: font.size };
@@ -333,6 +371,7 @@ function buildAxisChart( input ) {
 						...label,
 						formatter: ( params ) => signed( params.value ),
 					},
+					labelLayout: HIDE_OVERLAP,
 					tooltip: { valueFormatter: signed },
 					data: pick( steps.size, up ),
 				},
@@ -357,6 +396,7 @@ function buildAxisChart( input ) {
 					stack,
 					stackStrategy: 'all',
 					label,
+					labelLayout: HIDE_OVERLAP,
 					data: steps.map( ( step ) => step.size[ i ] ),
 				},
 			];
@@ -368,6 +408,7 @@ function buildAxisChart( input ) {
 			name: names[ i ],
 			data,
 			label,
+			labelLayout: HIDE_OVERLAP,
 			...( stacked ? { stack: 'total' } : {} ),
 			...( isBar
 				? {}
@@ -401,7 +442,15 @@ function buildAxisChart( input ) {
 		nameLocation: 'middle',
 		nameGap: gap( horizontal ? 48 : 32 ),
 		nameTextStyle: text,
-		axisLabel: text,
+		// Narrow horizontal charts: long row labels would squeeze the bars to nothing.
+		axisLabel:
+			compact && horizontal
+				? {
+						...text,
+						width: Math.round( width * 0.3 ),
+						overflow: 'truncate',
+					}
+				: text,
 		...( horizontal ? { inverse: true } : {} ),
 	};
 	const valueAxis = {
@@ -473,7 +522,8 @@ function invisibleBase( stack, data ) {
  * @return {Object} Series and tooltip options.
  */
 function buildPieChart( input ) {
-	const { type, categories, names, series, settings, space, font } = input;
+	const { type, categories, names, series, settings, space, font, compact } =
+		input;
 	const labels = settings.labels ?? {};
 	const format = ( value ) => formatValue( value, labels );
 	const values = series[ 0 ] ?? [];
@@ -504,9 +554,13 @@ function buildPieChart( input ) {
 					fontFamily: font.family,
 					fontSize: font.size,
 					show: labels.show !== false,
-					formatter: ( params ) =>
-						`${ params.name }: ${ format( params.value ) }`,
+					// Narrow charts: the legend names the slices, so labels show only the value.
+					formatter: compact
+						? ( params ) => format( params.value )
+						: ( params ) =>
+								`${ params.name }: ${ format( params.value ) }`,
 				},
+				labelLayout: HIDE_OVERLAP,
 			},
 		],
 		legendNames: data.map( ( slice ) => slice.name ),
@@ -557,6 +611,8 @@ export function describeChart( type, title, strings ) {
  * @param {Object} [input.strings]  Translated UI strings (see ChartRenderer::strings()).
  * @param {string} [input.siteFont] CSS font-family of the text around the chart, for the
  *                                  "site" font setting.
+ * @param {number} [input.width]    Chart width in px, for the compact layout (see isCompact).
+ *                                  Unknown (0 or invalid) keeps the full layout.
  * @return {Object} ECharts option.
  */
 export function buildOption( {
@@ -566,6 +622,7 @@ export function buildOption( {
 	title = '',
 	strings = {},
 	siteFont = '',
+	width = 0,
 } ) {
 	const chartType = CHART_TYPES.includes( type ) ? type : 'bar';
 	const columns = data?.columns ?? [];
@@ -576,9 +633,16 @@ export function buildOption( {
 		rows.map( ( row ) => toNumber( row[ i + 1 ] ) )
 	);
 
+	const chartWidth = Number.isFinite( width ) && width > 0 ? width : 0;
+	const compact = isCompact( chartWidth );
 	const font = resolveFont( settings.font, siteFont );
 	const titleOption = buildTitle( title, settings, font );
-	const { legend, space } = buildLegend( settings, titleOption.show, font );
+	const { legend, space } = buildLegend(
+		settings,
+		titleOption.show,
+		font,
+		compact
+	);
 
 	const input = {
 		type: chartType,
@@ -589,6 +653,8 @@ export function buildOption( {
 		space,
 		strings: { ...DEFAULT_STRINGS, ...strings },
 		font,
+		width: chartWidth,
+		compact,
 	};
 	const description = describeChart(
 		chartType,

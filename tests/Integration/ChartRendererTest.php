@@ -147,6 +147,47 @@ class ChartRendererTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<button type="button" class="easy-charts-chart__download" hidden>Download<span class="easy-charts-chart__sr"> (PNG image of &quot;Sales&quot;)</span></button>', $html );
 	}
 
+	/**
+	 * Download labels that are not text.
+	 *
+	 * @return array
+	 */
+	public function invalid_labels() {
+		return array(
+			'array'  => array( array( '<b>x</b>' ) ),
+			'number' => array( 42 ),
+			'null'   => array( null ),
+		);
+	}
+
+	/**
+	 * A block attribute can hold any JSON; a download label that is not text falls back to the default.
+	 *
+	 * @dataProvider invalid_labels
+	 *
+	 * @param mixed $label Label from the chart's settings.
+	 */
+	public function test_download_label_that_is_not_text_falls_back( $label ) {
+		$html = $this->renderer->render_document(
+			array(
+				'schema'   => 2,
+				'type'     => 'bar',
+				'data'     => array(
+					'columns' => array( '', 'Kia' ),
+					'rows'    => array( array( '2008', 10 ) ),
+				),
+				'settings' => array(
+					'download' => array(
+						'enabled' => true,
+						'label'   => $label,
+					),
+				),
+			)
+		);
+
+		$this->assertStringContainsString( 'hidden>Download<span', $html );
+	}
+
 	public function test_charts_get_a_short_translated_description() {
 		$html    = $this->renderer->render( $this->chart() );
 		$strings = $this->config( $html )['strings'];
@@ -186,10 +227,164 @@ class ChartRendererTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'easy-charts-chart', $this->renderer->render( $id ) );
 	}
 
-	public function test_draft_chart_renders_as_in_1x() {
+	/**
+	 * A chart by a given user, optionally with a password.
+	 *
+	 * @param string $status   Post status.
+	 * @param int    $author   Chart author.
+	 * @param string $password Post password.
+	 * @return int
+	 */
+	private function chart_by( $status, $author, $password = '' ) {
+		$id   = $this->chart( array(), $status );
+		$date = 'future' === $status ? time() + DAY_IN_SECONDS : time();
+		wp_update_post(
+			array(
+				'ID'            => $id,
+				'post_author'   => $author,
+				'post_password' => $password,
+				'post_status'   => $status,
+				'post_date'     => get_date_from_gmt( gmdate( 'Y-m-d H:i:s', $date ) ),
+				'post_date_gmt' => gmdate( 'Y-m-d H:i:s', $date ),
+				'edit_date'     => true,
+			)
+		);
+		$this->assertSame( $status, get_post_status( $id ) );
+
+		return $id;
+	}
+
+	/**
+	 * Render a chart through the content of a published post by a given author, as a visitor.
+	 *
+	 * @param int $chart_id Chart.
+	 * @param int $author   Author of the post that embeds the chart.
+	 * @return string
+	 */
+	private function render_in_post_by( $chart_id, $author ) {
+		$host = self::factory()->post->create(
+			array(
+				'post_author'  => $author,
+				'post_content' => '[easy_chart chart_id="' . $chart_id . '"]',
+			)
+		);
+		wp_set_current_user( 0 );
+		$GLOBALS['post'] = get_post( $host ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- the post being viewed.
+
+		return apply_filters( 'the_content', get_post_field( 'post_content', $host ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core filter.
+	}
+
+	/**
+	 * Unpublished statuses.
+	 *
+	 * @return array
+	 */
+	public function unpublished_statuses() {
+		return array(
+			'draft'     => array( 'draft' ),
+			'pending'   => array( 'pending' ),
+			'scheduled' => array( 'future' ),
+		);
+	}
+
+	/**
+	 * Unpublished charts are hidden from visitors.
+	 *
+	 * @dataProvider unpublished_statuses
+	 *
+	 * @param string $status Post status.
+	 */
+	public function test_unpublished_chart_is_hidden_from_visitors( $status ) {
+		$id = $this->chart_by( $status, self::factory()->user->create( array( 'role' => 'editor' ) ) );
 		wp_set_current_user( 0 );
 
-		$this->assertStringContainsString( 'easy-charts-chart', $this->renderer->render( $this->chart( array(), 'draft' ) ) );
+		$this->assertSame( '', $this->renderer->render( $id ) );
+	}
+
+	/**
+	 * Unpublished charts are shown to users who can read them.
+	 *
+	 * @dataProvider unpublished_statuses
+	 *
+	 * @param string $status Post status.
+	 */
+	public function test_unpublished_chart_is_shown_to_its_readers( $status ) {
+		$editor = self::factory()->user->create( array( 'role' => 'editor' ) );
+		$id     = $this->chart_by( $status, $editor );
+		wp_set_current_user( $editor );
+
+		$this->assertStringContainsString( 'easy-charts-chart', $this->renderer->render( $id ) );
+	}
+
+	public function test_own_draft_chart_shows_to_visitors_in_its_authors_post() {
+		$editor = self::factory()->user->create( array( 'role' => 'editor' ) );
+		$id     = $this->chart_by( 'draft', $editor );
+
+		$this->assertStringContainsString( 'easy-charts-chart', $this->render_in_post_by( $id, $editor ) );
+	}
+
+	public function test_nobody_can_show_a_chart_they_could_not_open() {
+		$id     = $this->chart_by( 'draft', self::factory()->user->create( array( 'role' => 'editor' ) ) );
+		$author = self::factory()->user->create( array( 'role' => 'author' ) );
+
+		$this->assertStringNotContainsString( 'easy-charts-chart', $this->render_in_post_by( $id, $author ) );
+	}
+
+	public function test_a_query_loop_keeps_the_containing_posts_author() {
+		$editor = self::factory()->user->create( array( 'role' => 'editor' ) );
+		$id     = $this->chart_by( 'draft', $editor );
+		// A published post by the editor, for the Query Loop to list.
+		self::factory()->post->create( array( 'post_author' => $editor ) );
+
+		$author = self::factory()->user->create( array( 'role' => 'author' ) );
+		$loop   = '<!-- wp:query {"queryId":1,"query":{"postType":"post","author":"' . $editor . '","inherit":false,"perPage":1}} -->'
+			. '<div class="wp-block-query"><!-- wp:post-template -->'
+			. '<!-- wp:easy-charts/chart {"chartId":' . $id . '} /-->'
+			. '<!-- /wp:post-template --></div><!-- /wp:query -->';
+		$host   = self::factory()->post->create(
+			array(
+				'post_author'  => $author,
+				'post_content' => $loop,
+			)
+		);
+		wp_set_current_user( 0 );
+		$GLOBALS['post'] = get_post( $host ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- the post being viewed.
+
+		// The chart sits in the author's content, in a loop listing the editor's posts.
+		$html = apply_filters( 'the_content', get_post_field( 'post_content', $host ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core filter.
+
+		$this->assertStringContainsString( 'wp-block-query', $html );
+		$this->assertStringNotContainsString( 'easy-charts-chart', $html );
+	}
+
+	public function test_outside_post_content_only_the_viewer_counts() {
+		$editor = self::factory()->user->create( array( 'role' => 'editor' ) );
+		$id     = $this->chart_by( 'draft', $editor );
+		$this->render_in_post_by( $id, $editor );
+
+		// The editor's post is the current post, but this is not its content (a widget, say).
+		$this->assertSame( '', $this->renderer->render( $id ) );
+	}
+
+	public function test_password_protected_chart_needs_someone_who_can_edit_it() {
+		$admin  = self::factory()->user->create( array( 'role' => 'administrator' ) );
+		$author = self::factory()->user->create( array( 'role' => 'author' ) );
+		$id     = $this->chart_by( 'publish', $admin, 'secret' );
+
+		wp_set_current_user( 0 );
+		$this->assertSame( '', $this->renderer->render( $id ) );
+		$this->assertStringNotContainsString( 'easy-charts-chart', $this->render_in_post_by( $id, $author ) );
+		$this->assertStringContainsString( 'easy-charts-chart', $this->render_in_post_by( $id, $admin ) );
+
+		wp_set_current_user( $admin );
+		$this->assertStringContainsString( 'easy-charts-chart', $this->renderer->render( $id ) );
+	}
+
+	public function test_private_chart_stays_hidden_from_visitors_in_its_authors_post() {
+		$editor = self::factory()->user->create( array( 'role' => 'editor' ) );
+		$id     = $this->chart_by( 'private', $editor );
+
+		$this->assertStringNotContainsString( 'easy-charts-chart', $this->render_in_post_by( $id, $editor ) );
 	}
 
 	public function test_1x_render_filter_is_applied() {

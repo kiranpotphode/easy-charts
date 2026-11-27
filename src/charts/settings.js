@@ -26,17 +26,34 @@ export function toSettings( settings ) {
 }
 
 /**
+ * Keys that would reach an object's prototype instead of naming a setting. Settings come from
+ * stored JSON (block attributes, post meta), which is untrusted.
+ */
+const UNSAFE_KEYS = new Set( [ '__proto__', 'constructor', 'prototype' ] );
+
+/**
  * Merge overrides into a base: objects merge key by key, lists and scalars replace the base value,
- * and an empty override (`{}` or `[]`) of a group changes nothing.
+ * and an empty override (`{}` or `[]`) of a group changes nothing. Unsafe keys are dropped at
+ * every level.
  *
  * @param {Object} base      Lower layer.
  * @param {Object} overrides Higher layer.
  * @return {Object} Merged settings (inputs are not modified).
  */
 export function mergeSettings( base, overrides ) {
-	const result = { ...toSettings( base ) };
+	const result = {};
+	Object.entries( toSettings( base ) ).forEach( ( [ key, value ] ) => {
+		if ( ! UNSAFE_KEYS.has( key ) ) {
+			result[ key ] = value;
+		}
+	} );
 	Object.entries( toSettings( overrides ) ).forEach( ( [ key, value ] ) => {
-		const current = result[ key ];
+		if ( UNSAFE_KEYS.has( key ) ) {
+			return;
+		}
+		const current = Object.hasOwn( result, key )
+			? result[ key ]
+			: undefined;
 		if ( isObject( current ) ) {
 			if ( isObject( value ) ) {
 				result[ key ] = mergeSettings( current, value );
@@ -46,7 +63,8 @@ export function mergeSettings( base, overrides ) {
 				return;
 			}
 		}
-		result[ key ] = value;
+		// A new group is copied through the merge too, so its unsafe keys are dropped.
+		result[ key ] = isObject( value ) ? mergeSettings( {}, value ) : value;
 	} );
 	return result;
 }

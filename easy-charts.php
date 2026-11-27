@@ -9,7 +9,7 @@
  * Plugin Name:       Easy Charts
  * Plugin URI:        http://kiranpotphode.github.io/easy-charts/
  * Description:       Build simple, reusable, customisable charts on any page or post with ease.
- * Version:           2.0.0
+ * Version:           2.0.1
  * Requires at least: 6.6
  * Requires PHP:      7.4
  * Author:            Kiran Potphode
@@ -24,7 +24,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'EASY_CHARTS_VERSION', '2.0.0' );
+define( 'EASY_CHARTS_VERSION', '2.0.1' );
 define( 'EASY_CHARTS_FILE', __FILE__ );
 define( 'EASY_CHARTS_DIR', plugin_dir_path( __FILE__ ) );
 

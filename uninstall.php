@@ -1,27 +1,13 @@
 <?php
 /**
- * Fired when the plugin is uninstalled.
+ * Runs when the plugin is deleted.
  *
- * When populating this file, consider the following flow
- * of control:
+ * Deliberately deletes nothing: charts (posts of the easy_charts type, their 2.0 and 1.x post meta)
+ * and the easy_charts_settings option are kept, so reinstalling, or going back to 1.x, brings every
+ * chart back. Charts can be deleted under Easy Charts like any other post.
  *
- * - This method should be static
- * - Check if the $_REQUEST content actually is the plugin name
- * - Run an admin referrer check to make sure it goes through authentication
- * - Verify the output of $_GET makes sense
- * - Repeat with other user roles. Best directly by using the links/query string parameters.
- * - Repeat things for multisite. Once for a single site in the network, once sitewide.
- *
- * This file may be updated more in future version of the Boilerplate; however, this is the
- * general skeleton and outline for how the file should work.
- *
- * For more information, see the following discussion:
- * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
- *
- * @link       https://kiranpotphode.com/
- * @since      1.0.0
- *
- * @package    Easy_Charts
+ * @link    https://kiranpotphode.com/
+ * @package EasyCharts
  */
 
 // If uninstall not called from WordPress, then exit.

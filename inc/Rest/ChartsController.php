@@ -23,8 +23,9 @@ use WP_REST_Server;
  *
  * Anyone who can edit posts can list and read published charts, the same reach as typing the
  * `[easy_chart]` shortcode. Charts in other states need the `read_post` capability for that chart.
- * Core's `/wp/v2/easy-charts` routes only allow users who can edit pages, since charts use page
- * capabilities. Charts without a stored v2 document are returned converted from 1.x (not stored).
+ * Core's `/wp/v2/easy-charts` routes also need `edit_posts` to read (ChartPostsController) and
+ * show the document only when editing. Charts without a stored v2 document are returned converted
+ * from 1.x (not stored).
  */
 final class ChartsController implements Service {
 

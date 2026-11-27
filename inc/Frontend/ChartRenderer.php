@@ -12,6 +12,7 @@ use EasyCharts\Chart\ChartRepository;
 use EasyCharts\Chart\Schema;
 use EasyCharts\Service;
 use EasyCharts\Settings\SettingsResolver;
+use WP_Post;
 
 /**
  * Renders a chart as a <figure> with a chart box, its JSON config and an accessible data table,
@@ -38,6 +39,13 @@ final class ChartRenderer implements Service {
 	private $settings;
 
 	/**
+	 * IDs of the posts whose content `the_content` is filtering, innermost last.
+	 *
+	 * @var int[]
+	 */
+	private $content_posts = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param ChartRepository  $charts   Chart storage.
@@ -55,6 +63,34 @@ final class ChartRenderer implements Service {
 	 */
 	public function register() {
 		add_action( 'init', array( $this, 'register_assets' ) );
+
+		// Track whose content is being filtered (see embedding_author()).
+		add_filter( 'the_content', array( $this, 'enter_content' ), PHP_INT_MIN );
+		add_filter( 'the_content', array( $this, 'leave_content' ), PHP_INT_MAX );
+	}
+
+	/**
+	 * Remember the post whose content `the_content` is filtering.
+	 *
+	 * @param string $content Post content.
+	 * @return string Unchanged content.
+	 */
+	public function enter_content( $content ) {
+		$this->content_posts[] = (int) get_the_ID();
+
+		return $content;
+	}
+
+	/**
+	 * Forget the post whose content `the_content` has filtered.
+	 *
+	 * @param string $content Post content.
+	 * @return string Unchanged content.
+	 */
+	public function leave_content( $content ) {
+		array_pop( $this->content_posts );
+
+		return $content;
 	}
 
 	/**
@@ -187,18 +223,63 @@ final class ChartRenderer implements Service {
 	}
 
 	/**
-	 * Private and trashed charts are only shown to users who can read them. Other statuses render as in 1.x.
+	 * Who may see a chart.
+	 *
+	 * - Published charts: everyone.
+	 * - Private and trashed charts: only users who can read them.
+	 * - Unpublished (draft, pending, scheduled) and password-protected charts: users who can read
+	 *   them (edit, for a password-protected chart, which has no page to enter the password on),
+	 *   or everyone when the post that embeds them is by an author who can. So an editor's own
+	 *   draft chart in their published post still shows, as in 1.x.
 	 *
 	 * @param int $chart_id Chart post ID.
 	 * @return bool
 	 */
 	private function can_show( $chart_id ) {
-		$status = get_post_status( $chart_id );
-		if ( in_array( $status, array( 'private', 'trash' ), true ) ) {
-			return current_user_can( 'read_post', $chart_id );
+		$chart = get_post( $chart_id );
+		if ( ! $chart instanceof WP_Post ) {
+			return false;
 		}
 
-		return false !== $status;
+		$protected = '' !== $chart->post_password;
+		if ( 'publish' === $chart->post_status && ! $protected ) {
+			return true;
+		}
+
+		$capability = 'publish' === $chart->post_status ? 'edit_post' : 'read_post';
+		if ( current_user_can( $capability, $chart->ID ) ) {
+			return true;
+		}
+		if ( in_array( $chart->post_status, array( 'private', 'trash' ), true ) ) {
+			return false;
+		}
+
+		$author = $this->embedding_author( $chart->ID );
+
+		return $author > 0 && user_can( $author, $capability, $chart->ID );
+	}
+
+	/**
+	 * Author of the post whose content is embedding the chart.
+	 *
+	 * Only trusted while that post's own content is filtered and it is still the current post;
+	 * otherwise (widgets, template parts, nested loops) 0.
+	 *
+	 * @param int $chart_id Chart post ID.
+	 * @return int User ID, or 0 if unknown.
+	 */
+	private function embedding_author( $chart_id ) {
+		$filtering = end( $this->content_posts );
+		if ( ! $filtering ) {
+			return 0;
+		}
+
+		$post = get_post();
+		if ( ! $post instanceof WP_Post || (int) $post->ID !== $filtering || (int) $post->ID === (int) $chart_id ) {
+			return 0;
+		}
+
+		return (int) $post->post_author;
 	}
 
 	/**
@@ -279,7 +360,8 @@ final class ChartRenderer implements Service {
 			return '';
 		}
 
-		$label = isset( $settings['download']['label'] ) && '' !== $settings['download']['label']
+		// Settings come from block attributes too, so the label may be any JSON value.
+		$label = isset( $settings['download']['label'] ) && is_string( $settings['download']['label'] ) && '' !== $settings['download']['label']
 			? $settings['download']['label']
 			: __( 'Download', 'easy-charts' );
 

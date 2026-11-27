@@ -63,6 +63,39 @@ describe( 'mergeSettings', () => {
 		expect( toSettings( null ) ).toEqual( {} );
 		expect( mergeSettings( base, [] ) ).toEqual( base );
 	} );
+
+	it( 'drops prototype keys from stored JSON at every level', () => {
+		const stored = JSON.parse(
+			'{"__proto__":{"polluted":true},"constructor":{"x":1},"prototype":{"y":2},' +
+				'"legend":{"show":false,"__proto__":{"deep":true}},' +
+				'"brandNew":{"a":1,"__proto__":{"fresh":true}}}'
+		);
+		const storedBase = JSON.parse(
+			'{"__proto__":{"fromBase":true},"labels":{"prefix":"$"}}'
+		);
+
+		const merged = mergeSettings( storedBase, stored );
+
+		expect( Object.getPrototypeOf( merged ) ).toBe( Object.prototype );
+		expect( Object.keys( merged ).sort() ).toEqual( [
+			'brandNew',
+			'labels',
+			'legend',
+		] );
+		expect( merged.polluted ).toBeUndefined();
+		expect( merged.fromBase ).toBeUndefined();
+		expect( merged.legend ).toEqual( { show: false } );
+		expect( Object.getPrototypeOf( merged.legend ) ).toBe(
+			Object.prototype
+		);
+		expect( merged.legend.deep ).toBeUndefined();
+		expect( merged.brandNew ).toEqual( { a: 1 } );
+		expect( Object.getPrototypeOf( merged.brandNew ) ).toBe(
+			Object.prototype
+		);
+		expect( merged.brandNew.fresh ).toBeUndefined();
+		expect( {}.polluted ).toBeUndefined();
+	} );
 } );
 
 describe( 'overrides', () => {

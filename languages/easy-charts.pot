@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Charts 2.0.0\n"
+"Project-Id-Version: Easy Charts 2.0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/easy-charts\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-21T10:31:27+00:00\n"
+"POT-Creation-Date: 2026-11-27T13:38:38+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: easy-charts\n"
@@ -157,48 +157,48 @@ msgstr ""
 msgid "Polar area"
 msgstr ""
 
-#: inc/Frontend/ChartRenderer.php:145
+#: inc/Frontend/ChartRenderer.php:181
 msgid "Increase"
 msgstr ""
 
-#: inc/Frontend/ChartRenderer.php:146
+#: inc/Frontend/ChartRenderer.php:182
 msgid "Decrease"
 msgstr ""
 
 #. translators: 1: chart title, 2: chart type, e.g. "Stacked bar".
-#: inc/Frontend/ChartRenderer.php:149
+#: inc/Frontend/ChartRenderer.php:185
 #, php-format
 msgid "%1$s (%2$s chart)."
 msgstr ""
 
 #. translators: %s: chart type, e.g. "Stacked bar".
-#: inc/Frontend/ChartRenderer.php:151
+#: inc/Frontend/ChartRenderer.php:187
 #, php-format
 msgid "%s chart."
 msgstr ""
 
-#: inc/Frontend/ChartRenderer.php:152
+#: inc/Frontend/ChartRenderer.php:188
 msgid "The values are in the table that follows."
 msgstr ""
 
 #. translators: %d: chart post ID.
-#: inc/Frontend/ChartRenderer.php:219
+#: inc/Frontend/ChartRenderer.php:300
 #, php-format
 msgid "#%d (no title)"
 msgstr ""
 
 #. translators: %s: chart title.
-#: inc/Frontend/ChartRenderer.php:227
+#: inc/Frontend/ChartRenderer.php:308
 #, php-format
 msgid "Easy Charts: the chart \"%s\" has no data that can be drawn, so visitors see nothing here. Only people who can edit the chart see this message."
 msgstr ""
 
-#: inc/Frontend/ChartRenderer.php:232
+#: inc/Frontend/ChartRenderer.php:313
 #: build/blocks/chart/index.js:11
 msgid "Edit chart"
 msgstr ""
 
-#: inc/Frontend/ChartRenderer.php:284
+#: inc/Frontend/ChartRenderer.php:366
 #: inc/Settings/Defaults.php:83
 #: build/blocks/chart/index.js:7
 #: build/settings.js:4
@@ -206,16 +206,16 @@ msgid "Download"
 msgstr ""
 
 #. translators: %s: chart title.
-#: inc/Frontend/ChartRenderer.php:289
+#: inc/Frontend/ChartRenderer.php:371
 #, php-format
 msgid "PNG image of \"%s\""
 msgstr ""
 
-#: inc/Frontend/ChartRenderer.php:290
+#: inc/Frontend/ChartRenderer.php:372
 msgid "PNG image of the chart"
 msgstr ""
 
-#: inc/Frontend/ChartRenderer.php:311
+#: inc/Frontend/ChartRenderer.php:393
 #: build/blocks/chart/index.js:4
 msgid "Chart data"
 msgstr ""
@@ -224,96 +224,100 @@ msgstr ""
 msgid "Charts are drawn with Apache ECharts in 2.0, so the uvCharts payload this filter changed is no longer used."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:40
+#: inc/PostType/ChartPostType.php:41
 msgctxt "Post type general name"
 msgid "Easy Charts"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:41
+#: inc/PostType/ChartPostType.php:42
 msgctxt "Post type singular name"
 msgid "Chart"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:42
+#: inc/PostType/ChartPostType.php:43
 msgctxt "Admin menu"
 msgid "Easy Charts"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:43
+#: inc/PostType/ChartPostType.php:44
 msgctxt "Add new chart on admin bar"
 msgid "Chart"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:44
+#: inc/PostType/ChartPostType.php:45
 msgctxt "Add new chart"
 msgid "Add New"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:45
+#: inc/PostType/ChartPostType.php:46
 msgid "Add New Chart"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:46
+#: inc/PostType/ChartPostType.php:47
 msgid "New Chart"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:47
+#: inc/PostType/ChartPostType.php:48
 msgid "Edit Chart"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:48
+#: inc/PostType/ChartPostType.php:49
 msgid "View Chart"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:49
+#: inc/PostType/ChartPostType.php:50
 msgid "All Charts"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:50
+#: inc/PostType/ChartPostType.php:51
 msgid "Search Charts"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:51
+#: inc/PostType/ChartPostType.php:52
 msgid "Parent Charts:"
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:52
+#: inc/PostType/ChartPostType.php:53
 msgid "No Charts found."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:53
+#: inc/PostType/ChartPostType.php:54
 msgid "No Charts found in Trash."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:55
+#: inc/PostType/ChartPostType.php:56
 msgid "Chart published."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:56
+#: inc/PostType/ChartPostType.php:57
 msgid "Chart published privately."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:57
+#: inc/PostType/ChartPostType.php:58
 msgid "Chart reverted to draft."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:58
+#: inc/PostType/ChartPostType.php:59
 msgid "Chart scheduled."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:59
+#: inc/PostType/ChartPostType.php:60
 msgid "Chart updated."
 msgstr ""
 
-#: inc/PostType/ChartPostType.php:60
+#: inc/PostType/ChartPostType.php:61
 msgid "Chart trashed."
 msgstr ""
 
-#: inc/Rest/ChartsController.php:180
+#: inc/Rest/ChartPostsController.php:57
+msgid "Sorry, you are not allowed to view charts."
+msgstr ""
+
+#: inc/Rest/ChartsController.php:181
 msgid "Chart not found."
 msgstr ""
 
-#: inc/Rest/ChartsController.php:185
+#: inc/Rest/ChartsController.php:186
 msgid "This chart has no data that can be shown."
 msgstr ""
 

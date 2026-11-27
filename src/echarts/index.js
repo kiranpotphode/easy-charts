@@ -35,3 +35,7 @@ echarts.use( [
 ] );
 
 window.easyChartsECharts = echarts;
+
+// Optimisation plugins can load this file after the front-end script (combined, deferred or
+// delayed JavaScript); the front end waits for this event in that case.
+document.dispatchEvent( new window.CustomEvent( 'easy-charts:echarts-ready' ) );
