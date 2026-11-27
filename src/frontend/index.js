@@ -14,7 +14,10 @@
  * Internal dependencies
  */
 import { refresh, start } from './lifecycle';
+import { setUpPrinting } from './print';
 import './frontend.css';
+
+setUpPrinting();
 
 // Optimisers may run this before the ECharts runtime: start with whichever comes first.
 const tryStart = () => start();

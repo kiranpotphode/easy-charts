@@ -41,6 +41,46 @@
 	margin-top: 0.5em;
 }
 
+/*
+ * A chart that could not be drawn shows only its data table,
+ * without an empty gap above it.
+ */
+.easy-charts-chart.is-failed .easy-charts-chart__canvas {
+	display: none;
+}
+
+/*
+ * Paper and PDF: scale each chart to the page width (the SVG has a
+ * viewBox, see print.js) instead of keeping its screen size, and keep
+ * it on one page.
+ */
+@media print {
+
+	.easy-charts-chart {
+		break-inside: avoid;
+	}
+
+	.easy-charts-chart__canvas {
+		width: auto !important;
+		height: auto !important;
+	}
+
+	.easy-charts-chart__canvas > div,
+	.easy-charts-chart__canvas svg {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.easy-charts-chart__canvas svg {
+		display: block;
+		position: static !important;
+	}
+
+	.easy-charts-chart__download {
+		display: none !important;
+	}
+}
+
 /* Screen reader text (not every theme defines .screen-reader-text). */
 .easy-charts-chart__sr {
 	position: absolute !important;
