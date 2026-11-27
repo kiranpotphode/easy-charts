@@ -44,7 +44,8 @@ final class ChartMeta implements Service {
 				'sanitize_callback' => array( $this, 'sanitize' ),
 				'auth_callback'     => array( $this, 'can_edit' ),
 				'show_in_rest'      => array(
-					'schema' => Schema::get(),
+					// Only when editing: the document is the chart's whole data set.
+					'schema' => array_merge( Schema::get(), array( 'context' => array( 'edit' ) ) ),
 				),
 			)
 		);

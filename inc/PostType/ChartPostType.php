@@ -7,6 +7,7 @@
 
 namespace EasyCharts\PostType;
 
+use EasyCharts\Rest\ChartPostsController;
 use EasyCharts\Service;
 
 /**
@@ -63,21 +64,23 @@ final class ChartPostType implements Service {
 		register_post_type(
 			self::POST_TYPE,
 			array(
-				'labels'          => $labels,
-				'public'          => false,
-				'show_ui'         => true,
-				'capability_type' => 'page',
-				'hierarchical'    => true,
-				'menu_icon'       => 'dashicons-chart-bar',
-				'rewrite'         => false,
-				'query_var'       => 'easy_charts',
-				'show_in_rest'    => true,
-				'rest_base'       => 'easy-charts',
+				'labels'                => $labels,
+				'public'                => false,
+				'show_ui'               => true,
+				'capability_type'       => 'page',
+				'hierarchical'          => true,
+				'menu_icon'             => 'dashicons-chart-bar',
+				'rewrite'               => false,
+				'query_var'             => 'easy_charts',
+				'show_in_rest'          => true,
+				'rest_base'             => 'easy-charts',
+				// Reading charts over REST needs edit_posts (ChartPostsController).
+				'rest_controller_class' => ChartPostsController::class,
 				// custom-fields is required for registered meta to appear in REST responses.
-				'supports'        => array( 'title', 'editor', 'custom-fields' ),
+				'supports'              => array( 'title', 'editor', 'custom-fields' ),
 				// One locked chart block, bound to the chart's _easy_charts_chart meta.
-				'template'        => array( array( 'easy-charts/chart' ) ),
-				'template_lock'   => 'all',
+				'template'              => array( array( 'easy-charts/chart' ) ),
+				'template_lock'         => 'all',
 			)
 		);
 	}

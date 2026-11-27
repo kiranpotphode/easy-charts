@@ -24,6 +24,11 @@ class RestTest extends WP_UnitTestCase {
 	public function set_up() {
 		parent::set_up();
 		Plugin::instance()->get( ChartMeta::class )->register_meta();
+
+		// A fresh REST server and posts controller: the controller (kept on the post type object)
+		// caches its schema, which must include the meta above to filter it by context.
+		get_post_type_object( 'easy_charts' )->rest_controller = null;
+		$GLOBALS['wp_rest_server']                             = null; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- WordPress' own REST server, reset between tests.
 	}
 
 	/**
@@ -157,12 +162,58 @@ class RestTest extends WP_UnitTestCase {
 		$this->assertNull( ( new ChartRepository() )->find( $id ) );
 	}
 
-	public function test_published_chart_is_readable_with_its_document() {
+	/**
+	 * Users who may not read charts over REST: visitors and subscribers.
+	 *
+	 * @return array
+	 */
+	public function readers_without_access() {
+		return array(
+			'visitor'    => array( '', 401 ),
+			'subscriber' => array( 'subscriber', 403 ),
+		);
+	}
+
+	/**
+	 * Reading charts over REST needs edit_posts.
+	 *
+	 * @dataProvider readers_without_access
+	 *
+	 * @param string $role   Role, or '' for a visitor.
+	 * @param int    $status Expected status.
+	 */
+	public function test_published_charts_are_not_readable_without_edit_posts( $role, $status ) {
 		$id = $this->chart();
 		( new ChartRepository() )->save( $id, $this->doc() );
-		wp_set_current_user( 0 );
+		wp_set_current_user( $role ? self::factory()->user->create( array( 'role' => $role ) ) : 0 );
+
+		$single = rest_get_server()->dispatch( new WP_REST_Request( 'GET', '/wp/v2/easy-charts/' . $id ) );
+		$list   = rest_get_server()->dispatch( new WP_REST_Request( 'GET', '/wp/v2/easy-charts' ) );
+
+		$this->assertSame( $status, $single->get_status() );
+		$this->assertSame( $status, $list->get_status() );
+		$this->assertStringNotContainsString( '"Share"', wp_json_encode( $single->get_data() ) . wp_json_encode( $list->get_data() ) );
+	}
+
+	public function test_contributors_read_published_charts_without_their_document() {
+		$id = $this->chart();
+		( new ChartRepository() )->save( $id, $this->doc() );
+		wp_set_current_user( self::factory()->user->create( array( 'role' => 'contributor' ) ) );
 
 		$response = rest_get_server()->dispatch( new WP_REST_Request( 'GET', '/wp/v2/easy-charts/' . $id ) );
+
+		$this->assertSame( 200, $response->get_status() );
+		$this->assertArrayNotHasKey( ChartMeta::KEY, (array) $response->get_data()['meta'] );
+	}
+
+	public function test_editors_get_the_document_when_editing() {
+		$id = $this->chart();
+		( new ChartRepository() )->save( $id, $this->doc() );
+		wp_set_current_user( self::factory()->user->create( array( 'role' => 'editor' ) ) );
+
+		$request = new WP_REST_Request( 'GET', '/wp/v2/easy-charts/' . $id );
+		$request->set_param( 'context', 'edit' );
+		$response = rest_get_server()->dispatch( $request );
 
 		$this->assertSame( 200, $response->get_status() );
 		$this->assertSame( 'pie', $response->get_data()['meta'][ ChartMeta::KEY ]['type'] );
