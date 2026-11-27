@@ -169,9 +169,15 @@ function draw( box ) {
 				width,
 			} )
 		);
-		const chart =
-			state.chart ?? echarts.init( box, null, { renderer: 'svg' } );
-		state.chart = chart;
+		let chart = state.chart;
+		if ( chart ) {
+			// Redrawing with a new layout (the phone width was crossed): setOption() keeps the
+			// size of the last drawing, so take the box's current size first.
+			chart.resize();
+		} else {
+			chart = echarts.init( box, null, { renderer: 'svg' } );
+			state.chart = chart;
+		}
 		chart.setOption( option, true );
 		hideDrawing( box );
 		state.option = option;

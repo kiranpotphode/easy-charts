@@ -181,6 +181,37 @@ test.describe( 'Charts drawn in difficult places', () => {
 		).toBe( true );
 	} );
 
+	test( 'redraws charts at the new size when the phone layout switches back', async ( {
+		page,
+	} ) => {
+		await page.setViewportSize( { width: 375, height: 800 } );
+		await page.goto( '/easy-charts-examples/' );
+		const figures = page.locator( `${ FIGURE }.is-rendered` );
+		await expect( figures ).toHaveCount( 12 );
+
+		// Rotating a phone, or widening the window past 480 px.
+		await page.setViewportSize( { width: 1280, height: 800 } );
+		await expect
+			.poll( () =>
+				figures.evaluateAll( ( elements ) =>
+					elements.every( ( figure ) => {
+						const box = figure.querySelector(
+							'.easy-charts-chart__canvas'
+						);
+						const svg = box.querySelector( 'svg' );
+						return (
+							box.clientWidth > 480 &&
+							Math.abs(
+								svg.getBoundingClientRect().width -
+									box.clientWidth
+							) <= 1
+						);
+					} )
+				)
+			)
+			.toBe( true );
+	} );
+
 	test( 'prints charts at the page width', async ( { page } ) => {
 		await page.goto( page_.link );
 		await expect( page.locator( `#ec-below ${ FIGURE }` ) ).toHaveClass(
