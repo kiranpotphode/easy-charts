@@ -126,7 +126,7 @@ They keep working and keep their 1.x look until you migrate them, one at a time 
 
 = Where is my data stored? =
 
-Saved charts are posts of the `easy_charts` type, with the chart in post meta. Charts made in a Chart block are stored in that block. Site-wide settings are stored in the `easy_charts_settings` option. Easy Charts creates no database tables.
+Saved charts are posts of the `easy_charts` type, with the chart in post meta. Charts made in a Chart block are stored in that block. Site-wide settings are stored in the `easy_charts_settings` option. Easy Charts creates no database tables. Deleting the plugin keeps all of this, including data from 1.x, so your charts come back if you install it again.
 
 = Does the chart work without JavaScript? =
 
