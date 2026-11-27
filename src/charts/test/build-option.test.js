@@ -8,7 +8,9 @@ import { describe, expect, it } from 'vitest';
  */
 import {
 	CHART_TYPES,
+	COMPACT_WIDTH,
 	buildOption,
+	isCompact,
 	describeChart,
 	resolveFont,
 	formatValue,
@@ -443,4 +445,139 @@ describe( 'security', () => {
 			}
 		}
 	);
+} );
+
+describe( 'compact (phone) layout', () => {
+	const withLegend = ( position, orientation = 'vertical' ) => ( {
+		...settings,
+		legend: { show: true, position },
+		layout: { orientation },
+	} );
+
+	it( 'is used only below 480 px', () => {
+		expect( COMPACT_WIDTH ).toBe( 480 );
+		expect( isCompact( 479 ) ).toBe( true );
+		expect( isCompact( 480 ) ).toBe( false );
+		for ( const unknown of [
+			0,
+			-5,
+			NaN,
+			Infinity,
+			'300',
+			null,
+			undefined,
+		] ) {
+			expect( isCompact( unknown ) ).toBe( false );
+		}
+	} );
+
+	it.each( [ 'left', 'right' ] )(
+		'moves a %s legend to the bottom only when compact',
+		( position ) => {
+			const narrow = buildOption( {
+				type: 'bar',
+				data,
+				settings: withLegend( position ),
+				width: 320,
+			} );
+			expect( narrow.legend.orient ).toBeUndefined();
+			expect( narrow.legend.bottom ).toBe( 4 );
+			expect( narrow.grid[ position ] ).toBe( 16 );
+
+			for ( const width of [ 480, 0, NaN, '300' ] ) {
+				const full = buildOption( {
+					type: 'bar',
+					data,
+					settings: withLegend( position ),
+					width,
+				} );
+				expect( full.legend.orient ).toBe( 'vertical' );
+				expect( full.legend[ position ] ).toBe( 8 );
+			}
+		}
+	);
+
+	it( 'keeps top and bottom legends where they are', () => {
+		const top = buildOption( {
+			type: 'line',
+			data,
+			settings: withLegend( 'top' ),
+			width: 320,
+		} );
+		expect( top.legend.left ).toBe( 'center' );
+		expect( top.legend.bottom ).toBeUndefined();
+	} );
+
+	it( 'shows only the value in pie labels when compact', () => {
+		const params = { name: '2008', value: 10 };
+		const narrow = buildOption( {
+			type: 'pie',
+			data,
+			settings,
+			width: 320,
+		} );
+		const full = buildOption( { type: 'pie', data, settings, width: 640 } );
+
+		expect( narrow.series[ 0 ].label.formatter( params ) ).toBe( '10' );
+		expect( full.series[ 0 ].label.formatter( params ) ).toBe( '2008: 10' );
+	} );
+
+	it( 'truncates row labels of horizontal charts only when compact', () => {
+		const narrow = buildOption( {
+			type: 'bar',
+			data,
+			settings: withLegend( 'bottom', 'horizontal' ),
+			width: 320,
+		} );
+		expect( narrow.yAxis.axisLabel ).toMatchObject( {
+			width: 96,
+			overflow: 'truncate',
+		} );
+
+		const full = buildOption( {
+			type: 'bar',
+			data,
+			settings: withLegend( 'bottom', 'horizontal' ),
+			width: 640,
+		} );
+		expect( full.yAxis.axisLabel.overflow ).toBeUndefined();
+
+		const vertical = buildOption( {
+			type: 'bar',
+			data,
+			settings: withLegend( 'bottom' ),
+			width: 320,
+		} );
+		expect( vertical.xAxis.axisLabel.overflow ).toBeUndefined();
+	} );
+
+	it( 'hides overlapping labels on visible series only', () => {
+		for ( const type of CHART_TYPES ) {
+			const option = buildOption( { type, data, settings } );
+			const shown = option.series.filter( ( series ) => ! series.silent );
+			const bases = option.series.filter( ( series ) => series.silent );
+
+			expect( shown.map( ( series ) => series.labelLayout ) ).toEqual(
+				shown.map( () => ( { hideOverlap: true } ) )
+			);
+			expect( bases.map( ( series ) => series.labelLayout ) ).toEqual(
+				bases.map( () => undefined )
+			);
+		}
+		// Waterfall has invisible base series, so the check above covers them.
+		const waterfall = buildOption( { type: 'waterfall', data, settings } );
+		expect(
+			waterfall.series.filter( ( series ) => series.silent ).length
+		).toBeGreaterThan( 0 );
+	} );
+
+	it( 'keeps tooltips escaped in the compact layout too', () => {
+		for ( const type of CHART_TYPES ) {
+			const option = buildOption( { type, data, settings, width: 320 } );
+			expect( option.tooltip.formatter ).toBeUndefined();
+			for ( const series of option.series ) {
+				expect( series.tooltip?.formatter ).toBeUndefined();
+			}
+		}
+	} );
 } );

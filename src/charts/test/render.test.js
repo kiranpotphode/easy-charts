@@ -41,14 +41,15 @@ let chart;
 /**
  * Render an option to an SVG string.
  *
- * @param {Object} option ECharts option.
+ * @param {Object} option  ECharts option.
+ * @param {number} [width] Chart width in px.
  * @return {string} SVG markup.
  */
-function renderSvg( option ) {
+function renderSvg( option, width = 600 ) {
 	chart = echarts.init( null, null, {
 		renderer: 'svg',
 		ssr: true,
-		width: 600,
+		width,
 		height: 400,
 	} );
 	chart.setOption( { ...option, animation: false } );
@@ -169,4 +170,27 @@ describe( 'rendering with ECharts', () => {
 		);
 		expect( svg ).toContain( 'Empty' );
 	} );
+
+	it.each( CHART_TYPES )(
+		'renders a %s chart 320 px wide with a left legend (phone)',
+		( type ) => {
+			const svg = renderSvg(
+				buildOption( {
+					type,
+					data,
+					settings: {
+						...settings,
+						legend: { show: true, position: 'left' },
+					},
+					title: 'Revenue',
+					width: 320,
+				} ),
+				320
+			);
+
+			expect( svg ).toMatch( /^<svg[^>]* width="320"/ );
+			expect( svg ).toContain( 'Revenue' );
+			expect( svg.length ).toBeGreaterThan( 2000 );
+		}
+	);
 } );
