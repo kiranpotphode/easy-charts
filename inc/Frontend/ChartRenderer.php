@@ -12,6 +12,7 @@ use EasyCharts\Chart\ChartRepository;
 use EasyCharts\Chart\Schema;
 use EasyCharts\Service;
 use EasyCharts\Settings\SettingsResolver;
+use WP_Post;
 
 /**
  * Renders a chart as a <figure> with a chart box, its JSON config and an accessible data table,
@@ -187,18 +188,62 @@ final class ChartRenderer implements Service {
 	}
 
 	/**
-	 * Private and trashed charts are only shown to users who can read them. Other statuses render as in 1.x.
+	 * Who may see a chart.
+	 *
+	 * - Published charts: everyone.
+	 * - Private and trashed charts: only users who can read them.
+	 * - Unpublished (draft, pending, scheduled) and password-protected charts: users who can read
+	 *   them (edit, for a password-protected chart, which has no page to enter the password on),
+	 *   or everyone when the post that embeds them is by an author who can. So an editor's own
+	 *   draft chart in their published post still shows, as in 1.x.
 	 *
 	 * @param int $chart_id Chart post ID.
 	 * @return bool
 	 */
 	private function can_show( $chart_id ) {
-		$status = get_post_status( $chart_id );
-		if ( in_array( $status, array( 'private', 'trash' ), true ) ) {
-			return current_user_can( 'read_post', $chart_id );
+		$chart = get_post( $chart_id );
+		if ( ! $chart instanceof WP_Post ) {
+			return false;
 		}
 
-		return false !== $status;
+		$protected = '' !== $chart->post_password;
+		if ( 'publish' === $chart->post_status && ! $protected ) {
+			return true;
+		}
+
+		$capability = 'publish' === $chart->post_status ? 'edit_post' : 'read_post';
+		if ( current_user_can( $capability, $chart->ID ) ) {
+			return true;
+		}
+		if ( in_array( $chart->post_status, array( 'private', 'trash' ), true ) ) {
+			return false;
+		}
+
+		$author = $this->embedding_author( $chart->ID );
+
+		return $author > 0 && user_can( $author, $capability, $chart->ID );
+	}
+
+	/**
+	 * Author of the post whose content is embedding the chart.
+	 *
+	 * Only trusted while that post's content is rendered: in a widget or a template part, the
+	 * current post is just the page being viewed, not where the chart was placed.
+	 *
+	 * @param int $chart_id Chart post ID.
+	 * @return int User ID, or 0 if unknown.
+	 */
+	private function embedding_author( $chart_id ) {
+		if ( ! doing_filter( 'the_content' ) ) {
+			return 0;
+		}
+
+		$post = get_post();
+		if ( ! $post instanceof WP_Post || (int) $post->ID === (int) $chart_id ) {
+			return 0;
+		}
+
+		return (int) $post->post_author;
 	}
 
 	/**
