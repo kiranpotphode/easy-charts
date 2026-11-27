@@ -330,6 +330,33 @@ class ChartRendererTest extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( 'easy-charts-chart', $this->render_in_post_by( $id, $author ) );
 	}
 
+	public function test_a_query_loop_keeps_the_containing_posts_author() {
+		$editor = self::factory()->user->create( array( 'role' => 'editor' ) );
+		$id     = $this->chart_by( 'draft', $editor );
+		// A published post by the editor, for the Query Loop to list.
+		self::factory()->post->create( array( 'post_author' => $editor ) );
+
+		$author = self::factory()->user->create( array( 'role' => 'author' ) );
+		$loop   = '<!-- wp:query {"queryId":1,"query":{"postType":"post","author":"' . $editor . '","inherit":false,"perPage":1}} -->'
+			. '<div class="wp-block-query"><!-- wp:post-template -->'
+			. '<!-- wp:easy-charts/chart {"chartId":' . $id . '} /-->'
+			. '<!-- /wp:post-template --></div><!-- /wp:query -->';
+		$host   = self::factory()->post->create(
+			array(
+				'post_author'  => $author,
+				'post_content' => $loop,
+			)
+		);
+		wp_set_current_user( 0 );
+		$GLOBALS['post'] = get_post( $host ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- the post being viewed.
+
+		// The chart sits in the author's content, in a loop listing the editor's posts.
+		$html = apply_filters( 'the_content', get_post_field( 'post_content', $host ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core filter.
+
+		$this->assertStringContainsString( 'wp-block-query', $html );
+		$this->assertStringNotContainsString( 'easy-charts-chart', $html );
+	}
+
 	public function test_outside_post_content_only_the_viewer_counts() {
 		$editor = self::factory()->user->create( array( 'role' => 'editor' ) );
 		$id     = $this->chart_by( 'draft', $editor );

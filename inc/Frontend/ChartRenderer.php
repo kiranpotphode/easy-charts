@@ -39,6 +39,13 @@ final class ChartRenderer implements Service {
 	private $settings;
 
 	/**
+	 * IDs of the posts whose content `the_content` is filtering, innermost last.
+	 *
+	 * @var int[]
+	 */
+	private $content_posts = array();
+
+	/**
 	 * Constructor.
 	 *
 	 * @param ChartRepository  $charts   Chart storage.
@@ -56,6 +63,34 @@ final class ChartRenderer implements Service {
 	 */
 	public function register() {
 		add_action( 'init', array( $this, 'register_assets' ) );
+
+		// Track whose content is being filtered (see embedding_author()).
+		add_filter( 'the_content', array( $this, 'enter_content' ), PHP_INT_MIN );
+		add_filter( 'the_content', array( $this, 'leave_content' ), PHP_INT_MAX );
+	}
+
+	/**
+	 * Remember the post whose content `the_content` is filtering.
+	 *
+	 * @param string $content Post content.
+	 * @return string Unchanged content.
+	 */
+	public function enter_content( $content ) {
+		$this->content_posts[] = (int) get_the_ID();
+
+		return $content;
+	}
+
+	/**
+	 * Forget the post whose content `the_content` has filtered.
+	 *
+	 * @param string $content Post content.
+	 * @return string Unchanged content.
+	 */
+	public function leave_content( $content ) {
+		array_pop( $this->content_posts );
+
+		return $content;
 	}
 
 	/**
@@ -227,19 +262,20 @@ final class ChartRenderer implements Service {
 	/**
 	 * Author of the post whose content is embedding the chart.
 	 *
-	 * Only trusted while that post's content is rendered: in a widget or a template part, the
-	 * current post is just the page being viewed, not where the chart was placed.
+	 * Only trusted while that post's own content is filtered and it is still the current post;
+	 * otherwise (widgets, template parts, nested loops) 0.
 	 *
 	 * @param int $chart_id Chart post ID.
 	 * @return int User ID, or 0 if unknown.
 	 */
 	private function embedding_author( $chart_id ) {
-		if ( ! doing_filter( 'the_content' ) ) {
+		$filtering = end( $this->content_posts );
+		if ( ! $filtering ) {
 			return 0;
 		}
 
 		$post = get_post();
-		if ( ! $post instanceof WP_Post || (int) $post->ID === (int) $chart_id ) {
+		if ( ! $post instanceof WP_Post || (int) $post->ID !== $filtering || (int) $post->ID === (int) $chart_id ) {
 			return 0;
 		}
 
