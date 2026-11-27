@@ -324,7 +324,8 @@ final class ChartRenderer implements Service {
 			return '';
 		}
 
-		$label = isset( $settings['download']['label'] ) && '' !== $settings['download']['label']
+		// Settings come from block attributes too, so the label may be any JSON value.
+		$label = isset( $settings['download']['label'] ) && is_string( $settings['download']['label'] ) && '' !== $settings['download']['label']
 			? $settings['download']['label']
 			: __( 'Download', 'easy-charts' );
 

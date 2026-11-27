@@ -147,6 +147,47 @@ class ChartRendererTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<button type="button" class="easy-charts-chart__download" hidden>Download<span class="easy-charts-chart__sr"> (PNG image of &quot;Sales&quot;)</span></button>', $html );
 	}
 
+	/**
+	 * Download labels that are not text.
+	 *
+	 * @return array
+	 */
+	public function invalid_labels() {
+		return array(
+			'array'  => array( array( '<b>x</b>' ) ),
+			'number' => array( 42 ),
+			'null'   => array( null ),
+		);
+	}
+
+	/**
+	 * A block attribute can hold any JSON; a download label that is not text falls back to the default.
+	 *
+	 * @dataProvider invalid_labels
+	 *
+	 * @param mixed $label Label from the chart's settings.
+	 */
+	public function test_download_label_that_is_not_text_falls_back( $label ) {
+		$html = $this->renderer->render_document(
+			array(
+				'schema'   => 2,
+				'type'     => 'bar',
+				'data'     => array(
+					'columns' => array( '', 'Kia' ),
+					'rows'    => array( array( '2008', 10 ) ),
+				),
+				'settings' => array(
+					'download' => array(
+						'enabled' => true,
+						'label'   => $label,
+					),
+				),
+			)
+		);
+
+		$this->assertStringContainsString( 'hidden>Download<span', $html );
+	}
+
 	public function test_charts_get_a_short_translated_description() {
 		$html    = $this->renderer->render( $this->chart() );
 		$strings = $this->config( $html )['strings'];
