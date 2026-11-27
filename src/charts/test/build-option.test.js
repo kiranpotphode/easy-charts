@@ -418,3 +418,29 @@ describe( 'buildOption', () => {
 		expect( option.xAxis.data ).toEqual( [] );
 	} );
 } );
+
+describe( 'security', () => {
+	// ECharts inserts a tooltip `formatter`'s output as HTML; `valueFormatter` output is escaped.
+	// Chart data is untrusted, so tooltips must only ever use `valueFormatter`.
+	const layouts = [ 'vertical', 'horizontal' ];
+
+	it.each(
+		CHART_TYPES.flatMap( ( type ) => layouts.map( ( l ) => [ type, l ] ) )
+	)(
+		'%s (%s) tooltips never use an HTML formatter',
+		( type, orientation ) => {
+			const option = buildOption( {
+				type,
+				data,
+				settings: { ...settings, layout: { orientation } },
+				title: '<img src=x onerror=alert(1)>',
+			} );
+
+			expect( option.tooltip.formatter ).toBeUndefined();
+			expect( typeof option.tooltip.valueFormatter ).toBe( 'function' );
+			for ( const series of option.series ) {
+				expect( series.tooltip?.formatter ).toBeUndefined();
+			}
+		}
+	);
+} );
